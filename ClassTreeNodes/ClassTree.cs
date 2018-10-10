@@ -168,6 +168,21 @@ namespace VitTree
             return contMenu;
         }
 
+        /// <summary>
+        /// Выдает целое числовое значение номера
+        /// </summary>
+        /// <param name="treeNode"></param>
+        /// <returns></returns>
+        public int GetIdNode(TreeNode treeNode)
+        {
+            return Convert.ToInt32(treeNode.Name.Split('_')[1]);
+        }
+
+        /// <summary>
+        /// Выдает строковое название типа
+        /// </summary>
+        /// <param name="treeNode"></param>
+        /// <returns></returns>
         public string GetTypeNode(TreeNode treeNode)
         {
             return treeNode.Name.Split('_')[0];
@@ -630,6 +645,19 @@ namespace VitTree
             }
         }
 
+        private void RecursiveDeleteFiles(TreeNode treeNode)
+        {
+            foreach (TreeNode tn in treeNode.Nodes)
+            {
+                if (tn.Name.Contains("file"))
+                {
+                    classFiles.Delete(GetIdNode(tn));
+                }
+
+                RecursiveDeleteFiles(tn);
+            }
+        }
+
         private void renameFile()
         {
             formTreeInput.textBox1.Text = objectTreeView.SelectedNode.Text;
@@ -739,12 +767,14 @@ namespace VitTree
 
             if (globalNode.Tag.ToString() != "folder")
             {
-                MessageBox.Show("Ошибка типа файла!");
+                MessageBox.Show("Удаляемый узел не является папкой!");
                 return;
             }
 
-            string[] paramsName = globalNode.Name.Split('_');
-            classFolder.DeleteFolder(Convert.ToInt32(paramsName[1]));
+            // Рекурсивно удаляем все файлы из леквидируемых каталогов
+            RecursiveDeleteFiles(globalNode);
+            // Удаляем папку с подкаталогами
+            classFolder.DeleteFolder(GetIdNode(globalNode));
             objectTreeView.SelectedNode.Remove();
         }
 

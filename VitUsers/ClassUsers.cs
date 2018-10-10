@@ -94,7 +94,7 @@ namespace VitUsers
             {
                 if (rows.GetLength(0) == 1)
                 {
-                    ceshLogin(rows[0]["id"]);
+                    CashLogin(rows[0]["id"]);
                     return 1;
                 }
                 else
@@ -146,18 +146,13 @@ namespace VitUsers
             return formUsers.ShowDialog();
         }
 
-        private void ceshLogin(string id)
+        private void CashLogin(string id)
         {
             //Directory.CreateDirectory(programPath);
-            string text = dateLogin();
-            if (File.Exists(programPath + "\\" + tmpFile))
-            {
-                File.Decrypt(programPath + "\\" + tmpFile);
-            }
+            string text = DateLogin();
 
-            File.WriteAllText(programPath + "\\" + tmpFile, text);
-            File.AppendAllText(programPath + "\\" + tmpFile, id);
-            File.Encrypt(programPath + "\\" + tmpFile);
+            File.WriteAllText(programPath + "\\" + tmpFile, text.GetHashCode().ToString() + "\n");
+            File.AppendAllText(programPath + "\\" + tmpFile, id + "\n");
         }
 
         private int ChangeAccessGroupById(int id, int idAccessGroup)
@@ -177,8 +172,8 @@ namespace VitUsers
                 return false;
             }
 
-            string text = File.ReadAllText(programPath + tmpFile);
-            if (!text.Equals(dateLogin()))
+            string[] text = File.ReadAllLines(programPath + tmpFile);
+            if (!text[0].Equals(DateLogin().GetHashCode().ToString()))
             {
                 return false;
             }
@@ -186,9 +181,13 @@ namespace VitUsers
             return true;
         }
 
-        private string dateLogin()
+        private string DateLogin()
         {
-            return (char)DateTime.Now.Year + "." + (char)DateTime.Now.Month + "." + (char)DateTime.Now.Day + "." + (char)DateTime.Now.Hour;
+            string hour = DateTime.Now.Hour.ToString();
+            string day = DateTime.Now.Day.ToString();
+            string month = DateTime.Now.Month.ToString();
+            string year = DateTime.Now.Year.ToString();
+            return year + "." + month + "." + day + "." + hour;
         }
 
         private void Init()

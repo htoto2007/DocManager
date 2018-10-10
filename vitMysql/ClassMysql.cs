@@ -101,7 +101,15 @@ namespace VitMysql
         {
             classDB.dbLink.Open();
             MySqlCommand command = new MySqlCommand(query, classDB.dbLink);
-            int res = command.ExecuteNonQuery();
+            int res = 0;
+            try
+            {
+                command.ExecuteNonQuery();
+            }
+            catch (MySql.Data.MySqlClient.MySqlException e)
+            {
+                MessageBox.Show(e.Message + "\n\n\n " + query);
+            }
             classDB.dbLink.Close();
             return res;
         }
