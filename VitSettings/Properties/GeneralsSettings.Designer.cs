@@ -58,5 +58,17 @@ namespace VitSettings.Properties {
                 this["mysqkRunPath"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("/upload")]
+        public string repositoryPathDefault {
+            get {
+                return ((string)(this["repositoryPathDefault"]));
+            }
+            set {
+                this["repositoryPathDefault"] = value;
+            }
+        }
     }
 }

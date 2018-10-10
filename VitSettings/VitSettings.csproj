@@ -66,6 +66,11 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>GeneralsSettings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Properties\SettingsDev.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>SettingsDev.settings</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -76,6 +81,10 @@
     <None Include="Properties\GeneralsSettings.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>GeneralsSettings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Properties\SettingsDev.settings">
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
+      <LastGenOutput>SettingsDev.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>

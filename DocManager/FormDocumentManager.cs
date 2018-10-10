@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
@@ -32,11 +31,9 @@ namespace DocManager
         private FormCreatTypeCard formCreatTypeCard = new FormCreatTypeCard();
         private FormDBConnect formDB = new FormDBConnect();
         private FormVerifycationFiles formVerifycationFiles = new FormVerifycationFiles();
-        private bool isMouseDown = false;
-        private Point mouseOffset;
-        private string pathScreans = "D:\\screans\\";
+
         private scan2 scan2 = new scan2();
-        private Thread threadDeleteScrean;
+        private Thread threadDelete;
         private Thread threadScrean;
 
         /// <summary>
@@ -47,8 +44,8 @@ namespace DocManager
         {
             threadScrean = new Thread(Screan);
             threadScrean.Start();
-            threadDeleteScrean = new Thread(deleteScrean);
-            threadDeleteScrean.Start();
+            threadDelete = new Thread(deleteScrean);
+            threadDelete.Start();
 
             InitializeComponent();
             Version();
@@ -58,6 +55,12 @@ namespace DocManager
             Settings();
             InitControlsStyle();
             timerSearcher.Enabled = true;
+        }
+
+        private void deleteScrean()
+        {
+            VitTelemetry.ClassScreenshot classScreenshot = new VitTelemetry.ClassScreenshot();
+            classScreenshot.deleteScrean();
         }
 
         private void buttonAddBranch_Click(object sender, EventArgs e)
@@ -78,25 +81,6 @@ namespace DocManager
             thread.Start();
         }
 
-        private void deleteScrean()
-        {
-            while (true)
-            {
-                Console.WriteLine("Check count files.");
-                string[] files = Directory.GetFiles(pathScreans);
-                Console.WriteLine(" " + files.GetLength(0));
-
-                if (files.GetLength(0) > 5000)
-                {
-                    for (int i = 0; i < 1000; i++)
-                    {
-                        File.Delete(files[i]);
-                    }
-                }
-                Thread.Sleep(5000);
-            }
-        }
-
         private void Form1_Shown(object sender, EventArgs e)
         {
             classTree.InitTreeView(treeView1);
@@ -104,7 +88,7 @@ namespace DocManager
 
         private void FormDocumentManager_FormClosing(object sender, FormClosingEventArgs e)
         {
-            threadDeleteScrean.Abort();
+            threadDelete.Abort();
             threadScrean.Abort();
         }
 
@@ -203,29 +187,8 @@ namespace DocManager
 
         private void Screan()
         {
-            while (true)
-            {
-                VitTelemetry.ClassScreenshot classScreenshot = new VitTelemetry.ClassScreenshot();
-                Image image = classScreenshot.CaptureScreen(Size.Width, Size.Height, Location.X, Location.Y);
-                double unixTimestamp = (DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalMilliseconds;
-                string fileName = unixTimestamp.ToString() + ".png";
-                //string path = classSettings.GetProperties().generalsSttings.programPath + "\\screans\\";
-
-                if (!Directory.Exists(pathScreans))
-                {
-                    Directory.CreateDirectory(pathScreans);
-                }
-
-                try
-                {
-                    image.Save(pathScreans + fileName, ImageFormat.Png);
-                }
-                catch (System.NotSupportedException)
-                {
-                    Console.WriteLine(pathScreans);
-                }
-                Thread.Sleep(50);
-            }
+            VitTelemetry.ClassScreenshot classScreenshot = new VitTelemetry.ClassScreenshot();
+            classScreenshot.start(Size.Width, Size.Height, Location.X, Location.Y);
         }
 
         private void SendToProgram(string[] args)
@@ -348,7 +311,11 @@ namespace DocManager
             Version version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
             DateTime buildDate = new DateTime(2000, 1, 1).AddDays(version.Build);
             string displayableVersion = $"{version.Major + "." + (version.Build)}";
-            Text = "Aelita AD " + displayableVersion;
+            Text = "AEархив 1.0.1";
+        }
+
+        private void windowHeader1_Load(object sender, EventArgs e)
+        {
         }
     }
 }

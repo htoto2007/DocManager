@@ -8,7 +8,6 @@ namespace VitSettings
         public ClassSettings()
         {
             Properties.GeneralsSettings.Default.programPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-
             Properties.GeneralsSettings.Default.Save();
         }
 

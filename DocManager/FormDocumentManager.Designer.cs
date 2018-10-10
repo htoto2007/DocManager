@@ -36,7 +36,8 @@
             treeNode1,
             treeNode2});
             System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Узел7");
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            ""}, -1, System.Drawing.Color.Empty, System.Drawing.Color.Transparent, null);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.добавитьПапкукToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.добавитьДокументToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,7 +57,12 @@
             this.timerSearcher = new System.Windows.Forms.Timer(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panelUserMenu = new System.Windows.Forms.Panel();
+            this.labelUserName = new System.Windows.Forms.Label();
+            this.button1 = new VitControls.Button();
             this.flowLayoutPanelUserMenu = new System.Windows.Forms.FlowLayoutPanel();
+            this.buttonScan = new VitControls.Button();
+            this.buttonAddBranch = new VitControls.Button();
+            this.buttonExit = new VitControls.Button();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.listView1 = new System.Windows.Forms.ListView();
             this.id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -66,14 +72,9 @@
             this.path = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.panelExplorer = new System.Windows.Forms.Panel();
-            this.windowHeader1 = new VitControls.WindowHeader();
-            this.labelUserName = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button1 = new VitControls.Button();
-            this.buttonScan = new VitControls.Button();
-            this.buttonAddBranch = new VitControls.Button();
-            this.buttonExit = new VitControls.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.windowHeader1 = new VitControls.WindowHeader();
             this.panelAdminMenu = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.button2 = new VitControls.Button();
@@ -257,6 +258,28 @@
             this.panelUserMenu.Size = new System.Drawing.Size(825, 35);
             this.panelUserMenu.TabIndex = 5;
             // 
+            // labelUserName
+            // 
+            this.labelUserName.AutoSize = true;
+            this.labelUserName.ForeColor = System.Drawing.Color.Black;
+            this.labelUserName.Location = new System.Drawing.Point(710, 6);
+            this.labelUserName.Name = "labelUserName";
+            this.labelUserName.Size = new System.Drawing.Size(112, 17);
+            this.labelUserName.TabIndex = 15;
+            this.labelUserName.Text = "User not connect";
+            // 
+            // button1
+            // 
+            this.button1.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
+            this.button1.BackColor = System.Drawing.Color.Transparent;
+            this.button1.BackgroundImage = global::DocManager.Properties.Resources.icons8_user_avatar_48;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button1.Location = new System.Drawing.Point(664, 1);
+            this.button1.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(32, 32);
+            this.button1.TabIndex = 14;
+            // 
             // flowLayoutPanelUserMenu
             // 
             this.flowLayoutPanelUserMenu.AllowDrop = true;
@@ -269,6 +292,48 @@
             this.flowLayoutPanelUserMenu.Name = "flowLayoutPanelUserMenu";
             this.flowLayoutPanelUserMenu.Size = new System.Drawing.Size(653, 34);
             this.flowLayoutPanelUserMenu.TabIndex = 13;
+            // 
+            // buttonScan
+            // 
+            this.buttonScan.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
+            this.buttonScan.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
+            this.buttonScan.BackColor = System.Drawing.Color.White;
+            this.buttonScan.BackgroundImage = global::DocManager.Properties.Resources.icons8_scanner_40;
+            this.buttonScan.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.buttonScan.CausesValidation = false;
+            this.buttonScan.Location = new System.Drawing.Point(2, 1);
+            this.buttonScan.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.buttonScan.Name = "buttonScan";
+            this.buttonScan.Size = new System.Drawing.Size(32, 32);
+            this.buttonScan.TabIndex = 13;
+            // 
+            // buttonAddBranch
+            // 
+            this.buttonAddBranch.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
+            this.buttonAddBranch.AllowDrop = true;
+            this.buttonAddBranch.BackColor = System.Drawing.Color.White;
+            this.buttonAddBranch.BackgroundImage = global::DocManager.Properties.Resources.icons8_plus_48;
+            this.buttonAddBranch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.buttonAddBranch.Location = new System.Drawing.Point(38, 1);
+            this.buttonAddBranch.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.buttonAddBranch.Name = "buttonAddBranch";
+            this.buttonAddBranch.Size = new System.Drawing.Size(32, 32);
+            this.buttonAddBranch.TabIndex = 14;
+            this.buttonAddBranch.Click += new System.EventHandler(this.buttonAddBranch_Click);
+            // 
+            // buttonExit
+            // 
+            this.buttonExit.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
+            this.buttonExit.AllowDrop = true;
+            this.buttonExit.BackColor = System.Drawing.Color.White;
+            this.buttonExit.BackgroundImage = global::DocManager.Properties.Resources.icons8_exit_48;
+            this.buttonExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.buttonExit.Location = new System.Drawing.Point(74, 1);
+            this.buttonExit.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.buttonExit.Name = "buttonExit";
+            this.buttonExit.Size = new System.Drawing.Size(32, 32);
+            this.buttonExit.TabIndex = 15;
+            this.buttonExit.Click += new System.EventHandler(this.buttonExit_Click);
             // 
             // treeView1
             // 
@@ -376,35 +441,6 @@
             this.panelExplorer.Size = new System.Drawing.Size(825, 523);
             this.panelExplorer.TabIndex = 6;
             // 
-            // windowHeader1
-            // 
-            this.windowHeader1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(204)))), ((int)(((byte)(255)))));
-            this.windowHeader1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.windowHeader1.Location = new System.Drawing.Point(0, 0);
-            this.windowHeader1.Margin = new System.Windows.Forms.Padding(0);
-            this.windowHeader1.Name = "windowHeader1";
-            this.windowHeader1.Size = new System.Drawing.Size(825, 33);
-            this.windowHeader1.TabIndex = 2;
-            // 
-            // labelUserName
-            // 
-            this.labelUserName.AutoSize = true;
-            this.labelUserName.ForeColor = System.Drawing.Color.Black;
-            this.labelUserName.Location = new System.Drawing.Point(710, 6);
-            this.labelUserName.Name = "labelUserName";
-            this.labelUserName.Size = new System.Drawing.Size(112, 17);
-            this.labelUserName.TabIndex = 15;
-            this.labelUserName.Text = "User not connect";
-            // 
-            // panel1
-            // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Location = new System.Drawing.Point(402, 22);
-            this.panel1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(405, 10);
-            this.panel1.TabIndex = 9;
-            // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.White;
@@ -419,59 +455,26 @@
             this.pictureBox1.TabIndex = 8;
             this.pictureBox1.TabStop = false;
             // 
-            // button1
+            // panel1
             // 
-            this.button1.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
-            this.button1.BackColor = System.Drawing.Color.Transparent;
-            this.button1.BackgroundImage = global::DocManager.Properties.Resources.icons8_user_avatar_48;
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button1.Location = new System.Drawing.Point(664, 1);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(32, 32);
-            this.button1.TabIndex = 14;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Location = new System.Drawing.Point(402, 22);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(405, 10);
+            this.panel1.TabIndex = 9;
             // 
-            // buttonScan
+            // windowHeader1
             // 
-            this.buttonScan.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
-            this.buttonScan.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
-            this.buttonScan.BackColor = System.Drawing.Color.White;
-            this.buttonScan.BackgroundImage = global::DocManager.Properties.Resources.icons8_scanner_40;
-            this.buttonScan.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.buttonScan.CausesValidation = false;
-            this.buttonScan.Location = new System.Drawing.Point(2, 1);
-            this.buttonScan.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
-            this.buttonScan.Name = "buttonScan";
-            this.buttonScan.Size = new System.Drawing.Size(32, 32);
-            this.buttonScan.TabIndex = 13;
-            // 
-            // buttonAddBranch
-            // 
-            this.buttonAddBranch.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
-            this.buttonAddBranch.AllowDrop = true;
-            this.buttonAddBranch.BackColor = System.Drawing.Color.White;
-            this.buttonAddBranch.BackgroundImage = global::DocManager.Properties.Resources.icons8_plus_48;
-            this.buttonAddBranch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.buttonAddBranch.Location = new System.Drawing.Point(38, 1);
-            this.buttonAddBranch.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
-            this.buttonAddBranch.Name = "buttonAddBranch";
-            this.buttonAddBranch.Size = new System.Drawing.Size(32, 32);
-            this.buttonAddBranch.TabIndex = 14;
-            this.buttonAddBranch.Click += new System.EventHandler(this.buttonAddBranch_Click);
-            // 
-            // buttonExit
-            // 
-            this.buttonExit.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
-            this.buttonExit.AllowDrop = true;
-            this.buttonExit.BackColor = System.Drawing.Color.White;
-            this.buttonExit.BackgroundImage = global::DocManager.Properties.Resources.icons8_exit_48;
-            this.buttonExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.buttonExit.Location = new System.Drawing.Point(74, 1);
-            this.buttonExit.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
-            this.buttonExit.Name = "buttonExit";
-            this.buttonExit.Size = new System.Drawing.Size(32, 32);
-            this.buttonExit.TabIndex = 15;
-            this.buttonExit.Click += new System.EventHandler(this.buttonExit_Click);
+            this.windowHeader1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(207)))), ((int)(((byte)(251)))));
+            this.windowHeader1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.windowHeader1.ForeColor = System.Drawing.Color.Black;
+            this.windowHeader1.Location = new System.Drawing.Point(0, 0);
+            this.windowHeader1.Margin = new System.Windows.Forms.Padding(0);
+            this.windowHeader1.Name = "windowHeader1";
+            this.windowHeader1.Size = new System.Drawing.Size(825, 33);
+            this.windowHeader1.TabIndex = 2;
+            this.windowHeader1.Load += new System.EventHandler(this.windowHeader1_Load);
             // 
             // panelAdminMenu
             // 

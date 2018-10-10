@@ -11,5 +11,8 @@
     <Setting Name="mysqkRunPath" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="repositoryPathDefault" Type="System.String" Scope="User">
+      <Value Profile="(Default)">/upload</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

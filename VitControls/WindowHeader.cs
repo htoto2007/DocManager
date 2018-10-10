@@ -12,8 +12,7 @@ namespace VitControls
         public WindowHeader()
         {
             InitializeComponent();
-            VitColors.ClassColors classColors = new VitColors.ClassColors();
-            BackColor = classColors.getCollection().primary0;
+
             buttonClose.BackgroundImage = VitIcons.Properties.ResourceColorImage.icons8_close_window_48;
             buttonMinimize.BackgroundImage = VitIcons.Properties.ResourceColorImage.icons8_minimize_window_48;
         }
@@ -64,8 +63,10 @@ namespace VitControls
         {
             labelText.Text = ParentForm.Text;
             labelText.Font = ParentForm.Font;
-            labelText.ForeColor = ParentForm.ForeColor;
+            labelText.ForeColor = Color.Black;
             Width = ParentForm.Width;
+            VitColors.ClassColors classColors = new VitColors.ClassColors();
+            BackColor = classColors.getCollection().primary0;
         }
     }
 }

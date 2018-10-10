@@ -8,7 +8,7 @@ namespace VitColors
         {
             ColorsCollection colorsCollection = new ColorsCollection
             {
-                primary0 = Color.FromArgb(0, 204, 255),
+                primary0 = Color.FromArgb(175, 207, 251),
                 primary1 = Color.FromArgb(153, 255, 255),
                 secondaryA0 = Color.FromArgb(255, 204, 0),
                 secondaryA1 = Color.FromArgb(255, 204, 153),

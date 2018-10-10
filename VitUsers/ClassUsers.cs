@@ -83,16 +83,16 @@ namespace VitUsers
             string name = formUserLogin.textBoxLogin.Text;
             string password = formUserLogin.textBoxPass.Text;
 
-            int res = classMysql.getNumRows("" +
+            Dictionary<string, string>[] rows = classMysql.getArrayByQuery("" +
                 "SELECT id " +
                 "FROM tb_users " +
                 "WHERE " +
                 "name = '" + name + "' AND " +
                 "password = '" + password + "'");
 
-            if (res == 1)
+            if (rows.GetLength(0) == 1)
             {
-                ceshLogin();
+                ceshLogin(rows[0]["id"]);
                 return 1;
             }
             else
@@ -139,11 +139,18 @@ namespace VitUsers
             return formUsers.ShowDialog();
         }
 
-        private void ceshLogin()
+        private void ceshLogin(string id)
         {
-            Directory.CreateDirectory(programPath);
+            //Directory.CreateDirectory(programPath);
             string text = dateLogin();
+            if (File.Exists(programPath + "\\" + tmpFile))
+            {
+                File.Decrypt(programPath + "\\" + tmpFile);
+            }
+
             File.WriteAllText(programPath + "\\" + tmpFile, text);
+            File.AppendAllText(programPath + "\\" + tmpFile, id);
+            File.Encrypt(programPath + "\\" + tmpFile);
         }
 
         private int ChangeAccessGroupById(int id, int idAccessGroup)
