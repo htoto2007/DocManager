@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B99FA17A-010B-49B0-B945-9C1633200861}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>DocManager</RootNamespace>
+    <AssemblyName>DocManager</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>D:\docManager\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>false</MapFileExtensions>
+    <UpdateUrl>http://vitden.loc/DocManager/</UpdateUrl>
+    <ApplicationRevision>8</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\DocManager.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>89E8AB9433EAA3EDA9043647370EED3DEDC56053</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>DocManager_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <Optimize>true</Optimize>
+    <DocumentationFile>bin\x64\Debug\DocManager.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\x64\Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MySql.Data, Version=8.0.11.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AboutBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutBox.Designer.cs">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormDocumentManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDocumentManager.Designer.cs">
+      <DependentUpon>FormDocumentManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AboutBox.resx">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDocumentManager.resx">
+      <DependentUpon>FormDocumentManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 и x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ClassSearcher\VitSearcher.csproj">
+      <Project>{f10c5013-db71-44c9-bd44-33bf5fb7fc27}</Project>
+      <Name>VitSearcher</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassTreeNodes\VitTree.csproj">
+      <Project>{08774277-77cd-48da-a5d7-8095e0b493cf}</Project>
+      <Name>VitTree</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VitAccess\VitAccess.csproj">
+      <Project>{7aa747f4-9a9a-4a2a-83af-89d06797e173}</Project>
+      <Name>VitAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VitColors\VitColors.csproj">
+      <Project>{7485de72-c9f6-4547-aa4a-395c32de0b88}</Project>
+      <Name>VitColors</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VitControls\VitControls.csproj">
+      <Project>{0D2381AF-887D-4DE5-98FA-1E77AD098931}</Project>
+      <Name>VitControls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VitDBConnect\VitDBConnect.csproj">
+      <Project>{f92548b9-5df7-4c56-acbd-e0d091a47d2b}</Project>
+      <Name>VitDBConnect</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VitFiles\VitFiles.csproj">
+      <Project>{66017a02-c3d9-4809-b788-6b91df08be99}</Project>
+      <Name>VitFiles</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VitImageList\VitIcons.csproj">
+      <Project>{2b2e0264-ef18-4e6d-8069-6a87ae4b37ba}</Project>
+      <Name>VitIcons</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VitListView\VitListView.csproj">
+      <Project>{d793c6eb-d3a4-49e8-86bc-8dbc0d29f73d}</Project>
+      <Name>VitListView</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VitScaner\VitScaner.csproj">
+      <Project>{55301e9d-58a8-40f9-8e6a-710ebd58b5e5}</Project>
+      <Name>VitScaner</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VitSendTo\VitSendToProgram.csproj">
+      <Project>{2a45e400-06cf-4817-88d7-12ebd87ea9aa}</Project>
+      <Name>VitSendToProgram</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VitSettings\VitSettings.csproj">
+      <Project>{8ba14954-8676-4a60-b58f-7e5d8f71eac8}</Project>
+      <Name>VitSettings</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VitTelemetry\VitTelemetry.csproj">
+      <Project>{34a1d6a9-fa5b-415f-80f3-ea4fbe38e2ee}</Project>
+      <Name>VitTelemetry</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VitTypeCard\VitTypeCard.csproj">
+      <Project>{ce939e31-b292-47bb-92d3-085d95fb3f67}</Project>
+      <Name>VitTypeCard</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VitUsers\VitUsers.csproj">
+      <Project>{DF071434-102D-4C05-A18E-F0F67D81DDED}</Project>
+      <Name>VitUsers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VitVerifycationFiles\VitVerifycationFiles.csproj">
+      <Project>{97fab1ee-5880-45e7-9327-6e1d52344ebe}</Project>
+      <Name>VitVerifycationFiles</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\icons\users-cog.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\icons\user-lock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\icons\key.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\icons\database.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\icons\list-alt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\icons\wrench.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\icons\color\icons8-удалить-480.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\icons\color\icons8-minimize-window-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\icons\color\icons8-add-new-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\icons\color\icons8-scanner-40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\icons\color\icons8-plus-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\icons\color\icons8-exit-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\icons\color\icons8-user-avatar-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\icons\color\icons8-database-administrator-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\icons\color\icons8-red-card-40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\icons\color\icons8-password-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\icons\color\icons8-conference-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\icons\color\icons8-services-48.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{08774277-77CD-48DA-A5D7-8095E0B493CF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ClassTreeNodes</RootNamespace>
+    <AssemblyName>ClassTreeNodes</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\ClassTreeNodes.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\x64\Release\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ClassTree.cs" />
+    <Compile Include="FormFiles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFiles.Designer.cs">
+      <DependentUpon>FormFiles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormTree.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTree.Designer.cs">
+      <DependentUpon>FormTree.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormTreeInput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTreeInput.Designer.cs">
+      <DependentUpon>FormTreeInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resource1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource1.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resource1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource1.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FormFiles.resx">
+      <DependentUpon>FormFiles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTree.resx">
+      <DependentUpon>FormTree.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTreeInput.resx">
+      <DependentUpon>FormTreeInput.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resource1.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource1.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VitCardPropsValue\VitCardPropsValue.csproj">
+      <Project>{36350f39-7577-4119-a3fe-7cb69da65e5d}</Project>
+      <Name>VitCardPropsValue</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VitDBConnect\VitDBConnect.csproj">
+      <Project>{f92548b9-5df7-4c56-acbd-e0d091a47d2b}</Project>
+      <Name>VitDBConnect</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VitFiles\VitFiles.csproj">
+      <Project>{66017a02-c3d9-4809-b788-6b91df08be99}</Project>
+      <Name>VitFiles</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VitFolder2\VitFolder.csproj">
+      <Project>{ce2f89f9-6bfa-4fcb-ac90-368e7fccb70f}</Project>
+      <Name>VitFolder</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VitImageList\VitIcons.csproj">
+      <Project>{2b2e0264-ef18-4e6d-8069-6a87ae4b37ba}</Project>
+      <Name>VitIcons</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VitRelationFolders\VitRelationFolders.csproj">
+      <Project>{4a6ecd5e-6d92-407b-9a3c-ea5962352b00}</Project>
+      <Name>VitRelationFolders</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VitTextStringMask\VitTextStringMask.csproj">
+      <Project>{acf4b011-efa2-41e6-8a17-24150f2e3530}</Project>
+      <Name>VitTextStringMask</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\vitTypeCardProps\vitTypeCardProps.csproj">
+      <Project>{fddb1cd0-bcfe-46d9-b0bd-66f6603016c9}</Project>
+      <Name>vitTypeCardProps</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VitTypeCard\VitTypeCard.csproj">
+      <Project>{ce939e31-b292-47bb-92d3-085d95fb3f67}</Project>
+      <Name>VitTypeCard</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Flat-Folder-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\copy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\paste.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
