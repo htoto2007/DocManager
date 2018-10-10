@@ -90,12 +90,19 @@ namespace VitUsers
                 "name = '" + name + "' AND " +
                 "password = '" + password + "'");
 
-            if (rows.GetLength(0) == 1)
+            try
             {
-                ceshLogin(rows[0]["id"]);
-                return 1;
+                if (rows.GetLength(0) == 1)
+                {
+                    ceshLogin(rows[0]["id"]);
+                    return 1;
+                }
+                else
+                {
+                    return 0;
+                }
             }
-            else
+            catch (System.NullReferenceException)
             {
                 return 0;
             }
