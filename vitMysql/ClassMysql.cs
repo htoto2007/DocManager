@@ -29,8 +29,8 @@ namespace VitMysql
             }
             catch (MySql.Data.MySqlClient.MySqlException)
             {
-                rows = null;
-                return rows;
+                ShowDialogMysqlSettingsAndRestart();
+                return null;
             }
 
             MySqlCommand command = new MySqlCommand(query, classDB.dbLink);
@@ -73,6 +73,7 @@ namespace VitMysql
                 string currClass = ToString();
                 string text = currClass + "->" + currMthod + " saye: " + e.ToString() + "\n\n" + query;
                 MessageBox.Show(text, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ShowDialogMysqlSettingsAndRestart();
             }
             return numRows;
         }
@@ -109,6 +110,7 @@ namespace VitMysql
             catch (MySql.Data.MySqlClient.MySqlException e)
             {
                 MessageBox.Show(e.Message + "\n\n\n " + query);
+                ShowDialogMysqlSettingsAndRestart();
             }
             classDB.dbLink.Close();
             return res;
@@ -117,6 +119,17 @@ namespace VitMysql
         private static void startServer()
         {
             //Process.Start(classSettings.GetProperties;
+        }
+
+        /// <summary>
+        /// Вызывает диалоговое окно настроек mysql и после перезагружает программу для переинициализации
+        /// </summary>
+        private void ShowDialogMysqlSettingsAndRestart()
+        {
+            FormDBConnect formDBConnect = new FormDBConnect();
+            formDBConnect.ShowDialog();
+            Application.Restart();
+            Environment.Exit(0);
         }
     }
 }
