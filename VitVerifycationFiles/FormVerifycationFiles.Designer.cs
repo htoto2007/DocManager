@@ -28,16 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.timerCheckFiles = new System.Windows.Forms.Timer(this.components);
             this.listView1 = new System.Windows.Forms.ListView();
             this.SuspendLayout();
-            // 
-            // timerCheckFiles
-            // 
-            this.timerCheckFiles.Enabled = true;
-            this.timerCheckFiles.Interval = 10000;
-            this.timerCheckFiles.Tick += new System.EventHandler(this.timerCheckFiles_Tick);
             // 
             // listView1
             // 
@@ -60,13 +52,13 @@
             this.Name = "FormVerifycationFiles";
             this.ShowIcon = false;
             this.Text = "FormVerifycationFiles";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormVerifycationFiles_FormClosing);
+            this.Shown += new System.EventHandler(this.FormVerifycationFiles_Shown);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Timer timerCheckFiles;
         private System.Windows.Forms.ListView listView1;
     }
 }

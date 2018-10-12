@@ -7,8 +7,20 @@ namespace VitSettings
     {
         public ClassSettings()
         {
-            Properties.GeneralsSettings.Default.programPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            Properties.GeneralsSettings.Default.Save();
+            if (Properties.GeneralsSettings.Default.programPath == "")
+            {
+                Properties.GeneralsSettings.Default.programPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+                Properties.GeneralsSettings.Default.Save();
+            }
+            if (Properties.GeneralsSettings.Default.repositiryPayh == "")
+            {
+                Properties.GeneralsSettings.Default.repositiryPayh = Properties.GeneralsSettings.Default.programPath + "\\upload";
+                Properties.GeneralsSettings.Default.Save();
+            }
+            if (!Directory.Exists(Properties.GeneralsSettings.Default.repositiryPayh))
+            {
+                Directory.CreateDirectory(Properties.GeneralsSettings.Default.repositiryPayh);
+            }
         }
 
         public Props GetProperties()

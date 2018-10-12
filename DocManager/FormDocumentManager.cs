@@ -207,6 +207,12 @@ namespace DocManager
             panelUserMenu.Visible = VitSettings.Properties.ControlsSettings.Default.flowLayoutPanelUserMenu;
             toolStripMenuItemAdminMenu.Checked = VitSettings.Properties.ControlsSettings.Default.flowLayoutPanelAdminMenu;
             panelAdminMenu.Visible = VitSettings.Properties.ControlsSettings.Default.flowLayoutPanelAdminMenu;
+
+            string repositoryPath = VitSettings.Properties.GeneralsSettings.Default.repositiryPayh;
+            if (!Directory.Exists(repositoryPath))
+            {
+                Directory.CreateDirectory(repositoryPath);
+            }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)

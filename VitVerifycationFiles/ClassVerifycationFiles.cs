@@ -8,16 +8,18 @@ namespace VitVerifycationFiles
 {
     public class ClassVerifycationFiles
     {
-        private ClassSettings classSettings = new ClassSettings();
+        private readonly ClassSettings classSettings = new ClassSettings();
         private ClassFiles classFiles = new ClassFiles();
 
         //FormVerifycationFiles formVerifycationFiles = new FormVerifycationFiles();
+
         private readonly string root = "";
+        private readonly string repositoryPath = "";
 
         public ClassVerifycationFiles()
         {
-            root = classSettings.GetProperties().generalsSttings.programPath;
-            //formVerifycationFiles.Show();
+            root = VitSettings.Properties.GeneralsSettings.Default.programPath;
+            repositoryPath = VitSettings.Properties.GeneralsSettings.Default.repositiryPayh;
         }
 
         public struct FileColection
@@ -70,7 +72,8 @@ namespace VitVerifycationFiles
         public string[] DirectoryScaner()
         {
             //MessageBox.Show(root + "//upload//");
-            string[] arrStr = Directory.GetDirectories(root + "\\upload\\", "*", SearchOption.AllDirectories);
+
+            string[] arrStr = Directory.GetDirectories(repositoryPath, "*", SearchOption.AllDirectories);
             List<string> lst = new List<string>();
             foreach (string str in arrStr)
             {

@@ -22,6 +22,15 @@ namespace VitFiles
 
         private ClassMysql classMysql = new ClassMysql();
 
+        private readonly string repositiryPayh = "";
+        private readonly string root = "";
+
+        public ClassFiles()
+        {
+            repositiryPayh = VitSettings.Properties.GeneralsSettings.Default.repositiryPayh;
+            root = VitSettings.Properties.GeneralsSettings.Default.programPath;
+        }
+
         public int Copy(int idFile, int idNewFolder, string newPath)
         {
             FileCollection fileCollection = GetFileById(idFile);
@@ -43,7 +52,7 @@ namespace VitFiles
                 MessageBox.Show("Файл не загружен!");
                 return 0;
             }
-            string sqlFileName = ("upload\\" + pathSave + "\\" + fileName).Replace("\\\\", "\\");
+            string sqlFileName = (repositiryPayh + "\\" + pathSave + "\\" + fileName).Replace("\\\\", "\\");
             sqlFileName = sqlFileName.Replace("\\", "%slash%");
             string query = "INSERT INTO tb_files " +
                     "SET " +
@@ -186,7 +195,7 @@ namespace VitFiles
         public void Move(int idFile, int idFolder, string newPath)
         {
             FileCollection fileCollection = GetFileById(idFile);
-            string name = (@"upload\" + newPath + "\\" + fileCollection.name).Replace("\\", "\\\\");
+            string name = (repositiryPayh + @"\" + newPath + "\\" + fileCollection.name).Replace("\\", "\\\\");
             string sqlFileName = name.Replace("\\", "%slash%");
             classMysql.Insert("" +
                 "UPDATE tb_files " +
@@ -194,7 +203,7 @@ namespace VitFiles
                 "id_folder_file = '" + idFolder + "'," +
                 "name = '" + sqlFileName + "' " +
                 "WHERE id = '" + idFile + "'");
-            File.Move(fileCollection.path, classSettings.GetProperties().generalsSttings.programPath + "\\" + name);
+            File.Move(fileCollection.path, name);
         }
 
         public void rename(int idFile, string newName)
@@ -240,7 +249,7 @@ namespace VitFiles
         private bool upload(string pathUpload, string pathSave, string newFilename)
         {
             string currentPathProgram = classSettings.GetProperties().generalsSttings.programPath;
-            string finalPathSave = currentPathProgram + "\\upload\\" + pathSave;
+            string finalPathSave = repositiryPayh + "\\" + pathSave;
             string destFileName = finalPathSave + "\\" + newFilename;
 
             if (Directory.Exists(finalPathSave) != true)
