@@ -34,12 +34,21 @@ namespace VitVerifycationFiles
             //formVerifycationFiles.richTextBox1.Clear();
             foreach (string str in arrStr)
             {
-                if (CompareWithData(str) == false)
+                if (str == "")
                 {
-                    strReturn += str + "\n";
+                    continue;
                 }
+
+                if (CompareWithData(str) == true)
+                {
+                    continue;
+                }
+
+                strReturn += str + "\n";
             }
+
             Console.WriteLine(strReturn);
+            strReturn = strReturn.Trim('\n');
             arrStr = strReturn.Split('\n');
             FileColection[] fileColections = new FileColection[arrStr.GetLength(0)];
             int iterator = 0;
