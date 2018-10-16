@@ -79,6 +79,7 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.DebuggerVisualizers, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="MySql.Data, Version=8.0.11.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -158,6 +159,10 @@
       <Project>{08774277-77cd-48da-a5d7-8095e0b493cf}</Project>
       <Name>VitTree</Name>
     </ProjectReference>
+    <ProjectReference Include="..\VitAccessGroup\VitAccessGroup.csproj">
+      <Project>{c0556931-2aec-4fe9-acb1-153401f2e716}</Project>
+      <Name>VitAccessGroup</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VitAccess\VitAccess.csproj">
       <Project>{7aa747f4-9a9a-4a2a-83af-89d06797e173}</Project>
       <Name>VitAccess</Name>
@@ -174,9 +179,17 @@
       <Project>{f92548b9-5df7-4c56-acbd-e0d091a47d2b}</Project>
       <Name>VitDBConnect</Name>
     </ProjectReference>
+    <ProjectReference Include="..\VitExcel\VitExcel.csproj">
+      <Project>{b66f5c21-37f4-44ba-ac6b-fcaeb2a6a4f3}</Project>
+      <Name>VitExcel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VitFiles\VitFiles.csproj">
       <Project>{66017a02-c3d9-4809-b788-6b91df08be99}</Project>
       <Name>VitFiles</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VitFolder2\VitFolder.csproj">
+      <Project>{ce2f89f9-6bfa-4fcb-ac90-368e7fccb70f}</Project>
+      <Name>VitFolder</Name>
     </ProjectReference>
     <ProjectReference Include="..\VitImageList\VitIcons.csproj">
       <Project>{2b2e0264-ef18-4e6d-8069-6a87ae4b37ba}</Project>

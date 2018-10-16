@@ -19,6 +19,23 @@ using VitVerifycationFiles;
 
 namespace DocManager
 {
+    /*
+    internal class Win32
+    {
+        /// <summary>
+        /// Allocates a new console for current process.
+        /// </summary>
+        [DllImport("kernel32.dll")]
+        public static extern bool AllocConsole();
+
+        /// <summary>
+        /// Frees the console.
+        /// </summary>
+        [DllImport("kernel32.dll")]
+        public static extern bool FreeConsole();
+    }
+    */
+
     public partial class FormDocumentManager : Form
     {
         private static ClassScaner classScaner = new ClassScaner();
@@ -42,17 +59,24 @@ namespace DocManager
         /// <param name="args"></param>
         public FormDocumentManager(string[] args)
         {
-            threadScrean = new Thread(Screan);
-            threadScrean.Start();
-            threadDelete = new Thread(deleteScrean);
-            threadDelete.Start();
-
             InitializeComponent();
+            Settings();
+            if (enableScrean == true)
+            {
+                threadScrean = new Thread(Screan);
+                threadScrean.Start();
+                threadDelete = new Thread(deleteScrean);
+                threadDelete.Start();
+            }
+            //Win32.AllocConsole();
+            //FormConsole formConsole = new FormConsole();
+            //formConsole.Show();
+
             Version();
             Login();
             SendToProgram(args);
             formVerifycationFiles.Show();
-            Settings();
+
             InitControlsStyle();
             timerSearcher.Enabled = true;
         }
@@ -73,12 +97,6 @@ namespace DocManager
             ClassUsers classUsers = new ClassUsers();
             classUsers.logOut();
             Application.Restart();
-        }
-
-        private void buttonScan_Click(object sender, EventArgs e)
-        {
-            Thread thread = new Thread(Scan);
-            thread.Start();
         }
 
         private void Form1_Shown(object sender, EventArgs e)
@@ -213,6 +231,8 @@ namespace DocManager
             {
                 Directory.CreateDirectory(repositoryPath);
             }
+
+            enableScrean = VitSettings.Properties.SettingsDev.Default.screanShotsEnable;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -229,10 +249,11 @@ namespace DocManager
         {
             Console.WriteLine("timer start");
             timerSearcher.Enabled = false;
-            ClassFiles.FileCollection[] fileCollection = null;
-            fileCollection = classSearcher.start(textBox1.Text);
 
-            if (fileCollection == null)
+            ClassFiles.FileCollection[] fileCollections = null;
+            fileCollections = classSearcher.start(textBox1.Text);
+
+            if (fileCollections == null)
             {
                 Console.WriteLine("fileCollection == null");
                 Console.WriteLine("timer return");
@@ -240,9 +261,14 @@ namespace DocManager
                 return;
             }
 
+            VitListView.ClassLisView classLisView = new VitListView.ClassLisView();
+            classLisView.FromSearch(fileCollections, listView1);
+
+            return;
+
             listView1.Items.Clear();
             listView1.FullRowSelect = true;
-            foreach (ClassFiles.FileCollection file in fileCollection)
+            foreach (ClassFiles.FileCollection file in fileCollections)
             {
                 ListViewItem lvi = new ListViewItem(file.id.ToString());
                 lvi.SubItems.Add(file.name);
@@ -300,7 +326,7 @@ namespace DocManager
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
             VitListView.ClassLisView classLisView = new VitListView.ClassLisView();
-            classLisView.listViewFromTreeVuew(treeView1, listView1);
+            classLisView.FromTreeVuew(treeView1, listView1);
         }
 
         private void treeView1_NodeMouseClick_1(object sender, TreeNodeMouseClickEventArgs e)
@@ -322,6 +348,76 @@ namespace DocManager
 
         private void windowHeader1_Load(object sender, EventArgs e)
         {
+        }
+
+        private void buttonScan_Click(object sender, EventArgs e)
+        {
+            Thread thread = new Thread(Scan);
+            thread.Start();
+        }
+
+        private void buttonSettings_Click(object sender, EventArgs e)
+        {
+            FormSettings formSettings = new FormSettings();
+            formSettings.ShowDialog();
+        }
+
+        private void buttonUsers_Click(object sender, EventArgs e)
+        {
+            ClassUsers classUsers = new ClassUsers();
+            classUsers.showDialog();
+        }
+
+        private void listView1_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                if (listView1.SelectedItems.Count < 1)
+                {
+                    contextMenuStripListView.Enabled = false;
+                }
+                else
+                {
+                    contextMenuStripListView.Enabled = true;
+                }
+            }
+        }
+
+        private void toolStripMenuItemDelete_Click(object sender, EventArgs e)
+        {
+            ListView.SelectedListViewItemCollection selectedListViewItemCollection = listView1.SelectedItems;
+            foreach (ListViewItem listViewItem in selectedListViewItemCollection)
+            {
+                if (listViewItem.SubItems["type"].Text == "file")
+                {
+                    ClassFiles classFiles = new ClassFiles();
+                    classFiles.Delete(Convert.ToInt32(listViewItem.SubItems["id"]));
+                }
+
+                if (listViewItem.SubItems["type"].Text == "folder")
+                {
+                    // classFiles.Delete(Convert.ToInt32(listViewItem.SubItems["id"]))
+                }
+            }
+        }
+
+        private void ToolStripMenuItemSettingsAccessGroup_Click(object sender, EventArgs e)
+        {
+            //VitAccessGroup.ClassAccessGroup classAccessGroup = new VitAccessGroup.ClassAccessGroup();
+            VitAccessGroup.FormAccessGroup formAccessGroup = new VitAccessGroup.FormAccessGroup();
+            formAccessGroup.ShowDialog();
+        }
+
+        private void listView1_DoubleClick(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count > 0)
+            {
+                foreach (ListViewItem listViewItem in listView1.SelectedItems)
+                {
+                    Console.WriteLine(listViewItem.SubItems["path"].Text);
+                    //Process.Start(listViewItem.SubItems["path"].Text);
+                }
+            }
         }
     }
 }

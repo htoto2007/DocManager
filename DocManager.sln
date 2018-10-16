@@ -53,6 +53,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VitControls", "VitControls\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VitTelemetry", "VitTelemetry\VitTelemetry.csproj", "{34A1D6A9-FA5B-415F-80F3-EA4FBE38E2EE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VitExcel", "VitExcel\VitExcel.csproj", "{B66F5C21-37F4-44BA-AC6B-FCAEB2A6A4F3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VitSyncronizationFiles", "VitSyncronizationFiles\VitSyncronizationFiles.csproj", "{EE3331D5-9321-497F-8EB5-A23BA585F191}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -159,6 +163,14 @@ Global
 		{34A1D6A9-FA5B-415F-80F3-EA4FBE38E2EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{34A1D6A9-FA5B-415F-80F3-EA4FBE38E2EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{34A1D6A9-FA5B-415F-80F3-EA4FBE38E2EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B66F5C21-37F4-44BA-AC6B-FCAEB2A6A4F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B66F5C21-37F4-44BA-AC6B-FCAEB2A6A4F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B66F5C21-37F4-44BA-AC6B-FCAEB2A6A4F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B66F5C21-37F4-44BA-AC6B-FCAEB2A6A4F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE3331D5-9321-497F-8EB5-A23BA585F191}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE3331D5-9321-497F-8EB5-A23BA585F191}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE3331D5-9321-497F-8EB5-A23BA585F191}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE3331D5-9321-497F-8EB5-A23BA585F191}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

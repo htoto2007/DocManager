@@ -4,13 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{97FAB1EE-5880-45E7-9327-6E1D52344EBE}</ProjectGuid>
+    <ProjectGuid>{B66F5C21-37F4-44BA-AC6B-FCAEB2A6A4F3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>VitVerifycationFiles</RootNamespace>
-    <AssemblyName>VitVerifycationFiles</AssemblyName>
+    <RootNamespace>VitExcel</RootNamespace>
+    <AssemblyName>VitExcel</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -32,7 +33,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -42,41 +42,46 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClassVerifycationFiles.cs" />
-    <Compile Include="FormVerifycationFiles.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormVerifycationFiles.Designer.cs">
-      <DependentUpon>FormVerifycationFiles.cs</DependentUpon>
-    </Compile>
+    <Compile Include="ClassExcel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="FormVerifycationFiles.resx">
-      <DependentUpon>FormVerifycationFiles.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\VitExcel\VitExcel.csproj">
-      <Project>{b66f5c21-37f4-44ba-ac6b-fcaeb2a6a4f3}</Project>
-      <Name>VitExcel</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\VitFiles\VitFiles.csproj">
-      <Project>{66017a02-c3d9-4809-b788-6b91df08be99}</Project>
-      <Name>VitFiles</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\VitFolder2\VitFolder.csproj">
-      <Project>{ce2f89f9-6bfa-4fcb-ac90-368e7fccb70f}</Project>
-      <Name>VitFolder</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\VitSettings\VitSettings.csproj">
-      <Project>{8ba14954-8676-4a60-b58f-7e5d8f71eac8}</Project>
-      <Name>VitSettings</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\VitSyncronizationFiles\VitSyncronizationFiles.csproj">
-      <Project>{ee3331d5-9321-497f-8eb5-a23ba585f191}</Project>
-      <Name>VitSyncronizationFiles</Name>
-    </ProjectReference>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>7</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Word">
+      <Guid>{00020905-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>8</VersionMajor>
+      <VersionMinor>6</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

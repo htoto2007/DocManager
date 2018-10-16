@@ -23,7 +23,7 @@ namespace VitVerifycationFiles
                 listView1.Columns.Add("Путь");
                 listView1.Columns.Add("Дата размещения");
             });
-            ClassVerifycationFiles.FileColection[] fileColections = classVerifycationFiles.CheckFiles();
+            VitFiles.ClassFiles.FileCollection[] fileColections = classVerifycationFiles.CheckFiles();
             while (true)
             {
                 try
@@ -31,7 +31,7 @@ namespace VitVerifycationFiles
                     Invoke((MethodInvoker)delegate
                     {
                         listView1.Items.Clear();
-                        foreach (ClassVerifycationFiles.FileColection fileColection in fileColections)
+                        foreach (VitFiles.ClassFiles.FileCollection fileColection in fileColections)
                         {
                             ListViewItem listViewItem = new ListViewItem(fileColection.name);
                             listViewItem.SubItems.Add(fileColection.path);

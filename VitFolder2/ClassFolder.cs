@@ -145,12 +145,7 @@ namespace VitFolder
             query = "DELETE " +
                 "FROM tb_folders " +
                 "WHERE id = " + index;
-            int res = classMysql.UpdateOrDelete(query);
-            if (res < 1)
-            {
-                MessageBox.Show("Ошибка удаления дерева! " + res);
-                return;
-            }
+            classMysql.UpdateOrDelete(query);
 
             if (strArray.Length > 1)
             {

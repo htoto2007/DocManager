@@ -672,7 +672,7 @@ namespace VitTree
             objectTreeView.SelectedNode.Text = newName;
             int idFile = Convert.ToInt32(objectTreeView.SelectedNode.Name.Split('_')[1]);
 
-            classFiles.rename(idFile, newName);
+            classFiles.Rename(idFile, newName);
         }
 
         private void RenameNode(TreeView treeView, string name, string text)

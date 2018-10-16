@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using VitFiles;
 using VitSettings;
@@ -22,39 +21,32 @@ namespace VitVerifycationFiles
             repositoryPath = VitSettings.Properties.GeneralsSettings.Default.repositiryPayh;
         }
 
-        public struct FileColection
+        public ClassFiles.FileCollection[] CheckFiles()
         {
-            public string name;
-            public string path;
-            public DateTime createDateTime;
-        }
+            string[] arrPathes = DirectoryScaner();
+            string strPathes = "";
 
-        public FileColection[] CheckFiles()
-        {
-            string[] arrStr = DirectoryScaner();
-            string strReturn = "";
-            //formVerifycationFiles.richTextBox1.Clear();
-            foreach (string str in arrStr)
+            // листаем массив путей к файлм
+            foreach (string path in arrPathes)
             {
-                if (str == "")
+                if (path == "")
                 {
                     continue;
                 }
 
-                if (CompareWithData(str) == true)
+                if (CompareWithData(path) == true)
                 {
                     continue;
                 }
 
-                strReturn += str + "\n";
+                strPathes += path + "\n";
             }
 
-            Console.WriteLine(strReturn);
-            strReturn = strReturn.Trim('\n');
-            arrStr = strReturn.Split('\n');
-            FileColection[] fileColections = new FileColection[arrStr.GetLength(0)];
+            strPathes = strPathes.Trim('\n');
+            arrPathes = strPathes.Split('\n');
+            ClassFiles.FileCollection[] fileColections = new ClassFiles.FileCollection[arrPathes.GetLength(0)];
             int iterator = 0;
-            foreach (string str in arrStr)
+            foreach (string str in arrPathes)
             {
                 if (str == "")
                 {
@@ -62,8 +54,9 @@ namespace VitVerifycationFiles
                 }
 
                 fileColections[iterator].name = Path.GetFileName(str);
-                fileColections[iterator].path = getCanonicalPath(str);
+                fileColections[iterator].path = str;
                 fileColections[iterator].createDateTime = File.GetCreationTime(str);
+
                 iterator++;
             }
             return fileColections;
@@ -71,8 +64,6 @@ namespace VitVerifycationFiles
 
         public string[] DirectoryScaner()
         {
-            //MessageBox.Show(root + "//upload//");
-
             string[] arrStr = Directory.GetDirectories(repositoryPath, "*", SearchOption.AllDirectories);
             List<string> lst = new List<string>();
             foreach (string str in arrStr)
@@ -86,16 +77,8 @@ namespace VitVerifycationFiles
             return lst.ToArray();
         }
 
-        private string getCanonicalPath(string path)
-        {
-            path = path.Replace(root + @"\", "");
-            path = path.Replace("/", @"\");
-            return path;
-        }
-
         public bool CompareWithData(string fileName)
         {
-            fileName = getCanonicalPath(fileName);
             if (classFiles.getFileByName(fileName).id == 0)
             {
                 return false;

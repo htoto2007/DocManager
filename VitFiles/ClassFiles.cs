@@ -47,18 +47,22 @@ namespace VitFiles
         /// <returns>Выводит последгтй вставленый индекс</returns>
         public int Create(int idFolder, int idTypeCard, string fileName, string fullFilePath, string pathSave)
         {
-            if (upload(fullFilePath, pathSave, fileName) == false)
+            if (Upload(fullFilePath, pathSave, fileName) == false)
             {
                 MessageBox.Show("Файл не загружен!");
                 return 0;
             }
+
+            FileInfo fileInfo = new FileInfo(pathSave + "\\" + fileName);
+
             string sqlFileName = (repositiryPayh + "\\" + pathSave + "\\" + fileName).Replace("\\\\", "\\");
             sqlFileName = sqlFileName.Replace("\\", "%slash%");
             string query = "INSERT INTO tb_files " +
                     "SET " +
                     "name = '" + sqlFileName + "', " +
                     "id_folder_file = " + idFolder + ", " +
-                    "id_type_card = " + idTypeCard;
+                    "id_type_card = " + idTypeCard + ", " +
+                    "hash_code = " + fileInfo.GetHashCode();
             int id = classMysql.Insert(query);
             return id;
         }
@@ -116,7 +120,8 @@ namespace VitFiles
                 name = Path.GetFileName(info["name"].Replace("%slash%", "\\")),
                 path = Path.GetFullPath(info["name"].Replace("%slash%", "\\")),
                 idTypeCard = Convert.ToInt32(info["id_type_card"]),
-                pathWithoutFileName = VitSettings.Properties.GeneralsSettings.Default.programPath + "\\" + Path.GetDirectoryName(info["name"].Replace("%slash%", "\\"))
+                pathWithoutFileName = VitSettings.Properties.GeneralsSettings.Default.programPath + "\\" + Path.GetDirectoryName(info["name"].Replace("%slash%", "\\")),
+                createDateTime = File.GetCreationTime(Path.GetFullPath(info["name"].Replace("%slash%", "\\")))
             };
 
             return fileCollection;
@@ -126,7 +131,7 @@ namespace VitFiles
         {
             fileName = fileName.Replace(@"\", "%slash%");
             string query = "" +
-               "SELECT * " +
+               "SELECT id " +
                "FROM tb_files " +
                "WHERE " +
                "'" + fileName + "' IN(name)";
@@ -147,13 +152,7 @@ namespace VitFiles
                 return fileCollection;
             }
 
-            fileCollection.id = Convert.ToInt32(rows[0]["id"]);
-            fileCollection.idFolder = Convert.ToInt32(rows[0]["id_folder_file"]);
-            fileCollection.name = Path.GetFileName(rows[0]["name"].Replace("%slash%", "\\"));
-            fileCollection.path = Path.GetFullPath(rows[0]["name"].Replace("%slash%", "\\"));
-            fileCollection.idTypeCard = Convert.ToInt32(rows[0]["id_type_card"]);
-            fileCollection.pathWithoutFileName = Path.GetDirectoryName(rows[0]["name"].Replace("%slash%", "\\"));
-            return fileCollection;
+            return GetFileById(Convert.ToInt32(rows[0]["id"]));
         }
 
         public FileCollection getFileByNameNonCard(string fileName)
@@ -161,7 +160,7 @@ namespace VitFiles
             fileName = fileName.Replace(@"\", "%slash%");
             int idTypeCard = classTypeCard.getIdByName("Пустая");
             string query = "" +
-               "SELECT * " +
+               "SELECT id " +
                "FROM tb_files " +
                "WHERE " +
                "'" + fileName + "' IN(name), " +
@@ -182,53 +181,58 @@ namespace VitFiles
                 return fileCollection;
             }
 
-            fileCollection.id = Convert.ToInt32(rows[0]["id"]);
-            fileCollection.idFolder = Convert.ToInt32(rows[0]["id_folder_file"]);
-            fileCollection.name = Path.GetFileName(rows[0]["name"].Replace("%slash%", "\\"));
-            fileCollection.path = Path.GetFullPath(rows[0]["name"].Replace("%slash%", "\\"));
-            fileCollection.idTypeCard = Convert.ToInt32(rows[0]["id_type_card"]);
-            fileCollection.pathWithoutFileName = Path.GetDirectoryName(rows[0]["name"].Replace("%slash%", "\\"));
-
-            return fileCollection;
+            return GetFileById(Convert.ToInt32(rows[0]["id"]));
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="idFile"></param>
+        /// <param name="idFolder"></param>
+        /// <param name="newPath">Disk:/newDirectory</param>
         public void Move(int idFile, int idFolder, string newPath)
         {
             FileCollection fileCollection = GetFileById(idFile);
-            string name = (repositiryPayh + @"\" + newPath + "\\" + fileCollection.name).Replace("\\", "\\\\");
-            string sqlFileName = name.Replace("\\", "%slash%");
+
+            string newFileLocation = (repositiryPayh + @"\" + newPath + "\\" + fileCollection.name).Replace("\\", "\\\\");
+            string sqlFileName = newFileLocation.Replace("\\", "%slash%");
+            FileInfo fileInfo = new FileInfo(newFileLocation);
             classMysql.Insert("" +
                 "UPDATE tb_files " +
                 "SET " +
                 "id_folder_file = '" + idFolder + "'," +
-                "name = '" + sqlFileName + "' " +
-                "WHERE id = '" + idFile + "'");
-            File.Move(fileCollection.path, name);
+                "name = '" + sqlFileName + "', " +
+                "hash_code = " + fileInfo.GetHashCode() + " " +
+                "WHERE " +
+                "id = '" + idFile + "'");
+            File.Move(fileCollection.path, newFileLocation);
         }
 
-        public void rename(int idFile, string newName)
+        public void Rename(int idFile, string newName)
         {
             FileCollection fileCollection = GetFileById(idFile);
-            Console.WriteLine(fileCollection.path);
-            return;
 
-            File.Move(fileCollection.path, Path.GetDirectoryName(fileCollection.path) + "\\" + newName);
+            File.Move(fileCollection.path, fileCollection.pathWithoutFileName + "\\" + newName);
             string name = Path.GetDirectoryName(fileCollection.path) + "\\";
             string sqlFileName = name.Replace("\\", "%slash%");
+
+            FileInfo fileInfo = new FileInfo(fileCollection.pathWithoutFileName + "\\" + newName);
+
             classMysql.Insert("" +
                 "UPDATE tb_files " +
                 "SET " +
-                "name = '" + sqlFileName + "' " +
-                "WHERE id = '" + idFile + "'");
-            //fileCollection = GetFileById(idFile);
-            //MessageBox.Show(classSettings.GetProperties().generalsSttings.programPath + "\\" + name);
+                "name = '" + sqlFileName + "', " +
+                "hash_code = " + fileInfo.GetHashCode() + " " +
+                "WHERE " +
+                "id = '" + idFile + "'" +
+            "");
             File.Move(fileCollection.path, classSettings.GetProperties().generalsSttings.programPath + "\\" + name);
         }
 
         public FileCollection[] selectAllFiles()
         {
             string query = "" +
-                "SELECT * " +
+                "SELECT id " +
                 "FROM tb_files ";
             int rowCount = classMysql.getNumRows(query);
             FileCollection[] fileCollections = new FileCollection[rowCount];
@@ -236,17 +240,13 @@ namespace VitFiles
 
             for (int i = 0; i < rows.GetLength(0); i++)
             {
-                fileCollections[i].id = Convert.ToInt32(rows[i]["id"]);
-                fileCollections[i].idFolder = Convert.ToInt32(rows[i]["id_folder_file"]);
-                fileCollections[i].name = Path.GetFileName(rows[i]["name"].Replace("%slash%", "\\"));
-                fileCollections[i].path = Path.GetFullPath(rows[i]["name"].Replace("%slash%", "\\"));
-                fileCollections[i].pathWithoutFileName = Path.GetDirectoryName(rows[i]["name"].Replace("%slash%", "\\"));
+                fileCollections[i] = GetFileById(Convert.ToInt32(rows[i]["id"]));
                 rowCount++;
             }
             return fileCollections;
         }
 
-        private bool upload(string pathUpload, string pathSave, string newFilename)
+        private bool Upload(string pathUpload, string pathSave, string newFilename)
         {
             string currentPathProgram = classSettings.GetProperties().generalsSttings.programPath;
             string finalPathSave = repositiryPayh + "\\" + pathSave;
@@ -294,6 +294,10 @@ namespace VitFiles
             /// disk://directory/
             /// </summary>
             public string pathWithoutFileName;
+
+            public DateTime createDateTime;
+
+            public int hashCode;
         }
     }
 }
