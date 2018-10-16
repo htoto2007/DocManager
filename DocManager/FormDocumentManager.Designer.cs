@@ -70,6 +70,10 @@
             this.dateCreate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.dateChange = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.path = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.contextMenuStripListView = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItemDelete = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemCopy = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemMove = new System.Windows.Forms.ToolStripMenuItem();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.panelExplorer = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -83,19 +87,15 @@
             this.buttonUsers = new VitControls.Button();
             this.buttonSettings = new VitControls.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.contextMenuStripListView = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItemDelete = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemCopy = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemMove = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.panelUserMenu.SuspendLayout();
             this.flowLayoutPanelUserMenu.SuspendLayout();
+            this.contextMenuStripListView.SuspendLayout();
             this.panelExplorer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelAdminMenu.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
-            this.contextMenuStripListView.SuspendLayout();
             this.SuspendLayout();
             // 
             // contextMenuStrip1
@@ -267,6 +267,7 @@
             // 
             // labelUserName
             // 
+            this.labelUserName.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.labelUserName.AutoSize = true;
             this.labelUserName.ForeColor = System.Drawing.Color.Black;
             this.labelUserName.Location = new System.Drawing.Point(710, 6);
@@ -278,6 +279,7 @@
             // button1
             // 
             this.button1.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.button1.BackColor = System.Drawing.Color.Transparent;
             this.button1.BackgroundImage = global::DocManager.Properties.Resources.icons8_user_avatar_48;
             this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
@@ -290,7 +292,7 @@
             // flowLayoutPanelUserMenu
             // 
             this.flowLayoutPanelUserMenu.AllowDrop = true;
-            this.flowLayoutPanelUserMenu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.flowLayoutPanelUserMenu.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.flowLayoutPanelUserMenu.Controls.Add(this.buttonScan);
             this.flowLayoutPanelUserMenu.Controls.Add(this.buttonAddBranch);
             this.flowLayoutPanelUserMenu.Controls.Add(this.buttonExit);
@@ -424,6 +426,37 @@
             // 
             this.path.Text = "Путь";
             // 
+            // contextMenuStripListView
+            // 
+            this.contextMenuStripListView.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemDelete,
+            this.toolStripMenuItemCopy,
+            this.toolStripMenuItemMove});
+            this.contextMenuStripListView.Name = "contextMenuStripListView";
+            this.contextMenuStripListView.Size = new System.Drawing.Size(147, 70);
+            // 
+            // toolStripMenuItemDelete
+            // 
+            this.toolStripMenuItemDelete.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItemDelete.Image")));
+            this.toolStripMenuItemDelete.Name = "toolStripMenuItemDelete";
+            this.toolStripMenuItemDelete.Size = new System.Drawing.Size(146, 22);
+            this.toolStripMenuItemDelete.Text = "Удалить";
+            this.toolStripMenuItemDelete.Click += new System.EventHandler(this.toolStripMenuItemDelete_Click);
+            // 
+            // toolStripMenuItemCopy
+            // 
+            this.toolStripMenuItemCopy.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItemCopy.Image")));
+            this.toolStripMenuItemCopy.Name = "toolStripMenuItemCopy";
+            this.toolStripMenuItemCopy.Size = new System.Drawing.Size(146, 22);
+            this.toolStripMenuItemCopy.Text = "Копировать";
+            // 
+            // toolStripMenuItemMove
+            // 
+            this.toolStripMenuItemMove.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItemMove.Image")));
+            this.toolStripMenuItemMove.Name = "toolStripMenuItemMove";
+            this.toolStripMenuItemMove.Size = new System.Drawing.Size(146, 22);
+            this.toolStripMenuItemMove.Text = "Переместить";
+            // 
             // textBox1
             // 
             this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -482,6 +515,7 @@
             this.windowHeader1.ForeColor = System.Drawing.Color.Black;
             this.windowHeader1.Location = new System.Drawing.Point(0, 0);
             this.windowHeader1.Margin = new System.Windows.Forms.Padding(0);
+            this.windowHeader1.maximize = true;
             this.windowHeader1.Name = "windowHeader1";
             this.windowHeader1.Size = new System.Drawing.Size(825, 33);
             this.windowHeader1.TabIndex = 2;
@@ -498,7 +532,7 @@
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.flowLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.flowLayoutPanel1.Controls.Add(this.button2);
             this.flowLayoutPanel1.Controls.Add(this.button3);
             this.flowLayoutPanel1.Controls.Add(this.button4);
@@ -578,37 +612,6 @@
             this.buttonSettings.TabIndex = 20;
             this.buttonSettings.Click += new System.EventHandler(this.buttonSettings_Click);
             // 
-            // contextMenuStripListView
-            // 
-            this.contextMenuStripListView.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItemDelete,
-            this.toolStripMenuItemCopy,
-            this.toolStripMenuItemMove});
-            this.contextMenuStripListView.Name = "contextMenuStripListView";
-            this.contextMenuStripListView.Size = new System.Drawing.Size(147, 70);
-            // 
-            // toolStripMenuItemDelete
-            // 
-            this.toolStripMenuItemDelete.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItemDelete.Image")));
-            this.toolStripMenuItemDelete.Name = "toolStripMenuItemDelete";
-            this.toolStripMenuItemDelete.Size = new System.Drawing.Size(146, 22);
-            this.toolStripMenuItemDelete.Text = "Удалить";
-            this.toolStripMenuItemDelete.Click += new System.EventHandler(this.toolStripMenuItemDelete_Click);
-            // 
-            // toolStripMenuItemCopy
-            // 
-            this.toolStripMenuItemCopy.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItemCopy.Image")));
-            this.toolStripMenuItemCopy.Name = "toolStripMenuItemCopy";
-            this.toolStripMenuItemCopy.Size = new System.Drawing.Size(146, 22);
-            this.toolStripMenuItemCopy.Text = "Копировать";
-            // 
-            // toolStripMenuItemMove
-            // 
-            this.toolStripMenuItemMove.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItemMove.Image")));
-            this.toolStripMenuItemMove.Name = "toolStripMenuItemMove";
-            this.toolStripMenuItemMove.Size = new System.Drawing.Size(146, 22);
-            this.toolStripMenuItemMove.Text = "Переместить";
-            // 
             // FormDocumentManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -616,6 +619,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(825, 659);
+            this.ControlBox = false;
             this.Controls.Add(this.panelExplorer);
             this.Controls.Add(this.panelAdminMenu);
             this.Controls.Add(this.panelUserMenu);
@@ -627,6 +631,8 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FormDocumentManager";
+            this.ShowIcon = false;
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.Text = "z";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormDocumentManager_FormClosing);
             this.Shown += new System.EventHandler(this.Form1_Shown);
@@ -636,12 +642,12 @@
             this.panelUserMenu.ResumeLayout(false);
             this.panelUserMenu.PerformLayout();
             this.flowLayoutPanelUserMenu.ResumeLayout(false);
+            this.contextMenuStripListView.ResumeLayout(false);
             this.panelExplorer.ResumeLayout(false);
             this.panelExplorer.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panelAdminMenu.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
-            this.contextMenuStripListView.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

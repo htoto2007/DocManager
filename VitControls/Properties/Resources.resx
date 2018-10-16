@@ -117,48 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="buttonClose.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABHNCSVQICAgIfAhkiAAAAAFzUkdCAK7O
-        HOkAAAAEZ0FNQQAAsY8L/GEFAAAACXBIWXMAAAKiAAACogG2m71tAAAAGXRFWHRTb2Z0d2FyZQB3d3cu
-        aW5rc2NhcGUub3Jnm+48GgAAAltJREFUaEPtmc1KHEEUhVsF0QfRhb6JEEiiIoK61Y2gLxDIOkh2bvwD
-        wYfQjeizKLgxQghk4c9NXXIqKW/f7jnVI5ZCf/AttKvOnDvdTo8zVU9PT8/bRqpqPngZ/BGUV1If6yL4
-        GTW6EQK+I7Ck31Anj7BRn3kvsIQfUYsnbNLLxgsr4Tlq8YRNv0xISX+iFo8TUlTU4rEBpUUtHhvQ6Pi4
-        yMiIf+wFRS0eG+A6OSlydiZydCQyOuqvaXJ5WWRpyT/miFo8NqDmxITI6an8I2eI9XWRpyeRhweR1VV/
-        jRG1eGxAzf19NE/Y3R18OcXyER1iZcVfm4haPDag5vS0yPU1WiQcHjafCb1stHDK46PI2pq/PhG1eGyA
-        a84Q9plX7u9FFhaer2sQtXhsQKNNQxwc/B9iyPIqavHYgFbbhtjYGLq8ilo8NmCgTUNYOpRXUYvHBlAO
-        GqJjeRW1eGwArQ5xd4fGCfpqs7jo7yFELR4bQOv9wUb03pF7x4aoxWMDKNvKRzoOgVo8NmCgXnm9ad3e
-        4oeEDkOgFo8NaLXtdX5qSuTqCr9M2NvLGgK1eGxAo8xN6gWGQC0eG+DKlI8OOQRq8diAmjnlo7OzIjc3
-        WJyws+OvT0QtHhtQ8+QEjw7Id5Xumdje9tcmohaPDag5NiZyfPy3QO4dNg6hZ3Bry19jRC0eG+CqQ+h/
-        YjnlozMzIpub/jFH1OKxAaVFLR4bUFrU4rEBpUUtnrDj3X+0+O4/3P1gQko6h1p5hI1fTVAJv6BON0JA
-        /IrpNwJfQ30s/YrpE2r09PT0vEmq6g+s0FceeC6ntgAAAABJRU5ErkJggg==
-</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="icons8_close_window_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-close-window-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="buttonMinimize.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABHNCSVQICAgIfAhkiAAAAAFzUkdCAK7O
-        HOkAAAAEZ0FNQQAAsY8L/GEFAAAACXBIWXMAAAKiAAACogG2m71tAAAAGXRFWHRTb2Z0d2FyZQB3d3cu
-        aW5rc2NhcGUub3Jnm+48GgAAAQtJREFUaEPtmUFqwlAURf+aTFYhCNbuR3DswCVJuyAHUnD4DPjAH3sm
-        V9JcLf/AmZ53CRklpdFoNF6cPj5LF9+Dp8GYydNw96ssYpMrnqSPA8Tndp9rRG5PnoIO17lK4PbaUMzh
-        MVcJdPHzEHF6zlUCHPIpQxGnMhRxKkMRpzIUcSpDEacyFHEqQxGnMhRxKkMRpzIUcSpDEacyFHEqQxGn
-        MhRxKkMRpzIUcSpDEacyFHEqQ5HKqaEbI2UoUjk1dGOkDEUqp4ZujJShSOXU0I2RMhRxKkMRpzIUcSrz
-        Dz4tvvnH3UWsIOSxj2WuEuli9ys2v9tc8yT3X0yXKvrXXvIX00euaDQajZeklCugGoQ0E4BceQAAAABJ
-        RU5ErkJggg==
-</value>
+  <data name="icons8_maximize_window_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-maximize-window-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="buttonMaximize.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABHNCSVQICAgIfAhkiAAAAAFzUkdCAK7O
-        HOkAAAAEZ0FNQQAAsY8L/GEFAAAACXBIWXMAAAKiAAACogG2m71tAAAAGXRFWHRTb2Z0d2FyZQB3d3cu
-        aW5rc2NhcGUub3Jnm+48GgAAAYlJREFUaEPtmctKA1EQRO/3CYKP/xFcu/CTRLcxv5KFCFmOV6iGbj2L
-        umHMjTAHzqqY6iJkNdM2NjY2Lptl1+6X9/bWPXSXM3nod1+XfbvTjNPoJc9Qfm6fNGcM/fJUOMMbzfLp
-        D33/bahshi+a5dMf+vxRMtMPzfKBkqlqlg+VzFSzfKhkpprlQyUz1SwfKpmpZvlQyUw1y4dKimtDN5Ka
-        5UMlxbWhG0nN8qGS4trQjaRm+VBJcW3oRlKzfKikuDZ0I6lZPlRSDCgbMaAsqVk+VFIMKBsxoCypWT5U
-        UgwoGzGgLKlZPlRSDCgbMaAsqVk+VFIMKBsxoCypWT5UUgwoGzGgLKlZPlRSDCgbMaAsqVk+VFIMKBsx
-        oCypWT5UUgwoGzGgLKlZPlRSDCgbMaAsqVk+VFJcG7qR1CwfKimuDd1IapYPlcxUs3yoZKaa5UMlM9Us
-        n/7Qv3+1+M9f7u7bNRTNcdeuNGuM/vDjr7Lz+6A5p5E+MR1T6V971CemW83Y2NjYuEha+wLdYst1eTlv
-        2gAAAABJRU5ErkJggg==
-</value>
+  <data name="icons8_minimize_window_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-minimize-window-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icons8_restore_window_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-restore-window-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -9,12 +9,21 @@ namespace VitControls
         private bool isMouseDown = false;
         private Point mouseOffset;
 
+        /// <summary>
+        /// Включает или отключает возможность изменения размера окна
+        /// </summary>
+        public bool maximize
+        {
+            get;
+            set;
+        }
+
         public WindowHeader()
         {
             InitializeComponent();
 
-            buttonClose.BackgroundImage = VitIcons.Properties.ResourceColorImage.icons8_close_window_48;
-            buttonMinimize.BackgroundImage = VitIcons.Properties.ResourceColorImage.icons8_minimize_window_48;
+            //buttonClose.BackgroundImage = VitIcons.Properties.ResourceColorImage.icons8_close_window_48;
+            //buttonMinimize.BackgroundImage = VitIcons.Properties.ResourceColorImage.icons8_minimize_window_48;
         }
 
         private void ButtonClose_Click(object sender, EventArgs e)
@@ -67,6 +76,22 @@ namespace VitControls
             Width = ParentForm.Width;
             VitColors.ClassColors classColors = new VitColors.ClassColors();
             BackColor = classColors.getCollection().primary0;
+
+            buttonMaximize.Visible = maximize;
+        }
+
+        private void buttonMaximize_Click(object sender, EventArgs e)
+        {
+            if (ParentForm.WindowState == FormWindowState.Maximized)
+            {
+                ParentForm.WindowState = FormWindowState.Normal;
+                buttonMaximize.BackgroundImage = Properties.Resources.icons8_maximize_window_48;
+            }
+            else
+            {
+                ParentForm.WindowState = FormWindowState.Maximized;
+                buttonMaximize.BackgroundImage = Properties.Resources.icons8_restore_window_48;
+            }
         }
     }
 }
