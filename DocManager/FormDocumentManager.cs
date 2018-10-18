@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using VitAccess;
 using VitDBConnect;
 using VitFiles;
+using VitFTP;
 using VitScaner;
 using VitSearcher;
 using VitSendToProgram;
@@ -59,6 +60,16 @@ namespace DocManager
         /// <param name="args"></param>
         public FormDocumentManager(string[] args)
         {
+            ClassFTP classFTP = new ClassFTP
+            {
+                FTP_SERVER = "192.168.0.4",
+                FTP_PORT = 21,
+                FTP_USER = "user",
+                FTP_PASSWORD = "123"
+            };
+            Console.WriteLine("ftp: " + classFTP.connectToServer());
+            classFTP.getDirectoryesAndFiles();
+
             InitializeComponent();
             Settings();
             if (enableScrean == true)
@@ -81,12 +92,6 @@ namespace DocManager
             timerSearcher.Enabled = true;
         }
 
-        private void deleteScrean()
-        {
-            VitTelemetry.ClassScreenshot classScreenshot = new VitTelemetry.ClassScreenshot();
-            classScreenshot.deleteScrean();
-        }
-
         private void buttonAddBranch_Click(object sender, EventArgs e)
         {
             classTree.AddBranch();
@@ -99,17 +104,36 @@ namespace DocManager
             Application.Restart();
         }
 
+        private void buttonScan_Click(object sender, EventArgs e)
+        {
+            Thread thread = new Thread(Scan);
+            thread.Start();
+        }
+
+        private void buttonSettings_Click(object sender, EventArgs e)
+        {
+            FormSettings formSettings = new FormSettings();
+            formSettings.ShowDialog();
+        }
+
+        private void buttonUsers_Click(object sender, EventArgs e)
+        {
+            ClassUsers classUsers = new ClassUsers();
+            classUsers.showDialog();
+        }
+
+        private void deleteScrean()
+        {
+            VitTelemetry.ClassScreenshot classScreenshot = new VitTelemetry.ClassScreenshot();
+            classScreenshot.deleteScrean();
+        }
+
         private void Form1_Shown(object sender, EventArgs e)
         {
             //Thread threadInitTreeView = new Thread(InitTreeViewThread);
             //threadInitTreeView.Start();
 
             classTree.InitTreeView(treeView1);
-        }
-
-        private void InitTreeViewThread()
-        {
-            classTree.InitTreeViewThread(treeView1);
         }
 
         private void FormDocumentManager_FormClosing(object sender, FormClosingEventArgs e)
@@ -131,6 +155,38 @@ namespace DocManager
             ToolStripMenuItemUsers.Image = VitIcons.Properties.ResourceColorImage.icons8_conference_48;
             ToolStripMenuItemSettings.Image = VitIcons.Properties.ResourceColorImage.icons8_services_48;
             ToolStripMenuItemSettingsDocumentCard.Image = VitIcons.Properties.ResourceColorImage.icons8_red_card_40;
+        }
+
+        private void InitTreeViewThread()
+        {
+            classTree.InitTreeViewThread(treeView1);
+        }
+
+        private void listView1_DoubleClick(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count > 0)
+            {
+                foreach (ListViewItem listViewItem in listView1.SelectedItems)
+                {
+                    //Console.WriteLine(listViewItem.SubItems["path"].Text);
+                    Process.Start(listViewItem.SubItems["path"].Text);
+                }
+            }
+        }
+
+        private void listView1_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                if (listView1.SelectedItems.Count < 1)
+                {
+                    contextMenuStripListView.Enabled = false;
+                }
+                else
+                {
+                    contextMenuStripListView.Enabled = true;
+                }
+            }
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -288,10 +344,35 @@ namespace DocManager
             VitSettings.Properties.ControlsSettings.Default.Save();
         }
 
+        private void toolStripMenuItemDelete_Click(object sender, EventArgs e)
+        {
+            ListView.SelectedListViewItemCollection selectedListViewItemCollection = listView1.SelectedItems;
+            foreach (ListViewItem listViewItem in selectedListViewItemCollection)
+            {
+                if (listViewItem.SubItems["type"].Text == "file")
+                {
+                    ClassFiles classFiles = new ClassFiles();
+                    classFiles.Delete(Convert.ToInt32(listViewItem.SubItems["id"]));
+                }
+
+                if (listViewItem.SubItems["type"].Text == "folder")
+                {
+                    // classFiles.Delete(Convert.ToInt32(listViewItem.SubItems["id"]))
+                }
+            }
+        }
+
         private void ToolStripMenuItemSettings_Click(object sender, EventArgs e)
         {
             FormSettings formSettings = new FormSettings();
             formSettings.ShowDialog();
+        }
+
+        private void ToolStripMenuItemSettingsAccessGroup_Click(object sender, EventArgs e)
+        {
+            //VitAccessGroup.ClassAccessGroup classAccessGroup = new VitAccessGroup.ClassAccessGroup();
+            VitAccessGroup.FormAccessGroup formAccessGroup = new VitAccessGroup.FormAccessGroup();
+            formAccessGroup.ShowDialog();
         }
 
         private void ToolStripMenuItemSettingsConnectToDataBase_Click(object sender, EventArgs e)
@@ -342,76 +423,6 @@ namespace DocManager
 
         private void windowHeader1_Load(object sender, EventArgs e)
         {
-        }
-
-        private void buttonScan_Click(object sender, EventArgs e)
-        {
-            Thread thread = new Thread(Scan);
-            thread.Start();
-        }
-
-        private void buttonSettings_Click(object sender, EventArgs e)
-        {
-            FormSettings formSettings = new FormSettings();
-            formSettings.ShowDialog();
-        }
-
-        private void buttonUsers_Click(object sender, EventArgs e)
-        {
-            ClassUsers classUsers = new ClassUsers();
-            classUsers.showDialog();
-        }
-
-        private void listView1_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Right)
-            {
-                if (listView1.SelectedItems.Count < 1)
-                {
-                    contextMenuStripListView.Enabled = false;
-                }
-                else
-                {
-                    contextMenuStripListView.Enabled = true;
-                }
-            }
-        }
-
-        private void toolStripMenuItemDelete_Click(object sender, EventArgs e)
-        {
-            ListView.SelectedListViewItemCollection selectedListViewItemCollection = listView1.SelectedItems;
-            foreach (ListViewItem listViewItem in selectedListViewItemCollection)
-            {
-                if (listViewItem.SubItems["type"].Text == "file")
-                {
-                    ClassFiles classFiles = new ClassFiles();
-                    classFiles.Delete(Convert.ToInt32(listViewItem.SubItems["id"]));
-                }
-
-                if (listViewItem.SubItems["type"].Text == "folder")
-                {
-                    // classFiles.Delete(Convert.ToInt32(listViewItem.SubItems["id"]))
-                }
-            }
-        }
-
-        private void ToolStripMenuItemSettingsAccessGroup_Click(object sender, EventArgs e)
-        {
-            //VitAccessGroup.ClassAccessGroup classAccessGroup = new VitAccessGroup.ClassAccessGroup();
-            VitAccessGroup.FormAccessGroup formAccessGroup = new VitAccessGroup.FormAccessGroup();
-            formAccessGroup.ShowDialog();
-        }
-
-        private void listView1_DoubleClick(object sender, EventArgs e)
-        {
-            if (listView1.SelectedItems.Count > 0)
-            {
-                foreach (ListViewItem listViewItem in listView1.SelectedItems)
-                {
-                    //Console.WriteLine(listViewItem.SubItems["path"].Text);
-                    Process.Start(listViewItem.SubItems["path"].Text);
-                }
-            }
         }
     }
 }

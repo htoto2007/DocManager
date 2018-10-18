@@ -9,6 +9,14 @@ namespace VitControls
         private bool isMouseDown = false;
         private Point mouseOffset;
 
+        public WindowHeader()
+        {
+            InitializeComponent();
+
+            //buttonClose.BackgroundImage = VitIcons.Properties.ResourceColorImage.icons8_close_window_48;
+            //buttonMinimize.BackgroundImage = VitIcons.Properties.ResourceColorImage.icons8_minimize_window_48;
+        }
+
         /// <summary>
         /// Включает или отключает возможность изменения размера окна
         /// </summary>
@@ -18,17 +26,32 @@ namespace VitControls
             set;
         }
 
-        public WindowHeader()
+        /// <summary>
+        /// Включает или отключает возможность сворачивания окна окна
+        /// </summary>
+        public bool minimize
         {
-            InitializeComponent();
-
-            //buttonClose.BackgroundImage = VitIcons.Properties.ResourceColorImage.icons8_close_window_48;
-            //buttonMinimize.BackgroundImage = VitIcons.Properties.ResourceColorImage.icons8_minimize_window_48;
+            get;
+            set;
         }
 
         private void ButtonClose_Click(object sender, EventArgs e)
         {
             ParentForm.Close();
+        }
+
+        private void buttonMaximize_Click(object sender, EventArgs e)
+        {
+            if (ParentForm.WindowState == FormWindowState.Maximized)
+            {
+                ParentForm.WindowState = FormWindowState.Normal;
+                buttonMaximize.BackgroundImage = Properties.Resources.icons8_maximize_window_48;
+            }
+            else
+            {
+                ParentForm.WindowState = FormWindowState.Maximized;
+                buttonMaximize.BackgroundImage = Properties.Resources.icons8_restore_window_48;
+            }
         }
 
         private void ButtonMinimize_Click(object sender, EventArgs e)
@@ -78,20 +101,6 @@ namespace VitControls
             BackColor = classColors.getCollection().primary0;
 
             buttonMaximize.Visible = maximize;
-        }
-
-        private void buttonMaximize_Click(object sender, EventArgs e)
-        {
-            if (ParentForm.WindowState == FormWindowState.Maximized)
-            {
-                ParentForm.WindowState = FormWindowState.Normal;
-                buttonMaximize.BackgroundImage = Properties.Resources.icons8_maximize_window_48;
-            }
-            else
-            {
-                ParentForm.WindowState = FormWindowState.Maximized;
-                buttonMaximize.BackgroundImage = Properties.Resources.icons8_restore_window_48;
-            }
         }
     }
 }

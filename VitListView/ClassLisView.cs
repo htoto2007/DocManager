@@ -36,7 +36,7 @@ namespace VitListView
             VitFiles.ClassFiles classFiles = new ClassFiles();
             ClassFiles.FileCollection fileCollection = new ClassFiles.FileCollection();
             VitFolder.ClassFolder classFolder = new VitFolder.ClassFolder();
-            VitFolder.ClassFolder.FoldersCollection foldersCollection = new VitFolder.ClassFolder.FoldersCollection();
+            VitFolder.ClassFolder.FolderCollection foldersCollection = new VitFolder.ClassFolder.FolderCollection();
 
             TreeNode treeNode = treeView.SelectedNode;
             TreeNodeCollection treeNodeCollection;

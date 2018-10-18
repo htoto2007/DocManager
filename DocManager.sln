@@ -57,6 +57,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VitExcel", "VitExcel\VitExc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VitSyncronizationFiles", "VitSyncronizationFiles\VitSyncronizationFiles.csproj", "{EE3331D5-9321-497F-8EB5-A23BA585F191}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VitFTP", "VitFTP\VitFTP.csproj", "{8E118625-8DED-4D15-9B41-0292A968ADFC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -171,6 +173,10 @@ Global
 		{EE3331D5-9321-497F-8EB5-A23BA585F191}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE3331D5-9321-497F-8EB5-A23BA585F191}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE3331D5-9321-497F-8EB5-A23BA585F191}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E118625-8DED-4D15-9B41-0292A968ADFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E118625-8DED-4D15-9B41-0292A968ADFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E118625-8DED-4D15-9B41-0292A968ADFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E118625-8DED-4D15-9B41-0292A968ADFC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

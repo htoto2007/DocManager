@@ -61,13 +61,13 @@ namespace VitSettings.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("/upload")]
-        public string repositoryPathDefault {
+        [global::System.Configuration.DefaultSettingValueAttribute("r")]
+        public string repositoryRootFolderName {
             get {
-                return ((string)(this["repositoryPathDefault"]));
+                return ((string)(this["repositoryRootFolderName"]));
             }
             set {
-                this["repositoryPathDefault"] = value;
+                this["repositoryRootFolderName"] = value;
             }
         }
     }

@@ -191,6 +191,10 @@
       <Project>{ce2f89f9-6bfa-4fcb-ac90-368e7fccb70f}</Project>
       <Name>VitFolder</Name>
     </ProjectReference>
+    <ProjectReference Include="..\VitFTP\VitFTP.csproj">
+      <Project>{8e118625-8ded-4d15-9b41-0292a968adfc}</Project>
+      <Name>VitFTP</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VitImageList\VitIcons.csproj">
       <Project>{2b2e0264-ef18-4e6d-8069-6a87ae4b37ba}</Project>
       <Name>VitIcons</Name>

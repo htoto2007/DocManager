@@ -208,6 +208,16 @@ namespace VitTree
             return objectTreeView;
         }
 
+        /// <summary>
+        /// Инициализирует и выводит дерево
+        /// </summary>
+        /// <returns>результат инициализации</returns>
+        public TreeView InitTreeView()
+        {
+            TreeView treeView = formTree.treeView1;
+            return InitTreeView(treeView);
+        }
+
         public TreeView InitTreeViewThread(TreeView treeView)
         {
             //treeView.Invoke((MethodInvoker)delegate
@@ -223,16 +233,6 @@ namespace VitTree
             formTree.treeView1.Nodes.Clear();
             formTree.treeView1.Nodes.Insert(0, globalNode);
             return objectTreeView;
-        }
-
-        /// <summary>
-        /// Инициализирует и выводит дерево
-        /// </summary>
-        /// <returns>результат инициализации</returns>
-        public TreeView InitTreeView()
-        {
-            TreeView treeView = formTree.treeView1;
-            return InitTreeView(treeView);
         }
 
         /// <summary>
@@ -831,11 +831,11 @@ namespace VitTree
         {
             //treeView.Invoke((MethodInvoker)delegate
             //{
-            ClassFolder.FoldersCollection[] foldersCollection = classFolder.GetAllFolders(false);
+            ClassFolder.FolderCollection[] foldersCollection = classFolder.GetAllFolders(false);
 
             globalNode = new TreeNode
             {
-                Text = "r",
+                Text = VitSettings.Properties.GeneralsSettings.Default.repositoryRootFolderName,
                 Name = "folder_0",
                 Tag = "folder",
                 ImageKey = "icons8-tree-structure-40.png",
@@ -847,7 +847,7 @@ namespace VitTree
             treeView.Nodes.Add(globalNode);
             globalNode = null;
 
-            foreach (ClassFolder.FoldersCollection folder in foldersCollection)
+            foreach (ClassFolder.FolderCollection folder in foldersCollection)
             {
                 if (folder.parentId == 0)
                 {

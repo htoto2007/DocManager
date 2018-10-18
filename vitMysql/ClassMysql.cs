@@ -42,9 +42,7 @@ namespace VitMysql
                 rows[numRows] = new Dictionary<string, string>();
                 for (int i = 0; i < mySqlDataReader.FieldCount; i++)
                 {
-                    string field = mySqlDataReader.GetName(i);
-                    string value = mySqlDataReader.GetString(i);
-                    rows[numRows].Add(field, value);
+                    rows[numRows].Add(mySqlDataReader.GetName(i), mySqlDataReader.GetString(i));
                 }
                 numRows++;
             }
