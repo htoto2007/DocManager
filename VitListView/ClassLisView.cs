@@ -31,9 +31,12 @@ namespace VitListView
             listView.Columns.Add("Имя");
             listView.Columns.Add("тип");
             listView.Columns.Add("Дата создания");
+            listView.Columns.Add("Путь");
 
             VitFiles.ClassFiles classFiles = new ClassFiles();
             ClassFiles.FileCollection fileCollection = new ClassFiles.FileCollection();
+            VitFolder.ClassFolder classFolder = new VitFolder.ClassFolder();
+            VitFolder.ClassFolder.FoldersCollection foldersCollection = new VitFolder.ClassFolder.FoldersCollection();
 
             TreeNode treeNode = treeView.SelectedNode;
             TreeNodeCollection treeNodeCollection;
@@ -55,17 +58,20 @@ namespace VitListView
                 {
                     listViewItem.ImageKey = "icons8-document-48.png";
                     fileCollection = classFiles.GetFileById(id);
-                    listViewItem.SubItems.Add(fileCollection.name);
-                    listViewItem.SubItems.Add(type);
-                    listViewItem.SubItems.Add(fileCollection.createDateTime.ToString());
+                    listViewItem.SubItems.Add(fileCollection.name).Name = "name";
+                    listViewItem.SubItems.Add(type).Name = "type";
+                    listViewItem.SubItems.Add(fileCollection.createDateTime.ToString()).Name = "createDateTime";
+                    listViewItem.SubItems.Add(fileCollection.path).Name = "path";
                     listView.Items.Add(listViewItem);
                 }
                 else if (ClassTree.TypeNodeCollection.FOLDER == type)
                 {
                     listViewItem.ImageKey = "icons8-folder-48.png";
-                    string name = tn.Text;
-                    listViewItem.SubItems.Add(name);
-                    listViewItem.SubItems.Add(type);
+                    foldersCollection = classFolder.GetFolderById(id, true);
+                    listViewItem.SubItems.Add(foldersCollection.name).Name = "name";
+                    listViewItem.SubItems.Add(type).Name = "type";
+                    listViewItem.SubItems.Add(foldersCollection.createDateTime.ToString()).Name = "createDateTime";
+                    listViewItem.SubItems.Add(foldersCollection.path).Name = "path";
                     listView.Items.Add(listViewItem);
                 }
                 else

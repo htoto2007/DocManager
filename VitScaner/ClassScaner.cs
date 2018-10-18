@@ -305,27 +305,23 @@ namespace VitScaner
             {
                 while (true)
                 {
-
                     Console.WriteLine(device.Commands);
-                    
+
                     try
                     {
-                        
-                        if(stop == true)
+                        if (stop == true)
                         {
                             image = null;
-                            stop = false;
                         }
                         else
                         {
-                            image = (WIA.ImageFile)dialog.ShowTransfer(item, "{B96B3CAB-0728-11D3-9D7B-0000F81EF32E}", false);
+                            image = (WIA.ImageFile)dialog.ShowTransfer(item, ImageFormat.wiaFormatBMP, false);
                         }
                         if ((image != null) && (image.FileData != null))
                         {
                             WIA.Vector vector = image.FileData;
                             imageLost.Add(Image.FromStream(new MemoryStream((byte[])vector.get_BinaryData())));
                         }
-                        
                     }
                     catch (System.Runtime.InteropServices.COMException)
                     {

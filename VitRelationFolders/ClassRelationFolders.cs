@@ -24,12 +24,12 @@ namespace VitRelationFolders
             return classMysql.Insert(query);
         }
 
-        public int Delete(int idFolder)
+        public void Delete(int idFolder)
         {
             string query = "" +
                 "DELETE FROM tb_relation_folders " +
                 "WHERE id_folder = " + idFolder;
-            return classMysql.UpdateOrDelete(query);
+            classMysql.UpdateOrDelete(query);
         }
 
         /// <summary>
@@ -39,18 +39,18 @@ namespace VitRelationFolders
         /// <returns></returns>
         public int GetIdParentByIdFolder(int idFolder)
         {
-            int id = 0;
             string query = "" +
-                "SELECT * FROM tb_relation_folders " +
+                "SELECT id_folder_parent " +
+                "FROM tb_relation_folders " +
                 "WHERE " +
                 "id_folder = " + idFolder;
             Dictionary<string, string>[] rows = classMysql.getArrayByQuery(query);
-            foreach (Dictionary<string, string> row in rows)
+            if (rows.GetLength(0) == 0)
             {
-                id = Convert.ToInt32(row["id_folder_parent"]);
+                return 0;
             }
 
-            return id;
+            return Convert.ToInt32(rows[0]["id_folder_parent"]);
         }
     }
 }

@@ -120,7 +120,7 @@ namespace VitFiles
                 name = Path.GetFileName(info["name"].Replace("%slash%", "\\")),
                 path = Path.GetFullPath(info["name"].Replace("%slash%", "\\")),
                 idTypeCard = Convert.ToInt32(info["id_type_card"]),
-                pathWithoutFileName = VitSettings.Properties.GeneralsSettings.Default.programPath + "\\" + Path.GetDirectoryName(info["name"].Replace("%slash%", "\\")),
+                pathWithoutFileName = Path.GetDirectoryName(info["name"].Replace("%slash%", "\\")),
                 createDateTime = File.GetCreationTime(Path.GetFullPath(info["name"].Replace("%slash%", "\\")))
             };
 
@@ -194,8 +194,21 @@ namespace VitFiles
         {
             FileCollection fileCollection = GetFileById(idFile);
 
-            string newFileLocation = (repositiryPayh + @"\" + newPath + "\\" + fileCollection.name).Replace("\\", "\\\\");
+            string newFileLocation = (repositiryPayh + @"\" + newPath + "\\" + fileCollection.name);
             string sqlFileName = newFileLocation.Replace("\\", "%slash%");
+
+            if (!Directory.Exists(repositiryPayh + @"\" + newPath))
+            {
+                Directory.CreateDirectory(repositiryPayh + @"\" + newPath);
+            }
+
+            File.Move(fileCollection.path, newFileLocation);
+
+            if (!File.Exists(newFileLocation))
+            {
+                MessageBox.Show("Не удалось переместить файл!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
             FileInfo fileInfo = new FileInfo(newFileLocation);
             classMysql.Insert("" +
                 "UPDATE tb_files " +
@@ -205,7 +218,6 @@ namespace VitFiles
                 "hash_code = " + fileInfo.GetHashCode() + " " +
                 "WHERE " +
                 "id = '" + idFile + "'");
-            File.Move(fileCollection.path, newFileLocation);
         }
 
         public void Rename(int idFile, string newName)

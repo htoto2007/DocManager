@@ -98,11 +98,10 @@ namespace VitMysql
         /// </summary>
         /// <param name="query">Mysql запрос</param>
         /// <returns>Количество измененных строк</returns>
-        public int UpdateOrDelete(string query)
+        public void UpdateOrDelete(string query)
         {
             classDB.dbLink.Open();
             MySqlCommand command = new MySqlCommand(query, classDB.dbLink);
-            int res = 0;
             try
             {
                 command.ExecuteNonQuery();
@@ -113,7 +112,6 @@ namespace VitMysql
                 ShowDialogMysqlSettingsAndRestart();
             }
             classDB.dbLink.Close();
-            return res;
         }
 
         private static void startServer()

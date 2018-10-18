@@ -101,7 +101,15 @@ namespace DocManager
 
         private void Form1_Shown(object sender, EventArgs e)
         {
+            //Thread threadInitTreeView = new Thread(InitTreeViewThread);
+            //threadInitTreeView.Start();
+
             classTree.InitTreeView(treeView1);
+        }
+
+        private void InitTreeViewThread()
+        {
+            classTree.InitTreeViewThread(treeView1);
         }
 
         private void FormDocumentManager_FormClosing(object sender, FormClosingEventArgs e)
@@ -197,7 +205,7 @@ namespace DocManager
                 string fileName = "image_" + DateTime.UtcNow.ToString().Replace(":", "-") + "_" + iterator + ".jpg";
                 pictureBox.Image.Save(tmpPath + @"\" + fileName);
                 classFiles.Create(idFolder, idCard, fileName, tmpPath + @"\" + fileName, pathSave);
-                classTree.InitTreeView(treeView1);
+                classTree.InitTreeViewThread(treeView1);
 
                 iterator++;
             }
@@ -265,20 +273,6 @@ namespace DocManager
             classLisView.FromSearch(fileCollections, listView1);
 
             return;
-
-            listView1.Items.Clear();
-            listView1.FullRowSelect = true;
-            foreach (ClassFiles.FileCollection file in fileCollections)
-            {
-                ListViewItem lvi = new ListViewItem(file.id.ToString());
-                lvi.SubItems.Add(file.name);
-                lvi.SubItems.Add(File.GetCreationTimeUtc(file.path).ToString());
-                lvi.SubItems.Add(File.GetLastAccessTimeUtc(file.path).ToString());
-                lvi.SubItems.Add(file.path);
-                listView1.Items.Add(lvi);
-            }
-
-            Console.WriteLine("timer end");
         }
 
         private void ToolStripMenuItemAbout_Click(object sender, EventArgs e)
@@ -414,8 +408,8 @@ namespace DocManager
             {
                 foreach (ListViewItem listViewItem in listView1.SelectedItems)
                 {
-                    Console.WriteLine(listViewItem.SubItems["path"].Text);
-                    //Process.Start(listViewItem.SubItems["path"].Text);
+                    //Console.WriteLine(listViewItem.SubItems["path"].Text);
+                    Process.Start(listViewItem.SubItems["path"].Text);
                 }
             }
         }

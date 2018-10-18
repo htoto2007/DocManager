@@ -155,9 +155,9 @@ namespace VitUsers
             File.AppendAllText(programPath + "\\" + tmpFile, id + "\n");
         }
 
-        private int ChangeAccessGroupById(int id, int idAccessGroup)
+        private void ChangeAccessGroupById(int id, int idAccessGroup)
         {
-            return classMysql.UpdateOrDelete(
+            classMysql.UpdateOrDelete(
                 "UPDATE FROM tb_users " +
                 "SET " +
                 "id_access_group = '" + idAccessGroup + "' " +

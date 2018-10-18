@@ -202,6 +202,24 @@ namespace VitTree
             TreeViewFile(treeView);
             treeView.Nodes[0].Expand();
             globalNode = (TreeNode)objectTreeView.Nodes[0].Clone();
+
+            formTree.treeView1.Nodes.Clear();
+            formTree.treeView1.Nodes.Insert(0, globalNode);
+            return objectTreeView;
+        }
+
+        public TreeView InitTreeViewThread(TreeView treeView)
+        {
+            //treeView.Invoke((MethodInvoker)delegate
+            //{
+            treeView.Nodes.Clear();
+            VitIcons.FormCompanents formCompanents = new VitIcons.FormCompanents();
+            treeView.ImageList = formCompanents.imageListColor;
+            TreeViewFolder(treeView);
+            TreeViewFile(treeView);
+            treeView.Nodes[0].Expand();
+            //});
+            globalNode = (TreeNode)objectTreeView.Nodes[0].Clone();
             formTree.treeView1.Nodes.Clear();
             formTree.treeView1.Nodes.Insert(0, globalNode);
             return objectTreeView;
@@ -423,6 +441,9 @@ namespace VitTree
             // запоминаем выделеный узел (переносимую папку)
             TreeNode folderNode = objectTreeView.SelectedNode;
 
+            // Закрываем окно, если оно было открыто
+            formTree.Hide();
+
             DialogResult dialogResult = formTree.ShowDialog();
             if (dialogResult != DialogResult.OK)
             {
@@ -440,7 +461,7 @@ namespace VitTree
             int idFolder = Convert.ToInt32(folderNode.Name.Split('_')[1]);
             int idParent = Convert.ToInt32(moveToLocationNode.Name.Split('_')[1]);
 
-            int res = classFolder.MoveFolder(idFolder, idParent);
+            classFolder.MoveFolder(idFolder, idParent);
 
             TreeNode[] treeNodes = objectTreeView.Nodes.Find(moveToLocationNode.Name, true);
             treeNodes[0].Nodes.Add((TreeNode)folderNode.Clone());
@@ -475,11 +496,7 @@ namespace VitTree
             }
 
             int id = Convert.ToInt32(globalNode.Name.Split('_')[1]);
-            if (classFolder.RenameFolder(id, formTreeInput.textBox1.Text) == 0)
-            {
-                MessageBox.Show("При переименовании произошла ошибка!");
-                return;
-            }
+            classFolder.RenameFolder(id, formTreeInput.textBox1.Text);
             RenameNode(objectTreeView, globalNode.Name, formTreeInput.textBox1.Text);
 
             formTreeInput.textBox1.Text = "";
@@ -812,7 +829,9 @@ namespace VitTree
         /// <param name="treeView"></param>
         private void TreeViewFolder(TreeView treeView)
         {
-            ClassFolder.FoldersCollection[] foldersCollection = classFolder.SelectAllFolders();
+            //treeView.Invoke((MethodInvoker)delegate
+            //{
+            ClassFolder.FoldersCollection[] foldersCollection = classFolder.GetAllFolders(false);
 
             globalNode = new TreeNode
             {
@@ -865,6 +884,7 @@ namespace VitTree
                 globalNode = null;
             }
             objectTreeView = treeView;
+            //});
         }
 
         /// <summary>

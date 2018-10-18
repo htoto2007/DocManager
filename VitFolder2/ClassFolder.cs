@@ -1,7 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
+using System.IO;
 using VitDBConnect;
 using VitMysql;
 using VitRelationFolders;
@@ -13,7 +13,7 @@ namespace VitFolder
     /// </summary>
     public class ClassFolder
     {
-        private MySqlConnection dbLink;
+        private readonly MySqlConnection dbLink;
         private ClassDBConnect classDB = new ClassDBConnect();
         private ClassRelationFolders classRelation = new ClassRelationFolders();
         private ClassMysql classMysql = new ClassMysql();
@@ -37,6 +37,13 @@ namespace VitFolder
             /// Имя папки
             /// </summary>
             public string name;
+
+            /// <summary>
+            /// disk://directory
+            /// </summary>
+            public string path;
+
+            public DateTime createDateTime;
         }
 
         /// <summary>
@@ -73,11 +80,11 @@ namespace VitFolder
         /// <param name="id">Номер изменяемой папки</param>
         /// <param name="name">Новое имя папки</param>
         /// <returns>Количество обновленных строк</returns>
-        public int RenameFolder(int id, string name)
+        public void RenameFolder(int id, string name)
         {
             if (id == 0)
             {
-                return 0;
+                return;
             }
 
             string query = "" +
@@ -86,7 +93,7 @@ namespace VitFolder
                 "name = '" + name + "' " +
                 "WHERE " +
                 "id = '" + id + "'";
-            return classMysql.UpdateOrDelete(query);
+            classMysql.UpdateOrDelete(query);
         }
 
         /// <summary>
@@ -95,16 +102,17 @@ namespace VitFolder
         /// <param name="id">Номер перемещаемой папки</param>
         /// <param name="idParent">Номер папеи в которую перемещаем</param>
         /// <returns>Количество обновленных строк</returns>
-        public int MoveFolder(int id, int idParent)
+        public void MoveFolder(int id, int idParent)
         {
             if (id == 0)
             {
-                return 0;
+                return;
             }
 
             if (idParent == 0)
             {
-                return classRelation.Delete(id);
+                classRelation.Delete(id);
+                return;
             }
 
             string query = "" +
@@ -113,13 +121,14 @@ namespace VitFolder
                 "`id_folder_parent` = " + idParent + " " +
                 "WHERE " +
                 "`id_folder` = " + id + "";
-            int res = classMysql.UpdateOrDelete(query);
-            if (res < 1)
+            classMysql.UpdateOrDelete(query);
+            if (idParent > 0)
             {
+                classRelation.Delete(id);
                 classRelation.Creat(idParent, id);
             }
 
-            return 1;
+            return;
         }
 
         /// <summary>
@@ -161,61 +170,82 @@ namespace VitFolder
             return;
         }
 
-        private int MysqlNumRows(string tableName)
-        {
-            string query = "SELECT COUNT(*) FROM " + tableName;
-            MySqlCommand command = new MySqlCommand(query, dbLink);
-            try
-            {
-                dbLink.Open();
-            }
-            catch (Exception e)
-            {
-                string currMthod = System.Reflection.MethodInfo.GetCurrentMethod().Name;
-                string currClass = ToString();
-                MessageBox.Show(currClass + "->" + currMthod + " saye: " + e.ToString(), "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return 0;
-            }
-            int rowCount = int.Parse(command.ExecuteScalar().ToString());
-            dbLink.Close();
-            return rowCount;
-        }
-
         /// <summary>
         /// Выодит все папки как массив <see cref="FoldersCollection"/>
         /// </summary>
+        /// /// <param name="pathToFolder">Включает или отключает информацию о пути к папке</param>
         /// <returns><see cref="FoldersCollection"/></returns>
-        public FoldersCollection[] SelectAllFolders()
+        public FoldersCollection[] GetAllFolders(bool pathToFolder)
         {
             // считаем количество папок
-            //int rowCount = MysqlNumRows("tb_folders");
             int rowCount = classMysql.getNumRows("SELECT id FROM tb_folders");
 
             // Создаем массив коллекций нужного размера
             FoldersCollection[] foldersCollection = new FoldersCollection[rowCount];
 
             // Получаем все папки из базы
-            string query = "SELECT * FROM tb_folders";
-            MySqlCommand command = new MySqlCommand(query, dbLink);
-            dbLink.Open();
-            MySqlDataReader mysqlDataReaderFolders = command.ExecuteReader();
+            Dictionary<string, string>[] rows = classMysql.getArrayByQuery("SELECT id FROM tb_folders");
 
-            rowCount = 0;
             // добавляем папки из базы в массив коллекций
-            while (mysqlDataReaderFolders.Read())
+            for (int i = 0; i < rows.GetLength(0); i++)
             {
-                foldersCollection[rowCount].id = Convert.ToInt32(mysqlDataReaderFolders.GetString("id"));
-                foldersCollection[rowCount].name = mysqlDataReaderFolders.GetString("name");
-                rowCount++;
+                foldersCollection[i] = GetFolderById(Convert.ToInt32(rows[i]["id"]), pathToFolder);
             }
-            dbLink.Close();
+            return foldersCollection;
+        }
 
-            rowCount = 0;
-            foreach (FoldersCollection folder in foldersCollection)
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        private string getPathById(int id)
+        {
+            // запрашиваем информацию о папке
+            Dictionary<string, string>[] rows = classMysql.getArrayByQuery("SELECT * FROM tb_folders WHERE id = " + id);
+            // получаем имя папки
+            string path = rows[0]["name"];
+
+            // запрашиваем id родительской папки
+            int parentId = classRelation.GetIdParentByIdFolder(id);
+            // если id родителя не получили, то прерываем рекурсию
+            if (parentId == 0)
             {
-                foldersCollection[rowCount].parentId = classRelation.GetIdParentByIdFolder(folder.id);
-                rowCount++;
+                return path;
             }
+
+            //
+            path = getPathById(parentId) + "\\" + path;
+            return path;
+        }
+
+        /// <summary>
+        /// Получает коллекцию свойств папки
+        /// </summary>
+        /// <param name="id">Номер папки</param>
+        /// <param name="pathToFolder">Включает или выключает добавление пути в коллекцию</param>
+        /// <returns></returns>
+        public FoldersCollection GetFolderById(int id, bool pathToFolder)
+        {
+            Dictionary<string, string>[] rows = classMysql.getArrayByQuery("" +
+                "SELECT * " +
+                "FROM tb_folders ");
+
+            FoldersCollection foldersCollection = new FoldersCollection();
+            string repositoryPath = VitSettings.Properties.GeneralsSettings.Default.repositiryPayh;
+            string path = "";
+            if (pathToFolder == true)
+            {
+                path = repositoryPath + @"\r\" + getPathById(Convert.ToInt32(rows[0]["id"]));
+                DirectoryInfo directoryInfo = new DirectoryInfo(path);
+                foldersCollection.path = path;
+                foldersCollection.createDateTime = directoryInfo.CreationTime;
+            }
+
+            foldersCollection.id = Convert.ToInt32(rows[0]["id"]);
+            foldersCollection.name = rows[0]["name"];
+            foldersCollection.parentId = classRelation.GetIdParentByIdFolder(Convert.ToInt32(rows[0]["id"]));
+
             return foldersCollection;
         }
     }

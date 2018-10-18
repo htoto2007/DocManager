@@ -68,6 +68,10 @@
       <Project>{4a6ecd5e-6d92-407b-9a3c-ea5962352b00}</Project>
       <Name>VitRelationFolders</Name>
     </ProjectReference>
+    <ProjectReference Include="..\VitSettings\VitSettings.csproj">
+      <Project>{8ba14954-8676-4a60-b58f-7e5d8f71eac8}</Project>
+      <Name>VitSettings</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
