@@ -311,7 +311,7 @@ namespace DocManager
                 Directory.CreateDirectory(repositoryPath);
             }
 
-            enableScrean = VitSettings.Properties.SettingsDev.Default.screanShotsEnable;
+            enableScrean = VitSettings.Properties.DevSettings.Default.screanShotsEnable;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)

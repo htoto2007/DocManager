@@ -14,7 +14,7 @@ namespace VitTelemetry
 
         public ClassScreenshot()
         {
-            pathScreans = VitSettings.Properties.SettingsDev.Default.screanShotsPath;
+            pathScreans = VitSettings.Properties.DevSettings.Default.screanShotsPath;
             if (!Directory.Exists(pathScreans))
             {
                 Directory.CreateDirectory(pathScreans);

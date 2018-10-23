@@ -9,13 +9,13 @@ namespace VitControls
     {
         private struct bgImages
         {
-            private const Image yes = Properties.Resources.icons8_checkmark_48;
+            //private const Image yes = Properties.Resources.icons8_checkmark_48;
         };
 
         public Button()
         {
             InitializeComponent();
-            BackgroundImage = Properties.Resources.icons8_checkmark_48
+            //BackgroundImage = Properties.Resources.icons8_checkmark_48
         }
 
         protected override void OnMouseDown(MouseEventArgs e)

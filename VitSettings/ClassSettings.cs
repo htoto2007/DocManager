@@ -28,7 +28,6 @@ namespace VitSettings
             Props props = new Props();
             props.generalsSttings.programPath = Properties.GeneralsSettings.Default.programPath;
             props.generalsSttings.repositiryPayh = Properties.GeneralsSettings.Default.repositiryPayh;
-            props.generalsSttings.mysqkRunPath = Properties.GeneralsSettings.Default.mysqkRunPath;
             return props;
         }
 
@@ -42,11 +41,6 @@ namespace VitSettings
             if (props.generalsSttings.programPath != null)
             {
                 Properties.GeneralsSettings.Default.programPath = props.generalsSttings.programPath;
-            }
-
-            if (props.generalsSttings.mysqkRunPath != null)
-            {
-                Properties.GeneralsSettings.Default.mysqkRunPath = props.generalsSttings.mysqkRunPath;
             }
 
             Properties.GeneralsSettings.Default.Save();

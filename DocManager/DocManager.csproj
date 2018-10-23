@@ -159,6 +159,10 @@
       <Project>{08774277-77cd-48da-a5d7-8095e0b493cf}</Project>
       <Name>VitTree</Name>
     </ProjectReference>
+    <ProjectReference Include="..\sarafftwain\Saraff.Twain.csproj">
+      <Project>{658f9851-4d1c-4d57-904e-f9d7da7f24fc}</Project>
+      <Name>Saraff.Twain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VitAccessGroup\VitAccessGroup.csproj">
       <Project>{c0556931-2aec-4fe9-acb1-153401f2e716}</Project>
       <Name>VitAccessGroup</Name>
