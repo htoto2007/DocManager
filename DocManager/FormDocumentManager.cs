@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
@@ -49,9 +48,11 @@ namespace DocManager
         private FormCreatTypeCard formCreatTypeCard = new FormCreatTypeCard();
         private FormDBConnect formDB = new FormDBConnect();
         private FormVerifycationFiles formVerifycationFiles = new FormVerifycationFiles();
+        private Saraff.Twain.Twain32 twain32 = new Saraff.Twain.Twain32();
 
-        private scan2 scan2 = new scan2();
+        //private scan2 scan2 = new scan2();
         private Thread threadDelete;
+
         private Thread threadScrean;
 
         /// <summary>
@@ -67,8 +68,8 @@ namespace DocManager
                 FTP_USER = "user",
                 FTP_PASSWORD = "123"
             };
-            Console.WriteLine("ftp: " + classFTP.connectToServer());
-            classFTP.getDirectoryesAndFiles();
+            //Console.WriteLine("ftp: " + classFTP.connectToServer());
+            //classFTP.getDirectoryesAndFiles();
 
             InitializeComponent();
             Settings();
@@ -90,6 +91,8 @@ namespace DocManager
 
             InitControlsStyle();
             timerSearcher.Enabled = true;
+
+            twain32.AcquireCompleted += new EventHandler(scanEvent);
         }
 
         private void buttonAddBranch_Click(object sender, EventArgs e)
@@ -106,8 +109,20 @@ namespace DocManager
 
         private void buttonScan_Click(object sender, EventArgs e)
         {
-            Thread thread = new Thread(Scan);
-            thread.Start();
+            //Thread thread = new Thread(Scan);
+            //thread.Start();
+
+            twain32.Acquire();
+        }
+
+        private void scanEvent(object sender, EventArgs e)
+        {
+            Image[] images = new Image[twain32.ImageCount];
+            for (int i = 0; i < twain32.ImageCount; i++)
+            {
+                images[i] = twain32.GetImage(i);
+            }
+            SaveScan(images);
         }
 
         private void buttonSettings_Click(object sender, EventArgs e)
@@ -225,10 +240,10 @@ namespace DocManager
             }
         }
 
-        private void Scan()
+        private void SaveScan(Image[] images)
         {
-            List<Image> images = scan2.start();
-            if (images.Count < 1)
+            MessageBox.Show(images.GetLength(0).ToString());
+            if (images.GetLength(0) < 1)
             {
                 return;
             }

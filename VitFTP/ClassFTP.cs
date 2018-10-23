@@ -21,6 +21,15 @@ namespace VitFTP
         //Сам клиент ФТП
         private FtpClient client = new FtpClient();
 
+        public ClassFTP()
+        {
+            VitSettings.Properties.FTPSettings FTPSettings = VitSettings.Properties.FTPSettings.Default;
+            FTP_SERVER = FTPSettings.host;
+            FTP_PORT = FTPSettings.port;
+            FTP_USER = FTPSettings.login;
+            FTP_PASSWORD = FTPSettings.password;
+        }
+
         public int connectToServer()
         {
             //Задаём параметры клиента.

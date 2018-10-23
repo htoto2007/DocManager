@@ -8,9 +8,6 @@
     <Setting Name="repositiryPayh" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="mysqkRunPath" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
     <Setting Name="repositoryRootFolderName" Type="System.String" Scope="User">
       <Value Profile="(Default)">r</Value>
     </Setting>

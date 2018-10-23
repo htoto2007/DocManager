@@ -1,0 +1,40 @@
+@charset "utf-8";
+/* CSS Document */
+
+body1{
+	color: rgba(175, 207, 251, 1);
+}
+body2{
+	color: rgba(153, 255, 255, 1);
+}
+body3{
+	color: rgba(255, 204, 0, 1);
+	}
+body4{
+	color: rgba(255, 204, 153, 1);
+	}
+body5{
+	color: rgba(255, 0, 0, 1);
+	}
+body6{
+	color: rgba(255, 153, 153, 1);
+}
+
+body1{
+	color: #AFCFFB;
+}
+body2{
+	color: #99FFFF;
+}
+body3{
+	color: #FFCC00;
+	}
+body4{
+	color: #FFCC99;
+	}
+body5{
+	color: #FF0000;
+	}
+body6{
+	color: #FF9999;
+}

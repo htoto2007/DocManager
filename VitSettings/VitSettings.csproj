@@ -61,6 +61,11 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>ControlsSettings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Properties\FTPSettings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>FTPSettings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Properties\GeneralsSettings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -71,10 +76,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Properties\SettingsDev.Designer.cs">
+    <Compile Include="Properties\DevSettings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>SettingsDev.settings</DependentUpon>
+      <DependentUpon>DevSettings.settings</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -83,13 +88,17 @@
       <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>ControlsSettings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Properties\FTPSettings.settings">
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
+      <LastGenOutput>FTPSettings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Properties\GeneralsSettings.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>GeneralsSettings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Properties\SettingsDev.settings">
+    <None Include="Properties\DevSettings.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>
-      <LastGenOutput>SettingsDev.Designer.cs</LastGenOutput>
+      <LastGenOutput>DevSettings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>

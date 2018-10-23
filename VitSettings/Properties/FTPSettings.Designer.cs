@@ -13,11 +13,11 @@ namespace VitSettings.Properties {
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.8.0.0")]
-    public sealed partial class GeneralsSettings : global::System.Configuration.ApplicationSettingsBase {
+    public sealed partial class FTPSettings : global::System.Configuration.ApplicationSettingsBase {
         
-        private static GeneralsSettings defaultInstance = ((GeneralsSettings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new GeneralsSettings())));
+        private static FTPSettings defaultInstance = ((FTPSettings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new FTPSettings())));
         
-        public static GeneralsSettings Default {
+        public static FTPSettings Default {
             get {
                 return defaultInstance;
             }
@@ -26,36 +26,60 @@ namespace VitSettings.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string programPath {
+        public string host {
             get {
-                return ((string)(this["programPath"]));
+                return ((string)(this["host"]));
             }
             set {
-                this["programPath"] = value;
+                this["host"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("21")]
+        public int port {
+            get {
+                return ((int)(this["port"]));
+            }
+            set {
+                this["port"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string repositiryPayh {
+        public string login {
             get {
-                return ((string)(this["repositiryPayh"]));
+                return ((string)(this["login"]));
             }
             set {
-                this["repositiryPayh"] = value;
+                this["login"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("r")]
-        public string repositoryRootFolderName {
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string password {
             get {
-                return ((string)(this["repositoryRootFolderName"]));
+                return ((string)(this["password"]));
             }
             set {
-                this["repositoryRootFolderName"] = value;
+                this["password"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5000")]
+        public int timeout {
+            get {
+                return ((int)(this["timeout"]));
+            }
+            set {
+                this["timeout"] = value;
             }
         }
     }
