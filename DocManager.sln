@@ -59,7 +59,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VitSyncronizationFiles", "V
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VitFTP", "VitFTP\VitFTP.csproj", "{8E118625-8DED-4D15-9B41-0292A968ADFC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Saraff.Twain", "sarafftwain\Saraff.Twain.csproj", "{658F9851-4D1C-4D57-904E-F9D7DA7F24FC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twain", "VitTwain\Twain.csproj", "{658F9851-4D1C-4D57-904E-F9D7DA7F24FC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
