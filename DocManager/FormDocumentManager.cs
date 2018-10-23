@@ -48,7 +48,7 @@ namespace DocManager
         private FormCreatTypeCard formCreatTypeCard = new FormCreatTypeCard();
         private FormDBConnect formDB = new FormDBConnect();
         private FormVerifycationFiles formVerifycationFiles = new FormVerifycationFiles();
-        private Saraff.Twain.Twain32 twain32 = new Saraff.Twain.Twain32();
+        private Twain.Twain32 twain32 = new Twain.Twain32();
 
         //private scan2 scan2 = new scan2();
         private Thread threadDelete;
