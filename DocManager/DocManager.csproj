@@ -289,5 +289,10 @@
   <ItemGroup>
     <None Include="bin\Debug\icons\color\icons8-services-48.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\libs\BytesRoad.Net.Ftp.dll" />
+    <Content Include="bin\Debug\libs\BytesRoad.Net.Sockets.dll" />
+    <Content Include="bin\Debug\libs\VitTwain.dll" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
