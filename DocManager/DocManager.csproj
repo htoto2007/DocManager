@@ -236,42 +236,28 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="bin\Debug\icons\color\icons8-удалить-480.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="bin\Debug\icons\color\icons8-minimize-window-50.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="bin\Debug\icons\color\icons8-add-new-16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="bin\Debug\icons\color\icons8-scanner-40.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="bin\Debug\icons\color\icons8-plus-48.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="bin\Debug\icons\color\icons8-exit-48.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="bin\Debug\icons\color\icons8-user-avatar-48.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="bin\Debug\icons\color\icons8-database-administrator-64.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="bin\Debug\icons\color\icons8-red-card-40.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="bin\Debug\icons\color\icons8-password-48.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="bin\Debug\icons\color\icons8-conference-48.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="bin\Debug\icons\color\icons8-services-48.png" />
-  </ItemGroup>
-  <ItemGroup>
+    <Content Include="bin\Debug\icons\color\icons8-about-48.png" />
+    <Content Include="bin\Debug\icons\color\icons8-admin-menu-48.png" />
+    <Content Include="bin\Debug\icons\color\icons8-checkmark-48.png" />
+    <Content Include="bin\Debug\icons\color\icons8-close-window-48.png" />
+    <Content Include="bin\Debug\icons\color\icons8-copy-40.png" />
+    <Content Include="bin\Debug\icons\color\icons8-crown-50.png" />
+    <Content Include="bin\Debug\icons\color\icons8-cursor-32.png" />
+    <Content Include="bin\Debug\icons\color\icons8-delete-48.png" />
+    <Content Include="bin\Debug\icons\color\icons8-document-48.png" />
+    <Content Include="bin\Debug\icons\color\icons8-folder-48.png" />
+    <Content Include="bin\Debug\icons\color\icons8-left-64.png" />
+    <Content Include="bin\Debug\icons\color\icons8-maximize-window-48.png" />
+    <Content Include="bin\Debug\icons\color\icons8-minimize-window-48.png" />
+    <Content Include="bin\Debug\icons\color\icons8-open-48.png" />
+    <Content Include="bin\Debug\icons\color\icons8-paste-48.png" />
+    <Content Include="bin\Debug\icons\color\icons8-question-mark-48.png" />
+    <Content Include="bin\Debug\icons\color\icons8-restore-window-48.png" />
+    <Content Include="bin\Debug\icons\color\icons8-search-48.png" />
+    <Content Include="bin\Debug\icons\color\icons8-search-50.png" />
+    <Content Include="bin\Debug\icons\color\icons8-tree-structure-40.png" />
+    <Content Include="bin\Debug\icons\color\icons8-user-menu-male-48.png" />
+    <Content Include="bin\Debug\icons\color\icons8-waste-filled-50.png" />
     <Content Include="bin\Debug\icons\wb\arrow-alt-circle-right.png" />
     <Content Include="bin\Debug\icons\wb\copy.png" />
     <Content Include="bin\Debug\icons\wb\database.png" />
