@@ -236,24 +236,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="bin\Debug\icons\users-cog.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="bin\Debug\icons\user-lock.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="bin\Debug\icons\key.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="bin\Debug\icons\database.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="bin\Debug\icons\list-alt.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="bin\Debug\icons\wrench.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="bin\Debug\icons\color\icons8-удалить-480.png" />
   </ItemGroup>
   <ItemGroup>
@@ -290,9 +272,33 @@
     <None Include="bin\Debug\icons\color\icons8-services-48.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Debug\icons\wb\arrow-alt-circle-right.png" />
+    <Content Include="bin\Debug\icons\wb\copy.png" />
+    <Content Include="bin\Debug\icons\wb\database.png" />
+    <Content Include="bin\Debug\icons\wb\document-scanner-icon.png" />
+    <Content Include="bin\Debug\icons\wb\edit.png" />
+    <Content Include="bin\Debug\icons\wb\file-alt.png" />
+    <Content Include="bin\Debug\icons\wb\file-medical.png" />
+    <Content Include="bin\Debug\icons\wb\folder-open.png" />
+    <Content Include="bin\Debug\icons\wb\folder-plus.png" />
+    <Content Include="bin\Debug\icons\wb\folder.png" />
+    <Content Include="bin\Debug\icons\wb\info.png" />
+    <Content Include="bin\Debug\icons\wb\italic.png" />
+    <Content Include="bin\Debug\icons\wb\key.png" />
+    <Content Include="bin\Debug\icons\wb\list-alt.png" />
+    <Content Include="bin\Debug\icons\wb\paste.png" />
+    <Content Include="bin\Debug\icons\wb\plus-square.png" />
+    <Content Include="bin\Debug\icons\wb\plus.png" />
+    <Content Include="bin\Debug\icons\wb\sign-out-alt.png" />
+    <Content Include="bin\Debug\icons\wb\trash-alt.png" />
+    <Content Include="bin\Debug\icons\wb\user-lock.png" />
+    <Content Include="bin\Debug\icons\wb\user.png" />
+    <Content Include="bin\Debug\icons\wb\users-cog.png" />
+    <Content Include="bin\Debug\icons\wb\wrench.png" />
     <Content Include="bin\Debug\libs\BytesRoad.Net.Ftp.dll" />
     <Content Include="bin\Debug\libs\BytesRoad.Net.Sockets.dll" />
     <Content Include="bin\Debug\libs\VitTwain.dll" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
