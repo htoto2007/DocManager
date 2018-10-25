@@ -1,12 +1,12 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="VitSettings.Properties" GeneratedClassName="SettingsDev">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="VitSettings.Properties" GeneratedClassName="DevSettings">
   <Profiles />
   <Settings>
     <Setting Name="screanShotsPath" Type="System.String" Scope="Application">
       <Value Profile="(Default)">C:/screans/</Value>
     </Setting>
     <Setting Name="screanShotsEnable" Type="System.Boolean" Scope="Application">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>

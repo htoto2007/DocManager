@@ -29,8 +29,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VitSendToProgram", "VitSend
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VitSettings", "VitSettings\VitSettings.csproj", "{8BA14954-8676-4A60-B58F-7E5D8F71EAC8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VitScaner", "VitScaner\VitScaner.csproj", "{55301E9D-58A8-40F9-8E6A-710EBD58B5E5}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VitVerifycationFiles", "VitVerifycationFiles\VitVerifycationFiles.csproj", "{97FAB1EE-5880-45E7-9327-6E1D52344EBE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VitRelationFolders", "VitRelationFolders\VitRelationFolders.csproj", "{4A6ECD5E-6D92-407B-9A3C-EA5962352B00}"
@@ -171,14 +169,6 @@ Global
 		{8BA14954-8676-4A60-B58F-7E5D8F71EAC8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8BA14954-8676-4A60-B58F-7E5D8F71EAC8}.Release|x86.ActiveCfg = Release|Any CPU
 		{8BA14954-8676-4A60-B58F-7E5D8F71EAC8}.Release|x86.Build.0 = Release|Any CPU
-		{55301E9D-58A8-40F9-8E6A-710EBD58B5E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{55301E9D-58A8-40F9-8E6A-710EBD58B5E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{55301E9D-58A8-40F9-8E6A-710EBD58B5E5}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{55301E9D-58A8-40F9-8E6A-710EBD58B5E5}.Debug|x86.Build.0 = Debug|Any CPU
-		{55301E9D-58A8-40F9-8E6A-710EBD58B5E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{55301E9D-58A8-40F9-8E6A-710EBD58B5E5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{55301E9D-58A8-40F9-8E6A-710EBD58B5E5}.Release|x86.ActiveCfg = Release|Any CPU
-		{55301E9D-58A8-40F9-8E6A-710EBD58B5E5}.Release|x86.Build.0 = Release|Any CPU
 		{97FAB1EE-5880-45E7-9327-6E1D52344EBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{97FAB1EE-5880-45E7-9327-6E1D52344EBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97FAB1EE-5880-45E7-9327-6E1D52344EBE}.Debug|x86.ActiveCfg = Debug|Any CPU

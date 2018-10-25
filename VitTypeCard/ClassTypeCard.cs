@@ -9,11 +9,13 @@ namespace VitTypeCard
 {
     public class ClassTypeCard
     {
+        /// <summary>
+        /// Константа определяющая пустую карту
+        /// </summary>
         public const string EMPTY_CARD = "Пустая";
+
         private ClassDBConnect classDB = new ClassDBConnect();
         private ClassMysql classMysql = new ClassMysql();
-
-        public string name = "";
 
         public int add(string name)
         {
@@ -34,12 +36,6 @@ namespace VitTypeCard
             int id = Convert.ToInt32(command.LastInsertedId);
             classDB.dbLink.Close();
             return id;
-        }
-
-        public struct TypeCardCollection
-        {
-            public int id;
-            public string namne;
         }
 
         public TypeCardCollection[] getAllInfo()
@@ -74,6 +70,12 @@ namespace VitTypeCard
             Dictionary<string, string>[] rows = classMysql.getArrayByQuery(query);
             Dictionary<string, string> row = rows[0];
             return int.Parse(row["id"]);
+        }
+
+        public struct TypeCardCollection
+        {
+            public int id;
+            public string namne;
         }
     }
 }

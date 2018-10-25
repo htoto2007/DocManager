@@ -75,6 +75,7 @@
   <PropertyGroup>
     <TargetZone>LocalIntranet</TargetZone>
   </PropertyGroup>
+  <PropertyGroup />
   <PropertyGroup>
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
@@ -205,10 +206,6 @@
     <ProjectReference Include="..\VitListView\VitListView.csproj">
       <Project>{d793c6eb-d3a4-49e8-86bc-8dbc0d29f73d}</Project>
       <Name>VitListView</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\VitScaner\VitScaner.csproj">
-      <Project>{55301e9d-58a8-40f9-8e6a-710ebd58b5e5}</Project>
-      <Name>VitScaner</Name>
     </ProjectReference>
     <ProjectReference Include="..\VitSendTo\VitSendToProgram.csproj">
       <Project>{2a45e400-06cf-4817-88d7-12ebd87ea9aa}</Project>

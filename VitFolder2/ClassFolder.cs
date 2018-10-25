@@ -238,6 +238,10 @@ namespace VitFolder
         {
             // запрашиваем информацию о папке
             Dictionary<string, string>[] rows = classMysql.getArrayByQuery("SELECT * FROM tb_folders WHERE id = " + id);
+            if (rows.GetLength(0) < 1)
+            {
+                return "";
+            }
             // получаем имя папки
             string path = rows[0]["name"];
 

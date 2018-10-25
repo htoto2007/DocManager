@@ -32,10 +32,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BytesRoad.Net.Ftp">
-      <HintPath>..\DocManager\bin\Debug\lib\BytesRoad.Net.Ftp.dll</HintPath>
+      <HintPath>..\DocManager\bin\Debug\libs\BytesRoad.Net.Ftp.dll</HintPath>
     </Reference>
     <Reference Include="BytesRoad.Net.Sockets">
-      <HintPath>..\DocManager\bin\Debug\lib\BytesRoad.Net.Sockets.dll</HintPath>
+      <HintPath>..\DocManager\bin\Debug\libs\BytesRoad.Net.Sockets.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
