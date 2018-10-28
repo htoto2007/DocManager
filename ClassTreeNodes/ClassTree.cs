@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using VitCardPropsValue;
@@ -559,8 +560,9 @@ namespace VitTree
                     break;
 
                 case "file":
-                    globalNode.ImageKey = "icons8-document-48.png";
-                    globalNode.SelectedImageKey = "icons8-document-48.png";
+                    string imageKey = addIconFile(Convert.ToInt32(id));
+                    globalNode.ImageKey = imageKey;
+                    globalNode.SelectedImageKey = imageKey;
                     // globalNode.ContextMenuStrip = contMenu.treeFiles;
                     break;
 
@@ -572,6 +574,23 @@ namespace VitTree
             TreeNode[] treeNodes = treeView.Nodes.Find("folder_" + idParent, true);
             treeNodes[0].Nodes.Add(globalNode);
             globalNode = null;
+        }
+
+        private string addIconFile(int idFile)
+        {
+            ClassFiles.FileCollection fileCollection = classFiles.GetFileById(idFile);
+            Icon icon = null;
+            try
+            {
+                icon = Icon.ExtractAssociatedIcon(fileCollection.path);
+            }
+            catch (System.IO.FileNotFoundException)
+            {
+                return "icons8-document-48.png";
+            }
+            VitIcons.FormCompanents formCompanents = new VitIcons.FormCompanents();
+            formCompanents.imageListColor.Images.Add(Path.GetExtension(fileCollection.path), icon);
+            return Path.GetExtension(fileCollection.path);
         }
 
         /// <summary>
@@ -670,19 +689,16 @@ namespace VitTree
             {
                 foreach (TreeNode tn in treeNode.Nodes)
                 {
-
                     if (tn.Name.Contains("file"))
                     {
                         tn.Remove();
                     }
-
 
                     RecursiveDeleteFileNodes(tn);
                 }
             }
             catch (System.NullReferenceException)
             {
-
             }
         }
 
@@ -801,13 +817,14 @@ namespace VitTree
 
             foreach (ClassFiles.FileCollection file in fileCollection)
             {
+                string imageKey = addIconFile(file.id);
                 globalNode = new TreeNode
                 {
                     Text = file.name,
                     Name = "file_" + file.id.ToString(),
                     Tag = "file",
-                    ImageKey = "icons8-document-48.png",
-                    SelectedImageKey = "icons8-document-48.png",
+                    ImageKey = imageKey,
+                    SelectedImageKey = imageKey,
                     //ContextMenuStrip = contMenu.treeFiles
                 };
                 TreeNode[] tNode = treeView.Nodes.Find("folder_" + file.idFolder.ToString(), true);
