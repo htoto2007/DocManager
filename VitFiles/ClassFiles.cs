@@ -1,9 +1,11 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 using VitDBConnect;
 using VitMysql;
+using VitNotifyMessage;
 using VitSettings;
 using VitTextStringMask;
 using VitTypeCard;
@@ -20,10 +22,10 @@ namespace VitFiles
 
         private readonly ClassTypeCard classTypeCard = new ClassTypeCard();
 
-        private ClassMysql classMysql = new ClassMysql();
-
         private readonly string repositiryPayh = "";
         private readonly string root = "";
+        private ClassMysql classMysql = new ClassMysql();
+        private ClassNotifyMessage classNotifyMessage = new ClassNotifyMessage();
 
         public ClassFiles()
         {
@@ -47,24 +49,45 @@ namespace VitFiles
         /// <returns>Выводит последгтй вставленый индекс</returns>
         public int Create(int idFolder, int idTypeCard, string fileName, string fullFilePath, string pathSave)
         {
-            if (Upload(fullFilePath, pathSave, fileName) == false)
+            int resUpload = Upload(fullFilePath, pathSave, fileName);
+            if (resUpload == 0)
             {
                 MessageBox.Show("Файл не загружен!");
                 return 0;
             }
-
-            FileInfo fileInfo = new FileInfo(pathSave + "\\" + fileName);
-
-            string sqlFileName = (repositiryPayh + "\\" + pathSave + "\\" + fileName).Replace("\\\\", "\\");
-            sqlFileName = sqlFileName.Replace("\\", "%slash%");
-            string query = "INSERT INTO tb_files " +
-                    "SET " +
-                    "name = '" + sqlFileName + "', " +
-                    "id_folder_file = " + idFolder + ", " +
-                    "id_type_card = " + idTypeCard + ", " +
-                    "hash_code = " + fileInfo.GetHashCode();
-            int id = classMysql.Insert(query);
-            return id;
+            else if (resUpload == 1) // загружен успешно
+            {
+                FileInfo fileInfo = new FileInfo(pathSave + "\\" + fileName);
+                string sqlFileName = (repositiryPayh + "\\" + pathSave + "\\" + fileName).Replace("\\\\", "\\");
+                sqlFileName = sqlFileName.Replace("\\", "%slash%");
+                string query = "INSERT INTO tb_files " +
+                        "SET " +
+                        "name = '" + MySqlHelper.EscapeString(sqlFileName) + "', " +
+                        "id_folder_file = " + idFolder + ", " +
+                        "id_type_card = " + idTypeCard + ", " +
+                        "hash_code = " + fileInfo.GetHashCode();
+                int id = classMysql.Insert(query);
+                return id;
+            }
+            else if (resUpload == 2) // загрузка отменена
+            {
+                return getFileByName(pathSave + "\\" + fileName).id;
+            }
+            else if (resUpload == 3) // файл заменен
+            {
+                FileInfo fileInfo = new FileInfo(pathSave + "\\" + fileName);
+                string sqlFileName = (repositiryPayh + "\\" + pathSave + "\\" + fileName).Replace("\\\\", "\\");
+                sqlFileName = sqlFileName.Replace("\\", "%slash%");
+                string query = "UPDATE tb_files " +
+                        "SET " +
+                        "id_type_card = " + idTypeCard + ", " +
+                        "hash_code = " + fileInfo.GetHashCode() + " " +
+                        "WHERE " +
+                        "name = '" + MySqlHelper.EscapeString(sqlFileName) + "'";
+                classMysql.UpdateOrDelete(query);
+                return getFileByName(pathSave + "\\" + fileName).id;
+            }
+            return 0;
         }
 
         /// <summary>
@@ -107,26 +130,10 @@ namespace VitFiles
         }
 
         /// <summary>
-        /// Приобразовывает асоциативный массив к структуре и даные к каноническомуму виду
+        /// Выдает информацию о файле по понлму пути
         /// </summary>
-        /// <param name="info">Обычно это строка ответа из mysql</param>
+        /// <param name="fileName">Disk://directory/fileName.ext</param>
         /// <returns></returns>
-        private FileCollection toCanonicalFormat(Dictionary<string, string> info)
-        {
-            FileCollection fileCollection = new FileCollection
-            {
-                id = Convert.ToInt32(info["id"]),
-                idFolder = Convert.ToInt32(info["id_folder_file"]),
-                name = Path.GetFileName(info["name"].Replace("%slash%", "\\")),
-                path = Path.GetFullPath(info["name"].Replace("%slash%", "\\")),
-                idTypeCard = Convert.ToInt32(info["id_type_card"]),
-                pathWithoutFileName = Path.GetDirectoryName(info["name"].Replace("%slash%", "\\")),
-                createDateTime = File.GetCreationTime(Path.GetFullPath(info["name"].Replace("%slash%", "\\")))
-            };
-
-            return fileCollection;
-        }
-
         public FileCollection getFileByName(string fileName)
         {
             fileName = fileName.Replace(@"\", "%slash%");
@@ -134,7 +141,7 @@ namespace VitFiles
                "SELECT id " +
                "FROM tb_files " +
                "WHERE " +
-               "'" + fileName + "' IN(name)";
+               "'" + MySqlHelper.EscapeString(fileName) + "' IN(name)";
 
             Dictionary<string, string>[] rows = classMysql.getArrayByQuery(query);
 
@@ -163,7 +170,7 @@ namespace VitFiles
                "SELECT id " +
                "FROM tb_files " +
                "WHERE " +
-               "'" + fileName + "' IN(name), " +
+               "'" + MySqlHelper.EscapeString(fileName) + "' IN(name), " +
                "id_type_card = '" + idTypeCard + "'";
             Dictionary<string, string>[] rows = classMysql.getArrayByQuery(query);
 
@@ -214,7 +221,7 @@ namespace VitFiles
                 "UPDATE tb_files " +
                 "SET " +
                 "id_folder_file = '" + idFolder + "'," +
-                "name = '" + sqlFileName + "', " +
+                "name = '" + MySqlHelper.EscapeString(sqlFileName) + "', " +
                 "hash_code = " + fileInfo.GetHashCode() + " " +
                 "WHERE " +
                 "id = '" + idFile + "'");
@@ -233,7 +240,7 @@ namespace VitFiles
             classMysql.Insert("" +
                 "UPDATE tb_files " +
                 "SET " +
-                "name = '" + sqlFileName + "', " +
+                "name = '" + MySqlHelper.EscapeString(sqlFileName) + "', " +
                 "hash_code = " + fileInfo.GetHashCode() + " " +
                 "WHERE " +
                 "id = '" + idFile + "'" +
@@ -258,7 +265,35 @@ namespace VitFiles
             return fileCollections;
         }
 
-        private bool Upload(string pathUpload, string pathSave, string newFilename)
+        /// <summary>
+        /// Приобразовывает асоциативный массив к структуре и даные к каноническомуму виду
+        /// </summary>
+        /// <param name="info">Обычно это строка ответа из mysql</param>
+        /// <returns></returns>
+        private FileCollection toCanonicalFormat(Dictionary<string, string> info)
+        {
+            FileCollection fileCollection = new FileCollection
+            {
+                id = Convert.ToInt32(info["id"]),
+                idFolder = Convert.ToInt32(info["id_folder_file"]),
+                name = Path.GetFileName(info["name"].Replace("%slash%", "\\")),
+                path = Path.GetFullPath(info["name"].Replace("%slash%", "\\")),
+                idTypeCard = Convert.ToInt32(info["id_type_card"]),
+                pathWithoutFileName = Path.GetDirectoryName(info["name"].Replace("%slash%", "\\")),
+                createDateTime = File.GetCreationTime(Path.GetFullPath(info["name"].Replace("%slash%", "\\")))
+            };
+
+            return fileCollection;
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="pathUpload">Путь к загружаемому фалу</param>
+        /// <param name="pathSave">путь от нача репозитория</param>
+        /// <param name="newFilename"></param>
+        /// <returns>0 - загрузка не удалась, 1 - загружен успешно, 2 - загрузка отменена пользователем, 3 - файл заменен</returns>
+        private int Upload(string pathUpload, string pathSave, string newFilename)
         {
             string currentPathProgram = classSettings.GetProperties().generalsSttings.programPath;
             string finalPathSave = repositiryPayh + "\\" + pathSave;
@@ -269,25 +304,46 @@ namespace VitFiles
                 Directory.CreateDirectory(finalPathSave);
             }
 
+            DialogResult dialogResult = DialogResult.None;
+            if (File.Exists(destFileName))
+            {
+                dialogResult = MessageBox.Show(destFileName + " уже существует. Заменить?", "Внимание!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            }
+            if (dialogResult == DialogResult.No)
+            {
+                return 2;
+            }
+            else if (dialogResult == DialogResult.Yes)
+            {
+                File.Delete(destFileName);
+            }
+
             try
             {
                 File.Copy(pathUpload, destFileName);
             }
-            catch (Exception e)
+            catch (System.IO.IOException)
             {
-                MessageBox.Show(e.ToString());
+                classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.USER_ERROR, "На диске закончилось свободное пространство");
+                return 0;
             }
 
             if (File.Exists(destFileName) == false)
             {
-                return false;
+                return 0;
+            }
+            else if (dialogResult == DialogResult.Yes)
+            {
+                return 3;
             }
 
-            return true;
+            return 1;
         }
 
         public struct FileCollection
         {
+            public DateTime createDateTime;
+            public int hashCode;
             public int id;
             public int idFolder;
             public int idTypeCard;
@@ -306,10 +362,6 @@ namespace VitFiles
             /// disk://directory/
             /// </summary>
             public string pathWithoutFileName;
-
-            public DateTime createDateTime;
-
-            public int hashCode;
         }
     }
 }

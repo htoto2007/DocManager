@@ -68,6 +68,11 @@ namespace VitTypeCard
                     "name = '" + name + "'";
 
             Dictionary<string, string>[] rows = classMysql.getArrayByQuery(query);
+            if (rows.GetLength(0) < 1)
+            {
+                return 0;
+            }
+
             Dictionary<string, string> row = rows[0];
             return int.Parse(row["id"]);
         }

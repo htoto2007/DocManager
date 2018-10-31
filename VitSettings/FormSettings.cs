@@ -10,7 +10,7 @@ namespace VitSettings
             InitializeComponent();
         }
 
-        private void buttonRepositoryToDocuments_Click(object sender, EventArgs e)
+        private void buttonOpenFolderDirectory_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
             DialogResult dialogResult = folderBrowserDialog.ShowDialog();

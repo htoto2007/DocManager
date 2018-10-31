@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormSettings));
-            this.tabControlFTP = new System.Windows.Forms.TabControl();
-            this.tabPageGeneralsSettings = new System.Windows.Forms.TabPage();
+            this.tabControlSettings = new System.Windows.Forms.TabControl();
             this.tabPageConnectToData = new System.Windows.Forms.TabPage();
-            this.tabPageSettings = new System.Windows.Forms.TabPage();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBoxPort = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.textBoxPassword = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -41,50 +41,36 @@
             this.textBoxDataBaseName = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.textBoxServer = new System.Windows.Forms.TextBox();
-            this.windowHeader1 = new VitControls.WindowHeader();
-            this.label7 = new System.Windows.Forms.Label();
-            this.textBoxPort = new System.Windows.Forms.TextBox();
+            this.tabPageGeneralsSettings = new System.Windows.Forms.TabPage();
             this.textBoxRootFolderName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new VitControls.Button();
+            this.buttonOpenFolderDirectory = new VitControls.Button();
             this.linkLabelRepositoryToDocuments = new System.Windows.Forms.LinkLabel();
             this.label1 = new System.Windows.Forms.Label();
+            this.tabPageSettings = new System.Windows.Forms.TabPage();
+            this.tabPageEmail = new System.Windows.Forms.TabPage();
+            this.windowHeader1 = new VitControls.WindowHeader();
             this.button2 = new VitControls.Button();
             this.button3 = new VitControls.Button();
-            this.tabControlFTP.SuspendLayout();
-            this.tabPageGeneralsSettings.SuspendLayout();
+            this.tabControlSettings.SuspendLayout();
             this.tabPageConnectToData.SuspendLayout();
+            this.tabPageGeneralsSettings.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tabControlFTP
+            // tabControlSettings
             // 
-            this.tabControlFTP.Controls.Add(this.tabPageConnectToData);
-            this.tabControlFTP.Controls.Add(this.tabPageGeneralsSettings);
-            this.tabControlFTP.Controls.Add(this.tabPageSettings);
-            this.tabControlFTP.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tabControlFTP.HotTrack = true;
-            this.tabControlFTP.Location = new System.Drawing.Point(0, 33);
-            this.tabControlFTP.Margin = new System.Windows.Forms.Padding(0);
-            this.tabControlFTP.Name = "tabControlFTP";
-            this.tabControlFTP.SelectedIndex = 0;
-            this.tabControlFTP.Size = new System.Drawing.Size(375, 307);
-            this.tabControlFTP.TabIndex = 0;
-            // 
-            // tabPageGeneralsSettings
-            // 
-            this.tabPageGeneralsSettings.Controls.Add(this.textBoxRootFolderName);
-            this.tabPageGeneralsSettings.Controls.Add(this.label2);
-            this.tabPageGeneralsSettings.Controls.Add(this.button1);
-            this.tabPageGeneralsSettings.Controls.Add(this.linkLabelRepositoryToDocuments);
-            this.tabPageGeneralsSettings.Controls.Add(this.label1);
-            this.tabPageGeneralsSettings.Location = new System.Drawing.Point(4, 26);
-            this.tabPageGeneralsSettings.Margin = new System.Windows.Forms.Padding(0);
-            this.tabPageGeneralsSettings.Name = "tabPageGeneralsSettings";
-            this.tabPageGeneralsSettings.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPageGeneralsSettings.Size = new System.Drawing.Size(367, 314);
-            this.tabPageGeneralsSettings.TabIndex = 0;
-            this.tabPageGeneralsSettings.Text = "Общие";
-            this.tabPageGeneralsSettings.UseVisualStyleBackColor = true;
+            this.tabControlSettings.Controls.Add(this.tabPageConnectToData);
+            this.tabControlSettings.Controls.Add(this.tabPageGeneralsSettings);
+            this.tabControlSettings.Controls.Add(this.tabPageSettings);
+            this.tabControlSettings.Controls.Add(this.tabPageEmail);
+            this.tabControlSettings.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tabControlSettings.HotTrack = true;
+            this.tabControlSettings.Location = new System.Drawing.Point(0, 33);
+            this.tabControlSettings.Margin = new System.Windows.Forms.Padding(0);
+            this.tabControlSettings.Name = "tabControlSettings";
+            this.tabControlSettings.SelectedIndex = 0;
+            this.tabControlSettings.Size = new System.Drawing.Size(514, 307);
+            this.tabControlSettings.TabIndex = 0;
             // 
             // tabPageConnectToData
             // 
@@ -102,21 +88,27 @@
             this.tabPageConnectToData.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageConnectToData.Name = "tabPageConnectToData";
             this.tabPageConnectToData.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPageConnectToData.Size = new System.Drawing.Size(367, 277);
+            this.tabPageConnectToData.Size = new System.Drawing.Size(506, 277);
             this.tabPageConnectToData.TabIndex = 1;
             this.tabPageConnectToData.Text = "Подключение к базе";
             this.tabPageConnectToData.UseVisualStyleBackColor = true;
             // 
-            // tabPageSettings
+            // label7
             // 
-            this.tabPageSettings.Location = new System.Drawing.Point(4, 26);
-            this.tabPageSettings.Margin = new System.Windows.Forms.Padding(4);
-            this.tabPageSettings.Name = "tabPageSettings";
-            this.tabPageSettings.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPageSettings.Size = new System.Drawing.Size(367, 314);
-            this.tabPageSettings.TabIndex = 2;
-            this.tabPageSettings.Text = "Подключение к FTP";
-            this.tabPageSettings.UseVisualStyleBackColor = true;
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(13, 45);
+            this.label7.Margin = new System.Windows.Forms.Padding(8);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(40, 17);
+            this.label7.TabIndex = 19;
+            this.label7.Text = "Порт";
+            // 
+            // textBoxPort
+            // 
+            this.textBoxPort.Location = new System.Drawing.Point(181, 42);
+            this.textBoxPort.Name = "textBoxPort";
+            this.textBoxPort.Size = new System.Drawing.Size(178, 25);
+            this.textBoxPort.TabIndex = 18;
             // 
             // label4
             // 
@@ -186,34 +178,21 @@
             this.textBoxServer.Size = new System.Drawing.Size(178, 25);
             this.textBoxServer.TabIndex = 10;
             // 
-            // windowHeader1
+            // tabPageGeneralsSettings
             // 
-            this.windowHeader1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(207)))), ((int)(((byte)(251)))));
-            this.windowHeader1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.windowHeader1.Location = new System.Drawing.Point(0, 0);
-            this.windowHeader1.Margin = new System.Windows.Forms.Padding(0);
-            this.windowHeader1.maximize = false;
-            this.windowHeader1.minimize = false;
-            this.windowHeader1.Name = "windowHeader1";
-            this.windowHeader1.Size = new System.Drawing.Size(375, 33);
-            this.windowHeader1.TabIndex = 1;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(13, 45);
-            this.label7.Margin = new System.Windows.Forms.Padding(8);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(40, 17);
-            this.label7.TabIndex = 19;
-            this.label7.Text = "Порт";
-            // 
-            // textBoxPort
-            // 
-            this.textBoxPort.Location = new System.Drawing.Point(181, 42);
-            this.textBoxPort.Name = "textBoxPort";
-            this.textBoxPort.Size = new System.Drawing.Size(178, 25);
-            this.textBoxPort.TabIndex = 18;
+            this.tabPageGeneralsSettings.Controls.Add(this.textBoxRootFolderName);
+            this.tabPageGeneralsSettings.Controls.Add(this.label2);
+            this.tabPageGeneralsSettings.Controls.Add(this.buttonOpenFolderDirectory);
+            this.tabPageGeneralsSettings.Controls.Add(this.linkLabelRepositoryToDocuments);
+            this.tabPageGeneralsSettings.Controls.Add(this.label1);
+            this.tabPageGeneralsSettings.Location = new System.Drawing.Point(4, 26);
+            this.tabPageGeneralsSettings.Margin = new System.Windows.Forms.Padding(0);
+            this.tabPageGeneralsSettings.Name = "tabPageGeneralsSettings";
+            this.tabPageGeneralsSettings.Padding = new System.Windows.Forms.Padding(4);
+            this.tabPageGeneralsSettings.Size = new System.Drawing.Size(506, 277);
+            this.tabPageGeneralsSettings.TabIndex = 0;
+            this.tabPageGeneralsSettings.Text = "Общие";
+            this.tabPageGeneralsSettings.UseVisualStyleBackColor = true;
             // 
             // textBoxRootFolderName
             // 
@@ -232,16 +211,18 @@
             this.label2.TabIndex = 8;
             this.label2.Text = "Имя корневой папки";
             // 
-            // button1
+            // buttonOpenFolderDirectory
             // 
-            this.button1.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
-            this.button1.BackColor = System.Drawing.Color.Transparent;
-            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button1.Location = new System.Drawing.Point(189, 5);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(24, 24);
-            this.button1.TabIndex = 7;
+            this.buttonOpenFolderDirectory.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
+            this.buttonOpenFolderDirectory.BackColor = System.Drawing.Color.Transparent;
+            this.buttonOpenFolderDirectory.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonOpenFolderDirectory.BackgroundImage")));
+            this.buttonOpenFolderDirectory.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.buttonOpenFolderDirectory.Location = new System.Drawing.Point(189, 5);
+            this.buttonOpenFolderDirectory.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonOpenFolderDirectory.Name = "buttonOpenFolderDirectory";
+            this.buttonOpenFolderDirectory.Size = new System.Drawing.Size(24, 24);
+            this.buttonOpenFolderDirectory.TabIndex = 7;
+            this.buttonOpenFolderDirectory.Click += new System.EventHandler(this.buttonOpenFolderDirectory_Click);
             // 
             // linkLabelRepositoryToDocuments
             // 
@@ -263,12 +244,46 @@
             this.label1.TabIndex = 5;
             this.label1.Text = "Репозиторий документов";
             // 
+            // tabPageSettings
+            // 
+            this.tabPageSettings.Location = new System.Drawing.Point(4, 26);
+            this.tabPageSettings.Margin = new System.Windows.Forms.Padding(4);
+            this.tabPageSettings.Name = "tabPageSettings";
+            this.tabPageSettings.Padding = new System.Windows.Forms.Padding(4);
+            this.tabPageSettings.Size = new System.Drawing.Size(506, 277);
+            this.tabPageSettings.TabIndex = 2;
+            this.tabPageSettings.Text = "Подключение к FTP";
+            this.tabPageSettings.UseVisualStyleBackColor = true;
+            // 
+            // tabPageEmail
+            // 
+            this.tabPageEmail.Location = new System.Drawing.Point(4, 26);
+            this.tabPageEmail.Name = "tabPageEmail";
+            this.tabPageEmail.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageEmail.Size = new System.Drawing.Size(506, 277);
+            this.tabPageEmail.TabIndex = 3;
+            this.tabPageEmail.Text = "Почта";
+            this.tabPageEmail.UseVisualStyleBackColor = true;
+            // 
+            // windowHeader1
+            // 
+            this.windowHeader1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(207)))), ((int)(((byte)(251)))));
+            this.windowHeader1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.windowHeader1.Location = new System.Drawing.Point(0, 0);
+            this.windowHeader1.Margin = new System.Windows.Forms.Padding(0);
+            this.windowHeader1.maximize = false;
+            this.windowHeader1.minimize = false;
+            this.windowHeader1.Name = "windowHeader1";
+            this.windowHeader1.Size = new System.Drawing.Size(514, 33);
+            this.windowHeader1.TabIndex = 1;
+            // 
             // button2
             // 
             this.button2.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
             this.button2.BackColor = System.Drawing.Color.Transparent;
             this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.button2.Location = new System.Drawing.Point(330, 347);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(32, 32);
             this.button2.TabIndex = 2;
@@ -279,6 +294,7 @@
             this.button3.BackColor = System.Drawing.Color.Transparent;
             this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.button3.Location = new System.Drawing.Point(13, 346);
+            this.button3.Margin = new System.Windows.Forms.Padding(2);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(32, 32);
             this.button3.TabIndex = 3;
@@ -287,10 +303,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(375, 391);
+            this.ClientSize = new System.Drawing.Size(514, 391);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.tabControlFTP);
+            this.Controls.Add(this.tabControlSettings);
             this.Controls.Add(this.windowHeader1);
             this.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
@@ -299,18 +315,18 @@
             this.Name = "FormSettings";
             this.Text = "Настроки";
             this.Load += new System.EventHandler(this.FormSettings_Load);
-            this.tabControlFTP.ResumeLayout(false);
-            this.tabPageGeneralsSettings.ResumeLayout(false);
-            this.tabPageGeneralsSettings.PerformLayout();
+            this.tabControlSettings.ResumeLayout(false);
             this.tabPageConnectToData.ResumeLayout(false);
             this.tabPageConnectToData.PerformLayout();
+            this.tabPageGeneralsSettings.ResumeLayout(false);
+            this.tabPageGeneralsSettings.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TabControl tabControlFTP;
+        private System.Windows.Forms.TabControl tabControlSettings;
         private System.Windows.Forms.TabPage tabPageGeneralsSettings;
         private System.Windows.Forms.TabPage tabPageConnectToData;
         private System.Windows.Forms.TabPage tabPageSettings;
@@ -326,11 +342,12 @@
         private System.Windows.Forms.TextBox textBoxServer;
         private System.Windows.Forms.TextBox textBoxRootFolderName;
         private System.Windows.Forms.Label label2;
-        private VitControls.Button button1;
+        private VitControls.Button buttonOpenFolderDirectory;
         private System.Windows.Forms.LinkLabel linkLabelRepositoryToDocuments;
         private System.Windows.Forms.Label label1;
         private VitControls.WindowHeader windowHeader1;
         private VitControls.Button button2;
         private VitControls.Button button3;
+        private System.Windows.Forms.TabPage tabPageEmail;
     }
 }

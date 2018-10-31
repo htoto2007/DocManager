@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using VitDBConnect;
+using VitNotifyMessage;
 using VitSettings;
 
 namespace VitMysql
@@ -11,6 +12,7 @@ namespace VitMysql
     {
         private static readonly ClassSettings classSettings = new ClassSettings();
         private ClassDBConnect classDB = new ClassDBConnect();
+        private ClassNotifyMessage classNotifyMessage = new ClassNotifyMessage();
 
         /// <summary>
         /// Выдает результат как асоциативный массив
@@ -50,6 +52,11 @@ namespace VitMysql
             return rows;
         }
 
+        public void UpdateOrDelete(object p, string v)
+        {
+            throw new NotImplementedException();
+        }
+
         public int getNumRows(string query)
         {
             int numRows = 0;
@@ -84,11 +91,19 @@ namespace VitMysql
         public int Insert(string query)
         {
             classDB.dbLink.Open();
-            MySqlCommand command = new MySqlCommand(query, classDB.dbLink);
-            MySqlDataReader mySqlDataReader = command.ExecuteReader();
-            int lastId = Convert.ToInt32(command.LastInsertedId);
-            classDB.dbLink.Close();
-            return lastId;
+            try
+            {
+                MySqlCommand command = new MySqlCommand(query, classDB.dbLink);
+                MySqlDataReader mySqlDataReader = command.ExecuteReader();
+                int lastId = Convert.ToInt32(command.LastInsertedId);
+                classDB.dbLink.Close();
+                return lastId;
+            }
+            catch (MySql.Data.MySqlClient.MySqlException e)
+            {
+                classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, e.Message + "\n\n" + query);
+                return 0;
+            }
         }
 
         /// <summary>
@@ -106,7 +121,8 @@ namespace VitMysql
             }
             catch (MySql.Data.MySqlClient.MySqlException e)
             {
-                MessageBox.Show(e.Message + "\n\n\n " + query);
+                //MessageBox.Show(e.Message + "\n\n\n " + query);
+                classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, e.Message + "\n\n" + query);
                 ShowDialogMysqlSettingsAndRestart();
             }
             classDB.dbLink.Close();

@@ -5,8 +5,10 @@ using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 using VitAccess;
+using VitAccessGroup;
 using VitDBConnect;
 using VitFiles;
+using VitFolder;
 using VitFTP;
 using VitSearcher;
 using VitSendToProgram;
@@ -18,23 +20,6 @@ using VitVerifycationFiles;
 
 namespace DocManager
 {
-    /*
-    internal class Win32
-    {
-        /// <summary>
-        /// Allocates a new console for current process.
-        /// </summary>
-        [DllImport("kernel32.dll")]
-        public static extern bool AllocConsole();
-
-        /// <summary>
-        /// Frees the console.
-        /// </summary>
-        [DllImport("kernel32.dll")]
-        public static extern bool FreeConsole();
-    }
-    */
-
     public partial class FormDocumentManager : Form
     {
         private ClassAccess classAccess = new ClassAccess();
@@ -47,12 +32,24 @@ namespace DocManager
         private FormDBConnect formDB = new FormDBConnect();
         private FormVerifycationFiles formVerifycationFiles = new FormVerifycationFiles();
 
+        /// <summary>
+        /// Хранит в себе тип последнего пользовательского элемента, который вызвал контекстное меню
+        /// </summary>
         private Type lastRequireContextMenu;
 
-        //private scan2 scan2 = new scan2();
+        /// <summary>
+        /// Этот поток служит для удаление устареаших скриншотов
+        /// </summary>
         private Thread threadDelete;
 
+        /// <summary>
+        /// Вь данном потоке создаются скриншоты области окна программы
+        /// </summary>
         private Thread threadScrean;
+
+        /// <summary>
+        /// Класс для работы со сканером
+        /// </summary>
         private VitTwain.Twain32 twain32 = new VitTwain.Twain32();
 
         /// <summary>
@@ -80,19 +77,23 @@ namespace DocManager
                 threadDelete = new Thread(deleteScrean);
                 threadDelete.Start();
             }
-            //Win32.AllocConsole();
-            //FormConsole formConsole = new FormConsole();
-            //formConsole.Show();
 
             Version();
             Login();
             SendToProgram(args);
-            formVerifycationFiles.Show();
+            //formVerifycationFiles.Show();
 
             InitControlsStyle();
+            initAccessToForm();
             timerSearcher.Enabled = true;
 
             twain32.AcquireCompleted += new EventHandler(scanEvent);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            VitUsers.FormUserProfile formUserProfile = new FormUserProfile();
+            formUserProfile.ShowDialog();
         }
 
         private void buttonAddBranch_Click(object sender, EventArgs e)
@@ -109,9 +110,6 @@ namespace DocManager
 
         private void buttonScan_Click(object sender, EventArgs e)
         {
-            //Thread thread = new Thread(Scan);
-            //thread.Start();
-
             twain32.Acquire();
         }
 
@@ -150,10 +148,9 @@ namespace DocManager
 
         private void Form1_Shown(object sender, EventArgs e)
         {
-            //Thread threadInitTreeView = new Thread(InitTreeViewThread);
-            //threadInitTreeView.Start();
-
+            Enabled = false;
             classTree.InitTreeView(treeView1);
+            Enabled = true;
         }
 
         private void FormDocumentManager_FormClosing(object sender, FormClosingEventArgs e)
@@ -164,6 +161,25 @@ namespace DocManager
                 threadScrean.Abort();
             }
             catch (System.NullReferenceException) { }
+        }
+
+        private void initAccessToForm()
+        {
+            ClassUsers classUsers = new ClassUsers();
+            ClassUsers.UserColection userColection = classUsers.getThisUser();
+            string firstName = userColection.firstName;
+            string lastName = userColection.lastName;
+            string middleName = userColection.middleName;
+            labelUserName.Text = firstName + " " + lastName + " " + middleName;
+
+            ClassAccessGroup classAccessGroup = new ClassAccessGroup();
+            ClassAccessGroup.AccessGroupCollection accessGroupCollection = classAccessGroup.getInfoById(userColection.idAccessGroup);
+            if (accessGroupCollection.rank != ClassAccessGroup.Ranks.ADMIN)
+            {
+                panelAdminMenu.Visible = false;
+                ToolStripMenuItemAdministration.Visible = false;
+                toolStripMenuItemAdminMenu.Visible = false;
+            }
         }
 
         private void InitControlsStyle()
@@ -448,13 +464,40 @@ namespace DocManager
 
         private void ToolStripMenuItemDelete_Click_1(object sender, EventArgs e)
         {
-            if (classTree.GetTypeNode(treeView1.SelectedNode) == ClassTree.TypeNodeCollection.FILE)
+            ClassFiles classFiles = new ClassFiles();
+            ClassFolder classFolder = new ClassFolder();
+            int id = 0;
+
+            if (lastRequireContextMenu == treeView1.GetType())
             {
-                classTree.TreeFilesDeleteFile(treeView1);
+                if (classTree.GetTypeNode(treeView1.SelectedNode) == ClassTree.TypeNodeCollection.FILE)
+                {
+                    classTree.TreeFilesDeleteFile(treeView1);
+                }
+                else if (classTree.GetTypeNode(treeView1.SelectedNode) == ClassTree.TypeNodeCollection.FOLDER)
+                {
+                    classTree.treeFolderDeleteFolder(treeView1);
+                }
             }
-            else if (classTree.GetTypeNode(treeView1.SelectedNode) == ClassTree.TypeNodeCollection.FOLDER)
+            else if (lastRequireContextMenu == listView1.GetType())
             {
-                classTree.treeFolderDeleteFolder(treeView1);
+                for (int i = 0; i < listView1.SelectedItems.Count; i++)
+                {
+                    Console.WriteLine(i + " of " + listView1.SelectedItems.Count);
+                    if (listView1.SelectedItems[i].SubItems["type"].Text == ClassTree.TypeNodeCollection.FILE)
+                    {
+                        id = Convert.ToInt32(listView1.SelectedItems[i].SubItems["id"].Text);
+                        classFiles.Delete(id);
+                    }
+                    else if (listView1.SelectedItems[i].SubItems["type"].Text == ClassTree.TypeNodeCollection.FOLDER)
+                    {
+                        id = Convert.ToInt32(listView1.SelectedItems[i].SubItems["id"].Text);
+                        classFolder.DeleteFolder(id);
+                    }
+                }
+                listView1.SelectedItems.Clear();
+
+                classTree.InitTreeView(treeView1);
             }
         }
 
@@ -494,6 +537,11 @@ namespace DocManager
             classUsers.showDialog();
         }
 
+        /// <summary>
+        /// Добавляет файл в базу с пустой картой
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ToolStripMenuItemWithoutCard_Click(object sender, EventArgs e)
         {
             int idFolder = 0;
@@ -501,6 +549,9 @@ namespace DocManager
             string fileName = "";
             //string fullFilePath = "";
             string pathSave = "";
+
+            string repositiryPayh = VitSettings.Properties.GeneralsSettings.Default.repositiryPayh;
+            string repositoryRootFolderName = VitSettings.Properties.GeneralsSettings.Default.repositoryRootFolderName;
 
             ClassFiles classFiles = new ClassFiles();
             if (lastRequireContextMenu == treeView1.GetType())
@@ -511,6 +562,10 @@ namespace DocManager
             {
                 idFolder = Convert.ToInt32(listView1.SelectedItems[0].SubItems["id"].Text);
             }
+
+            ClassFolder classFolder = new ClassFolder();
+            ClassFolder.FolderCollection folderCollection = classFolder.GetFolderById(idFolder, true);
+            pathSave = folderCollection.pathWithoutRoot;
 
             ClassTypeCard classTypeCard = new ClassTypeCard();
             idTypeCard = classTypeCard.getIdByName(ClassTypeCard.EMPTY_CARD);
@@ -591,7 +646,7 @@ namespace DocManager
         private void Version()
         {
             Version version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
-            string programName = System.Reflection.Assembly.GetExecutingAssembly().GetName().FullName;
+            string programName = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
             DateTime buildDate = new DateTime(2000, 1, 1).AddDays(version.Build);
             string displayableVersion = $"{version.Major + "." + (version.Build)}";
             Text = programName;

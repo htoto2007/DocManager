@@ -12,9 +12,6 @@ namespace VitControls
         public WindowHeader()
         {
             InitializeComponent();
-
-            //buttonClose.BackgroundImage = VitIcons.Properties.ResourceColorImage.icons8_close_window_48;
-            //buttonMinimize.BackgroundImage = VitIcons.Properties.ResourceColorImage.icons8_minimize_window_48;
         }
 
         /// <summary>

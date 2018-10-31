@@ -10,13 +10,12 @@ namespace VitTree
 {
     public partial class FormFiles : Form
     {
+        public bool isCheck = true;
+        private ClassDBConnect classDB = new ClassDBConnect();
         private ClassFiles classFiles = new ClassFiles();
 
         private ClassTypeCard classTypeCard = new ClassTypeCard();
         private ClassTypeCardProps classTypeCardProps = new ClassTypeCardProps();
-        private ClassDBConnect classDB = new ClassDBConnect();
-
-        public bool isCheck = true;
 
         /// <summary>
         /// Форма добавления и изменения свойств документа
@@ -25,21 +24,6 @@ namespace VitTree
         {
             InitializeComponent();
             comboBox1.Text = "Пустая";
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            textBoxNameFile.Text = "";
-            comboBox1.Text = "";
-            panel1.Controls.Clear();
-            Hide();
-        }
-
-        private void comboBox1_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            int id = classTypeCard.getIdByName(comboBox1.SelectedItem.ToString());
-            ClassTypeCardProps.TypeCardProps[] typeCardProps = classTypeCardProps.getInfoByIdType(id);
-            addFieldsProps(typeCardProps);
         }
 
         private void addFieldsProps(ClassTypeCardProps.TypeCardProps[] typeCardProps)
@@ -117,15 +101,12 @@ namespace VitTree
             }
         }
 
-        private void comboBox1_MouseClick(object sender, MouseEventArgs e)
+        private void button3_Click(object sender, EventArgs e)
         {
-            ClassTypeCard.TypeCardCollection[] typeCardCollections = classTypeCard.getAllInfo();
-            comboBox1.Items.Clear();
-
-            foreach (ClassTypeCard.TypeCardCollection typeCardCollection in typeCardCollections)
-            {
-                comboBox1.Items.Add(typeCardCollection.namne);
-            }
+            textBoxNameFile.Text = "";
+            comboBox1.Text = "";
+            panel1.Controls.Clear();
+            Hide();
         }
 
         private void buttonCreateFile_Click(object sender, EventArgs e)
@@ -145,12 +126,16 @@ namespace VitTree
 
         private bool checkField()
         {
+            /*
             string str = textBoxNameFile.Text.Replace(" ", "");
             if (str == "")
             {
                 MessageBox.Show("Название не может состоять из одних пробелов или быть пустым!");
                 return false;
             }
+            */
+            textBoxNameFile.Text.TrimEnd(' ');
+            textBoxNameFile.Text.TrimStart(' ');
             int id = classTypeCard.getIdByName(comboBox1.Text.ToString());
             if (id < 1)
             {
@@ -158,6 +143,24 @@ namespace VitTree
                 return false;
             }
             return true;
+        }
+
+        private void comboBox1_MouseClick(object sender, MouseEventArgs e)
+        {
+            ClassTypeCard.TypeCardCollection[] typeCardCollections = classTypeCard.getAllInfo();
+            comboBox1.Items.Clear();
+
+            foreach (ClassTypeCard.TypeCardCollection typeCardCollection in typeCardCollections)
+            {
+                comboBox1.Items.Add(typeCardCollection.namne);
+            }
+        }
+
+        private void comboBox1_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            int id = classTypeCard.getIdByName(comboBox1.SelectedItem.ToString());
+            ClassTypeCardProps.TypeCardProps[] typeCardProps = classTypeCardProps.getInfoByIdType(id);
+            addFieldsProps(typeCardProps);
         }
     }
 }

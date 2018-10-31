@@ -35,7 +35,10 @@ namespace VitFolder
         /// <returns>Выводит число добавленных строк</returns>
         public int CreateFolder(int indexParent, string folderName)
         {
-            string pathParent = getPathById(indexParent);
+            string repositiryPayh = VitSettings.Properties.GeneralsSettings.Default.repositiryPayh;
+            string repositoryRootFolderName = VitSettings.Properties.GeneralsSettings.Default.repositoryRootFolderName;
+            string pathParent = repositiryPayh + "\\" + repositoryRootFolderName + "\\" + getPathById(indexParent);
+            Console.WriteLine("Родитель папки" + pathParent);
             if (Directory.Exists(pathParent + "\\" + folderName))
             {
                 MessageBox.Show("Директория с таким именем уже существует!");
@@ -46,7 +49,7 @@ namespace VitFolder
 
             string query = "INSERT INTO tb_folders " +
                     "SET " +
-                    "name = '" + folderName + "'";
+                    "name = '" + MySqlHelper.EscapeString(folderName) + "'";
             int lastId = classMysql.Insert(query);
             if (indexParent > 0)
             {
@@ -135,11 +138,15 @@ namespace VitFolder
             FolderCollection foldersCollection = new FolderCollection();
             string repositoryPath = VitSettings.Properties.GeneralsSettings.Default.repositiryPayh;
             string path = "";
+            string pathWithoutRoot = "";
+            string repositoryRootFolderName = VitSettings.Properties.GeneralsSettings.Default.repositoryRootFolderName;
             if (pathToFolder == true)
             {
-                path = repositoryPath + @"\r\" + getPathById(Convert.ToInt32(rows[0]["id"]));
+                path = repositoryPath + @"\" + repositoryRootFolderName + @"\" + getPathById(Convert.ToInt32(rows[0]["id"]));
+                pathWithoutRoot = @"\" + repositoryRootFolderName + @"\" + getPathById(Convert.ToInt32(rows[0]["id"]));
                 DirectoryInfo directoryInfo = new DirectoryInfo(path);
                 foldersCollection.path = path;
+                foldersCollection.pathWithoutRoot = pathWithoutRoot;
                 foldersCollection.createDateTime = directoryInfo.CreationTime;
             }
 
@@ -223,7 +230,7 @@ namespace VitFolder
             string query = "" +
                 "UPDATE tb_folders " +
                 "SET " +
-                "name = '" + name + "' " +
+                "name = '" + MySqlHelper.EscapeString(name) + "' " +
                 "WHERE " +
                 "id = '" + id + "'";
             classMysql.UpdateOrDelete(query);
@@ -284,6 +291,11 @@ namespace VitFolder
             /// disk://directory
             /// </summary>
             public string path;
+
+            /// <summary>
+            /// r/directory
+            /// </summary>
+            public string pathWithoutRoot;
         }
     }
 }

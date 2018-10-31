@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using VitCardPropsValue;
@@ -20,7 +19,9 @@ namespace VitTree
         private ClassCardPropsValue classCardPropsValue = new ClassCardPropsValue();
         private ClassFiles classFiles = new ClassFiles();
         private ClassFolder classFolder = new ClassFolder();
+        private VitIcons.ClassImageList ClassImageList = new VitIcons.ClassImageList();
         private ClassTypeCard classTypeCard = new ClassTypeCard();
+        private VitIcons.FormCompanents formCompanents = new VitIcons.FormCompanents();
         //private contextMenuCollection contMenu;
 
         /// <summary>
@@ -80,97 +81,6 @@ namespace VitTree
             RecursiveAddNodeToData(objectTreeView.Nodes[0].Nodes[lastNumberNode], indexNode);
         }
 
-        /*
-        /// <summary>
-        /// Contexts the show.
-        /// </summary>
-        /// <returns>contextMenuCollection.</returns>
-        public contextMenuCollection ContextShow()
-        {
-            ToolStripMenuItem treeFolderAddFolder = new ToolStripMenuItem();
-            ToolStripMenuItem treeFolderDeleteFolder = new ToolStripMenuItem();
-            ToolStripMenuItem treeFolderRenameFolder = new ToolStripMenuItem();
-            ToolStripMenuItem treeFolderMoveFolder = new ToolStripMenuItem();
-            ToolStripMenuItem treeFolderCopyFolder = new ToolStripMenuItem();
-            ToolStripMenuItem treeFolderAddDocument = new ToolStripMenuItem();
-
-            treeFolderAddFolder.Text = "Добавить папку";
-            treeFolderAddFolder.Image = global::VitIcons.Properties.Resource1.folder_plus;
-            treeFolderAddFolder.Click += new EventHandler(TreeFolderAddFolder_click);
-
-            treeFolderDeleteFolder.Text = "Удалть папку";
-            treeFolderDeleteFolder.Image = global::VitIcons.Properties.Resource1.trash_alt;
-            treeFolderDeleteFolder.Click += new EventHandler(treeFolderDeleteFolder_click);
-
-            treeFolderRenameFolder.Text = "Переименовать";
-            treeFolderRenameFolder.Image = global::VitIcons.Properties.Resource1.italic;
-            treeFolderRenameFolder.Click += new EventHandler(TreeFolderRenameFolder_click);
-
-            treeFolderMoveFolder.Text = "Переместить";
-            treeFolderMoveFolder.Image = global::VitIcons.Properties.Resource1.arrow_alt_circle_right;
-            treeFolderMoveFolder.Click += new EventHandler(TreeFolderMoveFolder_click);
-
-            treeFolderCopyFolder.Text = "Копировать";
-            treeFolderCopyFolder.Image = global::VitIcons.Properties.Resource1.copy;
-            treeFolderCopyFolder.Click += new EventHandler(TreeFolderCopyFolder_click);
-
-            treeFolderAddDocument.Text = "Добавить документ";
-            treeFolderAddDocument.Image = global::VitIcons.Properties.Resource1.file_medical;
-            treeFolderAddDocument.Click += new EventHandler(TreeFolderAddDocument_click);
-
-            contMenu.treeFolder = new ContextMenuStrip();
-
-            contMenu.treeFolder.Items.AddRange(new ToolStripMenuItem[] {
-                treeFolderAddFolder,
-                treeFolderDeleteFolder,
-                treeFolderRenameFolder,
-                treeFolderMoveFolder,
-                treeFolderCopyFolder,
-                treeFolderAddDocument
-            });
-
-            ToolStripMenuItem treeFilesDeleteFile = new ToolStripMenuItem();
-            ToolStripMenuItem treeFilesDocumentCard = new ToolStripMenuItem();
-            ToolStripMenuItem treeFilesMove = new ToolStripMenuItem();
-            ToolStripMenuItem treeFilesCopy = new ToolStripMenuItem();
-            ToolStripMenuItem treeFilesRename = new ToolStripMenuItem();
-
-            treeFilesDeleteFile.Text = "Удалить документ";
-            treeFilesDeleteFile.ShortcutKeys = Keys.Delete;
-            treeFilesDeleteFile.ShowShortcutKeys = true;
-            treeFilesDeleteFile.Image = global::VitIcons.Properties.Resource1.trash_alt;
-            treeFilesDeleteFile.Click += new EventHandler(TreeFilesDeleteFile_click);
-
-            treeFilesDocumentCard.Text = "Карточка документа";
-            treeFilesDocumentCard.Image = global::VitIcons.Properties.Resource1.list_alt;
-            treeFilesDocumentCard.Click += new EventHandler(TreeFilesDocumentCard_click);
-
-            treeFilesMove.Text = "Переместить документ";
-            treeFilesMove.Image = global::VitIcons.Properties.Resource1.arrow_alt_circle_right;
-            treeFilesMove.Click += new EventHandler(TreeFilesMoveFile_click);
-
-            treeFilesCopy.Text = "Копировать документа";
-            treeFilesCopy.Image = global::VitIcons.Properties.Resource1.copy;
-            treeFilesCopy.Click += new EventHandler(TreeFilesCopyFile_click);
-
-            treeFilesRename.Text = "Переименовать";
-            treeFilesRename.Image = VitIcons.Properties.Resource1.italic;
-            treeFilesRename.Click += new EventHandler(treeFilesRename_Click);
-
-            contMenu.treeFiles = new ContextMenuStrip();
-
-            contMenu.treeFiles.Items.AddRange(new ToolStripMenuItem[] {
-                treeFilesDeleteFile,
-                treeFilesDocumentCard,
-                treeFilesMove,
-                treeFilesCopy,
-                treeFilesRename
-            });
-
-            return contMenu;
-        }
-        */
-
         /// <summary>
         /// Выдает целое числовое значение номера
         /// </summary>
@@ -198,9 +108,10 @@ namespace VitTree
         /// <returns>результат инициализации</returns>
         public TreeView InitTreeView(TreeView treeView)
         {
+            treeView.BeginUpdate();
             treeView.Nodes.Clear();
-            VitIcons.FormCompanents formCompanents = new VitIcons.FormCompanents();
-            treeView.ImageList = formCompanents.imageListColor;
+
+            treeView.ImageList = ClassImageList.imageList;
             TreeViewFolder(treeView);
             TreeViewFile(treeView);
             treeView.Nodes[0].Expand();
@@ -208,6 +119,7 @@ namespace VitTree
 
             formTree.treeView1.Nodes.Clear();
             formTree.treeView1.Nodes.Insert(0, globalNode);
+            treeView.EndUpdate();
             return objectTreeView;
         }
 
@@ -223,15 +135,14 @@ namespace VitTree
 
         public TreeView InitTreeViewThread(TreeView treeView)
         {
-            //treeView.Invoke((MethodInvoker)delegate
-            //{
-            treeView.Nodes.Clear();
-            VitIcons.FormCompanents formCompanents = new VitIcons.FormCompanents();
-            treeView.ImageList = formCompanents.imageListColor;
-            TreeViewFolder(treeView);
-            TreeViewFile(treeView);
-            treeView.Nodes[0].Expand();
-            //});
+            treeView.Invoke((MethodInvoker)delegate
+            {
+                treeView.Nodes.Clear();
+                treeView.ImageList = formCompanents.imageListColor;
+                TreeViewFolder(treeView);
+                TreeViewFile(treeView);
+                treeView.Nodes[0].Expand();
+            });
             globalNode = (TreeNode)objectTreeView.Nodes[0].Clone();
             formTree.treeView1.Nodes.Clear();
             formTree.treeView1.Nodes.Insert(0, globalNode);
@@ -313,19 +224,16 @@ namespace VitTree
             }
         }
 
+        /// <summary>
+        /// Создает файл в базе по указанному узлу дерева
+        /// </summary>
+        /// <param name="treeView"></param>
         public void TreeFolderAddDocument(TreeView treeView)
         {
             TreeNode treeNode = treeView.SelectedNode;
             formFiles.Text = "Укажите имя файла";
             formFiles.textBoxTreePath.Text = treeNode.FullPath;
             formFiles.ShowDialog();
-
-            // проверяем введено ли новое имя файла
-            if (formFiles.textBoxNameFile.Text == "")
-            {
-                //MessageBox.Show("Имя файла не может быть пустым");
-                //return;
-            }
 
             OpenFileDialog ofd = new OpenFileDialog
             {
@@ -338,6 +246,11 @@ namespace VitTree
 
             // разбираем имя узла, в который будем помещать документ
             string[] paramsName = treeNode.Name.Split('_');
+            if (paramsName == null)
+            {
+                MessageBox.Show("Не выбрана папка для размещения фалов.");
+                return;
+            }
 
             // получаем получаем номер типа карточки документа по имени имав карточки
             int idTypeCard = classTypeCard.getIdByName(formFiles.comboBox1.Text.ToString());
@@ -374,7 +287,7 @@ namespace VitTree
 
                 // Получаем все элементы полей карточки документа
                 Control.ControlCollection controlCollection = formFiles.panel1.Controls;
-                sendValueOfFields(controlCollection, idFile);
+                SendValueOfFields(controlCollection, idFile);
             }
             formFiles.Hide();
             formFiles.textBoxNameFile.Text = "";
@@ -554,13 +467,13 @@ namespace VitTree
             switch (type)
             {
                 case "folder":
-                    globalNode.ImageKey = "icons8-folder-48.png";
-                    globalNode.SelectedImageKey = "icons8-folder-48.png";
+                    globalNode.ImageKey = "default_folder";
+                    globalNode.SelectedImageKey = "default_folder";
                     //globalNode.ContextMenuStrip = contMenu.treeFolder;
                     break;
 
                 case "file":
-                    string imageKey = addIconFile(Convert.ToInt32(id));
+                    string imageKey = ClassImageList.addIconFile(classFiles.GetFileById(Convert.ToInt32(id)).path);
                     globalNode.ImageKey = imageKey;
                     globalNode.SelectedImageKey = imageKey;
                     // globalNode.ContextMenuStrip = contMenu.treeFiles;
@@ -574,23 +487,6 @@ namespace VitTree
             TreeNode[] treeNodes = treeView.Nodes.Find("folder_" + idParent, true);
             treeNodes[0].Nodes.Add(globalNode);
             globalNode = null;
-        }
-
-        private string addIconFile(int idFile)
-        {
-            ClassFiles.FileCollection fileCollection = classFiles.GetFileById(idFile);
-            Icon icon = null;
-            try
-            {
-                icon = Icon.ExtractAssociatedIcon(fileCollection.path);
-            }
-            catch (System.IO.FileNotFoundException)
-            {
-                return "icons8-document-48.png";
-            }
-            VitIcons.FormCompanents formCompanents = new VitIcons.FormCompanents();
-            formCompanents.imageListColor.Images.Add(Path.GetExtension(fileCollection.path), icon);
-            return Path.GetExtension(fileCollection.path);
         }
 
         /// <summary>
@@ -738,7 +634,12 @@ namespace VitTree
             treeNodes[0].Text = text;
         }
 
-        private void sendValueOfFields(Control.ControlCollection controlCollection, int idFile)
+        /// <summary>
+        /// Отправляет значение полей формы в карточку документа
+        /// </summary>
+        /// <param name="controlCollection"Коллекция полей формы></param>
+        /// <param name="idFile">номер файла, которому принадлежит карточка</param>
+        private void SendValueOfFields(Control.ControlCollection controlCollection, int idFile)
         {
             // идем по полуеным элементам полей карточки документа
             foreach (Control control in controlCollection)
@@ -817,15 +718,15 @@ namespace VitTree
 
             foreach (ClassFiles.FileCollection file in fileCollection)
             {
-                string imageKey = addIconFile(file.id);
-                globalNode = new TreeNode
+                string imageKey = ClassImageList.addIconFile(classFiles.GetFileById(file.id).path);
+
+                globalNode = new TreeNode()
                 {
                     Text = file.name,
                     Name = "file_" + file.id.ToString(),
                     Tag = "file",
                     ImageKey = imageKey,
                     SelectedImageKey = imageKey,
-                    //ContextMenuStrip = contMenu.treeFiles
                 };
                 TreeNode[] tNode = treeView.Nodes.Find("folder_" + file.idFolder.ToString(), true);
                 if (tNode.Length > 0)
@@ -842,8 +743,6 @@ namespace VitTree
         /// <param name="treeView"></param>
         private void TreeViewFolder(TreeView treeView)
         {
-            //treeView.Invoke((MethodInvoker)delegate
-            //{
             ClassFolder.FolderCollection[] foldersCollection = classFolder.GetAllFolders(false);
 
             globalNode = new TreeNode
@@ -851,10 +750,9 @@ namespace VitTree
                 Text = VitSettings.Properties.GeneralsSettings.Default.repositoryRootFolderName,
                 Name = "folder_0",
                 Tag = "folder",
-                ImageKey = "icons8-tree-structure-40.png",
-                SelectedImageKey = "icons8-tree-structure-40.png",
-                StateImageKey = "icons8-tree-structure-40.png",
-                //ContextMenuStrip = contMenu.treeFolder,
+                ImageKey = "root",
+                SelectedImageKey = "root",
+                StateImageKey = "root",
             };
             treeView.HideSelection = false;
             treeView.Nodes.Add(globalNode);
@@ -869,10 +767,9 @@ namespace VitTree
                         Text = folder.name,
                         Name = "folder_" + folder.id.ToString(),
                         Tag = "folder",
-                        ImageKey = "icons8-folder-48.png",
-                        SelectedImageKey = "icons8-folder-48.png",
-                        StateImageKey = "icons8-folder-48.png",
-                        //ContextMenuStrip = contMenu.treeFolder
+                        ImageKey = "default_folder",
+                        SelectedImageKey = "default_folder",
+                        StateImageKey = "default_folder",
                     };
                     treeView.Nodes[0].Nodes.Add(globalNode);
                 }
@@ -883,9 +780,9 @@ namespace VitTree
                         Text = folder.name,
                         Name = "folder_" + folder.id.ToString(),
                         Tag = "folder",
-                        ImageKey = "icons8-folder-48.png",
-                        SelectedImageKey = "icons8-folder-48.png",
-                        StateImageKey = "icons8-folder-48.png",
+                        ImageKey = "default_folder",
+                        SelectedImageKey = "default_folder",
+                        StateImageKey = "default_folder",
                         //ContextMenuStrip = contMenu.treeFolder
                     };
                     TreeNode[] tNode = treeView.Nodes.Find("folder_" + folder.parentId.ToString(), true);
@@ -897,7 +794,6 @@ namespace VitTree
                 globalNode = null;
             }
             objectTreeView = treeView;
-            //});
         }
 
         /// <summary>

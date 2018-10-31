@@ -8,17 +8,18 @@ namespace VitVerifycationFiles
     public class ClassVerifycationFiles
     {
         private readonly ClassSettings classSettings = new ClassSettings();
+        private readonly string repositoryPath = "";
+        private readonly string root = "";
         private ClassFiles classFiles = new ClassFiles();
 
         //FormVerifycationFiles formVerifycationFiles = new FormVerifycationFiles();
-
-        private readonly string root = "";
-        private readonly string repositoryPath = "";
+        private readonly string repositoryRootFolderName = "";
 
         public ClassVerifycationFiles()
         {
             root = VitSettings.Properties.GeneralsSettings.Default.programPath;
             repositoryPath = VitSettings.Properties.GeneralsSettings.Default.repositiryPayh;
+            repositoryRootFolderName = VitSettings.Properties.GeneralsSettings.Default.repositoryRootFolderName;
         }
 
         public ClassFiles.FileCollection[] CheckFiles()
@@ -62,9 +63,19 @@ namespace VitVerifycationFiles
             return fileColections;
         }
 
+        public bool CompareWithData(string fileName)
+        {
+            if (classFiles.getFileByName(fileName).id == 0)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         public string[] DirectoryScaner()
         {
-            string[] arrStr = Directory.GetDirectories(repositoryPath, "*", SearchOption.AllDirectories);
+            string[] arrStr = Directory.GetDirectories(repositoryPath + "\\" + repositoryRootFolderName, "*", SearchOption.AllDirectories);
             List<string> lst = new List<string>();
             foreach (string str in arrStr)
             {
@@ -75,16 +86,6 @@ namespace VitVerifycationFiles
                 }
             }
             return lst.ToArray();
-        }
-
-        public bool CompareWithData(string fileName)
-        {
-            if (classFiles.getFileByName(fileName).id == 0)
-            {
-                return false;
-            }
-
-            return true;
         }
     }
 }

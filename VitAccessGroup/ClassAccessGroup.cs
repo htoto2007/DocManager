@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using VitFolderAccess;
 using VitMysql;
@@ -13,34 +14,49 @@ namespace VitAccessGroup
 
         public int getIdByName(string name)
         {
-            Dictionary<string, string>[] rows = classMysql.getArrayByQuery("SELECT id FROM tb_access_group WHERE name='" + name + "'");
+            Dictionary<string, string>[] rows = classMysql.getArrayByQuery("" +
+                "SELECT id " +
+                "FROM tb_access_group " +
+                "WHERE name='" + MySqlHelper.EscapeString(name) + "'");
             return Convert.ToInt32(rows[0]["id"]);
+        }
+
+        public AccessGroupCollection[] getInfo()
+        {
+            Dictionary<string, string>[] rows = classMysql.getArrayByQuery("SELECT id FROM tb_access_group");
+            AccessGroupCollection[] accessGroupCollections = new AccessGroupCollection[rows.GetLength(0)];
+            for (int i = 0; i < rows.GetLength(0); i++)
+            {
+                accessGroupCollections[i] = getInfoById(Convert.ToInt32(rows[i]["id"]));
+            }
+            return accessGroupCollections;
+        }
+
+        public AccessGroupCollection getInfoById(int id)
+        {
+            Dictionary<string, string>[] rows = classMysql.getArrayByQuery("SELECT * FROM tb_access_group WHERE id = " + id);
+            AccessGroupCollection accessGroupCollection = new AccessGroupCollection
+            {
+                name = rows[0]["name"],
+                id = Convert.ToInt32(rows[0]["id"]),
+                rank = Convert.ToInt32(rows[0]["rank"])
+            };
+            return accessGroupCollection;
         }
 
         public string getNameById(int id)
         {
-            Dictionary<string, string>[] rows = classMysql.getArrayByQuery("SELECT name FROM tb_access_group WHERE id='" + id + "'");
+            Dictionary<string, string>[] rows = classMysql.getArrayByQuery("" +
+                "SELECT name " +
+                "FROM tb_access_group " +
+                "WHERE id = '" + id + "'");
             return rows[0]["name"];
-        }
-
-        public AccessGroup[] getInfo()
-        {
-            Dictionary<string, string>[] rows = classMysql.getArrayByQuery("SELECT * FROM tb_access_group");
-            AccessGroup[] accessGroups = new AccessGroup[rows.GetLength(0)];
-            int iterator = 0;
-            foreach (Dictionary<string, string> row in rows)
-            {
-                accessGroups[iterator].name = row["name"];
-                accessGroups[iterator].id = Convert.ToInt32(row["id"]);
-                iterator++;
-            }
-            return accessGroups;
         }
 
         public void initFormAccessGroup()
         {
             FormAccessGroup formAccessGroup = new FormAccessGroup();
-            AccessGroup[] accessGroups = getInfo();
+            AccessGroupCollection[] accessGroups = getInfo();
             ClassFolderAccess classFolderAccess = new ClassFolderAccess();
             classFolderAccess.getInfo();
 
@@ -52,10 +68,17 @@ namespace VitAccessGroup
             formAccessGroup.listView1.Columns.Add("Количество пользователей", 200, System.Windows.Forms.HorizontalAlignment.Center);
         }
 
-        public struct AccessGroup
+        public struct AccessGroupCollection
         {
             public int id;
             public string name;
+            public int rank;
+        }
+
+        public struct Ranks
+        {
+            public const int ADMIN = 1;
+            public const int USER = 0;
         }
     }
 }

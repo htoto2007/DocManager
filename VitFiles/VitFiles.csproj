@@ -78,6 +78,10 @@
       <Project>{0312b089-f072-499e-97cd-701a78e6c425}</Project>
       <Name>VitMysql</Name>
     </ProjectReference>
+    <ProjectReference Include="..\VitNotifyMessage\VitNotifyMessage.csproj">
+      <Project>{A8D9C15A-3F3C-423A-BE05-293DE5941BB7}</Project>
+      <Name>VitNotifyMessage</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VitSettings\VitSettings.csproj">
       <Project>{8ba14954-8676-4a60-b58f-7e5d8f71eac8}</Project>
       <Name>VitSettings</Name>
