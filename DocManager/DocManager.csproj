@@ -207,6 +207,10 @@
       <Project>{d793c6eb-d3a4-49e8-86bc-8dbc0d29f73d}</Project>
       <Name>VitListView</Name>
     </ProjectReference>
+    <ProjectReference Include="..\VitMail\VitMail.csproj">
+      <Project>{F049CCED-8F90-41CD-9561-5EF3C8954DC0}</Project>
+      <Name>VitMail</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VitSendTo\VitSendToProgram.csproj">
       <Project>{2a45e400-06cf-4817-88d7-12ebd87ea9aa}</Project>
       <Name>VitSendToProgram</Name>

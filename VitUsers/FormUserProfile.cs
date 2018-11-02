@@ -29,7 +29,11 @@ namespace VitUsers
 
         private void buttonEditUserPthoto_Click(object sender, EventArgs e)
         {
-            pictureBox1.BackgroundImage.Dispose();
+            if (pictureBox1.BackgroundImage != null)
+            {
+                pictureBox1.BackgroundImage.Dispose();
+            }
+
             ClassUsers.updateImage(ClassUsers.getThisUser().id);
             init();
         }

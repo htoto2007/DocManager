@@ -532,6 +532,29 @@
         jodWHEJLkiSdv7TjoRWH0JIkSecv7Xjo/Pd//Q8L/peIg6vJZAAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="toolStripMenuItemScanToThisFolder.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsIAAA7CARUoSoAAAAPjSURBVFhH7ZhLbBNXFIZNhZAqVUJiBZuuuuqOHZuKTYTd
+        BMekBRYIUak8FqgbNqBWoCxaahNn7KhBvFMQD6FEtCC1QaSCUkGYzIzjJOSBgm0MNZRXSCDYTiBgn57j
+        3IvGM4dgHCdmkV/6NnPH93wzczz32o65zKWEqfB1Lqyu1xur/FqyJqifEIfLn9pa+MjlUze6FX1k12/R
+        tJEYB6e3IyuGyxvnHu2LasWIbG7qTV6JJeH2s2wOp68DxCnlSYXv6qeeoHHu64ZQqiX0OBsXYmUXXK2o
+        H6/067uRscaLdyciw6/zxMonCDDvS6+6zu3Xh3Y0D6bD98ZZMcmsCrq815Z66o2eDQe6U3/ffM4KWZkV
+        QedPoSWeQOh0TdBIn+h4kI0/5WU4ZlRwTW3/gqo6bTu+z9J1rfGJwaFXrMRUzJigy6vWVCv6/W2nbqSM
+        f8fY4oVQckHXbu1zj2K0r9sXTrb2PWWLvg8lE1yhqItwBWhaFdDTx9rvZ26NZGzFoiNZeJ/+I6YtuLz2
+        8nzsse/wtTH647noeP/DibwCPY+y8GckC792Z+BAZwYOhjNwPpovMRXTEnR61YrqgH5n69H+lBpP500c
+        w7vViiIkZeVIl/3uWqEvlHLhzktPwIiLcoVnxc/qZ7g8ta35JZQ62/3ENnkMH2PzgF1Mcj6Wf74ZaoGT
+        HQ+zNQEjjXItlXX6YlH23cHH+QkuTUF8nOP7L999HRvm78QFFODECBKnC+A+Ry/vb/Al7gnofS6ftkyU
+        LTz47Rz4oSUCPf+9ZAtIjl+3i1Hvtd2avLvW88O43G1vHgR3vQEu7Dnqu0Kp8utdk3YYOmDdbXC0JzI5
+        ycModao3A3+h2MCQ/Tzqs2BbAnCVgW0tCdhnvHpzQTLmi+QgJ6E3KWgtUgx0kbi1grWNYdhyPAKB9jFb
+        YRnrcSslF6Q+29TUB+sP9oH30ihblJDhxsyUTLDr3gvY0XwTvmoIw/d/PIL9TDEzMtyYmWkL0ka08VIC
+        3IoBuHGAvdoEW8iKDDdmpmhB2We4lc/J0WcJrgiHDDdmpijBf6JJ+PZQT56YhCvCIcONmaE5hd67Ben9
+        uPNMFMV0m5iEK8Ihw42ZoTmF3tsF3/RZvZ7rM7OQFa4Ihww3ZobmFHq84O+4Fq9u6GQfJwdXhEOGGzND
+        cwq9fEH6cb2lqRfwx7ZNYiq4Ihwy3JgZmlPo4W7ZpwH9HUF9hpsGW/FC4IpwyHBjZmhOoedw5HrMrxUt
+        NxNUoovQK/w1M5uQk9CbEyyKPEHsweGLg6PsieWAXNyK9kToORyVXq0Kt/vDZP0hQHKVdapL6M1lGnE4
+        /gdwt+n1rNcs2AAAAABJRU5ErkJggg==
+</value>
+  </data>
   <metadata name="imageList1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>196, 16</value>
   </metadata>
@@ -540,7 +563,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAABk
-        TwAAAk1TRnQBSQFMAgEBDgEAAXgBAwF4AQMBGAEAARgBAAT/ASEBAAj/AUIBTQE2BwABNgMAASgDAAFg
+        TwAAAk1TRnQBSQFMAgEBDgEAAYgBAwGIAQMBGAEAARgBAAT/ASEBAAj/AUIBTQE2BwABNgMAASgDAAFg
         AwABYAMAAQEBAAEgBgABkP8A+wADHQEpA0UBfgNIAYcDSAGHA0gBhwNIAYcDSAGHA0gBhwNIAYcDSAGH
         A0gBhwNIAYcDSAGHA0gBhwNIAYcDSAGHA0gBhwNIAYcDRQF+AxwBKP8ALQADHAEnA1IB9AMAAf8DAAH/
         AwAB/wMAAf8DAAH/AwAB/wMAAf8DAAH/AwAB/wMAAf8DAAH/AwAB/wMAAf8DAAH/AwAB/wMAAf8DAAH/

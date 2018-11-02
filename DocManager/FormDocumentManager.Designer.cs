@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDocumentManager));
             System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Узел8");
             System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Узел10");
@@ -37,7 +38,7 @@
             System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Узел7");
             System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
             ""}, -1, System.Drawing.Color.Empty, System.Drawing.Color.Transparent, null);
-            this.contextMenuStripTreeView = new System.Windows.Forms.ContextMenuStrip();
+            this.contextMenuStripTreeView = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ToolStripMenuItemRequestOriginal = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemAddFolder = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemAddDocument = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,7 +55,7 @@
             this.ToolStripMenuItemMove = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemRename = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemScanToThisFolder = new System.Windows.Forms.ToolStripMenuItem();
-            this.imageList1 = new System.Windows.Forms.ImageList();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.ToolStripMenuItemView = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemAdminMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -67,8 +68,8 @@
             this.ToolStripMenuItemSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemAbout = new System.Windows.Forms.ToolStripMenuItem();
-            this.timerSearcher = new System.Windows.Forms.Timer();
-            this.toolTip1 = new System.Windows.Forms.ToolTip();
+            this.timerSearcher = new System.Windows.Forms.Timer(this.components);
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.buttonScan = new VitControls.Button();
             this.buttonAddBranch = new VitControls.Button();
             this.buttonExit = new VitControls.Button();
@@ -124,7 +125,7 @@
             this.ToolStripMenuItemRename,
             this.toolStripMenuItemScanToThisFolder});
             this.contextMenuStripTreeView.Name = "contextMenuStrip1";
-            this.contextMenuStripTreeView.Size = new System.Drawing.Size(223, 224);
+            this.contextMenuStripTreeView.Size = new System.Drawing.Size(223, 246);
             this.contextMenuStripTreeView.Opened += new System.EventHandler(this.contextMenuStripTreeView_Opened);
             // 
             // ToolStripMenuItemRequestOriginal
@@ -181,26 +182,30 @@
             // ToolStripMenuItemSendToDesctop
             // 
             this.ToolStripMenuItemSendToDesctop.Name = "ToolStripMenuItemSendToDesctop";
-            this.ToolStripMenuItemSendToDesctop.Size = new System.Drawing.Size(178, 22);
+            this.ToolStripMenuItemSendToDesctop.Size = new System.Drawing.Size(180, 22);
             this.ToolStripMenuItemSendToDesctop.Text = "На рабочий стол";
+            this.ToolStripMenuItemSendToDesctop.Click += new System.EventHandler(this.ToolStripMenuItemSendToDesctop_Click);
             // 
             // ToolStripMenuItemSendToPrint
             // 
             this.ToolStripMenuItemSendToPrint.Name = "ToolStripMenuItemSendToPrint";
-            this.ToolStripMenuItemSendToPrint.Size = new System.Drawing.Size(178, 22);
+            this.ToolStripMenuItemSendToPrint.Size = new System.Drawing.Size(180, 22);
             this.ToolStripMenuItemSendToPrint.Text = "На печать";
+            this.ToolStripMenuItemSendToPrint.Click += new System.EventHandler(this.ToolStripMenuItemSendToPrint_Click);
             // 
             // ToolStripMenuItemSendToEmail
             // 
             this.ToolStripMenuItemSendToEmail.Name = "ToolStripMenuItemSendToEmail";
-            this.ToolStripMenuItemSendToEmail.Size = new System.Drawing.Size(178, 22);
+            this.ToolStripMenuItemSendToEmail.Size = new System.Drawing.Size(180, 22);
             this.ToolStripMenuItemSendToEmail.Text = "На почту";
+            this.ToolStripMenuItemSendToEmail.Click += new System.EventHandler(this.ToolStripMenuItemSendToEmail_Click);
             // 
             // ToolStripMenuItemSendToFolder
             // 
             this.ToolStripMenuItemSendToFolder.Name = "ToolStripMenuItemSendToFolder";
-            this.ToolStripMenuItemSendToFolder.Size = new System.Drawing.Size(178, 22);
+            this.ToolStripMenuItemSendToFolder.Size = new System.Drawing.Size(180, 22);
             this.ToolStripMenuItemSendToFolder.Text = "В папку";
+            this.ToolStripMenuItemSendToFolder.Click += new System.EventHandler(this.ToolStripMenuItemSendToFolder_Click);
             // 
             // ToolStripMenuItemDelete
             // 
@@ -240,6 +245,7 @@
             // 
             // toolStripMenuItemScanToThisFolder
             // 
+            this.toolStripMenuItemScanToThisFolder.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItemScanToThisFolder.Image")));
             this.toolStripMenuItemScanToThisFolder.Name = "toolStripMenuItemScanToThisFolder";
             this.toolStripMenuItemScanToThisFolder.Size = new System.Drawing.Size(222, 22);
             this.toolStripMenuItemScanToThisFolder.Text = "Сканировать в эту папку";
