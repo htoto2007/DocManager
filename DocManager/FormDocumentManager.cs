@@ -199,11 +199,6 @@ namespace DocManager
             ToolStripMenuItemSettingsDocumentCard.Image = VitIcons.Properties.ResourceColorImage.icons8_red_card_40;
         }
 
-        private void InitTreeViewThread()
-        {
-            classTree.InitTreeViewThread(treeView1);
-        }
-
         private void listView1_DoubleClick(object sender, EventArgs e)
         {
             if (listView1.SelectedItems.Count > 0)
@@ -343,7 +338,7 @@ namespace DocManager
                 string fileName = "image_" + DateTime.UtcNow.ToString().Replace(":", "-") + "_" + iterator + ".jpg";
                 pictureBox.Image.Save(tmpPath + @"\" + fileName);
                 classFiles.Create(idFolder, idCard, fileName, tmpPath + @"\" + fileName, pathSave);
-                classTree.InitTreeViewThread(treeView1);
+                classTree.InitTreeView(treeView1);
 
                 iterator++;
             }
@@ -446,6 +441,40 @@ namespace DocManager
             VitSettings.Properties.ControlsSettings.Default.Save();
         }
 
+        private void ToolStripMenuItemCopy_Click(object sender, EventArgs e)
+        {
+            if (lastRequireContextMenu == treeView1.GetType())
+            {
+                if (classTree.GetTypeNode(treeView1.SelectedNode) == ClassTree.TypeNodeCollection.FILE)
+                {
+                }
+                else if (classTree.GetTypeNode(treeView1.SelectedNode) == ClassTree.TypeNodeCollection.FOLDER)
+                {
+                    classTree.CopyFolder(treeView1);
+                }
+            }
+            else if (lastRequireContextMenu == listView1.GetType())
+            {
+                for (int i = 0; i < listView1.SelectedItems.Count; i++)
+                {
+                    Console.WriteLine(i + " of " + listView1.SelectedItems.Count);
+                    if (listView1.SelectedItems[i].SubItems["type"].Text == ClassTree.TypeNodeCollection.FILE)
+                    {
+                        //id = Convert.ToInt32(listView1.SelectedItems[i].SubItems["id"].Text);
+                        //classFiles.Delete(id);
+                    }
+                    else if (listView1.SelectedItems[i].SubItems["type"].Text == ClassTree.TypeNodeCollection.FOLDER)
+                    {
+                        //id = Convert.ToInt32(listView1.SelectedItems[i].SubItems["id"].Text);
+                        //classFolder.DeleteFolder(id);
+                    }
+                }
+                listView1.SelectedItems.Clear();
+
+                classTree.InitTreeView(treeView1);
+            }
+        }
+
         private void toolStripMenuItemDelete_Click(object sender, EventArgs e)
         {
             ListView.SelectedListViewItemCollection selectedListViewItemCollection = listView1.SelectedItems;
@@ -501,6 +530,51 @@ namespace DocManager
 
                 classTree.InitTreeView(treeView1);
             }
+        }
+
+        private void ToolStripMenuItemSendToDesctop_Click(object sender, EventArgs e)
+        {
+            ClassFiles classFiles = new ClassFiles();
+            int fileId = Convert.ToInt32(treeView1.SelectedNode.Name.Split('_')[1]);
+            ClassFiles.FileCollection fileCollection = classFiles.GetFileById(fileId);
+            string fileName = Path.GetFileName(fileCollection.path);
+            string desctopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            File.Copy(fileCollection.path, desctopPath + "\\" + fileName);
+        }
+
+        private void ToolStripMenuItemSendToEmail_Click(object sender, EventArgs e)
+        {
+            ClassMail classMail = new ClassMail();
+            ClassFiles classFiles = new ClassFiles();
+            int fileId = Convert.ToInt32(treeView1.SelectedNode.Name.Split('_')[1]);
+            ClassFiles.FileCollection fileCollection = classFiles.GetFileById(fileId);
+            classMail.Send("htoto2007@mail.ru", "Test", "Tested message....", fileCollection.path);
+        }
+
+        private void ToolStripMenuItemSendToFolder_Click(object sender, EventArgs e)
+        {
+            ClassFiles classFiles = new ClassFiles();
+            int fileId = Convert.ToInt32(treeView1.SelectedNode.Name.Split('_')[1]);
+            ClassFiles.FileCollection fileCollection = classFiles.GetFileById(fileId);
+            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+            folderBrowserDialog.ShowDialog();
+            string fileName = Path.GetFileName(fileCollection.path);
+            File.Copy(fileCollection.path, folderBrowserDialog.SelectedPath + "\\" + fileName);
+        }
+
+        private void ToolStripMenuItemSendToPrint_Click(object sender, EventArgs e)
+        {
+            ClassFiles classFiles = new ClassFiles();
+            int fileId = Convert.ToInt32(treeView1.SelectedNode.Name.Split('_')[1]);
+            ClassFiles.FileCollection fileCollection = classFiles.GetFileById(fileId);
+            PrintDialog printDialog = new PrintDialog();
+            printDialog.ShowDialog();
+            PrintDocument printDocument = new PrintDocument
+            {
+                DocumentName = fileCollection.path,
+                PrinterSettings = printDialog.PrinterSettings
+            };
+            printDocument.Print();// Чтобы распечатать
         }
 
         private void ToolStripMenuItemSettings_Click(object sender, EventArgs e)
@@ -652,51 +726,6 @@ namespace DocManager
             DateTime buildDate = new DateTime(2000, 1, 1).AddDays(version.Build);
             string displayableVersion = $"{version.Major + "." + (version.Build)}";
             Text = programName;
-        }
-
-        private void ToolStripMenuItemSendToPrint_Click(object sender, EventArgs e)
-        {
-            ClassFiles classFiles = new ClassFiles();
-            int fileId = Convert.ToInt32(treeView1.SelectedNode.Name.Split('_')[1]);
-            ClassFiles.FileCollection fileCollection = classFiles.GetFileById(fileId);
-            PrintDialog printDialog = new PrintDialog();
-            printDialog.ShowDialog();
-            PrintDocument printDocument = new PrintDocument
-            {
-                DocumentName = fileCollection.path,
-                PrinterSettings = printDialog.PrinterSettings
-            };
-            printDocument.Print();// Чтобы распечатать
-        }
-
-        private void ToolStripMenuItemSendToEmail_Click(object sender, EventArgs e)
-        {
-            ClassMail classMail = new ClassMail();
-            ClassFiles classFiles = new ClassFiles();
-            int fileId = Convert.ToInt32(treeView1.SelectedNode.Name.Split('_')[1]);
-            ClassFiles.FileCollection fileCollection = classFiles.GetFileById(fileId);
-            classMail.Send("htoto2007@mail.ru", "Test", "Tested message....", fileCollection.path);
-        }
-
-        private void ToolStripMenuItemSendToDesctop_Click(object sender, EventArgs e)
-        {
-            ClassFiles classFiles = new ClassFiles();
-            int fileId = Convert.ToInt32(treeView1.SelectedNode.Name.Split('_')[1]);
-            ClassFiles.FileCollection fileCollection = classFiles.GetFileById(fileId);
-            string fileName = Path.GetFileName(fileCollection.path);
-            string desctopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            File.Copy(fileCollection.path, desctopPath + "\\" + fileName);
-        }
-
-        private void ToolStripMenuItemSendToFolder_Click(object sender, EventArgs e)
-        {
-            ClassFiles classFiles = new ClassFiles();
-            int fileId = Convert.ToInt32(treeView1.SelectedNode.Name.Split('_')[1]);
-            ClassFiles.FileCollection fileCollection = classFiles.GetFileById(fileId);
-            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
-            folderBrowserDialog.ShowDialog();
-            string fileName = Path.GetFileName(fileCollection.path);
-            File.Copy(fileCollection.path, folderBrowserDialog.SelectedPath + "\\" + fileName);
         }
     }
 }

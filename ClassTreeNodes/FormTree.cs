@@ -17,6 +17,11 @@ namespace VitTree
             Hide();
         }
 
+        private void buttonOk_Click(object sender, EventArgs e)
+        {
+            Hide();
+        }
+
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
             if (treeView1.SelectedNode == null)
@@ -28,11 +33,6 @@ namespace VitTree
             {
                 buttonOk.Enabled = true;
             }
-        }
-
-        private void buttonOk_Click(object sender, EventArgs e)
-        {
-            Hide();
         }
     }
 }

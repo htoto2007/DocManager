@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Threading;
 using System.Windows.Forms;
 using VitCardPropsValue;
 using VitFiles;
@@ -15,29 +16,30 @@ namespace VitTree
     /// </summary>
     public class ClassTree
     {
+        private readonly ClassCardPropsValue classCardPropsValue = new ClassCardPropsValue();
+        private readonly ClassFiles classFiles = new ClassFiles();
+        private readonly VitIcons.ClassImageList ClassImageList = new VitIcons.ClassImageList();
         private readonly ClassRelationFolders classRelationFolders = new ClassRelationFolders();
-        private ClassCardPropsValue classCardPropsValue = new ClassCardPropsValue();
-        private ClassFiles classFiles = new ClassFiles();
-        private ClassFolder classFolder = new ClassFolder();
-        private VitIcons.ClassImageList ClassImageList = new VitIcons.ClassImageList();
-        private ClassTypeCard classTypeCard = new ClassTypeCard();
-        private VitIcons.FormCompanents formCompanents = new VitIcons.FormCompanents();
-        //private contextMenuCollection contMenu;
+        private readonly ClassTypeCard classTypeCard = new ClassTypeCard();
+        private readonly VitIcons.FormCompanents formCompanents = new VitIcons.FormCompanents();
 
         /// <summary>
         /// класс формы загрузки и карточки фала
         /// </summary>
-        private FormFiles formFiles = new FormFiles();
+        private readonly FormFiles formFiles = new FormFiles();
 
+        //private contextMenuCollection contMenu;
         /// <summary>
         /// диалоговая форма дерева
         /// </summary>
-        private FormTree formTree = new FormTree();
+        private readonly FormTree formTree = new FormTree();
 
         /// <summary>
         /// сласс формы текстового ввода
         /// </summary>
-        private FormTreeInput formTreeInput = new FormTreeInput();
+        private readonly FormTreeInput formTreeInput = new FormTreeInput();
+
+        private ClassFolder classFolder = new ClassFolder();
 
         /// <summary>
         /// Служит буфером для обмена узлами между функциями
@@ -48,6 +50,8 @@ namespace VitTree
         /// Буфер для передачи объекта дерева между функциями
         /// </summary>
         private TreeView objectTreeView;
+
+        private Thread threadTreeView;
 
         /// <exclude />
         public ClassTree()
@@ -82,6 +86,39 @@ namespace VitTree
         }
 
         /// <summary>
+        /// Запускает средства для копирования директории
+        /// </summary>
+        public void CopyFolder(TreeView treeView)
+        {
+            // получаем копируемую папку
+            TreeNode treeNodeFolder = treeView.SelectedNode;
+            // вызываем диалоговую форму с деревом
+            TreeViewDialog("", "");
+            DialogResult dialogResult = formTree.ShowDialog();
+            if (dialogResult != DialogResult.OK)
+            {
+                return;
+            }
+            //получаем из диалогового дерева место назначения для копирования
+            TreeNode treeNodeLocation = formTree.treeView1.SelectedNode;
+            // клоируем копируемую папку
+            TreeNode treeNodeFolderClone = (TreeNode)treeNodeFolder.Clone();
+            // ищем узел, в которы надо вставить папку
+            TreeNode[] treeNodes = objectTreeView.Nodes.Find(treeNodeLocation.Name, true);
+            // вставляем в найденый узел копию папки
+            treeNodes[0].Nodes.Add(treeNodeFolderClone);
+            treeNodes[0].Expand();
+            // получаем индекс узла в который будет производиться копирование
+            int idParent = Convert.ToInt32(treeNodes[0].Name.Split('_')[1]);
+            // отправляем узел организации в базу
+            int id = classFolder.CreateFolder(idParent, treeNodeFolderClone.Text);
+            // задаем новый id папке, согласно базе
+            treeNodeFolderClone.Name = "folder_" + id.ToString();
+            // переходим к рекурсивной отпраке данных в базу о всей ветви новой организации
+            RecursiveAddNodeToData(treeNodeFolderClone, id);
+        }
+
+        /// <summary>
         /// Выдает целое числовое значение номера
         /// </summary>
         /// <param name="treeNode"></param>
@@ -106,8 +143,9 @@ namespace VitTree
         /// </summary>
         /// <param name="treeView">Принемает указанный объект в работу</param>
         /// <returns>результат инициализации</returns>
-        public TreeView InitTreeView(TreeView treeView)
+        public void InitTreeView(TreeView treeView)
         {
+            /*
             treeView.BeginUpdate();
             treeView.Nodes.Clear();
 
@@ -120,33 +158,49 @@ namespace VitTree
             formTree.treeView1.Nodes.Clear();
             formTree.treeView1.Nodes.Insert(0, globalNode);
             treeView.EndUpdate();
-            return objectTreeView;
+            return objectTreeView;*/
+
+            TW tW = new TW
+            {
+                TreeView = treeView
+            };
+            threadTreeView = new Thread(new ParameterizedThreadStart(InitTreeViewThread))
+            {
+                IsBackground = true,
+                Priority = ThreadPriority.Highest
+            };
+
+            threadTreeView.Start(tW);
         }
 
         /// <summary>
         /// Инициализирует и выводит дерево
         /// </summary>
         /// <returns>результат инициализации</returns>
-        public TreeView InitTreeView()
+        public void InitTreeView()
         {
             TreeView treeView = formTree.treeView1;
-            return InitTreeView(treeView);
+            InitTreeView(treeView);
         }
 
-        public TreeView InitTreeViewThread(TreeView treeView)
+        public void InitTreeViewThread(object tWObj)
         {
-            treeView.Invoke((MethodInvoker)delegate
+            TW tW = (TW)tWObj;
+            TreeView treeView = tW.TreeView;
+
+            treeView.BeginInvoke((MethodInvoker)delegate
             {
+                treeView.BeginUpdate();
                 treeView.Nodes.Clear();
-                treeView.ImageList = formCompanents.imageListColor;
+                treeView.ImageList = ClassImageList.imageList;
                 TreeViewFolder(treeView);
                 TreeViewFile(treeView);
                 treeView.Nodes[0].Expand();
+                globalNode = (TreeNode)objectTreeView.Nodes[0].Clone();
+                formTree.treeView1.Nodes.Clear();
+                formTree.treeView1.Nodes.Insert(0, globalNode);
+                treeView.EndUpdate();
             });
-            globalNode = (TreeNode)objectTreeView.Nodes[0].Clone();
-            formTree.treeView1.Nodes.Clear();
-            formTree.treeView1.Nodes.Insert(0, globalNode);
-            return objectTreeView;
         }
 
         /// <summary>
@@ -178,7 +232,7 @@ namespace VitTree
             string[] paramsName = treeNode.Name.Split('_');
             classFiles.Delete(Convert.ToInt32(paramsName[1]));
 
-            treeView = InitTreeView(treeView);
+            InitTreeView(treeView);
         }
 
         /// <summary>
@@ -203,11 +257,11 @@ namespace VitTree
         {
             formTree.Text = "Переместить файл";
             formTree.buttonOk.Text = "Переместить";
-            globalNode = objectTreeView.SelectedNode;
+            TreeNode treeNode = objectTreeView.SelectedNode;
             formTree.ShowDialog();
 
             DialogResult dialogResult = MessageBox.Show(
-                "Вы точно хотите переместить \"" + globalNode.Text + "\" в " + objectTreeView.SelectedNode.FullPath,
+                "Вы точно хотите переместить \"" + treeNode.Text + "\" в " + objectTreeView.SelectedNode.FullPath,
                 "Удаление",
                  MessageBoxButtons.YesNo,
                  MessageBoxIcon.Warning
@@ -215,8 +269,8 @@ namespace VitTree
 
             if (dialogResult == DialogResult.Yes)
             {
-                globalNode = objectTreeView.SelectedNode;
-                int idFile = Convert.ToInt32(globalNode.Name.Split('_')[1]);
+                treeNode = objectTreeView.SelectedNode;
+                int idFile = Convert.ToInt32(treeNode.Name.Split('_')[1]);
                 int idFolder = Convert.ToInt32(formTree.treeView1.SelectedNode.Name.Split('_')[1]);
                 string newPath = formTree.treeView1.SelectedNode.FullPath;
                 classFiles.Move(idFile, idFolder, newPath);
@@ -406,11 +460,11 @@ namespace VitTree
         /// <param name="e"></param>
         public void TreeFolderRenameFolder_click(object sender, EventArgs e)
         {
-            globalNode = objectTreeView.SelectedNode;
+            TreeNode treeNode = objectTreeView.SelectedNode;
 
             formTreeInput.Text = "Переименовать папку";
             formTreeInput.buttonOk.Text = "Переименовать";
-            formTreeInput.textBox1.Text = globalNode.Text;
+            formTreeInput.textBox1.Text = treeNode.Text;
             formTreeInput.ShowDialog();
 
             if (formTreeInput.textBox1.Text == "")
@@ -418,19 +472,19 @@ namespace VitTree
                 return;
             }
 
-            if (globalNode == null)
+            if (treeNode == null)
             {
                 MessageBox.Show("Не выбран узел дерева!");
                 return;
             }
 
-            int id = Convert.ToInt32(globalNode.Name.Split('_')[1]);
+            int id = Convert.ToInt32(treeNode.Name.Split('_')[1]);
             classFolder.RenameFolder(id, formTreeInput.textBox1.Text);
-            RenameNode(objectTreeView, globalNode.Name, formTreeInput.textBox1.Text);
+            RenameNode(objectTreeView, treeNode.Name, formTreeInput.textBox1.Text);
 
             formTreeInput.textBox1.Text = "";
             formTreeInput.Name = "null";
-            globalNode = null;
+            treeNode = null;
         }
 
         /// <summary>
@@ -458,7 +512,7 @@ namespace VitTree
         /// <param name="type">The type.</param>
         private void AddNode(TreeView treeView, string idParent, string id, string text, string type)
         {
-            globalNode = new TreeNode
+            TreeNode treeNode = new TreeNode
             {
                 Text = text,
                 Name = type + "_" + id,
@@ -467,15 +521,15 @@ namespace VitTree
             switch (type)
             {
                 case "folder":
-                    globalNode.ImageKey = "default_folder";
-                    globalNode.SelectedImageKey = "default_folder";
+                    treeNode.ImageKey = "default_folder";
+                    treeNode.SelectedImageKey = "default_folder";
                     //globalNode.ContextMenuStrip = contMenu.treeFolder;
                     break;
 
                 case "file":
                     string imageKey = ClassImageList.addIconFile(classFiles.GetFileById(Convert.ToInt32(id)).path);
-                    globalNode.ImageKey = imageKey;
-                    globalNode.SelectedImageKey = imageKey;
+                    treeNode.ImageKey = imageKey;
+                    treeNode.SelectedImageKey = imageKey;
                     // globalNode.ContextMenuStrip = contMenu.treeFiles;
                     break;
 
@@ -485,8 +539,8 @@ namespace VitTree
             }
             treeView.HideSelection = false;
             TreeNode[] treeNodes = treeView.Nodes.Find("folder_" + idParent, true);
-            treeNodes[0].Nodes.Add(globalNode);
-            globalNode = null;
+            treeNodes[0].Nodes.Add(treeNode);
+            treeNode = null;
         }
 
         /// <summary>
@@ -519,45 +573,13 @@ namespace VitTree
             classFiles.Copy(idFile, idNewFolder, newPath);
         }
 
-        /// <summary>
-        /// Запускает средства для копирования директории
-        /// </summary>
-        private void CopyFolder()
-        {
-            // получаем копируемую папку
-            TreeNode treeNodeFolder = objectTreeView.SelectedNode;
-            // вызываем диалоговую форму с деревом
-            DialogResult dialogResult = formTree.ShowDialog();
-            if (dialogResult != DialogResult.OK)
-            {
-                return;
-            }
-            //получаем из диалогового дерева место назначения для копирования
-            TreeNode treeNodeLocation = formTree.treeView1.SelectedNode;
-            // клоируем копируемую папку
-            TreeNode treeNodeFolderClone = (TreeNode)treeNodeFolder.Clone();
-            // ищем узел, в которы надо вставить папку
-            TreeNode[] treeNodes = objectTreeView.Nodes.Find(treeNodeLocation.Name, true);
-            // вставляем в найденый узел копию папки
-            treeNodes[0].Nodes.Add(treeNodeFolderClone);
-            treeNodes[0].Expand();
-            // получаем индекс узла в который будет производиться копирование
-            int idParent = Convert.ToInt32(treeNodes[0].Name.Split('_')[1]);
-            // отправляем узел организации в базу
-            int id = classFolder.CreateFolder(idParent, treeNodeFolderClone.Text);
-            // задаем новый id папке, согласно базе
-            treeNodeFolderClone.Name = "folder_" + id.ToString();
-            // переходим к рекурсивной отпраке данных в базу о всей ветви новой организации
-            RecursiveAddNodeToData(treeNodeFolderClone, id);
-        }
-
         private void FormTreeButtonOk_click(object sender, EventArgs e)
         {
             switch (formTree.Name)
             {
                 case "formTreeFileChangeLocation":
-                    globalNode = formTree.treeView1.SelectedNode;
-                    formFiles.textBoxTreePath.Text = globalNode.FullPath;
+                    TreeNode treeNode = formTree.treeView1.SelectedNode;
+                    formFiles.textBoxTreePath.Text = treeNode.FullPath;
                     break;
 
                 default:
@@ -698,16 +720,6 @@ namespace VitTree
             }
         }
 
-        private void treeFilesRename_Click(object sender, EventArgs e)
-        {
-            renameFile();
-        }
-
-        private void TreeFolderCopyFolder_click(object sender, EventArgs e)
-        {
-            CopyFolder();
-        }
-
         /// <summary>
         /// Подтягивает из базы информацию о файлах и выводит в дерево
         /// </summary>
@@ -715,23 +727,20 @@ namespace VitTree
         private void TreeViewFile(TreeView treeView)
         {
             ClassFiles.FileCollection[] fileCollection = classFiles.selectAllFiles();
-
             foreach (ClassFiles.FileCollection file in fileCollection)
             {
-                string imageKey = ClassImageList.addIconFile(classFiles.GetFileById(file.id).path);
+                TreeNode treeNode = new TreeNode();
+                string imageKey = "";//ClassImageList.addIconFile(classFiles.GetFileById(file.id).path);
+                treeNode.Text = file.name;
+                treeNode.Name = "file_" + file.id.ToString();
+                treeNode.Tag = "file";
+                treeNode.ImageKey = imageKey;
+                treeNode.SelectedImageKey = imageKey;
 
-                globalNode = new TreeNode()
-                {
-                    Text = file.name,
-                    Name = "file_" + file.id.ToString(),
-                    Tag = "file",
-                    ImageKey = imageKey,
-                    SelectedImageKey = imageKey,
-                };
                 TreeNode[] tNode = treeView.Nodes.Find("folder_" + file.idFolder.ToString(), true);
                 if (tNode.Length > 0)
                 {
-                    tNode[0].Nodes.Add(globalNode);
+                    tNode[0].Nodes.Add(treeNode);
                 }
             }
             objectTreeView = treeView;
@@ -745,7 +754,7 @@ namespace VitTree
         {
             ClassFolder.FolderCollection[] foldersCollection = classFolder.GetAllFolders(false);
 
-            globalNode = new TreeNode
+            TreeNode treeNode = new TreeNode
             {
                 Text = VitSettings.Properties.GeneralsSettings.Default.repositoryRootFolderName,
                 Name = "folder_0",
@@ -755,14 +764,14 @@ namespace VitTree
                 StateImageKey = "root",
             };
             treeView.HideSelection = false;
-            treeView.Nodes.Add(globalNode);
-            globalNode = null;
+            treeView.Nodes.Add(treeNode);
+            treeNode = null;
 
             foreach (ClassFolder.FolderCollection folder in foldersCollection)
             {
                 if (folder.parentId == 0)
                 {
-                    globalNode = new TreeNode
+                    treeNode = new TreeNode
                     {
                         Text = folder.name,
                         Name = "folder_" + folder.id.ToString(),
@@ -771,11 +780,11 @@ namespace VitTree
                         SelectedImageKey = "default_folder",
                         StateImageKey = "default_folder",
                     };
-                    treeView.Nodes[0].Nodes.Add(globalNode);
+                    treeView.Nodes[0].Nodes.Add(treeNode);
                 }
                 else
                 {
-                    globalNode = new TreeNode
+                    treeNode = new TreeNode
                     {
                         Text = folder.name,
                         Name = "folder_" + folder.id.ToString(),
@@ -788,10 +797,10 @@ namespace VitTree
                     TreeNode[] tNode = treeView.Nodes.Find("folder_" + folder.parentId.ToString(), true);
                     if (tNode.Length > 0)
                     {
-                        tNode[0].Nodes.Add(globalNode);
+                        tNode[0].Nodes.Add(treeNode);
                     }
                 }
-                globalNode = null;
+                treeNode = null;
             }
             objectTreeView = treeView;
         }
@@ -817,5 +826,13 @@ namespace VitTree
             public const string FILE = "file";
             public const string FOLDER = "folder";
         }
+    }
+
+    /// <summary>
+    /// Объект содержащий <see cref="TreeView"/>
+    /// </summary>
+    public class TW
+    {
+        public TreeView TreeView;
     }
 }

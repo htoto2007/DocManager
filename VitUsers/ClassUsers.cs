@@ -130,6 +130,11 @@ namespace VitUsers
             }
 
             FormUserLogin formUserLogin = new FormUserLogin();
+            UserColection[] userColections = GetAllUsers();
+            foreach (UserColection userColection in userColections)
+            {
+                formUserLogin.comboBox1.Items.Add(userColection.login);
+            }
             DialogResult dialogResult = formUserLogin.ShowDialog();
 
             if (dialogResult != DialogResult.OK)
@@ -141,7 +146,7 @@ namespace VitUsers
                 "SELECT id " +
                 "FROM tb_users " +
                 "WHERE " +
-                "login = '" + MySqlHelper.EscapeString(formUserLogin.textBoxLogin.Text) + "' AND " +
+                "login = '" + MySqlHelper.EscapeString(formUserLogin.comboBox1.SelectedItem.ToString()) + "' AND " +
                 "password = '" + MySqlHelper.EscapeString(formUserLogin.textBoxPass.Text) + "'");
 
             if (rows.GetLength(0) == 1)

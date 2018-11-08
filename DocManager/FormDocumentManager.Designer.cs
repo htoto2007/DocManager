@@ -30,13 +30,13 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDocumentManager));
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Узел8");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Узел10");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Узел6", new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2});
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Узел7");
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Узел8");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Узел10");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Узел6", new System.Windows.Forms.TreeNode[] {
+            treeNode5,
+            treeNode6});
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Узел7");
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
             ""}, -1, System.Drawing.Color.Empty, System.Drawing.Color.Transparent, null);
             this.contextMenuStripTreeView = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ToolStripMenuItemRequestOriginal = new System.Windows.Forms.ToolStripMenuItem();
@@ -114,8 +114,8 @@
             // 
             this.contextMenuStripTreeView.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.contextMenuStripTreeView.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ToolStripMenuItemRequestOriginal,
             this.ToolStripMenuItemAddFolder,
+            this.ToolStripMenuItemRequestOriginal,
             this.ToolStripMenuItemAddDocument,
             this.ToolStripMenuItemSend,
             this.ToolStripMenuItemDelete,
@@ -156,14 +156,14 @@
             // ToolStripMenuItemAddDocumentWithCard
             // 
             this.ToolStripMenuItemAddDocumentWithCard.Name = "ToolStripMenuItemAddDocumentWithCard";
-            this.ToolStripMenuItemAddDocumentWithCard.Size = new System.Drawing.Size(154, 22);
+            this.ToolStripMenuItemAddDocumentWithCard.Size = new System.Drawing.Size(180, 22);
             this.ToolStripMenuItemAddDocumentWithCard.Text = "С карточкой";
             this.ToolStripMenuItemAddDocumentWithCard.Click += new System.EventHandler(this.ToolStripMenuItemAddDocumentWithCard_Click);
             // 
             // безКарточкиToolStripMenuItem
             // 
             this.безКарточкиToolStripMenuItem.Name = "безКарточкиToolStripMenuItem";
-            this.безКарточкиToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.безКарточкиToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.безКарточкиToolStripMenuItem.Text = "Без карточки";
             this.безКарточкиToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItemWithoutCard_Click);
             // 
@@ -221,6 +221,7 @@
             this.ToolStripMenuItemCopy.Name = "ToolStripMenuItemCopy";
             this.ToolStripMenuItemCopy.Size = new System.Drawing.Size(222, 22);
             this.ToolStripMenuItemCopy.Text = "Копировать";
+            this.ToolStripMenuItemCopy.Click += new System.EventHandler(this.ToolStripMenuItemCopy_Click);
             // 
             // ToolStripMenuItemPaste
             // 
@@ -565,20 +566,20 @@
             this.treeView1.Location = new System.Drawing.Point(0, 8);
             this.treeView1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.treeView1.Name = "treeView1";
-            treeNode1.Name = "Узел8";
-            treeNode1.Text = "Узел8";
-            treeNode2.Name = "Узел10";
-            treeNode2.Text = "Узел10";
-            treeNode3.ImageKey = "folder.png";
-            treeNode3.Name = "Узел6";
-            treeNode3.SelectedImageKey = "folder-open.png";
-            treeNode3.Text = "Узел6";
-            treeNode4.ContextMenuStrip = this.contextMenuStripTreeView;
-            treeNode4.Name = "Узел7";
-            treeNode4.Text = "Узел7";
+            treeNode5.Name = "Узел8";
+            treeNode5.Text = "Узел8";
+            treeNode6.Name = "Узел10";
+            treeNode6.Text = "Узел10";
+            treeNode7.ImageKey = "folder.png";
+            treeNode7.Name = "Узел6";
+            treeNode7.SelectedImageKey = "folder-open.png";
+            treeNode7.Text = "Узел6";
+            treeNode8.ContextMenuStrip = this.contextMenuStripTreeView;
+            treeNode8.Name = "Узел7";
+            treeNode8.Text = "Узел7";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode3,
-            treeNode4});
+            treeNode7,
+            treeNode8});
             this.treeView1.SelectedImageIndex = 0;
             this.treeView1.Size = new System.Drawing.Size(395, 511);
             this.treeView1.TabIndex = 5;
@@ -600,7 +601,7 @@
             this.listView1.ContextMenuStrip = this.contextMenuStripTreeView;
             this.listView1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
+            listViewItem2});
             this.listView1.Location = new System.Drawing.Point(401, 43);
             this.listView1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 4);
             this.listView1.Name = "listView1";
