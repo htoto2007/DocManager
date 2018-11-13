@@ -6,6 +6,7 @@ namespace VitControls
 {
     public partial class WindowHeader : UserControl
     {
+        private VitColors.ClassColors classColors = new VitColors.ClassColors();
         private bool isMouseDown = false;
         private Point mouseOffset;
 
@@ -42,18 +43,20 @@ namespace VitControls
             if (ParentForm.WindowState == FormWindowState.Maximized)
             {
                 ParentForm.WindowState = FormWindowState.Normal;
-                buttonMaximize.BackgroundImage = Properties.Resources.icons8_maximize_window_48;
+                buttonMaximize.BackgroundImage = VitIcons.Properties.ResourceColorImage.icons8_maximize_window_48;
             }
             else
             {
                 ParentForm.WindowState = FormWindowState.Maximized;
-                buttonMaximize.BackgroundImage = Properties.Resources.icons8_restore_window_48;
+                buttonMaximize.BackgroundImage = VitIcons.Properties.ResourceColorImage.icons8_restore_window_48;
             }
+            ParentForm.Update();
         }
 
         private void ButtonMinimize_Click(object sender, EventArgs e)
         {
             ParentForm.WindowState = FormWindowState.Minimized;
+            ParentForm.Update();
         }
 
         private void WindowHeader_MouseDown(object sender, MouseEventArgs e)
@@ -93,11 +96,17 @@ namespace VitControls
             labelText.Text = ParentForm.Text;
             labelText.Font = ParentForm.Font;
             labelText.ForeColor = Color.Black;
-            Width = ParentForm.Width;
-            VitColors.ClassColors classColors = new VitColors.ClassColors();
-            BackColor = classColors.getCollection().primary0;
+            //Width = ParentForm.Width;
+
+            BackColor = classColors.getCollection().blue;
+            ParentForm.BackColor = classColors.getCollection().secondaryA0;
+            ParentForm.Padding = new Padding(1, 1, 1, 1);
+            ParentForm.TransparencyKey = Color.Empty;
+            ParentForm.Update();
+            Update();
 
             buttonMaximize.Visible = maximize;
+            buttonMinimize.Visible = minimize;
         }
     }
 }

@@ -58,8 +58,12 @@ namespace VitUsers
             Console.WriteLine(userColection.imagePath);
             if (File.Exists(userColection.imagePath) == true)
             {
-                Console.WriteLine("ERR " + userColection.imagePath);
+                //Console.WriteLine("ERR " + userColection.imagePath);
                 pictureBox1.BackgroundImage = Image.FromFile(userColection.imagePath);
+            }
+            else
+            {
+                pictureBox1.BackgroundImage = VitIcons.Properties.ResourceColorImage.icons8_user_male_208;
             }
             richTextBoxUserName.Text = userColection.firstName + " " + userColection.lastName + " " + userColection.middleName;
 

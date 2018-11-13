@@ -173,6 +173,16 @@ namespace VitIcons.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap icons8_maximize_window_48 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_maximize_window_48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap icons8_minimize_window_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8_minimize_window_48", resourceCulture);
@@ -223,6 +233,16 @@ namespace VitIcons.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap icons8_restore_window_48 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_restore_window_48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap icons8_scanner_40 {
             get {
                 object obj = ResourceManager.GetObject("icons8_scanner_40", resourceCulture);
@@ -256,6 +276,16 @@ namespace VitIcons.Properties {
         public static System.Drawing.Bitmap icons8_user_avatar_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8_user_avatar_48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap icons8_user_male_208 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_user_male_208", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -8,8 +8,8 @@ namespace VitColors
         {
             ColorsCollection colorsCollection = new ColorsCollection
             {
-                primary0 = Color.FromArgb(175, 207, 251),
-                primary1 = Color.FromArgb(153, 255, 255),
+                blue = Color.FromArgb(175, 207, 251),
+                gray = Color.FromArgb(214, 228, 255),
                 secondaryA0 = Color.FromArgb(255, 204, 0),
                 secondaryA1 = Color.FromArgb(255, 204, 153),
                 secondaryB0 = Color.FromArgb(255, 0, 0),
@@ -21,8 +21,8 @@ namespace VitColors
 
         public struct ColorsCollection
         {
-            public Color primary0;
-            public Color primary1;
+            public Color blue;
+            public Color gray;
             public Color secondaryA0;
             public Color secondaryA1;
             public Color secondaryB0;

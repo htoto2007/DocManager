@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormSettings));
+            this.windowHeader1 = new VitControls.WindowHeader();
+            this.button2 = new VitControls.Button();
+            this.button3 = new VitControls.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.tabControlSettings = new System.Windows.Forms.TabControl();
             this.tabPageConnectToData = new System.Windows.Forms.TabPage();
             this.label7 = new System.Windows.Forms.Label();
@@ -49,13 +53,58 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tabPageSettings = new System.Windows.Forms.TabPage();
             this.tabPageEmail = new System.Windows.Forms.TabPage();
-            this.windowHeader1 = new VitControls.WindowHeader();
-            this.button2 = new VitControls.Button();
-            this.button3 = new VitControls.Button();
+            this.panel1.SuspendLayout();
             this.tabControlSettings.SuspendLayout();
             this.tabPageConnectToData.SuspendLayout();
             this.tabPageGeneralsSettings.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // windowHeader1
+            // 
+            this.windowHeader1.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.windowHeader1.AutoSize = true;
+            this.windowHeader1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
+            this.windowHeader1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(207)))), ((int)(((byte)(251)))));
+            this.windowHeader1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.windowHeader1.Location = new System.Drawing.Point(1, 1);
+            this.windowHeader1.Margin = new System.Windows.Forms.Padding(0);
+            this.windowHeader1.maximize = false;
+            this.windowHeader1.minimize = false;
+            this.windowHeader1.Name = "windowHeader1";
+            this.windowHeader1.Size = new System.Drawing.Size(512, 33);
+            this.windowHeader1.TabIndex = 1;
+            // 
+            // button2
+            // 
+            this.button2.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
+            this.button2.BackColor = System.Drawing.Color.Transparent;
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button2.Location = new System.Drawing.Point(330, 347);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(32, 32);
+            this.button2.TabIndex = 2;
+            // 
+            // button3
+            // 
+            this.button3.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
+            this.button3.BackColor = System.Drawing.Color.Transparent;
+            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button3.Location = new System.Drawing.Point(13, 346);
+            this.button3.Margin = new System.Windows.Forms.Padding(2);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(32, 32);
+            this.button3.TabIndex = 3;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.tabControlSettings);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(1, 34);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(512, 314);
+            this.panel1.TabIndex = 4;
             // 
             // tabControlSettings
             // 
@@ -65,12 +114,12 @@
             this.tabControlSettings.Controls.Add(this.tabPageEmail);
             this.tabControlSettings.Dock = System.Windows.Forms.DockStyle.Top;
             this.tabControlSettings.HotTrack = true;
-            this.tabControlSettings.Location = new System.Drawing.Point(0, 33);
+            this.tabControlSettings.Location = new System.Drawing.Point(0, 0);
             this.tabControlSettings.Margin = new System.Windows.Forms.Padding(0);
             this.tabControlSettings.Name = "tabControlSettings";
             this.tabControlSettings.SelectedIndex = 0;
-            this.tabControlSettings.Size = new System.Drawing.Size(514, 307);
-            this.tabControlSettings.TabIndex = 0;
+            this.tabControlSettings.Size = new System.Drawing.Size(512, 273);
+            this.tabControlSettings.TabIndex = 1;
             // 
             // tabPageConnectToData
             // 
@@ -88,7 +137,7 @@
             this.tabPageConnectToData.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageConnectToData.Name = "tabPageConnectToData";
             this.tabPageConnectToData.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPageConnectToData.Size = new System.Drawing.Size(506, 277);
+            this.tabPageConnectToData.Size = new System.Drawing.Size(504, 243);
             this.tabPageConnectToData.TabIndex = 1;
             this.tabPageConnectToData.Text = "Подключение к базе";
             this.tabPageConnectToData.UseVisualStyleBackColor = true;
@@ -189,7 +238,7 @@
             this.tabPageGeneralsSettings.Margin = new System.Windows.Forms.Padding(0);
             this.tabPageGeneralsSettings.Name = "tabPageGeneralsSettings";
             this.tabPageGeneralsSettings.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPageGeneralsSettings.Size = new System.Drawing.Size(506, 277);
+            this.tabPageGeneralsSettings.Size = new System.Drawing.Size(504, 277);
             this.tabPageGeneralsSettings.TabIndex = 0;
             this.tabPageGeneralsSettings.Text = "Общие";
             this.tabPageGeneralsSettings.UseVisualStyleBackColor = true;
@@ -250,7 +299,7 @@
             this.tabPageSettings.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageSettings.Name = "tabPageSettings";
             this.tabPageSettings.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPageSettings.Size = new System.Drawing.Size(506, 277);
+            this.tabPageSettings.Size = new System.Drawing.Size(504, 277);
             this.tabPageSettings.TabIndex = 2;
             this.tabPageSettings.Text = "Подключение к FTP";
             this.tabPageSettings.UseVisualStyleBackColor = true;
@@ -260,76 +309,45 @@
             this.tabPageEmail.Location = new System.Drawing.Point(4, 26);
             this.tabPageEmail.Name = "tabPageEmail";
             this.tabPageEmail.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageEmail.Size = new System.Drawing.Size(506, 277);
+            this.tabPageEmail.Size = new System.Drawing.Size(504, 277);
             this.tabPageEmail.TabIndex = 3;
             this.tabPageEmail.Text = "Почта";
             this.tabPageEmail.UseVisualStyleBackColor = true;
-            // 
-            // windowHeader1
-            // 
-            this.windowHeader1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(207)))), ((int)(((byte)(251)))));
-            this.windowHeader1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.windowHeader1.Location = new System.Drawing.Point(0, 0);
-            this.windowHeader1.Margin = new System.Windows.Forms.Padding(0);
-            this.windowHeader1.maximize = false;
-            this.windowHeader1.minimize = false;
-            this.windowHeader1.Name = "windowHeader1";
-            this.windowHeader1.Size = new System.Drawing.Size(514, 33);
-            this.windowHeader1.TabIndex = 1;
-            // 
-            // button2
-            // 
-            this.button2.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
-            this.button2.BackColor = System.Drawing.Color.Transparent;
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button2.Location = new System.Drawing.Point(330, 347);
-            this.button2.Margin = new System.Windows.Forms.Padding(2);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(32, 32);
-            this.button2.TabIndex = 2;
-            // 
-            // button3
-            // 
-            this.button3.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
-            this.button3.BackColor = System.Drawing.Color.Transparent;
-            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button3.Location = new System.Drawing.Point(13, 346);
-            this.button3.Margin = new System.Windows.Forms.Padding(2);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(32, 32);
-            this.button3.TabIndex = 3;
             // 
             // FormSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(514, 391);
+            this.ClientSize = new System.Drawing.Size(514, 349);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.tabControlSettings);
             this.Controls.Add(this.windowHeader1);
             this.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormSettings";
+            this.Padding = new System.Windows.Forms.Padding(1);
             this.Text = "Настроки";
             this.Load += new System.EventHandler(this.FormSettings_Load);
+            this.panel1.ResumeLayout(false);
             this.tabControlSettings.ResumeLayout(false);
             this.tabPageConnectToData.ResumeLayout(false);
             this.tabPageConnectToData.PerformLayout();
             this.tabPageGeneralsSettings.ResumeLayout(false);
             this.tabPageGeneralsSettings.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-
+        private VitControls.WindowHeader windowHeader1;
+        private VitControls.Button button2;
+        private VitControls.Button button3;
         private System.Windows.Forms.TabControl tabControlSettings;
-        private System.Windows.Forms.TabPage tabPageGeneralsSettings;
         private System.Windows.Forms.TabPage tabPageConnectToData;
-        private System.Windows.Forms.TabPage tabPageSettings;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox textBoxPort;
         private System.Windows.Forms.Label label4;
@@ -340,14 +358,14 @@
         private System.Windows.Forms.TextBox textBoxDataBaseName;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBoxServer;
+        private System.Windows.Forms.TabPage tabPageGeneralsSettings;
         private System.Windows.Forms.TextBox textBoxRootFolderName;
         private System.Windows.Forms.Label label2;
         private VitControls.Button buttonOpenFolderDirectory;
         private System.Windows.Forms.LinkLabel linkLabelRepositoryToDocuments;
         private System.Windows.Forms.Label label1;
-        private VitControls.WindowHeader windowHeader1;
-        private VitControls.Button button2;
-        private VitControls.Button button3;
+        private System.Windows.Forms.TabPage tabPageSettings;
         private System.Windows.Forms.TabPage tabPageEmail;
+        public System.Windows.Forms.Panel panel1;
     }
 }

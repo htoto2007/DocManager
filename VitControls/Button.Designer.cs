@@ -32,13 +32,13 @@
             // 
             // Button
             // 
-            this.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
+            this.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.DoubleBuffered = true;
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "Button";
             this.Size = new System.Drawing.Size(32, 32);
             this.ResumeLayout(false);

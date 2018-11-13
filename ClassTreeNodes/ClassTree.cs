@@ -340,7 +340,7 @@ namespace VitTree
                 }
 
                 // Получаем все элементы полей карточки документа
-                Control.ControlCollection controlCollection = formFiles.panel1.Controls;
+                Control.ControlCollection controlCollection = formFiles.panel2.Controls;
                 SendValueOfFields(controlCollection, idFile);
             }
             formFiles.Hide();

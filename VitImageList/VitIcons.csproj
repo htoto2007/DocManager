@@ -181,9 +181,6 @@
     <None Include="Resources\icons8-admin-menu-48.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\icons8-close-window-48.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icons8-conference-48.png" />
   </ItemGroup>
   <ItemGroup>
@@ -203,9 +200,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icons8-folder-48.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icons8-minimize-window-48.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icons8-password-48.png" />
@@ -236,6 +230,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icons8-red-card-40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-close-window-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-maximize-window-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-minimize-window-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-restore-window-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-administrator-male-26.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-administrator-male-208.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

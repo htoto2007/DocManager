@@ -131,9 +131,10 @@ namespace VitUsers
 
             FormUserLogin formUserLogin = new FormUserLogin();
             UserColection[] userColections = GetAllUsers();
+
             foreach (UserColection userColection in userColections)
             {
-                formUserLogin.comboBox1.Items.Add(userColection.login);
+                formUserLogin.comboBoxLogin.Items.Add(userColection.login);
             }
             DialogResult dialogResult = formUserLogin.ShowDialog();
 
@@ -143,11 +144,11 @@ namespace VitUsers
             }
 
             Dictionary<string, string>[] rows = classMysql.getArrayByQuery("" +
-                "SELECT id " +
-                "FROM tb_users " +
-                "WHERE " +
-                "login = '" + MySqlHelper.EscapeString(formUserLogin.comboBox1.SelectedItem.ToString()) + "' AND " +
-                "password = '" + MySqlHelper.EscapeString(formUserLogin.textBoxPass.Text) + "'");
+            "SELECT id " +
+            "FROM tb_users " +
+            "WHERE " +
+            "login = '" + MySqlHelper.EscapeString(formUserLogin.comboBoxLogin.Text) + "' AND " +
+            "password = '" + MySqlHelper.EscapeString(formUserLogin.textBoxPass.Text) + "'");
 
             if (rows.GetLength(0) == 1)
             {
