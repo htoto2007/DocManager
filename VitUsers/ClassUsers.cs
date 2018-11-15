@@ -160,7 +160,7 @@ namespace VitUsers
 
         public void logOut()
         {
-            File.Delete(programPath + tmpFile);
+            File.Delete(cashLoginFile);
         }
 
         public void SendToEdit()
@@ -226,6 +226,20 @@ namespace VitUsers
                 "UPDATE tb_users " +
                 "SET " +
                 "image = '" + MySqlHelper.EscapeString(avatarPath) + "'" +
+                "WHERE " +
+                "id = '" + id + "'");
+        }
+
+        public void deleteImage(int id)
+        {
+            string avatarName = "avatar.jpg";
+            string avatarPath = repositiryPayh + "\\" + id.ToString() + "\\" + avatarName;
+            File.Delete(avatarPath);
+
+            classMysql.UpdateOrDelete(
+                "UPDATE tb_users " +
+                "SET " +
+                "image = ''" +
                 "WHERE " +
                 "id = '" + id + "'");
         }

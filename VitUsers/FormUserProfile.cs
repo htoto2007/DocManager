@@ -11,7 +11,7 @@ namespace VitUsers
     public partial class FormUserProfile : Form
     {
         private ClassNotifyMessage classNotifyMessage = new ClassNotifyMessage();
-        private ClassUsers ClassUsers = new ClassUsers();
+        private ClassUsers classUsers = new ClassUsers();
 
         public FormUserProfile()
         {
@@ -34,7 +34,7 @@ namespace VitUsers
                 pictureBox1.BackgroundImage.Dispose();
             }
 
-            ClassUsers.updateImage(ClassUsers.getThisUser().id);
+            classUsers.updateImage(classUsers.getThisUser().id);
             init();
         }
 
@@ -54,7 +54,7 @@ namespace VitUsers
 
         private void init()
         {
-            ClassUsers.UserColection userColection = ClassUsers.getThisUser();
+            ClassUsers.UserColection userColection = classUsers.getThisUser();
             Console.WriteLine(userColection.imagePath);
             if (File.Exists(userColection.imagePath) == true)
             {
@@ -65,15 +65,25 @@ namespace VitUsers
             {
                 pictureBox1.BackgroundImage = VitIcons.Properties.ResourceColorImage.icons8_user_male_208;
             }
-            richTextBoxUserName.Text = userColection.firstName + " " + userColection.lastName + " " + userColection.middleName;
+            labelUserName.Text = userColection.firstName + " " + userColection.lastName + " " + userColection.middleName;
 
             ClassUserPositions classUserPositions = new ClassUserPositions();
-            richTextBoxPosition.Text = classUserPositions.getInfoById(userColection.idPosition).name;
+            labelPosition.Text = classUserPositions.getInfoById(userColection.idPosition).name;
 
             ClassSubdivision classSubdivision = new ClassSubdivision();
-            richTextBoxSubdivision.Text = classSubdivision.getInfoById(userColection.idSubdivision).name;
+            labelSubdivision.Text = classSubdivision.getInfoById(userColection.idSubdivision).name;
 
-            richTextBoxLogin.Text = userColection.login;
+            labelLogin.Text = userColection.login;
+        }
+
+        private void buttonDeletePhoto_Click(object sender, EventArgs e)
+        {
+            if (pictureBox1.BackgroundImage != null)
+            {
+                pictureBox1.BackgroundImage.Dispose();
+            }
+            classUsers.deleteImage(classUsers.getThisUser().id);
+            init();
         }
     }
 }

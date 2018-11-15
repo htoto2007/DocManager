@@ -28,7 +28,6 @@ namespace VitTree
             {
                 buttonOk.Enabled = false;
             }
-            //else if (treeView1.SelectedNode.Name == "folder_0") buttonOk.Enabled = false;
             else
             {
                 buttonOk.Enabled = true;

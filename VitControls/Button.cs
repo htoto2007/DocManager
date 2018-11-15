@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Drawing;
 using System.Windows.Forms;
 using VitColors;
 
@@ -21,7 +20,7 @@ namespace VitControls
         protected override void OnMouseHover(EventArgs e)
         {
             ClassColors classColors = new ClassColors();
-            BackColor = classColors.getCollection().secondaryA0;
+            //BackColor = classColors.getCollection().secondaryA0;
             BorderStyle = BorderStyle.FixedSingle;
             //Size = new Size(34, 34);
         }
@@ -29,7 +28,7 @@ namespace VitControls
         protected override void OnMouseLeave(EventArgs e)
         {
             BorderStyle = System.Windows.Forms.BorderStyle.None;
-            BackColor = Color.Transparent;
+            //BackColor = Color.Transparent;
             BorderStyle = BorderStyle.None;
             //Size = new Size(32, 32);
         }

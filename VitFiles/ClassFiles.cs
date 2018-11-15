@@ -299,16 +299,26 @@ namespace VitFiles
             string finalPathSave = repositiryPayh + "\\" + pathSave;
             string destFileName = finalPathSave + "\\" + newFilename;
 
-            if (Directory.Exists(finalPathSave) != true)
+            try
             {
-                Directory.CreateDirectory(finalPathSave);
+                if (Directory.Exists(finalPathSave) != true)
+                {
+                    Directory.CreateDirectory(finalPathSave);
+                }
+            }
+            catch (System.NotSupportedException)
+            {
+                Console.WriteLine(destFileName);
+                return 0;
             }
 
             DialogResult dialogResult = DialogResult.None;
+
             if (File.Exists(destFileName))
             {
                 dialogResult = MessageBox.Show(destFileName + " уже существует. Заменить?", "Внимание!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             }
+
             if (dialogResult == DialogResult.No)
             {
                 return 2;

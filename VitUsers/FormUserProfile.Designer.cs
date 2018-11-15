@@ -31,11 +31,12 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormUserProfile));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.buttonDeletePhoto = new VitControls.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.richTextBoxLogin = new System.Windows.Forms.RichTextBox();
-            this.richTextBoxSubdivision = new System.Windows.Forms.RichTextBox();
-            this.richTextBoxPosition = new System.Windows.Forms.RichTextBox();
-            this.richTextBoxUserName = new System.Windows.Forms.RichTextBox();
+            this.labelLogin = new System.Windows.Forms.Label();
+            this.labelSubdivision = new System.Windows.Forms.Label();
+            this.labelPosition = new System.Windows.Forms.Label();
+            this.labelUserName = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -51,8 +52,8 @@
             this.textBoxOldPassword = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.windowHeader1 = new VitControls.WindowHeader();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -61,6 +62,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.buttonDeletePhoto);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.buttonEditUserPthoto);
             this.panel1.Controls.Add(this.buttonOkPassword);
@@ -80,13 +82,27 @@
             this.panel1.Size = new System.Drawing.Size(536, 363);
             this.panel1.TabIndex = 19;
             // 
+            // buttonDeletePhoto
+            // 
+            this.buttonDeletePhoto.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
+            this.buttonDeletePhoto.BackColor = System.Drawing.Color.Transparent;
+            this.buttonDeletePhoto.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonDeletePhoto.BackgroundImage")));
+            this.buttonDeletePhoto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.buttonDeletePhoto.Location = new System.Drawing.Point(153, 219);
+            this.buttonDeletePhoto.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonDeletePhoto.Name = "buttonDeletePhoto";
+            this.buttonDeletePhoto.Size = new System.Drawing.Size(26, 27);
+            this.buttonDeletePhoto.TabIndex = 41;
+            this.toolTip1.SetToolTip(this.buttonDeletePhoto, "Удалить аватар");
+            this.buttonDeletePhoto.Click += new System.EventHandler(this.buttonDeletePhoto_Click);
+            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel2.Controls.Add(this.richTextBoxLogin);
-            this.panel2.Controls.Add(this.richTextBoxSubdivision);
-            this.panel2.Controls.Add(this.richTextBoxPosition);
-            this.panel2.Controls.Add(this.richTextBoxUserName);
+            this.panel2.Controls.Add(this.labelLogin);
+            this.panel2.Controls.Add(this.labelSubdivision);
+            this.panel2.Controls.Add(this.labelPosition);
+            this.panel2.Controls.Add(this.labelUserName);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.label2);
@@ -96,87 +112,83 @@
             this.panel2.Size = new System.Drawing.Size(304, 158);
             this.panel2.TabIndex = 39;
             // 
-            // richTextBoxLogin
+            // labelLogin
             // 
-            this.richTextBoxLogin.BackColor = System.Drawing.SystemColors.Control;
-            this.richTextBoxLogin.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBoxLogin.Location = new System.Drawing.Point(140, 112);
-            this.richTextBoxLogin.Name = "richTextBoxLogin";
-            this.richTextBoxLogin.ReadOnly = true;
-            this.richTextBoxLogin.Size = new System.Drawing.Size(150, 33);
-            this.richTextBoxLogin.TabIndex = 40;
-            this.richTextBoxLogin.Text = "TEXT";
+            this.labelLogin.AutoSize = true;
+            this.labelLogin.Location = new System.Drawing.Point(115, 92);
+            this.labelLogin.Name = "labelLogin";
+            this.labelLogin.Padding = new System.Windows.Forms.Padding(5);
+            this.labelLogin.Size = new System.Drawing.Size(48, 23);
+            this.labelLogin.TabIndex = 40;
+            this.labelLogin.Text = "Логин";
             // 
-            // richTextBoxSubdivision
+            // labelSubdivision
             // 
-            this.richTextBoxSubdivision.BackColor = System.Drawing.SystemColors.Control;
-            this.richTextBoxSubdivision.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBoxSubdivision.Location = new System.Drawing.Point(140, 79);
-            this.richTextBoxSubdivision.Name = "richTextBoxSubdivision";
-            this.richTextBoxSubdivision.ReadOnly = true;
-            this.richTextBoxSubdivision.Size = new System.Drawing.Size(150, 33);
-            this.richTextBoxSubdivision.TabIndex = 39;
-            this.richTextBoxSubdivision.Text = "TEXT";
+            this.labelSubdivision.AutoSize = true;
+            this.labelSubdivision.Location = new System.Drawing.Point(115, 69);
+            this.labelSubdivision.Name = "labelSubdivision";
+            this.labelSubdivision.Padding = new System.Windows.Forms.Padding(5);
+            this.labelSubdivision.Size = new System.Drawing.Size(97, 23);
+            this.labelSubdivision.TabIndex = 39;
+            this.labelSubdivision.Text = "Подразделение";
             // 
-            // richTextBoxPosition
+            // labelPosition
             // 
-            this.richTextBoxPosition.BackColor = System.Drawing.SystemColors.Control;
-            this.richTextBoxPosition.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBoxPosition.Location = new System.Drawing.Point(140, 46);
-            this.richTextBoxPosition.Name = "richTextBoxPosition";
-            this.richTextBoxPosition.ReadOnly = true;
-            this.richTextBoxPosition.Size = new System.Drawing.Size(150, 33);
-            this.richTextBoxPosition.TabIndex = 38;
-            this.richTextBoxPosition.Text = "TEXT";
+            this.labelPosition.AutoSize = true;
+            this.labelPosition.Location = new System.Drawing.Point(115, 46);
+            this.labelPosition.Name = "labelPosition";
+            this.labelPosition.Padding = new System.Windows.Forms.Padding(5);
+            this.labelPosition.Size = new System.Drawing.Size(75, 23);
+            this.labelPosition.TabIndex = 38;
+            this.labelPosition.Text = "Должность";
             // 
-            // richTextBoxUserName
+            // labelUserName
             // 
-            this.richTextBoxUserName.BackColor = System.Drawing.SystemColors.Control;
-            this.richTextBoxUserName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBoxUserName.Location = new System.Drawing.Point(140, 13);
-            this.richTextBoxUserName.Name = "richTextBoxUserName";
-            this.richTextBoxUserName.ReadOnly = true;
-            this.richTextBoxUserName.Size = new System.Drawing.Size(150, 33);
-            this.richTextBoxUserName.TabIndex = 37;
-            this.richTextBoxUserName.Text = "TEXT";
+            this.labelUserName.AutoSize = true;
+            this.labelUserName.Location = new System.Drawing.Point(115, 23);
+            this.labelUserName.Name = "labelUserName";
+            this.labelUserName.Padding = new System.Windows.Forms.Padding(5);
+            this.labelUserName.Size = new System.Drawing.Size(53, 23);
+            this.labelUserName.TabIndex = 37;
+            this.labelUserName.Text = "Ф.И.О.";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(15, 113);
+            this.label5.Location = new System.Drawing.Point(3, 92);
             this.label5.Name = "label5";
-            this.label5.Padding = new System.Windows.Forms.Padding(10);
-            this.label5.Size = new System.Drawing.Size(58, 33);
+            this.label5.Padding = new System.Windows.Forms.Padding(5);
+            this.label5.Size = new System.Drawing.Size(48, 23);
             this.label5.TabIndex = 36;
             this.label5.Text = "Логин";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(15, 80);
+            this.label3.Location = new System.Drawing.Point(3, 69);
             this.label3.Name = "label3";
-            this.label3.Padding = new System.Windows.Forms.Padding(10);
-            this.label3.Size = new System.Drawing.Size(107, 33);
+            this.label3.Padding = new System.Windows.Forms.Padding(5);
+            this.label3.Size = new System.Drawing.Size(97, 23);
             this.label3.TabIndex = 35;
             this.label3.Text = "Подразделение";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 47);
+            this.label2.Location = new System.Drawing.Point(3, 46);
             this.label2.Name = "label2";
-            this.label2.Padding = new System.Windows.Forms.Padding(10);
-            this.label2.Size = new System.Drawing.Size(85, 33);
+            this.label2.Padding = new System.Windows.Forms.Padding(5);
+            this.label2.Size = new System.Drawing.Size(75, 23);
             this.label2.TabIndex = 34;
             this.label2.Text = "Должность";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(15, 14);
+            this.label1.Location = new System.Drawing.Point(3, 23);
             this.label1.Name = "label1";
-            this.label1.Padding = new System.Windows.Forms.Padding(10);
-            this.label1.Size = new System.Drawing.Size(63, 33);
+            this.label1.Padding = new System.Windows.Forms.Padding(5);
+            this.label1.Size = new System.Drawing.Size(53, 23);
             this.label1.TabIndex = 33;
             this.label1.Text = "Ф.И.О.";
             // 
@@ -334,10 +346,6 @@
         #endregion
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.RichTextBox richTextBoxLogin;
-        private System.Windows.Forms.RichTextBox richTextBoxSubdivision;
-        private System.Windows.Forms.RichTextBox richTextBoxPosition;
-        private System.Windows.Forms.RichTextBox richTextBoxUserName;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
@@ -355,5 +363,10 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.PictureBox pictureBox1;
         private VitControls.WindowHeader windowHeader1;
+        private System.Windows.Forms.Label labelLogin;
+        private System.Windows.Forms.Label labelSubdivision;
+        private System.Windows.Forms.Label labelPosition;
+        private System.Windows.Forms.Label labelUserName;
+        private VitControls.Button buttonDeletePhoto;
     }
 }

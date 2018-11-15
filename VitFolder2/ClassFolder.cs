@@ -59,6 +59,11 @@ namespace VitFolder
             return lastId;
         }
 
+        public void copyFolder(int idFolder, int idNewParentFolder)
+        {
+            FolderCollection folderCollection = GetFolderById(idFolder, true);
+        }
+
         /// <summary>
         /// Удаляет папку по ее номеру
         /// </summary>

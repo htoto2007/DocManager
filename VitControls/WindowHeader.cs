@@ -99,7 +99,7 @@ namespace VitControls
             //Width = ParentForm.Width;
 
             BackColor = classColors.getCollection().blue;
-            ParentForm.BackColor = classColors.getCollection().secondaryA0;
+            ParentForm.BackColor = classColors.getCollection().darckBlue;
             ParentForm.Padding = new Padding(1, 1, 1, 1);
             ParentForm.TransparencyKey = Color.Empty;
             ParentForm.Update();

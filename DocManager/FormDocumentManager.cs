@@ -112,7 +112,10 @@ namespace DocManager
 
         private void buttonScan_Click(object sender, EventArgs e)
         {
-            twain32.Acquire();
+            if (twain32.SelectSource())
+            {
+                twain32.Acquire();
+            }
         }
 
         private void buttonSettings_Click(object sender, EventArgs e)
@@ -178,9 +181,8 @@ namespace DocManager
             ClassAccessGroup.AccessGroupCollection accessGroupCollection = classAccessGroup.getInfoById(userColection.idAccessGroup);
             if (accessGroupCollection.rank != ClassAccessGroup.Ranks.ADMIN)
             {
-                panelAdminMenu.Visible = false;
+                flowLayoutPanelAdmin.Visible = false;
                 ToolStripMenuItemAdministration.Visible = false;
-                toolStripMenuItemAdminMenu.Visible = false;
             }
         }
 
@@ -191,7 +193,6 @@ namespace DocManager
             ToolStripMenuItemAbout.Image = VitIcons.Properties.ResourceColorImage.icons8_about_48;
             ToolStripMenuItemUserMenu.Image = VitIcons.Properties.ResourceColorImage.icons8_user_avatar_48;
             ToolStripMenuItemUserMenu.Image = VitIcons.Properties.ResourceColorImage.icons8_user_menu_male_48;
-            toolStripMenuItemAdminMenu.Image = VitIcons.Properties.ResourceColorImage.icons8_admin_menu_48;
             ToolStripMenuItemSettingsConnectToDataBase.Image = VitIcons.Properties.ResourceColorImage.icons8_database_administrator_64;
             ToolStripMenuItemSettingsAccessGroup.Image = VitIcons.Properties.ResourceColorImage.icons8_password_48;
             ToolStripMenuItemUsers.Image = VitIcons.Properties.ResourceColorImage.icons8_conference_48;
@@ -234,7 +235,6 @@ namespace DocManager
                 ToolStripMenuItemSend.Enabled = false;
                 ToolStripMenuItemDelete.Enabled = false;
                 ToolStripMenuItemCopy.Enabled = false;
-                ToolStripMenuItemPaste.Enabled = false;
                 ToolStripMenuItemMove.Enabled = false;
                 ToolStripMenuItemRename.Enabled = false;
             }
@@ -248,7 +248,6 @@ namespace DocManager
                     ToolStripMenuItemSend.Enabled = true;
                     ToolStripMenuItemDelete.Enabled = true;
                     ToolStripMenuItemCopy.Enabled = true;
-                    ToolStripMenuItemPaste.Enabled = false;
                     ToolStripMenuItemMove.Enabled = true;
                     ToolStripMenuItemRename.Enabled = true;
                 }
@@ -260,7 +259,6 @@ namespace DocManager
                     ToolStripMenuItemSend.Enabled = true;
                     ToolStripMenuItemDelete.Enabled = true;
                     ToolStripMenuItemCopy.Enabled = true;
-                    ToolStripMenuItemPaste.Enabled = true;
                     ToolStripMenuItemMove.Enabled = true;
                     ToolStripMenuItemRename.Enabled = true;
                 }
@@ -273,7 +271,6 @@ namespace DocManager
                 ToolStripMenuItemSend.Enabled = true;
                 ToolStripMenuItemDelete.Enabled = true;
                 ToolStripMenuItemCopy.Enabled = true;
-                ToolStripMenuItemPaste.Enabled = false;
                 ToolStripMenuItemMove.Enabled = true;
                 ToolStripMenuItemRename.Enabled = false;
             }
@@ -374,8 +371,6 @@ namespace DocManager
         {
             ToolStripMenuItemUserMenu.Checked = VitSettings.Properties.ControlsSettings.Default.flowLayoutPanelUserMenu;
             panelUserMenu.Visible = VitSettings.Properties.ControlsSettings.Default.flowLayoutPanelUserMenu;
-            toolStripMenuItemAdminMenu.Checked = VitSettings.Properties.ControlsSettings.Default.flowLayoutPanelAdminMenu;
-            panelAdminMenu.Visible = VitSettings.Properties.ControlsSettings.Default.flowLayoutPanelAdminMenu;
 
             string repositoryPath = VitSettings.Properties.GeneralsSettings.Default.repositiryPayh;
             if (!Directory.Exists(repositoryPath))
@@ -434,19 +429,38 @@ namespace DocManager
             classTree.TreeFolderAddFolder(treeView1);
         }
 
-        private void toolStripMenuItemAdminMenu_CheckedChanged(object sender, EventArgs e)
-        {
-            panelAdminMenu.Visible = toolStripMenuItemAdminMenu.Checked;
-            VitSettings.Properties.ControlsSettings.Default.flowLayoutPanelAdminMenu = toolStripMenuItemAdminMenu.Checked;
-            VitSettings.Properties.ControlsSettings.Default.Save();
-        }
-
         private void ToolStripMenuItemCopy_Click(object sender, EventArgs e)
         {
             if (lastRequireContextMenu == treeView1.GetType())
             {
                 if (classTree.GetTypeNode(treeView1.SelectedNode) == ClassTree.TypeNodeCollection.FILE)
                 {
+                    ClassFiles classFiles = new ClassFiles();
+                    int idFile = Convert.ToInt32(treeView1.SelectedNode.Name.Split('_')[1]);
+
+                    FormTree formTree = new FormTree();
+                    formTree.treeView1.ImageList = treeView1.ImageList;
+                    classTree.TreeViewFolder(formTree.treeView1);
+                    DialogResult dialogResult = formTree.ShowDialog();
+                    if (dialogResult != DialogResult.OK)
+                    {
+                        return;
+                    }
+
+                    if (formTree.treeView1.SelectedNode == null)
+                    {
+                        return;
+                    }
+
+                    int idNewFolder = Convert.ToInt32(formTree.treeView1.SelectedNode.Name.Split('_')[1]);
+                    ClassFolder classFolder = new ClassFolder();
+                    ClassFolder.FolderCollection folderCollection = classFolder.GetFolderById(idNewFolder, true);
+                    int id = classFiles.Copy(idFile, idNewFolder, folderCollection.pathWithoutRoot);
+
+                    TreeNode treeNode = (TreeNode)treeView1.SelectedNode.Clone();
+                    treeNode.Name = "file_" + id.ToString();
+                    TreeNode[] treeNodes = treeView1.Nodes.Find(formTree.treeView1.SelectedNode.Name, true);
+                    treeNodes[0].Nodes.Add(treeNode);
                 }
                 else if (classTree.GetTypeNode(treeView1.SelectedNode) == ClassTree.TypeNodeCollection.FOLDER)
                 {
@@ -701,7 +715,6 @@ namespace DocManager
                 ToolStripMenuItemSend.Enabled = true;
                 ToolStripMenuItemDelete.Enabled = true;
                 ToolStripMenuItemCopy.Enabled = true;
-                ToolStripMenuItemPaste.Enabled = false;
                 ToolStripMenuItemMove.Enabled = true;
                 ToolStripMenuItemRename.Enabled = true;
             }
@@ -713,7 +726,6 @@ namespace DocManager
                 ToolStripMenuItemSend.Enabled = true;
                 ToolStripMenuItemDelete.Enabled = true;
                 ToolStripMenuItemCopy.Enabled = true;
-                ToolStripMenuItemPaste.Enabled = true;
                 ToolStripMenuItemMove.Enabled = true;
                 ToolStripMenuItemRename.Enabled = true;
             }
@@ -726,6 +738,98 @@ namespace DocManager
             DateTime buildDate = new DateTime(2000, 1, 1).AddDays(version.Build);
             string displayableVersion = $"{version.Major + "." + (version.Build)}";
             Text = programName;
+        }
+
+        private void buttonSettingsConnectToDB_Click(object sender, EventArgs e)
+        {
+            formDB.Show();
+        }
+
+        private void buttonSettingsDocumentCard_Click(object sender, EventArgs e)
+        {
+            formCreatTypeCard.Show();
+        }
+
+        private void buttonSettingsAccessGroup_Click(object sender, EventArgs e)
+        {
+            VitAccessGroup.FormAccessGroup formAccessGroup = new VitAccessGroup.FormAccessGroup();
+            formAccessGroup.ShowDialog();
+        }
+
+        private void ToolStripMenuItemMove_Click(object sender, EventArgs e)
+        {
+            ClassFiles classFiles = new ClassFiles();
+            ClassFolder classFolder = new ClassFolder();
+
+            if (lastRequireContextMenu == treeView1.GetType())
+            {
+                if (classTree.GetTypeNode(treeView1.SelectedNode) == ClassTree.TypeNodeCollection.FILE)
+                {
+                    classTree.TreeFilesMoveFile(treeView1);
+                }
+                else if (classTree.GetTypeNode(treeView1.SelectedNode) == ClassTree.TypeNodeCollection.FOLDER)
+                {
+                    classTree.TreeFolderMoveFolder(treeView1);
+                }
+            }
+            else if (lastRequireContextMenu == listView1.GetType())
+            {
+                for (int i = 0; i < listView1.SelectedItems.Count; i++)
+                {
+                    Console.WriteLine(i + " of " + listView1.SelectedItems.Count);
+                    if (listView1.SelectedItems[i].SubItems["type"].Text == ClassTree.TypeNodeCollection.FILE)
+                    {
+                        //id = Convert.ToInt32(listView1.SelectedItems[i].SubItems["id"].Text);
+                        //classFiles.Delete(id);
+                    }
+                    else if (listView1.SelectedItems[i].SubItems["type"].Text == ClassTree.TypeNodeCollection.FOLDER)
+                    {
+                        //id = Convert.ToInt32(listView1.SelectedItems[i].SubItems["id"].Text);
+                        //classFolder.DeleteFolder(id);
+                    }
+                }
+                listView1.SelectedItems.Clear();
+
+                classTree.InitTreeView(treeView1);
+            }
+        }
+
+        private void ToolStripMenuItemRename_Click(object sender, EventArgs e)
+        {
+            ClassFiles classFiles = new ClassFiles();
+            ClassFolder classFolder = new ClassFolder();
+
+            if (lastRequireContextMenu == treeView1.GetType())
+            {
+                if (classTree.GetTypeNode(treeView1.SelectedNode) == ClassTree.TypeNodeCollection.FILE)
+                {
+                    classTree.renameFile(treeView1);
+                }
+                else if (classTree.GetTypeNode(treeView1.SelectedNode) == ClassTree.TypeNodeCollection.FOLDER)
+                {
+                    classTree.TreeFolderRenameFolder(treeView1);
+                }
+            }
+            else if (lastRequireContextMenu == listView1.GetType())
+            {
+                for (int i = 0; i < listView1.SelectedItems.Count; i++)
+                {
+                    Console.WriteLine(i + " of " + listView1.SelectedItems.Count);
+                    if (listView1.SelectedItems[i].SubItems["type"].Text == ClassTree.TypeNodeCollection.FILE)
+                    {
+                        //id = Convert.ToInt32(listView1.SelectedItems[i].SubItems["id"].Text);
+                        //classFiles.Delete(id);
+                    }
+                    else if (listView1.SelectedItems[i].SubItems["type"].Text == ClassTree.TypeNodeCollection.FOLDER)
+                    {
+                        //id = Convert.ToInt32(listView1.SelectedItems[i].SubItems["id"].Text);
+                        //classFolder.DeleteFolder(id);
+                    }
+                }
+                listView1.SelectedItems.Clear();
+
+                classTree.InitTreeView(treeView1);
+            }
         }
     }
 }

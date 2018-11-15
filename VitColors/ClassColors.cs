@@ -11,7 +11,7 @@ namespace VitColors
                 blue = Color.FromArgb(175, 207, 251),
                 gray = Color.FromArgb(214, 228, 255),
                 secondaryA0 = Color.FromArgb(255, 204, 0),
-                secondaryA1 = Color.FromArgb(255, 204, 153),
+                darckBlue = Color.FromArgb(0, 12, 255),
                 secondaryB0 = Color.FromArgb(255, 0, 0),
                 secondaryB1 = Color.FromArgb(255, 153, 153)
             };
@@ -24,7 +24,7 @@ namespace VitColors
             public Color blue;
             public Color gray;
             public Color secondaryA0;
-            public Color secondaryA1;
+            public Color darckBlue;
             public Color secondaryB0;
             public Color secondaryB1;
         }

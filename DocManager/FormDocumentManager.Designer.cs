@@ -51,14 +51,12 @@
             this.ToolStripMenuItemSendToFolder = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemCopy = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToolStripMenuItemPaste = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemMove = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemRename = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemScanToThisFolder = new System.Windows.Forms.ToolStripMenuItem();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.ToolStripMenuItemView = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemAdminMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemUserMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemAdministration = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemSettingsConnectToDataBase = new System.Windows.Forms.ToolStripMenuItem();
@@ -70,8 +68,18 @@
             this.ToolStripMenuItemAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.timerSearcher = new System.Windows.Forms.Timer(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.button2 = new VitControls.Button();
+            this.buttonSettingsDocumentCard = new VitControls.Button();
+            this.buttonSettingsAccessGroup = new VitControls.Button();
+            this.buttonUsers = new VitControls.Button();
+            this.buttonSettings = new VitControls.Button();
+            this.buttonScan = new VitControls.Button();
+            this.buttonAddBranch = new VitControls.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button1 = new VitControls.Button();
+            this.buttonExit = new VitControls.Button();
             this.panelUserMenu = new System.Windows.Forms.Panel();
-            this.labelUserName = new System.Windows.Forms.Label();
+            this.flowLayoutPanelAdmin = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanelUserMenu = new System.Windows.Forms.FlowLayoutPanel();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.listView1 = new System.Windows.Forms.ListView();
@@ -80,33 +88,21 @@
             this.dateCreate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.dateChange = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.path = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.panelExplorer = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panelAdminMenu = new System.Windows.Forms.Panel();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panelStatusProgress = new System.Windows.Forms.Panel();
             this.labelStatus = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.button2 = new VitControls.Button();
-            this.button3 = new VitControls.Button();
-            this.button4 = new VitControls.Button();
-            this.buttonUsers = new VitControls.Button();
-            this.buttonSettings = new VitControls.Button();
-            this.button1 = new VitControls.Button();
-            this.buttonScan = new VitControls.Button();
-            this.buttonAddBranch = new VitControls.Button();
-            this.buttonExit = new VitControls.Button();
             this.windowHeader1 = new VitControls.WindowHeader();
+            this.labelUserName = new System.Windows.Forms.Label();
             this.contextMenuStripTreeView.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.panelUserMenu.SuspendLayout();
+            this.flowLayoutPanelAdmin.SuspendLayout();
             this.flowLayoutPanelUserMenu.SuspendLayout();
             this.panelExplorer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.panelAdminMenu.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
             this.panelStatusProgress.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -120,12 +116,11 @@
             this.ToolStripMenuItemSend,
             this.ToolStripMenuItemDelete,
             this.ToolStripMenuItemCopy,
-            this.ToolStripMenuItemPaste,
             this.ToolStripMenuItemMove,
             this.ToolStripMenuItemRename,
             this.toolStripMenuItemScanToThisFolder});
             this.contextMenuStripTreeView.Name = "contextMenuStrip1";
-            this.contextMenuStripTreeView.Size = new System.Drawing.Size(223, 224);
+            this.contextMenuStripTreeView.Size = new System.Drawing.Size(223, 202);
             this.contextMenuStripTreeView.Opened += new System.EventHandler(this.contextMenuStripTreeView_Opened);
             // 
             // ToolStripMenuItemAddFolder
@@ -133,7 +128,7 @@
             this.ToolStripMenuItemAddFolder.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripMenuItemAddFolder.Image")));
             this.ToolStripMenuItemAddFolder.Name = "ToolStripMenuItemAddFolder";
             this.ToolStripMenuItemAddFolder.Size = new System.Drawing.Size(222, 22);
-            this.ToolStripMenuItemAddFolder.Text = "Добавить папкук";
+            this.ToolStripMenuItemAddFolder.Text = "Добавить папку";
             this.ToolStripMenuItemAddFolder.Click += new System.EventHandler(this.ToolStripMenuItemAddFolder_Click);
             // 
             // ToolStripMenuItemRequestOriginal
@@ -223,19 +218,13 @@
             this.ToolStripMenuItemCopy.Text = "Копировать";
             this.ToolStripMenuItemCopy.Click += new System.EventHandler(this.ToolStripMenuItemCopy_Click);
             // 
-            // ToolStripMenuItemPaste
-            // 
-            this.ToolStripMenuItemPaste.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripMenuItemPaste.Image")));
-            this.ToolStripMenuItemPaste.Name = "ToolStripMenuItemPaste";
-            this.ToolStripMenuItemPaste.Size = new System.Drawing.Size(222, 22);
-            this.ToolStripMenuItemPaste.Text = "Вставить";
-            // 
             // ToolStripMenuItemMove
             // 
             this.ToolStripMenuItemMove.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripMenuItemMove.Image")));
             this.ToolStripMenuItemMove.Name = "ToolStripMenuItemMove";
             this.ToolStripMenuItemMove.Size = new System.Drawing.Size(222, 22);
             this.ToolStripMenuItemMove.Text = "Переместить";
+            this.ToolStripMenuItemMove.Click += new System.EventHandler(this.ToolStripMenuItemMove_Click);
             // 
             // ToolStripMenuItemRename
             // 
@@ -243,6 +232,7 @@
             this.ToolStripMenuItemRename.Name = "ToolStripMenuItemRename";
             this.ToolStripMenuItemRename.Size = new System.Drawing.Size(222, 22);
             this.ToolStripMenuItemRename.Text = "Переименовать";
+            this.ToolStripMenuItemRename.Click += new System.EventHandler(this.ToolStripMenuItemRename_Click);
             // 
             // toolStripMenuItemScanToThisFolder
             // 
@@ -291,21 +281,12 @@
             // ToolStripMenuItemView
             // 
             this.ToolStripMenuItemView.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItemAdminMenu,
             this.ToolStripMenuItemUserMenu});
             this.ToolStripMenuItemView.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ToolStripMenuItemView.ForeColor = System.Drawing.Color.Black;
             this.ToolStripMenuItemView.Name = "ToolStripMenuItemView";
             this.ToolStripMenuItemView.Size = new System.Drawing.Size(45, 26);
             this.ToolStripMenuItemView.Text = "Вид";
-            // 
-            // toolStripMenuItemAdminMenu
-            // 
-            this.toolStripMenuItemAdminMenu.CheckOnClick = true;
-            this.toolStripMenuItemAdminMenu.Name = "toolStripMenuItemAdminMenu";
-            this.toolStripMenuItemAdminMenu.Size = new System.Drawing.Size(233, 24);
-            this.toolStripMenuItemAdminMenu.Text = "Меню администратора";
-            this.toolStripMenuItemAdminMenu.CheckedChanged += new System.EventHandler(this.toolStripMenuItemAdminMenu_CheckedChanged);
             // 
             // ToolStripMenuItemUserMenu
             // 
@@ -385,226 +366,13 @@
             this.timerSearcher.Interval = 1000;
             this.timerSearcher.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // panelUserMenu
+            // toolTip1
             // 
-            this.panelUserMenu.BackColor = System.Drawing.Color.White;
-            this.panelUserMenu.Controls.Add(this.labelUserName);
-            this.panelUserMenu.Controls.Add(this.button1);
-            this.panelUserMenu.Controls.Add(this.flowLayoutPanelUserMenu);
-            this.panelUserMenu.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelUserMenu.Location = new System.Drawing.Point(1, 67);
-            this.panelUserMenu.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.panelUserMenu.Name = "panelUserMenu";
-            this.panelUserMenu.Size = new System.Drawing.Size(823, 35);
-            this.panelUserMenu.TabIndex = 5;
-            // 
-            // labelUserName
-            // 
-            this.labelUserName.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.labelUserName.AutoSize = true;
-            this.labelUserName.ForeColor = System.Drawing.Color.Black;
-            this.labelUserName.Location = new System.Drawing.Point(708, 6);
-            this.labelUserName.Name = "labelUserName";
-            this.labelUserName.Size = new System.Drawing.Size(112, 17);
-            this.labelUserName.TabIndex = 15;
-            this.labelUserName.Text = "User not connect";
-            // 
-            // flowLayoutPanelUserMenu
-            // 
-            this.flowLayoutPanelUserMenu.AllowDrop = true;
-            this.flowLayoutPanelUserMenu.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.flowLayoutPanelUserMenu.Controls.Add(this.buttonScan);
-            this.flowLayoutPanelUserMenu.Controls.Add(this.buttonAddBranch);
-            this.flowLayoutPanelUserMenu.Controls.Add(this.buttonExit);
-            this.flowLayoutPanelUserMenu.Location = new System.Drawing.Point(9, 1);
-            this.flowLayoutPanelUserMenu.Margin = new System.Windows.Forms.Padding(0);
-            this.flowLayoutPanelUserMenu.Name = "flowLayoutPanelUserMenu";
-            this.flowLayoutPanelUserMenu.Size = new System.Drawing.Size(653, 34);
-            this.flowLayoutPanelUserMenu.TabIndex = 13;
-            // 
-            // treeView1
-            // 
-            this.treeView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.treeView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.treeView1.ContextMenuStrip = this.contextMenuStripTreeView;
-            this.treeView1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.treeView1.ImageIndex = 0;
-            this.treeView1.ImageList = this.imageList1;
-            this.treeView1.Location = new System.Drawing.Point(3, 8);
-            this.treeView1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.treeView1.Name = "treeView1";
-            treeNode1.Name = "Узел8";
-            treeNode1.Text = "Узел8";
-            treeNode2.Name = "Узел10";
-            treeNode2.Text = "Узел10";
-            treeNode3.ImageKey = "folder.png";
-            treeNode3.Name = "Узел6";
-            treeNode3.SelectedImageKey = "folder-open.png";
-            treeNode3.Text = "Узел6";
-            treeNode4.ContextMenuStrip = this.contextMenuStripTreeView;
-            treeNode4.Name = "Узел7";
-            treeNode4.Text = "Узел7";
-            this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode3,
-            treeNode4});
-            this.treeView1.SelectedImageIndex = 0;
-            this.treeView1.Size = new System.Drawing.Size(392, 510);
-            this.treeView1.TabIndex = 5;
-            this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
-            this.treeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseClick_1);
-            // 
-            // listView1
-            // 
-            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.id,
-            this.name,
-            this.dateCreate,
-            this.dateChange,
-            this.path});
-            this.listView1.ContextMenuStrip = this.contextMenuStripTreeView;
-            this.listView1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
-            this.listView1.Location = new System.Drawing.Point(401, 43);
-            this.listView1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 4);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(404, 475);
-            this.listView1.TabIndex = 6;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
-            this.listView1.DoubleClick += new System.EventHandler(this.listView1_DoubleClick);
-            // 
-            // id
-            // 
-            this.id.Text = "id";
-            this.id.Width = 32;
-            // 
-            // name
-            // 
-            this.name.Text = "Имя файла";
-            this.name.Width = 220;
-            // 
-            // dateCreate
-            // 
-            this.dateCreate.Text = "Дата создания";
-            this.dateCreate.Width = 127;
-            // 
-            // dateChange
-            // 
-            this.dateChange.Text = "Дата изменеия";
-            this.dateChange.Width = 102;
-            // 
-            // path
-            // 
-            this.path.Text = "Путь";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.BackColor = System.Drawing.Color.White;
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox1.Location = new System.Drawing.Point(423, 8);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(0, 4, 3, 0);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(382, 22);
-            this.textBox1.TabIndex = 7;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
-            // panelExplorer
-            // 
-            this.panelExplorer.BackColor = System.Drawing.Color.White;
-            this.panelExplorer.Controls.Add(this.pictureBox1);
-            this.panelExplorer.Controls.Add(this.textBox1);
-            this.panelExplorer.Controls.Add(this.listView1);
-            this.panelExplorer.Controls.Add(this.panel1);
-            this.panelExplorer.Controls.Add(this.treeView1);
-            this.panelExplorer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelExplorer.Location = new System.Drawing.Point(1, 138);
-            this.panelExplorer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.panelExplorer.Name = "panelExplorer";
-            this.panelExplorer.Size = new System.Drawing.Size(823, 522);
-            this.panelExplorer.TabIndex = 6;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.White;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.InitialImage = null;
-            this.pictureBox1.Location = new System.Drawing.Point(401, 8);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(22, 22);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 8;
-            this.pictureBox1.TabStop = false;
-            // 
-            // panel1
-            // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Location = new System.Drawing.Point(402, 22);
-            this.panel1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(405, 10);
-            this.panel1.TabIndex = 9;
-            // 
-            // panelAdminMenu
-            // 
-            this.panelAdminMenu.BackColor = System.Drawing.Color.White;
-            this.panelAdminMenu.Controls.Add(this.flowLayoutPanel1);
-            this.panelAdminMenu.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelAdminMenu.Location = new System.Drawing.Point(1, 102);
-            this.panelAdminMenu.Name = "panelAdminMenu";
-            this.panelAdminMenu.Size = new System.Drawing.Size(823, 36);
-            this.panelAdminMenu.TabIndex = 8;
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.flowLayoutPanel1.Controls.Add(this.button2);
-            this.flowLayoutPanel1.Controls.Add(this.button3);
-            this.flowLayoutPanel1.Controls.Add(this.button4);
-            this.flowLayoutPanel1.Controls.Add(this.buttonUsers);
-            this.flowLayoutPanel1.Controls.Add(this.buttonSettings);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(10, 1);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(653, 34);
-            this.flowLayoutPanel1.TabIndex = 10;
-            // 
-            // panelStatusProgress
-            // 
-            this.panelStatusProgress.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.panelStatusProgress.Controls.Add(this.labelStatus);
-            this.panelStatusProgress.Controls.Add(this.progressBar1);
-            this.panelStatusProgress.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelStatusProgress.Location = new System.Drawing.Point(1, 660);
-            this.panelStatusProgress.Name = "panelStatusProgress";
-            this.panelStatusProgress.Size = new System.Drawing.Size(823, 28);
-            this.panelStatusProgress.TabIndex = 9;
-            // 
-            // labelStatus
-            // 
-            this.labelStatus.AutoSize = true;
-            this.labelStatus.Location = new System.Drawing.Point(13, 5);
-            this.labelStatus.Name = "labelStatus";
-            this.labelStatus.Size = new System.Drawing.Size(43, 17);
-            this.labelStatus.TabIndex = 1;
-            this.labelStatus.Text = "label1";
-            // 
-            // progressBar1
-            // 
-            this.progressBar1.Location = new System.Drawing.Point(401, 11);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(134, 11);
-            this.progressBar1.TabIndex = 2;
+            this.toolTip1.AutomaticDelay = 100;
+            this.toolTip1.IsBalloon = true;
+            this.toolTip1.OwnerDraw = true;
+            this.toolTip1.UseAnimation = false;
+            this.toolTip1.UseFading = false;
             // 
             // button2
             // 
@@ -620,34 +388,37 @@
             this.button2.Size = new System.Drawing.Size(32, 32);
             this.button2.TabIndex = 16;
             this.toolTip1.SetToolTip(this.button2, "Настройки баз данных");
+            this.button2.Click += new System.EventHandler(this.buttonSettingsConnectToDB_Click);
             // 
-            // button3
+            // buttonSettingsDocumentCard
             // 
-            this.button3.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
-            this.button3.AllowDrop = true;
-            this.button3.BackColor = System.Drawing.Color.White;
-            this.button3.BackgroundImage = global::DocManager.Properties.Resources.icons8_red_card_40;
-            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button3.Location = new System.Drawing.Point(41, 1);
-            this.button3.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(32, 32);
-            this.button3.TabIndex = 17;
-            this.toolTip1.SetToolTip(this.button3, "Настройка карточек документов");
+            this.buttonSettingsDocumentCard.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
+            this.buttonSettingsDocumentCard.AllowDrop = true;
+            this.buttonSettingsDocumentCard.BackColor = System.Drawing.Color.White;
+            this.buttonSettingsDocumentCard.BackgroundImage = global::DocManager.Properties.Resources.icons8_red_card_40;
+            this.buttonSettingsDocumentCard.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.buttonSettingsDocumentCard.Location = new System.Drawing.Point(41, 1);
+            this.buttonSettingsDocumentCard.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
+            this.buttonSettingsDocumentCard.Name = "buttonSettingsDocumentCard";
+            this.buttonSettingsDocumentCard.Size = new System.Drawing.Size(32, 32);
+            this.buttonSettingsDocumentCard.TabIndex = 17;
+            this.toolTip1.SetToolTip(this.buttonSettingsDocumentCard, "Настройка карточек документов");
+            this.buttonSettingsDocumentCard.Click += new System.EventHandler(this.buttonSettingsDocumentCard_Click);
             // 
-            // button4
+            // buttonSettingsAccessGroup
             // 
-            this.button4.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
-            this.button4.AllowDrop = true;
-            this.button4.BackColor = System.Drawing.Color.White;
-            this.button4.BackgroundImage = global::DocManager.Properties.Resources.icons8_password_48;
-            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button4.Location = new System.Drawing.Point(79, 1);
-            this.button4.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(32, 32);
-            this.button4.TabIndex = 18;
-            this.toolTip1.SetToolTip(this.button4, "Настройки прав доступа");
+            this.buttonSettingsAccessGroup.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
+            this.buttonSettingsAccessGroup.AllowDrop = true;
+            this.buttonSettingsAccessGroup.BackColor = System.Drawing.Color.White;
+            this.buttonSettingsAccessGroup.BackgroundImage = global::DocManager.Properties.Resources.icons8_password_48;
+            this.buttonSettingsAccessGroup.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.buttonSettingsAccessGroup.Location = new System.Drawing.Point(79, 1);
+            this.buttonSettingsAccessGroup.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
+            this.buttonSettingsAccessGroup.Name = "buttonSettingsAccessGroup";
+            this.buttonSettingsAccessGroup.Size = new System.Drawing.Size(32, 32);
+            this.buttonSettingsAccessGroup.TabIndex = 18;
+            this.toolTip1.SetToolTip(this.buttonSettingsAccessGroup, "Настройки прав доступа");
+            this.buttonSettingsAccessGroup.Click += new System.EventHandler(this.buttonSettingsAccessGroup_Click);
             // 
             // buttonUsers
             // 
@@ -678,20 +449,6 @@
             this.buttonSettings.TabIndex = 20;
             this.toolTip1.SetToolTip(this.buttonSettings, "Настройки");
             this.buttonSettings.Click += new System.EventHandler(this.buttonSettings_Click);
-            // 
-            // button1
-            // 
-            this.button1.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
-            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.button1.BackColor = System.Drawing.Color.Transparent;
-            this.button1.BackgroundImage = global::DocManager.Properties.Resources.icons8_user_avatar_48;
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button1.Location = new System.Drawing.Point(662, 1);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(32, 32);
-            this.button1.TabIndex = 14;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // buttonScan
             // 
@@ -724,20 +481,235 @@
             this.toolTip1.SetToolTip(this.buttonAddBranch, "Дабавить филиал");
             this.buttonAddBranch.Click += new System.EventHandler(this.buttonAddBranch_Click);
             // 
+            // textBox1
+            // 
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox1.BackColor = System.Drawing.Color.White;
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox1.Location = new System.Drawing.Point(423, 8);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(0, 4, 3, 0);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(382, 22);
+            this.textBox1.TabIndex = 7;
+            this.toolTip1.SetToolTip(this.textBox1, "Просто начните вводить текст и все найдется...");
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // button1
+            // 
+            this.button1.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.BackColor = System.Drawing.Color.White;
+            this.button1.BackgroundImage = global::DocManager.Properties.Resources.icons8_user_avatar_48;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button1.Location = new System.Drawing.Point(497, 35);
+            this.button1.Margin = new System.Windows.Forms.Padding(7, 1, 7, 1);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(32, 32);
+            this.button1.TabIndex = 20;
+            this.toolTip1.SetToolTip(this.button1, "Профиль пользователя");
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // buttonExit
             // 
             this.buttonExit.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
             this.buttonExit.AllowDrop = true;
+            this.buttonExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonExit.BackColor = System.Drawing.Color.White;
             this.buttonExit.BackgroundImage = global::DocManager.Properties.Resources.icons8_exit_48;
             this.buttonExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.buttonExit.Location = new System.Drawing.Point(74, 1);
-            this.buttonExit.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.buttonExit.Location = new System.Drawing.Point(464, 35);
+            this.buttonExit.Margin = new System.Windows.Forms.Padding(4, 1, 4, 1);
             this.buttonExit.Name = "buttonExit";
             this.buttonExit.Size = new System.Drawing.Size(32, 32);
-            this.buttonExit.TabIndex = 15;
+            this.buttonExit.TabIndex = 18;
             this.toolTip1.SetToolTip(this.buttonExit, "Выход");
             this.buttonExit.Click += new System.EventHandler(this.buttonExit_Click);
+            // 
+            // panelUserMenu
+            // 
+            this.panelUserMenu.BackColor = System.Drawing.Color.White;
+            this.panelUserMenu.Controls.Add(this.flowLayoutPanelAdmin);
+            this.panelUserMenu.Controls.Add(this.flowLayoutPanelUserMenu);
+            this.panelUserMenu.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelUserMenu.Location = new System.Drawing.Point(1, 67);
+            this.panelUserMenu.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.panelUserMenu.Name = "panelUserMenu";
+            this.panelUserMenu.Size = new System.Drawing.Size(823, 35);
+            this.panelUserMenu.TabIndex = 5;
+            // 
+            // flowLayoutPanelAdmin
+            // 
+            this.flowLayoutPanelAdmin.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.flowLayoutPanelAdmin.Controls.Add(this.button2);
+            this.flowLayoutPanelAdmin.Controls.Add(this.buttonSettingsDocumentCard);
+            this.flowLayoutPanelAdmin.Controls.Add(this.buttonSettingsAccessGroup);
+            this.flowLayoutPanelAdmin.Controls.Add(this.buttonUsers);
+            this.flowLayoutPanelAdmin.Controls.Add(this.buttonSettings);
+            this.flowLayoutPanelAdmin.Location = new System.Drawing.Point(86, 2);
+            this.flowLayoutPanelAdmin.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
+            this.flowLayoutPanelAdmin.Name = "flowLayoutPanelAdmin";
+            this.flowLayoutPanelAdmin.Size = new System.Drawing.Size(197, 33);
+            this.flowLayoutPanelAdmin.TabIndex = 10;
+            // 
+            // flowLayoutPanelUserMenu
+            // 
+            this.flowLayoutPanelUserMenu.AllowDrop = true;
+            this.flowLayoutPanelUserMenu.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.flowLayoutPanelUserMenu.Controls.Add(this.buttonScan);
+            this.flowLayoutPanelUserMenu.Controls.Add(this.buttonAddBranch);
+            this.flowLayoutPanelUserMenu.Location = new System.Drawing.Point(9, 1);
+            this.flowLayoutPanelUserMenu.Margin = new System.Windows.Forms.Padding(0);
+            this.flowLayoutPanelUserMenu.Name = "flowLayoutPanelUserMenu";
+            this.flowLayoutPanelUserMenu.Size = new System.Drawing.Size(74, 34);
+            this.flowLayoutPanelUserMenu.TabIndex = 13;
+            // 
+            // treeView1
+            // 
+            this.treeView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.treeView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.treeView1.ContextMenuStrip = this.contextMenuStripTreeView;
+            this.treeView1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.treeView1.ImageIndex = 0;
+            this.treeView1.ImageList = this.imageList1;
+            this.treeView1.Location = new System.Drawing.Point(3, 8);
+            this.treeView1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.treeView1.Name = "treeView1";
+            treeNode1.Name = "Узел8";
+            treeNode1.Text = "Узел8";
+            treeNode2.Name = "Узел10";
+            treeNode2.Text = "Узел10";
+            treeNode3.ImageKey = "folder.png";
+            treeNode3.Name = "Узел6";
+            treeNode3.SelectedImageKey = "folder-open.png";
+            treeNode3.Text = "Узел6";
+            treeNode4.ContextMenuStrip = this.contextMenuStripTreeView;
+            treeNode4.Name = "Узел7";
+            treeNode4.Text = "Узел7";
+            this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode3,
+            treeNode4});
+            this.treeView1.SelectedImageIndex = 0;
+            this.treeView1.Size = new System.Drawing.Size(392, 546);
+            this.treeView1.TabIndex = 5;
+            this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
+            this.treeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseClick_1);
+            // 
+            // listView1
+            // 
+            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.id,
+            this.name,
+            this.dateCreate,
+            this.dateChange,
+            this.path});
+            this.listView1.ContextMenuStrip = this.contextMenuStripTreeView;
+            this.listView1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem1});
+            this.listView1.Location = new System.Drawing.Point(401, 43);
+            this.listView1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 4);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(404, 511);
+            this.listView1.TabIndex = 6;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.DoubleClick += new System.EventHandler(this.listView1_DoubleClick);
+            // 
+            // id
+            // 
+            this.id.Text = "id";
+            this.id.Width = 32;
+            // 
+            // name
+            // 
+            this.name.Text = "Имя файла";
+            this.name.Width = 220;
+            // 
+            // dateCreate
+            // 
+            this.dateCreate.Text = "Дата создания";
+            this.dateCreate.Width = 127;
+            // 
+            // dateChange
+            // 
+            this.dateChange.Text = "Дата изменеия";
+            this.dateChange.Width = 102;
+            // 
+            // path
+            // 
+            this.path.Text = "Путь";
+            // 
+            // panelExplorer
+            // 
+            this.panelExplorer.BackColor = System.Drawing.Color.White;
+            this.panelExplorer.Controls.Add(this.pictureBox1);
+            this.panelExplorer.Controls.Add(this.textBox1);
+            this.panelExplorer.Controls.Add(this.listView1);
+            this.panelExplorer.Controls.Add(this.panel1);
+            this.panelExplorer.Controls.Add(this.treeView1);
+            this.panelExplorer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelExplorer.Location = new System.Drawing.Point(1, 102);
+            this.panelExplorer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.panelExplorer.Name = "panelExplorer";
+            this.panelExplorer.Size = new System.Drawing.Size(823, 558);
+            this.panelExplorer.TabIndex = 6;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.White;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.InitialImage = null;
+            this.pictureBox1.Location = new System.Drawing.Point(401, 8);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(22, 22);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 8;
+            this.pictureBox1.TabStop = false;
+            // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Location = new System.Drawing.Point(402, 22);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(405, 10);
+            this.panel1.TabIndex = 9;
+            // 
+            // panelStatusProgress
+            // 
+            this.panelStatusProgress.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panelStatusProgress.Controls.Add(this.labelStatus);
+            this.panelStatusProgress.Controls.Add(this.progressBar1);
+            this.panelStatusProgress.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelStatusProgress.Location = new System.Drawing.Point(1, 660);
+            this.panelStatusProgress.Name = "panelStatusProgress";
+            this.panelStatusProgress.Size = new System.Drawing.Size(823, 28);
+            this.panelStatusProgress.TabIndex = 9;
+            // 
+            // labelStatus
+            // 
+            this.labelStatus.AutoSize = true;
+            this.labelStatus.Location = new System.Drawing.Point(13, 5);
+            this.labelStatus.Name = "labelStatus";
+            this.labelStatus.Size = new System.Drawing.Size(43, 17);
+            this.labelStatus.TabIndex = 1;
+            this.labelStatus.Text = "label1";
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(401, 11);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(134, 11);
+            this.progressBar1.TabIndex = 2;
             // 
             // windowHeader1
             // 
@@ -754,16 +726,30 @@
             this.windowHeader1.Size = new System.Drawing.Size(823, 34);
             this.windowHeader1.TabIndex = 10;
             // 
+            // labelUserName
+            // 
+            this.labelUserName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelUserName.AutoSize = true;
+            this.labelUserName.BackColor = System.Drawing.Color.White;
+            this.labelUserName.ForeColor = System.Drawing.Color.Black;
+            this.labelUserName.Location = new System.Drawing.Point(539, 46);
+            this.labelUserName.Name = "labelUserName";
+            this.labelUserName.Size = new System.Drawing.Size(43, 17);
+            this.labelUserName.TabIndex = 19;
+            this.labelUserName.Text = "label1";
+            // 
             // FormDocumentManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(204)))), ((int)(((byte)(0)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(12)))), ((int)(((byte)(255)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(825, 689);
             this.ControlBox = false;
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.buttonExit);
+            this.Controls.Add(this.labelUserName);
             this.Controls.Add(this.panelExplorer);
-            this.Controls.Add(this.panelAdminMenu);
             this.Controls.Add(this.panelUserMenu);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.windowHeader1);
@@ -786,13 +772,11 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.panelUserMenu.ResumeLayout(false);
-            this.panelUserMenu.PerformLayout();
+            this.flowLayoutPanelAdmin.ResumeLayout(false);
             this.flowLayoutPanelUserMenu.ResumeLayout(false);
             this.panelExplorer.ResumeLayout(false);
             this.panelExplorer.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panelAdminMenu.ResumeLayout(false);
-            this.flowLayoutPanel1.ResumeLayout(false);
             this.panelStatusProgress.ResumeLayout(false);
             this.panelStatusProgress.PerformLayout();
             this.ResumeLayout(false);
@@ -815,7 +799,6 @@
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemUsers;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemSettings;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemView;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemAdminMenu;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemUserMenu;
         private System.Windows.Forms.Panel panelUserMenu;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelUserMenu;
@@ -833,20 +816,15 @@
         private VitControls.Button buttonAddBranch;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemHelp;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemAbout;
-        private VitControls.Button buttonExit;
-        private VitControls.Button button1;
-        private System.Windows.Forms.Label labelUserName;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panelAdminMenu;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelAdmin;
         private VitControls.Button button2;
-        private VitControls.Button button3;
-        private VitControls.Button button4;
+        private VitControls.Button buttonSettingsDocumentCard;
+        private VitControls.Button buttonSettingsAccessGroup;
         private VitControls.Button buttonUsers;
         private VitControls.Button buttonSettings;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemAddDocument;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemCopy;
-        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemPaste;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemSend;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemSendToDesctop;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemSendToPrint;
@@ -862,6 +840,9 @@
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemScanToThisFolder;
         private VitControls.WindowHeader windowHeader1;
+        private VitControls.Button button1;
+        private System.Windows.Forms.Label labelUserName;
+        private VitControls.Button buttonExit;
     }
 }
 

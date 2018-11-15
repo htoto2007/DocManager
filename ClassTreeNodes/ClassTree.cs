@@ -197,8 +197,8 @@ namespace VitTree
                 TreeViewFile(treeView);
                 treeView.Nodes[0].Expand();
                 globalNode = (TreeNode)objectTreeView.Nodes[0].Clone();
-                formTree.treeView1.Nodes.Clear();
-                formTree.treeView1.Nodes.Insert(0, globalNode);
+                //formTree.treeView1.Nodes.Clear();
+                //formTree.treeView1.Nodes.Insert(0, globalNode);
                 treeView.EndUpdate();
             });
         }
@@ -253,15 +253,15 @@ namespace VitTree
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void TreeFilesMoveFile_click(object sender, EventArgs e)
+        public void TreeFilesMoveFile(TreeView treeView)
         {
             formTree.Text = "Переместить файл";
             formTree.buttonOk.Text = "Переместить";
-            TreeNode treeNode = objectTreeView.SelectedNode;
+            TreeNode treeNode = treeView.SelectedNode;
             formTree.ShowDialog();
 
             DialogResult dialogResult = MessageBox.Show(
-                "Вы точно хотите переместить \"" + treeNode.Text + "\" в " + objectTreeView.SelectedNode.FullPath,
+                "Вы точно хотите переместить \"" + treeNode.Text + "\" в " + treeView.SelectedNode.FullPath,
                 "Удаление",
                  MessageBoxButtons.YesNo,
                  MessageBoxIcon.Warning
@@ -269,12 +269,12 @@ namespace VitTree
 
             if (dialogResult == DialogResult.Yes)
             {
-                treeNode = objectTreeView.SelectedNode;
+                treeNode = treeView.SelectedNode;
                 int idFile = Convert.ToInt32(treeNode.Name.Split('_')[1]);
                 int idFolder = Convert.ToInt32(formTree.treeView1.SelectedNode.Name.Split('_')[1]);
                 string newPath = formTree.treeView1.SelectedNode.FullPath;
                 classFiles.Move(idFile, idFolder, newPath);
-                InitTreeView(objectTreeView);
+                InitTreeView(treeView);
             }
         }
 
@@ -409,20 +409,20 @@ namespace VitTree
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void TreeFolderMoveFolder_click(object sender, EventArgs e)
+        public void TreeFolderMoveFolder(TreeView treeView)
         {
             // Задаем нужные надписи в диалоговом окне дерева
             formTree.Text = "Переместить папку";
             formTree.buttonOk.Text = "Переместить";
             //formTree.Name = "formTreeFolderMoveFolder";
             // получаем клон орсновного дерева
-            TreeNode cloneNode = (TreeNode)objectTreeView.Nodes[0].Clone();
+            TreeNode cloneNode = (TreeNode)treeView.Nodes[0].Clone();
             formTree.treeView1.Nodes.Clear();
             // записываем клон в диалоговую форму
             formTree.treeView1.Nodes.Add(cloneNode);
             formTree.treeView1.Nodes[0].Expand();
             // запоминаем выделеный узел (переносимую папку)
-            TreeNode folderNode = objectTreeView.SelectedNode;
+            TreeNode folderNode = treeView.SelectedNode;
 
             // Закрываем окно, если оно было открыто
             formTree.Hide();
@@ -446,7 +446,7 @@ namespace VitTree
 
             classFolder.MoveFolder(idFolder, idParent);
 
-            TreeNode[] treeNodes = objectTreeView.Nodes.Find(moveToLocationNode.Name, true);
+            TreeNode[] treeNodes = treeView.Nodes.Find(moveToLocationNode.Name, true);
             treeNodes[0].Nodes.Add((TreeNode)folderNode.Clone());
             folderNode.Remove();
 
@@ -458,9 +458,9 @@ namespace VitTree
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void TreeFolderRenameFolder_click(object sender, EventArgs e)
+        public void TreeFolderRenameFolder(TreeView treeView)
         {
-            TreeNode treeNode = objectTreeView.SelectedNode;
+            TreeNode treeNode = treeView.SelectedNode;
 
             formTreeInput.Text = "Переименовать папку";
             formTreeInput.buttonOk.Text = "Переименовать";
@@ -480,7 +480,7 @@ namespace VitTree
 
             int id = Convert.ToInt32(treeNode.Name.Split('_')[1]);
             classFolder.RenameFolder(id, formTreeInput.textBox1.Text);
-            RenameNode(objectTreeView, treeNode.Name, formTreeInput.textBox1.Text);
+            RenameNode(treeView, treeNode.Name, formTreeInput.textBox1.Text);
 
             formTreeInput.textBox1.Text = "";
             formTreeInput.Name = "null";
@@ -633,9 +633,9 @@ namespace VitTree
             }
         }
 
-        private void renameFile()
+        public void renameFile(TreeView treeView)
         {
-            formTreeInput.textBox1.Text = objectTreeView.SelectedNode.Text;
+            formTreeInput.textBox1.Text = treeView.SelectedNode.Text;
             formTreeInput.Text = "Переименовать файл";
             formTreeInput.ShowDialog();
             string newName = formTreeInput.textBox1.Text;
@@ -644,8 +644,8 @@ namespace VitTree
                 return;
             }
 
-            objectTreeView.SelectedNode.Text = newName;
-            int idFile = Convert.ToInt32(objectTreeView.SelectedNode.Name.Split('_')[1]);
+            treeView.SelectedNode.Text = newName;
+            int idFile = Convert.ToInt32(treeView.SelectedNode.Name.Split('_')[1]);
 
             classFiles.Rename(idFile, newName);
         }
@@ -730,7 +730,7 @@ namespace VitTree
             foreach (ClassFiles.FileCollection file in fileCollection)
             {
                 TreeNode treeNode = new TreeNode();
-                string imageKey = "";//ClassImageList.addIconFile(classFiles.GetFileById(file.id).path);
+                string imageKey = ClassImageList.addIconFile(classFiles.GetFileById(file.id).path);
                 treeNode.Text = file.name;
                 treeNode.Name = "file_" + file.id.ToString();
                 treeNode.Tag = "file";
@@ -750,7 +750,7 @@ namespace VitTree
         /// Обеспечивает подгрузку информации о папках из базы и организации ее в дерево
         /// </summary>
         /// <param name="treeView"></param>
-        private void TreeViewFolder(TreeView treeView)
+        public void TreeViewFolder(TreeView treeView)
         {
             ClassFolder.FolderCollection[] foldersCollection = classFolder.GetAllFolders(false);
 
