@@ -74,6 +74,10 @@
       <Project>{f92548b9-5df7-4c56-acbd-e0d091a47d2b}</Project>
       <Name>VitDBConnect</Name>
     </ProjectReference>
+    <ProjectReference Include="..\VitFTP\VitFTP.csproj">
+      <Project>{8E118625-8DED-4D15-9B41-0292A968ADFC}</Project>
+      <Name>VitFTP</Name>
+    </ProjectReference>
     <ProjectReference Include="..\vitMysql\VitMysql.csproj">
       <Project>{0312b089-f072-499e-97cd-701a78e6c425}</Project>
       <Name>VitMysql</Name>

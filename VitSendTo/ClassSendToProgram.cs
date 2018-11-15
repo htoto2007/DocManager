@@ -15,10 +15,10 @@ namespace VitSendToProgram
     {
         private readonly ClassSettings classSettings = new ClassSettings();
         private ClassCardPropsValue classCardPropsValue = new ClassCardPropsValue();
-        private ClassFiles classFile = new ClassFiles();
-        private ClassTree classTree = new ClassTree();
-        private ClassTypeCard classTypeCard = new ClassTypeCard();
-        private FormFiles formFiles = new FormFiles();
+        private readonly ClassFiles classFile = new ClassFiles();
+        private readonly ClassTree classTree = new ClassTree();
+        private readonly ClassTypeCard classTypeCard = new ClassTypeCard();
+        private readonly FormFiles formFiles = new FormFiles();
 
         public void createMenuItem()
         {
@@ -72,31 +72,6 @@ namespace VitSendToProgram
 
         private void NoCard(string[] args)
         {
-            TreeNode treeNode = classTree.TreeViewDialog("Добавление документа", "Добавить");
-            int idFolder = Convert.ToInt32(treeNode.Name.Split('_')[1]);
-            int idTypeCard = classTypeCard.getIdByName("Пустая");
-            string res = "";
-
-            foreach (string arg in args)
-            {
-                if (arg == "noCard")
-                {
-                    continue;
-                }
-
-                string fileName = Path.GetFileName(arg);
-                string pathSave = treeNode.FullPath;
-                string fullPath = arg;
-                if (classFile.Create(idFolder, idTypeCard, fileName, fullPath, pathSave) == 0)
-                {
-                    res += arg + " Ошибка загрузки! \n";
-                }
-            }
-
-            if (res != "")
-            {
-                MessageBox.Show(res);
-            }
         }
 
         private void sendValueOfFields(Control.ControlCollection controlCollection, int idFile)
@@ -160,47 +135,6 @@ namespace VitSendToProgram
 
         private void WithCard(string[] args)
         {
-            TreeNode treeNode = classTree.TreeViewDialog("Добавление документа", "Добавить");
-            int idFolder = Convert.ToInt32(treeNode.Name.Split('_')[1]);
-            int idTypeCard = classTypeCard.getIdByName("Пустая");
-            string res = "";
-
-            formFiles.Text = "Укажите имя файла";
-            formFiles.textBoxNameFile.ReadOnly = true;
-            formFiles.textBoxTreePath.Text = treeNode.FullPath;
-            formFiles.isCheck = false;
-            formFiles.ShowDialog();
-
-            // получаем получаем номер типа карточки документа по имени имав карточки
-            idTypeCard = classTypeCard.getIdByName(formFiles.comboBox1.Text.ToString());
-
-            foreach (string arg in args)
-            {
-                // если мы попали на ячеку массива с параметром коммандной строки
-                if (arg == "withCard")
-                {
-                    continue;
-                }
-
-                string fileName = Path.GetFileName(arg);
-                string pathSave = treeNode.FullPath;
-                string fullPath = arg;
-                int idFile = classFile.Create(idFolder, idTypeCard, fileName, fullPath, pathSave);
-
-                // если файл не создался
-                if (idFile != 0)
-                {
-                    res += arg + " Ошибка загрузки! \n";
-                    continue;
-                }
-                Control.ControlCollection controlCollection = formFiles.panel1.Controls;
-                sendValueOfFields(controlCollection, idFile);
-            }
-
-            if (res != "")
-            {
-                MessageBox.Show(res);
-            }
         }
     }
 }

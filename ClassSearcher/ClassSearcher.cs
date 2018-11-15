@@ -9,47 +9,8 @@ namespace VitSearcher
 {
     public class ClassSearcher
     {
+        private readonly ClassFiles classFiles = new ClassFiles();
         private ClassDBConnect classDB = new ClassDBConnect();
-        private ClassFiles classFiles = new ClassFiles();
-
-        public ClassFiles.FileCollection[] start(string strSearch)
-        {
-            string[] arrStr = fraseToWords(strSearch);
-            if (arrStr == null)
-            {
-                return null;
-            }
-
-            // производим поиск по имени файла
-            int[] resByFileName = getResultByFileName(arrStr);
-
-            // производим поиск по свойствам карточки документа
-            int[] resByCardPropsValue = getResultByCardPropsValue(arrStr);
-
-            int[] res;
-            if ((resByCardPropsValue != null) && (resByFileName != null))
-            {
-                res = resByFileName.Concat(resByCardPropsValue).ToArray();
-            }
-            else if (resByCardPropsValue != null)
-            {
-                res = resByCardPropsValue;
-            }
-            else if (resByFileName != null)
-            {
-                res = resByFileName;
-            }
-            else
-            {
-                return null;
-            }
-
-            int[,] runkResult = getRankedResult(res);
-            runkResult = sortRankedResult(runkResult);
-            ClassFiles.FileCollection[] fileCollection;
-            fileCollection = getFoundFiles(runkResult);
-            return fileCollection;
-        }
 
         private string[] fraseToWords(string frase)
         {
@@ -77,6 +38,42 @@ namespace VitSearcher
                 //Console.WriteLine("fraseToWords [" +  + "]");
             }
             return words;
+        }
+
+        private int[,] getRankedResult(int[] arrIdFiles)
+        {
+            string strId = "", strCount = "";
+            List<int> listIdFile = arrIdFiles.ToList();
+            List<int> findResult = null;
+
+            foreach (int id in arrIdFiles)
+            {
+                findResult = listIdFile.FindAll(item => item == id);
+                strCount += " " + findResult.Count().ToString();
+                strId += " " + id;
+                listIdFile.RemoveAll(item => item == id);
+                arrIdFiles = listIdFile.ToArray();
+                if (arrIdFiles.Length == 0)
+                {
+                    break;
+                }
+            }
+            strCount = strCount.TrimStart(' ');
+            strId = strId.TrimStart(' ');
+
+            string[] arrStrCount = strCount.Split(' ');
+            string[] arrStrId = strId.Split(' ');
+
+            int[,] result = new int[arrStrId.Length, 2];
+            for (int i = 0; i < arrStrId.Length; i++)
+            {
+                Console.WriteLine("arrStrId [" + arrStrId[i] + "]");
+                result[i, 0] = Convert.ToInt32(arrStrId[i]);
+                Console.WriteLine("arrStrCount [" + arrStrCount[i] + "]");
+                result[i, 1] = Convert.ToInt32(arrStrCount[i]);
+            }
+
+            return result;
         }
 
         private int[] getResultByCardPropsValue(string[] words)
@@ -166,42 +163,6 @@ namespace VitSearcher
             return resultId;
         }
 
-        private int[,] getRankedResult(int[] arrIdFiles)
-        {
-            string strId = "", strCount = "";
-            List<int> listIdFile = arrIdFiles.ToList();
-            List<int> findResult = null;
-
-            foreach (int id in arrIdFiles)
-            {
-                findResult = listIdFile.FindAll(item => item == id);
-                strCount += " " + findResult.Count().ToString();
-                strId += " " + id;
-                listIdFile.RemoveAll(item => item == id);
-                arrIdFiles = listIdFile.ToArray();
-                if (arrIdFiles.Length == 0)
-                {
-                    break;
-                }
-            }
-            strCount = strCount.TrimStart(' ');
-            strId = strId.TrimStart(' ');
-
-            string[] arrStrCount = strCount.Split(' ');
-            string[] arrStrId = strId.Split(' ');
-
-            int[,] result = new int[arrStrId.Length, 2];
-            for (int i = 0; i < arrStrId.Length; i++)
-            {
-                Console.WriteLine("arrStrId [" + arrStrId[i] + "]");
-                result[i, 0] = Convert.ToInt32(arrStrId[i]);
-                Console.WriteLine("arrStrCount [" + arrStrCount[i] + "]");
-                result[i, 1] = Convert.ToInt32(arrStrCount[i]);
-            }
-
-            return result;
-        }
-
         private int[,] sortRankedResult(int[,] rankedResult)
         {
             for (int i = 0; i < rankedResult.GetLength(0); i++)
@@ -217,17 +178,6 @@ namespace VitSearcher
                 }
             }
             return rankedResult;
-        }
-
-        private ClassFiles.FileCollection[] getFoundFiles(int[,] rankResult)
-        {
-            ClassFiles.FileCollection[] fileCollection = new ClassFiles.FileCollection[rankResult.GetLength(0)];
-            for (int i = 0; i < rankResult.GetLength(0); i++)
-            {
-                fileCollection[i] = classFiles.GetFileById(rankResult[i, 0]);
-            }
-
-            return fileCollection;
         }
     }
 }

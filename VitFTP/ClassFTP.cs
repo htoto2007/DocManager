@@ -1,5 +1,8 @@
-﻿using BytesRoad.Net.Ftp;
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Net;
+using VitUsers;
 
 namespace VitFTP
 {
@@ -8,63 +11,320 @@ namespace VitFTP
     /// </summary>
     public class ClassFTP
     {
-        public string FTP_PASSWORD = "";
-
-        public int FTP_PORT = 21;
-
-        public string FTP_SERVER = "";
-
-        public string FTP_USER = "";
-
-        public int TimeoutFTP = 3000;
-
-        //Сам клиент ФТП
-        private FtpClient client = new FtpClient();
+        public bool Binary = true;
+        public bool EnableSsl = false;
+        public bool Hash = false;
+        public bool Passive = true;
+        private readonly int bufferSize = 1024;
+        private readonly string password;
+        private readonly string userName;
+        private ClassUsers ClassUsers = new ClassUsers();
+        private string uri;
 
         public ClassFTP()
         {
-            VitSettings.Properties.FTPSettings FTPSettings = VitSettings.Properties.FTPSettings.Default;
-            FTP_SERVER = FTPSettings.host;
-            FTP_PORT = FTPSettings.port;
-            FTP_USER = FTPSettings.login;
-            FTP_PASSWORD = FTPSettings.password;
+            uri = "ftp://" + VitSettings.Properties.FTPSettings.Default.host + ":" + VitSettings.Properties.FTPSettings.Default.port + "/";
+            userName = ClassUsers.getThisUser().login;
+            password = ClassUsers.getThisUser().password;
         }
 
-        public int connectToServer()
+        public string ChangeWorkingDirectory(string path)
         {
-            //Задаём параметры клиента.
-            client.PassiveMode = true; //Включаем пассивный режим.
-                                       //Подключаемся к FTP серверу.
-            FtpResponse ftpResponse = client.Connect(TimeoutFTP, FTP_SERVER, FTP_PORT);
-            client.Login(TimeoutFTP, FTP_USER, FTP_PASSWORD);
-            client.UsedEncoding = System.Text.Encoding.UTF8;
-            return ftpResponse.Code;
+            uri = combine(uri, path);
+
+            return PrintWorkingDirectory();
         }
 
-        public void disconnect()
+        public string ChangeWorkingDirectoryByFullPath(string path)
         {
-            client.Disconnect(TimeoutFTP);
-        }
-
-        public void getDirectoryesAndFiles()
-        {
-            client.ChangeDirectory(TimeoutFTP, "новая папка");
-            client.DataTransfered += new FtpClient.DataTransferedEventHandler(dataTrans);
-            //Получает список содержимого текущего каталога с FTP.
-            FtpItem[] ftpItems = client.GetDirectoryList(TimeoutFTP);
-            foreach (FtpItem ftpItem in ftpItems)
+            string[] arrNames = path.Split('\\');
+            string result = "";
+            foreach (string name in arrNames)
             {
-                Console.WriteLine(ftpItem.Name);
+                //Console.WriteLine(name);
+                result = ChangeWorkingDirectory(name);
+            }
+            return result;
+        }
+
+        public string DeleteFile(string fileName)
+        {
+            FtpWebRequest request = createRequest(combine(uri, fileName), WebRequestMethods.Ftp.DeleteFile);
+
+            return getStatusDescription(request);
+        }
+
+        public string DownloadFile(string source, string dest)
+        {
+            FtpWebRequest request = createRequest(combine(uri, source), WebRequestMethods.Ftp.DownloadFile);
+
+            byte[] buffer = new byte[bufferSize];
+
+            using (FtpWebResponse response = (FtpWebResponse)request.GetResponse())
+            {
+                using (Stream stream = response.GetResponseStream())
+                {
+                    using (FileStream fs = new FileStream(dest, FileMode.OpenOrCreate))
+                    {
+                        int readCount = stream.Read(buffer, 0, bufferSize);
+
+                        while (readCount > 0)
+                        {
+                            if (Hash)
+                            {
+                                Console.Write("#");
+                            }
+
+                            fs.Write(buffer, 0, readCount);
+                            readCount = stream.Read(buffer, 0, bufferSize);
+                        }
+                    }
+                }
+
+                return response.StatusDescription;
+            }
+        }
+
+        public DateTime GetDateTimestamp(string fileName)
+        {
+            FtpWebRequest request = createRequest(combine(uri, fileName), WebRequestMethods.Ftp.GetDateTimestamp);
+
+            using (FtpWebResponse response = (FtpWebResponse)request.GetResponse())
+            {
+                return response.LastModified;
+            }
+        }
+
+        public long GetFileSize(string fileName)
+        {
+            FtpWebRequest request = createRequest(combine(uri, fileName), WebRequestMethods.Ftp.GetFileSize);
+
+            using (FtpWebResponse response = (FtpWebResponse)request.GetResponse())
+            {
+                return response.ContentLength;
+            }
+        }
+
+        public string[] ListDirectory()
+        {
+            List<string> list = new List<string>();
+
+            FtpWebRequest request = createRequest(WebRequestMethods.Ftp.ListDirectory);
+
+            using (FtpWebResponse response = (FtpWebResponse)request.GetResponse())
+            {
+                using (Stream stream = response.GetResponseStream())
+                {
+                    using (StreamReader reader = new StreamReader(stream, true))
+                    {
+                        while (!reader.EndOfStream)
+                        {
+                            list.Add(reader.ReadLine());
+                        }
+                    }
+                }
             }
 
-            client.GetFile(TimeoutFTP, "d:\\2018.10.05.0.7z", "2018.10.05.0.7z");
-            //client.GetFile(TimeoutFTP, "2018.10.05.0.7z", "d:\\2018.10.05.0.7z");
+            return list.ToArray();
         }
 
-        private void dataTrans(object sender, DataTransferedEventArgs e)
+        public string[] ListDirectoryDetails()
         {
-            float persent = (100 / (float)e.LastTransfered) * ((float)e.WholeTransfered / 100);
-            Console.WriteLine((int)persent);
+            List<string> list = new List<string>();
+
+            FtpWebRequest request = createRequest(WebRequestMethods.Ftp.ListDirectoryDetails);
+
+            using (FtpWebResponse response = (FtpWebResponse)request.GetResponse())
+            {
+                using (Stream stream = response.GetResponseStream())
+                {
+                    using (StreamReader reader = new StreamReader(stream, true))
+                    {
+                        while (!reader.EndOfStream)
+                        {
+                            list.Add(reader.ReadLine());
+                        }
+                    }
+                }
+            }
+
+            return list.ToArray();
+        }
+
+        public string MakeDirectory(string directoryName)
+        {
+            FtpWebRequest request = createRequest(combine(uri, directoryName), WebRequestMethods.Ftp.MakeDirectory);
+
+            return getStatusDescription(request);
+        }
+
+        public string PrintWorkingDirectory()
+        {
+            FtpWebRequest request = createRequest(WebRequestMethods.Ftp.PrintWorkingDirectory);
+
+            return getStatusDescription(request);
+        }
+
+        public string RemoveDirectory(string directoryName)
+        {
+            DeleteSubDirectoryAndFiles(directoryName);
+
+            FtpWebRequest request = createRequest(combine(uri, directoryName), WebRequestMethods.Ftp.RemoveDirectory);
+
+            return getStatusDescription(request);
+        }
+
+        public string Rename(string currentName, string newName)
+        {
+            FtpWebRequest request = createRequest(combine(uri, currentName), WebRequestMethods.Ftp.Rename);
+
+            request.RenameTo = newName;
+
+            return getStatusDescription(request);
+        }
+
+        public string UploadFile(string source, string destination)
+        {
+            FtpWebRequest request = createRequest(combine(uri, destination), WebRequestMethods.Ftp.UploadFile);
+
+            using (Stream stream = request.GetRequestStream())
+            {
+                using (FileStream fileStream = System.IO.File.Open(source, FileMode.Open))
+                {
+                    int num;
+
+                    byte[] buffer = new byte[bufferSize];
+
+                    while ((num = fileStream.Read(buffer, 0, buffer.Length)) > 0)
+                    {
+                        if (Hash)
+                        {
+                            Console.Write("#");
+                        }
+
+                        stream.Write(buffer, 0, num);
+                    }
+                }
+            }
+
+            return getStatusDescription(request);
+        }
+
+        public string UploadFileWithUniqueName(string source)
+        {
+            FtpWebRequest request = createRequest(WebRequestMethods.Ftp.UploadFileWithUniqueName);
+
+            using (Stream stream = request.GetRequestStream())
+            {
+                using (FileStream fileStream = System.IO.File.Open(source, FileMode.Open))
+                {
+                    int num;
+
+                    byte[] buffer = new byte[bufferSize];
+
+                    while ((num = fileStream.Read(buffer, 0, buffer.Length)) > 0)
+                    {
+                        if (Hash)
+                        {
+                            Console.Write("#");
+                        }
+
+                        stream.Write(buffer, 0, num);
+                    }
+                }
+            }
+
+            using (FtpWebResponse response = (FtpWebResponse)request.GetResponse())
+            {
+                return Path.GetFileName(response.ResponseUri.ToString());
+            }
+        }
+
+        private string combine(string path1, string path2)
+        {
+            return Path.Combine(path1, path2).Replace("\\", "/");
+        }
+
+        private FtpWebRequest createRequest(string method)
+        {
+            return createRequest(uri, method);
+        }
+
+        private FtpWebRequest createRequest(string uri, string method)
+        {
+            FtpWebRequest r = (FtpWebRequest)WebRequest.Create(uri);
+
+            r.Credentials = new NetworkCredential(userName, password);
+            r.Timeout = VitSettings.Properties.FTPSettings.Default.timeout;
+            r.Method = method;
+            r.UseBinary = Binary;
+            r.EnableSsl = EnableSsl;
+            r.UsePassive = Passive;
+
+            return r;
+        }
+
+        private void DeleteSubDirectoryAndFiles(string directoryName)
+        {
+            string[] arrPaths = getAllDirectoryAndFiles(directoryName);
+            /*
+            foreach (string path in arrPaths)
+            {
+                if (Path.GetExtension(path) == "")
+                {
+                    DeleteFile(path);
+                }
+                else
+                {
+                    RemoveDirectory(path);
+                }
+            }
+            */
+        }
+
+        private string[] getAllDirectoryAndFiles(string directoryName)
+        {
+            ChangeWorkingDirectory(directoryName);
+            List<string> arrPaths = new List<string>();
+            arrPaths.AddRange(ListDirectory());
+            string[] arrSubpaths = null;
+            foreach (string path in arrPaths)
+            {
+                arrSubpaths = getAllDirectoryAndFiles(path.Split('/')[1]);
+                ChangeWorkingDirectory("..");
+                if (Path.GetExtension(path) != "")
+                {
+                    DeleteFile(path.Split('/')[1]);
+                }
+                else
+                {
+                    RemoveDirectory(path.Split('/')[1]);
+                }
+            }
+
+            if (arrSubpaths != null)
+            {
+                arrPaths.AddRange(arrSubpaths);
+            }
+
+            arrPaths.Sort();
+            return arrPaths.ToArray();
+        }
+
+        private string getStatusDescription(FtpWebRequest request)
+        {
+            try
+            {
+                using (FtpWebResponse response = (FtpWebResponse)request.GetResponse())
+                {
+                    return response.StatusDescription;
+                }
+            }
+            catch (System.Net.WebException e)
+            {
+                Console.WriteLine(e.Message + " " + e.InnerException);
+                return "";
+            }
         }
     }
 }

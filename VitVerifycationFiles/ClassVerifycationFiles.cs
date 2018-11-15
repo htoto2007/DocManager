@@ -9,11 +9,12 @@ namespace VitVerifycationFiles
     {
         private readonly ClassSettings classSettings = new ClassSettings();
         private readonly string repositoryPath = "";
-        private readonly string root = "";
-        private ClassFiles classFiles = new ClassFiles();
 
         //FormVerifycationFiles formVerifycationFiles = new FormVerifycationFiles();
         private readonly string repositoryRootFolderName = "";
+
+        private readonly string root = "";
+        private readonly ClassFiles classFiles = new ClassFiles();
 
         public ClassVerifycationFiles()
         {
@@ -65,11 +66,6 @@ namespace VitVerifycationFiles
 
         public bool CompareWithData(string fileName)
         {
-            if (classFiles.getFileByName(fileName).id == 0)
-            {
-                return false;
-            }
-
             return true;
         }
 
