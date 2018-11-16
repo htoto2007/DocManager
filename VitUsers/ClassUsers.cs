@@ -7,6 +7,8 @@ using System.Windows.Forms;
 using VitAccessGroup;
 using VitMysql;
 using VitSettings;
+using VitSubdivision;
+using VitUserPositions;
 
 namespace VitUsers
 {
@@ -23,6 +25,8 @@ namespace VitUsers
         private ClassAccessGroup classAccessGroup = new ClassAccessGroup();
         private ClassMysql classMysql = new ClassMysql();
         private ClassSettings classSettings = new ClassSettings();
+        private ClassSubdivision classSubdivision = new ClassSubdivision();
+        private ClassUserPositions classUserPositions = new ClassUserPositions();
 
         public ClassUsers()
         {
@@ -31,18 +35,27 @@ namespace VitUsers
             cashLoginFile = programPath + "\\" + tmpFile;
         }
 
-        public void AddUser()
+        public void AddUser(string lastName, string firstName, string MiddleName, string mail, string mailPass, string accessGroup, string position, string subdivision, string login, string password)
         {
-            string password = formUsers.textBoxPassword.Text;
-            string name = formUsers.textBoxLogin.Text;
-            int idAccessGroup = classAccessGroup.getIdByName(formUsers.listBoxAccessGroup.SelectedItem.ToString());
+            int idAccessGroup = classAccessGroup.getIdByName(accessGroup);
+            int idUserPosition = classUserPositions.getInfoByName(position).id;
+            int idDivision = classSubdivision.getInfoByName(subdivision).id;
 
             classMysql.Insert("" +
                 "INSERT INTO tb_users " +
                 "SET " +
-                "name = '" + name + "', " +
+                "first_name = '" + firstName + "', " +
+                "last_name = '" + lastName + "', " +
+                "middle_name = '" + MiddleName + "', " +
+                "login = '" + login + "', " +
+                "mail = '" + mail + "', " +
+                "mail_password = '" + mailPass + "', " +
+                "id_subdivision = '" + idDivision + "', " +
+                "id_position = '" + idUserPosition + "', " +
                 "id_access_group = '" + idAccessGroup + "', " +
                 "password = '" + password + "'");
+
+            Init();
         }
 
         public bool changePassword(string oldPass, string newPass, string retryPass)
@@ -165,29 +178,6 @@ namespace VitUsers
 
         public void SendToEdit()
         {
-            ListView.SelectedListViewItemCollection selectedListViewItemCollection = formUsers.listView1.SelectedItems;
-            ListViewItem listViewItem = null;
-            foreach (ListViewItem listViewItem2 in selectedListViewItemCollection)
-            {
-                listViewItem = listViewItem2;
-            }
-
-            if (listViewItem == null)
-            {
-                Console.WriteLine("ERR: listViewItem is null!");
-                return;
-            }
-
-            formUsers.textBoxIdUser.Text = listViewItem.SubItems["id"].Text;
-            formUsers.textBoxLogin.Text = listViewItem.SubItems["name"].Text;
-            for (int i = 0; i < formUsers.listBoxAccessGroup.Items.Count; i++)
-            {
-                if (formUsers.listBoxAccessGroup.Items[i].ToString() == listViewItem.SubItems["idAccessGroup"].Text)
-                {
-                    formUsers.listBoxAccessGroup.SetSelected(i, true);
-                }
-            }
-            formUsers.textBoxPassword.Text = listViewItem.SubItems["password"].Text;
         }
 
         public DialogResult showDialog()
@@ -312,12 +302,6 @@ namespace VitUsers
 
         private void Init()
         {
-            formUsers.listBoxAccessGroup.Items.Clear();
-            ClassAccessGroup.AccessGroupCollection[] accessGroups = classAccessGroup.getInfo();
-            foreach (ClassAccessGroup.AccessGroupCollection accessGroup in accessGroups)
-            {
-                formUsers.listBoxAccessGroup.Items.Add(accessGroup.name);
-            }
             VitIcons.FormCompanents formCompanents = new VitIcons.FormCompanents();
             formUsers.listView1.LargeImageList = formCompanents.imageListColor;
             formUsers.listView1.SmallImageList = formCompanents.imageListColor;
@@ -368,6 +352,8 @@ namespace VitUsers
             public int idAccessGroup;
             public int idPosition;
             public int idSubdivision;
+            public string mail;
+            public string mailPass;
             public string imagePath;
             public string lastName;
             public string login;

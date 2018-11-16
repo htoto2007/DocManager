@@ -737,7 +737,7 @@ namespace DocManager
             string programName = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
             DateTime buildDate = new DateTime(2000, 1, 1).AddDays(version.Build);
             string displayableVersion = $"{version.Major + "." + (version.Build)}";
-            Text = programName;
+            Text = programName + " 1.0.1";
         }
 
         private void buttonSettingsConnectToDB_Click(object sender, EventArgs e)
@@ -830,6 +830,11 @@ namespace DocManager
 
                 classTree.InitTreeView(treeView1);
             }
+        }
+
+        private void помощьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start(VitSettings.Properties.GeneralsSettings.Default.programPath + "/help/AEархив.html");
         }
     }
 }

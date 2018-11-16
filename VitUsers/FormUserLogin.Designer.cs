@@ -53,9 +53,9 @@
             this.panel1.Controls.Add(this.textBoxPass);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(1, 1);
+            this.panel1.Location = new System.Drawing.Point(1, 34);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(336, 158);
+            this.panel1.Size = new System.Drawing.Size(336, 125);
             this.panel1.TabIndex = 7;
             // 
             // labelInputLanguage
@@ -154,7 +154,7 @@
             this.windowHeader1.maximize = false;
             this.windowHeader1.minimize = false;
             this.windowHeader1.Name = "windowHeader1";
-            this.windowHeader1.Size = new System.Drawing.Size(336, 0);
+            this.windowHeader1.Size = new System.Drawing.Size(336, 33);
             this.windowHeader1.TabIndex = 6;
             // 
             // FormUserLogin
@@ -162,7 +162,7 @@
             this.AcceptButton = this.buttonOk;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(204)))), ((int)(((byte)(0)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(12)))), ((int)(((byte)(255)))));
             this.CancelButton = this.buttonCancel;
             this.ClientSize = new System.Drawing.Size(338, 160);
             this.ControlBox = false;

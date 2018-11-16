@@ -17,7 +17,13 @@ namespace VitAccessGroup
             Dictionary<string, string>[] rows = classMysql.getArrayByQuery("" +
                 "SELECT id " +
                 "FROM tb_access_group " +
-                "WHERE name='" + MySqlHelper.EscapeString(name) + "'");
+                "WHERE name = '" + MySqlHelper.EscapeString(name) + "'");
+
+            if (rows.GetLength(0) < 1)
+            {
+                return 0;
+            }
+
             return Convert.ToInt32(rows[0]["id"]);
         }
 
