@@ -1,10 +1,12 @@
 ﻿using System;
 using System.IO;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using VitCardPropsValue;
 using VitFiles;
 using VitFTP;
 using VitIcons;
+using vitProgressStatus;
 using VitRelationFolders;
 using VitTypeCard;
 
@@ -26,8 +28,45 @@ namespace VitTree
         private readonly ClassTypeCard classTypeCard = new ClassTypeCard();
 
         private readonly VitIcons.FormCompanents formCompanents = new VitIcons.FormCompanents();
+        private readonly FormProgressStatus formProgressStatus = new FormProgressStatus();
 
-        public void deleteNode(TreeView treeView)
+        public async void AddFileNode(TreeView treeView)
+        {
+            string paths = treeView.SelectedNode.FullPath;
+            TreeNode treeNode = treeView.SelectedNode;
+            ClassFTP classFTP = new ClassFTP();
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Multiselect = true
+            };
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                await Task.Run(() =>
+                {
+                    treeView.Invoke((Action)(() =>
+                    {
+                        classFTP.Upload2(openFileDialog.FileNames, paths + "/");
+                    }));
+                });
+            }
+            treeView.Invoke((Action)(async () =>
+            {
+                await update(treeView);
+            }));
+        }
+
+        public void copy(TreeView treeView)
+        {
+            FormTree formTree = new FormTree();
+            if (formTree.ShowDialog() == DialogResult.OK)
+            {
+                ClassFTP classFTP = new ClassFTP();
+                classFTP.copyAsync(treeView.SelectedNode.FullPath, formTree.treeView1.SelectedNode.FullPath + "/");
+                update(treeView);
+            }
+        }
+
+        public void DeleteNode(TreeView treeView)
         {
             ClassFTP classFTP = new ClassFTP();
             classFTP.ChangeWorkingDirectory("");
@@ -35,14 +74,16 @@ namespace VitTree
             string result = "";
             if (Path.GetExtension(treeView.SelectedNode.FullPath) == "")
             {
-                result = classFTP.RemoveDirectory(treeView.SelectedNode.FullPath);
+                result = classFTP.RemoveDirecroty2(treeView.SelectedNode.FullPath).ToString();
             }
             else
             {
                 result = classFTP.DeleteFile(treeView.SelectedNode.FullPath);
             }
 
-            if (result.Split(' ')[0] == "250")
+            Console.WriteLine(result);
+
+            if ((result.Split(' ')[0] == "250") || (result.Equals("True")))
             {
                 treeView.SelectedNode.Remove();
             }
@@ -50,6 +91,11 @@ namespace VitTree
 
         public void getNextNodes(TreeNode treeNode)
         {
+            if (Path.GetExtension(treeNode.Name) != "")
+            {
+                return;
+            }
+
             if (treeNode.Nodes.Count > 0)
             {
                 return;
@@ -82,39 +128,56 @@ namespace VitTree
             }
         }
 
-        public void init(TreeView treeView)
+        public async void init(TreeView treeView)
         {
             ClassFTP classFTP = new ClassFTP();
             string[] directoryes = classFTP.ListDirectory();
 
             treeView.ImageList = ClassImageList.imageList;
+            treeView.Sort();
             treeView.Nodes.Clear();
-            foreach (string direcory in directoryes)
+            await Task.Run(async () =>
             {
-                TreeNode treeNode = new TreeNode
+                foreach (string direcory in directoryes)
                 {
-                    Name = direcory,
-                    ImageKey = "icons8-folder-48.png",
-                    Text = direcory
-                };
-
-                getSubdirectoryes(classFTP, treeNode, Path.GetFileName(direcory));
-                treeView.Nodes.Add(treeNode);
-            }
+                    TreeNode treeNode = new TreeNode
+                    {
+                        Name = direcory,
+                        ImageKey = "icons8-folder-48.png",
+                        Text = direcory
+                    };
+                    if (Path.GetExtension(treeNode.Name) == "")
+                    {
+                        await getSubdirectoryes(classFTP, treeNode, Path.GetFileName(direcory));
+                    }
+                    treeView.Invoke((Action)(() =>
+                    {
+                        treeView.Nodes.Add(treeNode);
+                    }));
+                }
+            });
         }
 
-        public void preLoadNodes(TreeView treeView)
+        public void preLoadNodes(TreeNode treeNode)
         {
-            foreach (TreeNode treeNode in treeView.SelectedNode.Nodes)
+            foreach (TreeNode tn in treeNode.Nodes)
             {
-                if ((treeNode.Nodes.Count == 0) && (Path.GetExtension(treeNode.Name) == ""))
+                if ((tn.Nodes.Count == 0) && (Path.GetExtension(tn.FullPath) == ""))
                 {
-                    getNextNodes(treeNode);
+                    getNextNodes(tn);
                 }
             }
         }
 
-        private void getSubdirectoryes(ClassFTP classFTP, TreeNode treeNode, string directory)
+        public async Task update(TreeView treeView)
+        {
+            if ((treeView.SelectedNode.Nodes.Count == 0) && (Path.GetExtension(treeView.SelectedNode.FullPath) == ""))
+            {
+                getNextNodes(treeView.SelectedNode);
+            }
+        }
+
+        private async Task getSubdirectoryes(ClassFTP classFTP, TreeNode treeNode, string directory)
         {
             classFTP.ChangeWorkingDirectory(directory);
             Console.WriteLine(classFTP.ChangeWorkingDirectory(""));

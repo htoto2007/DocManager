@@ -151,16 +151,16 @@
             // ToolStripMenuItemAddDocumentWithCard
             // 
             this.ToolStripMenuItemAddDocumentWithCard.Name = "ToolStripMenuItemAddDocumentWithCard";
-            this.ToolStripMenuItemAddDocumentWithCard.Size = new System.Drawing.Size(154, 22);
+            this.ToolStripMenuItemAddDocumentWithCard.Size = new System.Drawing.Size(180, 22);
             this.ToolStripMenuItemAddDocumentWithCard.Text = "С карточкой";
             this.ToolStripMenuItemAddDocumentWithCard.Click += new System.EventHandler(this.ToolStripMenuItemAddDocumentWithCard_Click);
             // 
             // безКарточкиToolStripMenuItem
             // 
             this.безКарточкиToolStripMenuItem.Name = "безКарточкиToolStripMenuItem";
-            this.безКарточкиToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.безКарточкиToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.безКарточкиToolStripMenuItem.Text = "Без карточки";
-            this.безКарточкиToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItemWithoutCard_Click);
+            this.безКарточкиToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItemWithoutCard_ClickAsync);
             // 
             // ToolStripMenuItemSend
             // 
@@ -594,6 +594,7 @@
             this.treeView1.SelectedImageIndex = 0;
             this.treeView1.Size = new System.Drawing.Size(392, 546);
             this.treeView1.TabIndex = 5;
+            this.treeView1.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterExpand);
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             this.treeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseClick_1);
             // 
@@ -717,12 +718,14 @@
             this.windowHeader1.AutoSize = true;
             this.windowHeader1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.windowHeader1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(207)))), ((int)(((byte)(251)))));
+            this.windowHeader1.close = true;
             this.windowHeader1.Dock = System.Windows.Forms.DockStyle.Top;
             this.windowHeader1.Location = new System.Drawing.Point(1, 1);
             this.windowHeader1.Margin = new System.Windows.Forms.Padding(0);
             this.windowHeader1.maximize = true;
             this.windowHeader1.minimize = true;
             this.windowHeader1.Name = "windowHeader1";
+            this.windowHeader1.showInTaskbar = true;
             this.windowHeader1.Size = new System.Drawing.Size(823, 34);
             this.windowHeader1.TabIndex = 10;
             // 

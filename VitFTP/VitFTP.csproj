@@ -57,18 +57,30 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="WinSCPnet">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\WinSCP\WinSCPnet.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClassFTP.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\VitNotifyMessage\VitNotifyMessage.csproj">
+      <Project>{a8d9c15a-3f3c-423a-be05-293de5941bb7}</Project>
+      <Name>VitNotifyMessage</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\vitProgressStatus\vitProgressStatus.csproj">
+      <Project>{ca92b19d-73e7-4942-9777-723e83b6f444}</Project>
+      <Name>vitProgressStatus</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VitSettings\VitSettings.csproj">
       <Project>{8ba14954-8676-4a60-b58f-7e5d8f71eac8}</Project>
       <Name>VitSettings</Name>

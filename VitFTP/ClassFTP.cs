@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Threading.Tasks;
 using VitUsers;
+using WinSCP;
 
 namespace VitFTP
 {
@@ -19,6 +21,7 @@ namespace VitFTP
         private readonly string password;
         private readonly string userName;
         private ClassUsers ClassUsers = new ClassUsers();
+        private readonly SessionOptions sessionOptions;
         private string uri;
 
         public ClassFTP()
@@ -26,6 +29,14 @@ namespace VitFTP
             uri = "ftp://" + VitSettings.Properties.FTPSettings.Default.host + ":" + VitSettings.Properties.FTPSettings.Default.port + "/";
             userName = ClassUsers.getThisUser().login;
             password = ClassUsers.getThisUser().password;
+
+            sessionOptions = new SessionOptions
+            {
+                Protocol = Protocol.Ftp,
+                HostName = VitSettings.Properties.FTPSettings.Default.host,
+                UserName = ClassUsers.getThisUser().login,
+                Password = ClassUsers.getThisUser().password,
+            };
         }
 
         public string ChangeWorkingDirectory(string path)
@@ -45,6 +56,17 @@ namespace VitFTP
                 result = ChangeWorkingDirectory(name);
             }
             return result;
+        }
+
+        public async Task copyAsync(string sourcePath, string targetPath)
+        {
+            using (Session session = new Session())
+            {
+                // Connect
+                session.Open(sessionOptions);
+                await Task.Run(() => session.DuplicateFile(sourcePath, targetPath));
+                session.Close();
+            }
         }
 
         public string DeleteFile(string fileName)
@@ -165,10 +187,22 @@ namespace VitFTP
             return getStatusDescription(request);
         }
 
+        public bool RemoveDirecroty2(string directoryName)
+        {
+            bool res = false;
+            using (Session session = new Session())
+            {
+                // Connect
+                session.Open(sessionOptions);
+
+                res = session.RemoveFiles("/" + directoryName).IsSuccess;
+                session.Close();
+            }
+            return res;
+        }
+
         public string RemoveDirectory(string directoryName)
         {
-            DeleteSubDirectoryAndFiles(directoryName);
-
             FtpWebRequest request = createRequest(combine(uri, directoryName), WebRequestMethods.Ftp.RemoveDirectory);
 
             return getStatusDescription(request);
@@ -181,6 +215,71 @@ namespace VitFTP
             request.RenameTo = newName;
 
             return getStatusDescription(request);
+        }
+
+        public bool Upload2(string localPath, string remotePath)
+        {
+            SessionOptions sessionOptions = new SessionOptions
+            {
+                Protocol = Protocol.Ftp,
+                HostName = VitSettings.Properties.FTPSettings.Default.host,
+                UserName = ClassUsers.getThisUser().login,
+                Password = ClassUsers.getThisUser().password,
+            };
+            bool res = false;
+            using (Session session = new Session())
+            {
+                // Connect
+                session.Open(sessionOptions);
+
+                if (session.FileExists(remotePath + Path.GetFileName(localPath)))
+                {
+                    VitNotifyMessage.ClassNotifyMessage classNotifyMessage = new VitNotifyMessage.ClassNotifyMessage();
+                    if (classNotifyMessage.showDialog(VitNotifyMessage.ClassNotifyMessage.TypeMessage.QUESTION, remotePath + Path.GetFileName(localPath) + " уже существует. Заменить его?") != System.Windows.Forms.DialogResult.Yes)
+                    {
+                        return false;
+                    }
+                }
+
+                TransferOptions transferOptions = new TransferOptions
+                {
+                    TransferMode = TransferMode.Automatic,
+                    OverwriteMode = OverwriteMode.Resume
+                };
+                res = session.PutFiles(localPath, remotePath, false, transferOptions).IsSuccess;
+                session.Close();
+            }
+            return res;
+        }
+
+        public bool Upload2(string[] localPaths, string remotePath)
+        {
+            bool res = false;
+            using (Session session = new Session())
+            {
+                // Connect
+                session.Open(sessionOptions);
+                foreach (string localPath in localPaths)
+                {
+                    if (session.FileExists(remotePath + Path.GetFileName(localPath)))
+                    {
+                        VitNotifyMessage.ClassNotifyMessage classNotifyMessage = new VitNotifyMessage.ClassNotifyMessage();
+                        if (classNotifyMessage.showDialog(VitNotifyMessage.ClassNotifyMessage.TypeMessage.QUESTION, remotePath + Path.GetFileName(localPath) + " уже существует. Заменить его?") != System.Windows.Forms.DialogResult.Yes)
+                        {
+                            return false;
+                        }
+                    }
+
+                    TransferOptions transferOptions = new TransferOptions
+                    {
+                        TransferMode = TransferMode.Automatic,
+                        OverwriteMode = OverwriteMode.Resume
+                    };
+                    res = session.PutFiles(localPath, remotePath, false, transferOptions).IsSuccess;
+                }
+                session.Close();
+            }
+            return res;
         }
 
         public string UploadFile(string source, string destination)
@@ -262,53 +361,6 @@ namespace VitFTP
             r.UsePassive = Passive;
 
             return r;
-        }
-
-        private void DeleteSubDirectoryAndFiles(string directoryName)
-        {
-            string[] arrPaths = getAllDirectoryAndFiles(directoryName);
-            /*
-            foreach (string path in arrPaths)
-            {
-                if (Path.GetExtension(path) == "")
-                {
-                    DeleteFile(path);
-                }
-                else
-                {
-                    RemoveDirectory(path);
-                }
-            }
-            */
-        }
-
-        private string[] getAllDirectoryAndFiles(string directoryName)
-        {
-            ChangeWorkingDirectory(directoryName);
-            List<string> arrPaths = new List<string>();
-            arrPaths.AddRange(ListDirectory());
-            string[] arrSubpaths = null;
-            foreach (string path in arrPaths)
-            {
-                arrSubpaths = getAllDirectoryAndFiles(path.Split('/')[1]);
-                ChangeWorkingDirectory("..");
-                if (Path.GetExtension(path) != "")
-                {
-                    DeleteFile(path.Split('/')[1]);
-                }
-                else
-                {
-                    RemoveDirectory(path.Split('/')[1]);
-                }
-            }
-
-            if (arrSubpaths != null)
-            {
-                arrPaths.AddRange(arrSubpaths);
-            }
-
-            arrPaths.Sort();
-            return arrPaths.ToArray();
         }
 
         private string getStatusDescription(FtpWebRequest request)

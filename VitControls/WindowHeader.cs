@@ -7,12 +7,23 @@ namespace VitControls
     public partial class WindowHeader : UserControl
     {
         private VitColors.ClassColors classColors = new VitColors.ClassColors();
+
         private bool isMouseDown = false;
+
         private Point mouseOffset;
 
         public WindowHeader()
         {
             InitializeComponent();
+        }
+
+        /// <summary>
+        /// Включает или отключает возможность закрыть окно
+        /// </summary>
+        public bool close
+        {
+            get;
+            set;
         }
 
         /// <summary>
@@ -28,6 +39,15 @@ namespace VitControls
         /// Включает или отключает возможность сворачивания окна окна
         /// </summary>
         public bool minimize
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Скрывает все элементы управления окном
+        /// </summary>
+        public bool showInTaskbar
         {
             get;
             set;
@@ -107,6 +127,8 @@ namespace VitControls
 
             buttonMaximize.Visible = maximize;
             buttonMinimize.Visible = minimize;
+            buttonClose.Visible = close;
+            //ParentForm.ShowInTaskbar = showInTaskbar;
         }
     }
 }

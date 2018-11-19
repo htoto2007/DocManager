@@ -65,12 +65,14 @@
             this.windowHeader1.AutoSize = true;
             this.windowHeader1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.windowHeader1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(207)))), ((int)(((byte)(251)))));
+            this.windowHeader1.close = true;
             this.windowHeader1.Dock = System.Windows.Forms.DockStyle.Top;
             this.windowHeader1.Location = new System.Drawing.Point(1, 1);
             this.windowHeader1.Margin = new System.Windows.Forms.Padding(0);
             this.windowHeader1.maximize = false;
             this.windowHeader1.minimize = false;
             this.windowHeader1.Name = "windowHeader1";
+            this.windowHeader1.showInTaskbar = false;
             this.windowHeader1.Size = new System.Drawing.Size(512, 33);
             this.windowHeader1.TabIndex = 1;
             // 
@@ -238,7 +240,7 @@
             this.tabPageGeneralsSettings.Margin = new System.Windows.Forms.Padding(0);
             this.tabPageGeneralsSettings.Name = "tabPageGeneralsSettings";
             this.tabPageGeneralsSettings.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPageGeneralsSettings.Size = new System.Drawing.Size(504, 277);
+            this.tabPageGeneralsSettings.Size = new System.Drawing.Size(504, 243);
             this.tabPageGeneralsSettings.TabIndex = 0;
             this.tabPageGeneralsSettings.Text = "Общие";
             this.tabPageGeneralsSettings.UseVisualStyleBackColor = true;
@@ -299,7 +301,7 @@
             this.tabPageSettings.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageSettings.Name = "tabPageSettings";
             this.tabPageSettings.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPageSettings.Size = new System.Drawing.Size(504, 277);
+            this.tabPageSettings.Size = new System.Drawing.Size(504, 243);
             this.tabPageSettings.TabIndex = 2;
             this.tabPageSettings.Text = "Подключение к FTP";
             this.tabPageSettings.UseVisualStyleBackColor = true;
@@ -309,7 +311,7 @@
             this.tabPageEmail.Location = new System.Drawing.Point(4, 26);
             this.tabPageEmail.Name = "tabPageEmail";
             this.tabPageEmail.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageEmail.Size = new System.Drawing.Size(504, 277);
+            this.tabPageEmail.Size = new System.Drawing.Size(504, 243);
             this.tabPageEmail.TabIndex = 3;
             this.tabPageEmail.Text = "Почта";
             this.tabPageEmail.UseVisualStyleBackColor = true;
@@ -329,6 +331,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormSettings";
             this.Padding = new System.Windows.Forms.Padding(1);
+            this.ShowInTaskbar = false;
             this.Text = "Настроки";
             this.Load += new System.EventHandler(this.FormSettings_Load);
             this.panel1.ResumeLayout(false);

@@ -8,6 +8,8 @@ namespace VitTree
         public FormTree()
         {
             InitializeComponent();
+            VitTree.ClassTree classTree = new ClassTree();
+            classTree.init(treeView1);
             buttonOk.Enabled = false;
         }
 
@@ -20,6 +22,12 @@ namespace VitTree
         private void buttonOk_Click(object sender, EventArgs e)
         {
             Hide();
+        }
+
+        private void treeView1_AfterExpand(object sender, TreeViewEventArgs e)
+        {
+            VitTree.ClassTree classTree = new ClassTree();
+            classTree.preLoadNodes(e.Node);
         }
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)

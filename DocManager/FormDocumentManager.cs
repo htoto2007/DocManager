@@ -380,6 +380,7 @@ namespace DocManager
 
         private void ToolStripMenuItemCopy_Click(object sender, EventArgs e)
         {
+            classTree.copy(treeView1);
         }
 
         private void toolStripMenuItemDelete_Click(object sender, EventArgs e)
@@ -388,7 +389,7 @@ namespace DocManager
 
         private void ToolStripMenuItemDelete_Click_1(object sender, EventArgs e)
         {
-            classTree.deleteNode(treeView1);
+            classTree.DeleteNode(treeView1);
         }
 
         private void ToolStripMenuItemMove_Click(object sender, EventArgs e)
@@ -456,13 +457,19 @@ namespace DocManager
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ToolStripMenuItemWithoutCard_Click(object sender, EventArgs e)
+        private void ToolStripMenuItemWithoutCard_ClickAsync(object sender, EventArgs e)
         {
+            classTree.AddFileNode(treeView1);
+        }
+
+        private void treeView1_AfterExpand(object sender, TreeViewEventArgs e)
+        {
+            classTree.preLoadNodes(e.Node);
         }
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            classTree.preLoadNodes(treeView1);
+            //classTree.preLoadNodes(treeView1);
 
             //VitListView.ClassLisView classLisView = new VitListView.ClassLisView();
             //classLisView.FromTreeVuew(treeView1, listView1);
