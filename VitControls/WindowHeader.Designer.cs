@@ -30,9 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WindowHeader));
             this.labelText = new System.Windows.Forms.Label();
-            this.buttonMinimize = new VitControls.Button();
-            this.buttonClose = new VitControls.Button();
-            this.buttonMaximize = new VitControls.Button();
+            this.buttonMinimize = new VitControls.VitButton();
+            this.buttonClose = new VitControls.VitButton();
+            this.buttonMaximize = new VitControls.VitButton();
             this.SuspendLayout();
             // 
             // labelText
@@ -119,8 +119,8 @@
 
         #endregion
         private System.Windows.Forms.Label labelText;
-        private Button buttonClose;
-        private Button buttonMinimize;
-        private Button buttonMaximize;
+        private VitButton buttonClose;
+        private VitButton buttonMinimize;
+        private VitButton buttonMaximize;
     }
 }

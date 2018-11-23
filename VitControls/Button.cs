@@ -4,13 +4,15 @@ using VitColors;
 
 namespace VitControls
 {
-    public partial class Button : UserControl
+    public partial class VitButton : UserControl
     {
-        public Button()
+        public VitButton()
         {
             InitializeComponent();
             //BackgroundImage = Properties.Resources.icons8_checkmark_48;
         }
+
+        
 
         protected override void OnMouseDown(MouseEventArgs e)
         {

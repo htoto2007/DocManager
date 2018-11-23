@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using VitDBConnect;
 using VitFTP;
 using VitMysql;
@@ -30,13 +31,52 @@ namespace VitFiles
         public ClassFiles()
 
         {
-            repositiryPayh = VitSettings.Properties.GeneralsSettings.Default.repositiryPayh;
-            root = VitSettings.Properties.GeneralsSettings.Default.programPath;
+            
         }
 
-        public void createFile(string source, string destination)
+        public void createFile(string path, string hashCode, int idTypeCard)
         {
-            string respCode = classFTP.UploadFile(source, destination);
+            classMysql.Insert("" +
+                "insert into tb_tb+files " +
+                "SET " +
+                "name = '" + MySqlHelper.EscapeString(path) +"', " +
+                "hash_code = '" + hashCode + "' " +
+                "id_typw_card = '" + idTypeCard + "' ");
+        }
+
+        public void createFile(string[] arrPath, string hashCode, int idTypeCard)
+        {
+            foreach (string path in arrPath)
+            {
+                classMysql.Insert("" +
+                    "INSERT INTO tb_files " +
+                    "SET " +
+                    "name = '" + MySqlHelper.EscapeString(path) + "', " +
+                    "hash_code = '" + hashCode + "' " +
+                    "id_typw_card = '" + idTypeCard + "' ");
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name">z://directory/fileName.ext</param>
+        public void getInfoByName(string name)
+        {
+                classMysql.Insert("" +
+                    "SELECT * " +
+                    "FROM tb_files " +
+                    "WHERE " +
+                    "name = '" + MySqlHelper.EscapeString(name) + "'");
+            
+        }
+
+        public struct WhereParams
+        {
+            public const string hashCode = "hash_code";
+            public const string id = "id";
+            public const string idTypeCard = "id_typw_card";
+            public const string name = "name";
         }
 
         public struct FileCollection
@@ -44,7 +84,6 @@ namespace VitFiles
             public DateTime createDateTime;
             public int hashCode;
             public int id;
-            public int idFolder;
             public int idTypeCard;
 
             /// <summary>

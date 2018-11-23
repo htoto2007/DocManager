@@ -72,10 +72,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\VitFolderAccess\VitFolderAccess.csproj">
-      <Project>{54CB071D-AC92-407B-87EB-96D72A182885}</Project>
-      <Name>VitFolderAccess</Name>
-    </ProjectReference>
     <ProjectReference Include="..\vitMysql\VitMysql.csproj">
       <Project>{0312B089-F072-499E-97CD-701A78E6C425}</Project>
       <Name>VitMysql</Name>

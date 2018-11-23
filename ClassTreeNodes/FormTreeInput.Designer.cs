@@ -42,12 +42,14 @@
             this.windowHeader1.AutoSize = true;
             this.windowHeader1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.windowHeader1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(207)))), ((int)(((byte)(251)))));
+            this.windowHeader1.close = false;
             this.windowHeader1.Dock = System.Windows.Forms.DockStyle.Top;
             this.windowHeader1.Location = new System.Drawing.Point(1, 1);
             this.windowHeader1.Margin = new System.Windows.Forms.Padding(0);
             this.windowHeader1.maximize = false;
             this.windowHeader1.minimize = false;
             this.windowHeader1.Name = "windowHeader1";
+            this.windowHeader1.showInTaskbar = false;
             this.windowHeader1.Size = new System.Drawing.Size(412, 34);
             this.windowHeader1.TabIndex = 0;
             // 
@@ -76,6 +78,7 @@
             // 
             // buttonOk
             // 
+            this.buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.buttonOk.Location = new System.Drawing.Point(3, 50);
             this.buttonOk.Name = "buttonOk";
             this.buttonOk.Size = new System.Drawing.Size(75, 23);
@@ -94,8 +97,10 @@
             // 
             // FormTreeInput
             // 
+            this.AcceptButton = this.buttonOk;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.buttonCansel;
             this.ClientSize = new System.Drawing.Size(414, 124);
             this.ControlBox = false;
             this.Controls.Add(this.panel1);

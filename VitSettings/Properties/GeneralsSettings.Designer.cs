@@ -58,5 +58,29 @@ namespace VitSettings.Properties {
                 this["repositoryRootFolderName"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string tmpFTP {
+            get {
+                return ((string)(this["tmpFTP"]));
+            }
+            set {
+                this["tmpFTP"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string fileTypeIcons {
+            get {
+                return ((string)(this["fileTypeIcons"]));
+            }
+            set {
+                this["fileTypeIcons"] = value;
+            }
+        }
     }
 }

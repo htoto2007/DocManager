@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Net;
+using System.Threading;
 using System.Threading.Tasks;
 using VitUsers;
 using WinSCP;
@@ -23,6 +25,7 @@ namespace VitFTP
         private ClassUsers ClassUsers = new ClassUsers();
         private readonly SessionOptions sessionOptions;
         private string uri;
+        vitProgressStatus.FormProgressStatus formProgressStatus;
 
         public ClassFTP()
         {
@@ -32,11 +35,49 @@ namespace VitFTP
 
             sessionOptions = new SessionOptions
             {
-                Protocol = Protocol.Ftp,
+                Protocol = Protocol.Sftp,
                 HostName = VitSettings.Properties.FTPSettings.Default.host,
                 UserName = ClassUsers.getThisUser().login,
                 Password = ClassUsers.getThisUser().password,
+                GiveUpSecurityAndAcceptAnySshHostKey = false,
             };
+            new Thread(() => { formProgressStatus = new vitProgressStatus.FormProgressStatus(); }).Start();
+        }
+
+        private void session_FileTransferProgress(object sender, WinSCP.FileTransferProgressEventArgs e)
+        {
+            if (e.FileProgress > 0)
+            {
+                ProgressFormAsync(Convert.ToInt32(e.OverallProgress), Convert.ToInt32(e.FileProgress), e.FileName);
+            }
+            else
+            {
+                formProgressStatus.Hide();
+            }
+        }
+
+        private void ProgressFormAsync(int max, int value, string fileName)
+        {   
+            formProgressStatus.label1.Invoke((Action)(() =>
+            {
+                formProgressStatus.label1.Text = fileName;
+            }));
+            formProgressStatus.progressBar1.Invoke((Action)(() => {
+                
+                formProgressStatus.progressBar1.Minimum = 0;
+                formProgressStatus.progressBar1.Maximum = max;
+                formProgressStatus.progressBar1.Step = 1;
+                formProgressStatus.progressBar1.Value = value;
+            }));
+
+        }
+
+        private void ProgressFormCloseAsync()
+        {
+            
+                formProgressStatus.Invoke((Action)(() => {
+                    formProgressStatus.Hide();
+                }));
         }
 
         public string ChangeWorkingDirectory(string path)
@@ -58,14 +99,77 @@ namespace VitFTP
             return result;
         }
 
+        public Icon getIconFile(string path)
+        {
+            Icon icon;
+            
+                // Connect
+                icon = Icon.ExtractAssociatedIcon(path);
+                string pathFileTypeIcons = VitSettings.Properties.GeneralsSettings.Default.fileTypeIcons;
+                string extension = Path.GetExtension(path);
+                string fileName = pathFileTypeIcons + "\\" + extension + ".png";
+                if (!File.Exists(fileName))
+                {
+                    icon.ToBitmap().Save(fileName, System.Drawing.Imaging.ImageFormat.Png);
+                }
+            
+            return icon;
+        }
+
         public async Task copyAsync(string sourcePath, string targetPath)
         {
             using (Session session = new Session())
             {
                 // Connect
                 session.Open(sessionOptions);
-                await Task.Run(() => session.DuplicateFile(sourcePath, targetPath));
+                await Task.Run(() => EraseDirectory(VitSettings.Properties.FTPSettings.Default.pathTnp));
+                if (Path.GetExtension(sourcePath) == "")
+                {
+                    await Task.Run(() => Directory.CreateDirectory(VitSettings.Properties.FTPSettings.Default.pathTnp + "\\" + Path.GetFileName(sourcePath)));
+                    await Task.Run(() => session.GetFiles(sourcePath, VitSettings.Properties.FTPSettings.Default.pathTnp + "\\" + Path.GetFileName(sourcePath)));
+                    await Task.Run(() => session.PutFiles(VitSettings.Properties.FTPSettings.Default.pathTnp + "\\" + Path.GetFileName(sourcePath), targetPath + "/"));
+                }
+                else
+                {
+                    await Task.Run(() => DownloadFile(sourcePath, VitSettings.Properties.FTPSettings.Default.pathTnp + "\\" + Path.GetFileName(sourcePath)));
+                    await Task.Run(() => session.PutFiles(VitSettings.Properties.FTPSettings.Default.pathTnp + "\\" + Path.GetFileName(sourcePath), targetPath + "/"));
+                }
+                await Task.Run(() => EraseDirectory(VitSettings.Properties.FTPSettings.Default.pathTnp));
                 session.Close();
+            }
+        }
+
+        public async Task moveAsync(string sourcePath, string targetPath)
+        {
+            using (Session session = new Session())
+            {
+                // Connect
+                session.Open(sessionOptions);
+                await Task.Run(() => EraseDirectory(VitSettings.Properties.FTPSettings.Default.pathTnp));
+                if (Path.GetExtension(sourcePath) == "")
+                {
+                    await Task.Run(() => Directory.CreateDirectory(VitSettings.Properties.FTPSettings.Default.pathTnp + "\\" + Path.GetFileName(sourcePath)));
+                    await Task.Run(() => session.GetFiles(sourcePath, VitSettings.Properties.FTPSettings.Default.pathTnp + "\\" + Path.GetFileName(sourcePath)));
+                    await Task.Run(() => session.PutFiles(VitSettings.Properties.FTPSettings.Default.pathTnp + "\\" + Path.GetFileName(sourcePath), targetPath + "/"));
+                    await Task.Run(() => session.RemoveFiles(sourcePath));
+                }
+                else
+                {
+                    await Task.Run(() => DownloadFile(sourcePath, VitSettings.Properties.FTPSettings.Default.pathTnp + "\\" + Path.GetFileName(sourcePath)));
+                    await Task.Run(() => session.PutFiles(VitSettings.Properties.FTPSettings.Default.pathTnp + "\\" + Path.GetFileName(sourcePath), targetPath + "/"));
+                    await Task.Run(() => DeleteFile(sourcePath));
+                }
+                await Task.Run(() => EraseDirectory(VitSettings.Properties.FTPSettings.Default.pathTnp));
+                session.Close();
+            }
+        }
+
+        private void EraseDirectory(string directoryPath)
+        {
+            foreach (string path in Directory.GetFiles(directoryPath, "*.*", SearchOption.AllDirectories))
+            {
+                getIconFile(path);
+                File.Delete(path);
             }
         }
 
@@ -217,18 +321,17 @@ namespace VitFTP
             return getStatusDescription(request);
         }
 
-        public bool Upload2(string localPath, string remotePath)
+        public async Task<bool> Upload2Async(string localPath, string remotePath)
         {
-            SessionOptions sessionOptions = new SessionOptions
+            if (Path.GetExtension(localPath) != "")
             {
-                Protocol = Protocol.Ftp,
-                HostName = VitSettings.Properties.FTPSettings.Default.host,
-                UserName = ClassUsers.getThisUser().login,
-                Password = ClassUsers.getThisUser().password,
-            };
+                getIconFile(localPath);
+            }
+
             bool res = false;
             using (Session session = new Session())
             {
+                //session.FileTransferProgress += new FileTransferProgressEventHandler(session_FileTransferProgress);
                 // Connect
                 session.Open(sessionOptions);
 
@@ -246,27 +349,73 @@ namespace VitFTP
                     TransferMode = TransferMode.Automatic,
                     OverwriteMode = OverwriteMode.Resume
                 };
-                res = session.PutFiles(localPath, remotePath, false, transferOptions).IsSuccess;
+                res = await Task.Run<bool>(() => session.PutFiles(localPath, remotePath, false, transferOptions).IsSuccess);
                 session.Close();
             }
             return res;
         }
 
-        public bool Upload2(string[] localPaths, string remotePath)
+        public void CreateDirectory(string path)
+        {
+            using (Session session = new Session())
+            {
+                // Connect
+                session.Open(sessionOptions);
+                session.CreateDirectory(path);
+                session.Close();
+            }
+        }
+
+        public bool FileExist(string path)
         {
             bool res = false;
             using (Session session = new Session())
             {
                 // Connect
                 session.Open(sessionOptions);
+                res = session.FileExists(path);
+                session.Close();
+            }
+            return res;
+        }
+
+        public async Task<string[]> Upload2Async(string[] localPaths, string remotePath)
+        {
+            
+            List<string> arrComplete = new List<string>();
+            using (Session session = new Session())
+            {
+                //session.FileTransferProgress += new FileTransferProgressEventHandler(session_FileTransferProgress);
+                // Connect
+                session.Open(sessionOptions);
+                
+                int iterator = 0;
+                if(iterator == 0)
+                {
+                    formProgressStatus.Show();
+                    //session.FileTransferProgress += new FileTransferProgressEventHandler(session_FileTransferProgress);
+                    ProgressFormAsync(localPaths.GetLength(0), iterator, "");
+                }
                 foreach (string localPath in localPaths)
                 {
+                    if (Path.GetExtension(localPath) == "") continue;
+                    if (!formProgressStatus.IsDisposed)
+                        formProgressStatus.progressBar1.PerformStep();
+                    else
+                        break;
+
+                    iterator++;
+                    if (Path.GetExtension(localPath) != "")
+                    {
+                        getIconFile(localPath);
+                    }
+
                     if (session.FileExists(remotePath + Path.GetFileName(localPath)))
                     {
                         VitNotifyMessage.ClassNotifyMessage classNotifyMessage = new VitNotifyMessage.ClassNotifyMessage();
                         if (classNotifyMessage.showDialog(VitNotifyMessage.ClassNotifyMessage.TypeMessage.QUESTION, remotePath + Path.GetFileName(localPath) + " уже существует. Заменить его?") != System.Windows.Forms.DialogResult.Yes)
                         {
-                            return false;
+                            return arrComplete.ToArray();
                         }
                     }
 
@@ -275,11 +424,15 @@ namespace VitFTP
                         TransferMode = TransferMode.Automatic,
                         OverwriteMode = OverwriteMode.Resume
                     };
-                    res = session.PutFiles(localPath, remotePath, false, transferOptions).IsSuccess;
+                    bool res = await Task.Run(() => session.PutFiles(localPath, remotePath, false, transferOptions).IsSuccess);
+                    if (res == false) continue;
+                    arrComplete.Add(remotePath + Path.GetFileName(localPath));
                 }
                 session.Close();
+                formProgressStatus.Hide();
             }
-            return res;
+            
+            return arrComplete.ToArray();
         }
 
         public string UploadFile(string source, string destination)

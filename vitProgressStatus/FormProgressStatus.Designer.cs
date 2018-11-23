@@ -29,10 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormProgressStatus));
             this.windowHeader1 = new VitControls.WindowHeader();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new VitControls.Button();
+            this.button1 = new VitControls.VitButton();
             this.label1 = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
@@ -70,9 +69,9 @@
             // 
             // button1
             // 
-            this.button1.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.button1.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
             this.button1.BackColor = System.Drawing.Color.Transparent;
-            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
+            this.button1.BackgroundImage = global::vitProgressStatus.Properties.Resources.icons8_delete_48;
             this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.button1.Location = new System.Drawing.Point(151, 46);
             this.button1.Margin = new System.Windows.Forms.Padding(0);
@@ -80,6 +79,7 @@
             this.button1.Size = new System.Drawing.Size(32, 32);
             this.button1.TabIndex = 2;
             this.toolTip1.SetToolTip(this.button1, "Прервать операцию");
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label1
             // 
@@ -95,7 +95,9 @@
             this.progressBar1.Location = new System.Drawing.Point(3, 29);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(340, 14);
+            this.progressBar1.Step = 1;
             this.progressBar1.TabIndex = 0;
+            this.progressBar1.Value = 50;
             // 
             // FormProgressStatus
             // 
@@ -104,11 +106,11 @@
             this.ClientSize = new System.Drawing.Size(348, 122);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.windowHeader1);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormProgressStatus";
             this.Padding = new System.Windows.Forms.Padding(1);
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Загрузка....";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -121,7 +123,7 @@
 
         private VitControls.WindowHeader windowHeader1;
         private System.Windows.Forms.Panel panel1;
-        private VitControls.Button button1;
+        private VitControls.VitButton button1;
         private System.Windows.Forms.ToolTip toolTip1;
         public System.Windows.Forms.Label label1;
         public System.Windows.Forms.ProgressBar progressBar1;

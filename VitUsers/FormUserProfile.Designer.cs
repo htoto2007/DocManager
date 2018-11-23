@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormUserProfile));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.buttonDeletePhoto = new VitControls.Button();
+            this.buttonDeletePhoto = new VitControls.VitButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.labelLogin = new System.Windows.Forms.Label();
             this.labelSubdivision = new System.Windows.Forms.Label();
@@ -41,9 +41,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.buttonEditUserPthoto = new VitControls.Button();
-            this.buttonOkPassword = new VitControls.Button();
-            this.buttonEditPassword = new VitControls.Button();
+            this.buttonEditUserPthoto = new VitControls.VitButton();
+            this.buttonOkPassword = new VitControls.VitButton();
+            this.buttonEditPassword = new VitControls.VitButton();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -350,10 +350,10 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private VitControls.Button buttonEditUserPthoto;
-        private VitControls.Button buttonOkPassword;
+        private VitControls.VitButton buttonEditUserPthoto;
+        private VitControls.VitButton buttonOkPassword;
         private System.Windows.Forms.ToolTip toolTip1;
-        private VitControls.Button buttonEditPassword;
+        private VitControls.VitButton buttonEditPassword;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
@@ -367,6 +367,6 @@
         private System.Windows.Forms.Label labelSubdivision;
         private System.Windows.Forms.Label labelPosition;
         private System.Windows.Forms.Label labelUserName;
-        private VitControls.Button buttonDeletePhoto;
+        private VitControls.VitButton buttonDeletePhoto;
     }
 }

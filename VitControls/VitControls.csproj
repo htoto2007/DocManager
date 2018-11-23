@@ -101,10 +101,12 @@
       <Project>{7485de72-c9f6-4547-aa4a-395c32de0b88}</Project>
       <Name>VitColors</Name>
     </ProjectReference>
-    <ProjectReference Include="..\VitImageList\VitIcons.csproj">
-      <Project>{2b2e0264-ef18-4e6d-8069-6a87ae4b37ba}</Project>
-      <Name>VitIcons</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-checkmark-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-delete-48.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icons8-close-window-48.png" />
@@ -117,12 +119,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icons8-restore-window-48.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icons8-checkmark-48.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icons8-delete-48.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

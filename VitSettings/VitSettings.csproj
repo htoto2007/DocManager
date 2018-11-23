@@ -58,12 +58,6 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="VitColors">
-      <HintPath>..\VitColors\bin\Debug\VitColors.dll</HintPath>
-    </Reference>
-    <Reference Include="VitIcons">
-      <HintPath>..\VitImageList\bin\Debug\VitIcons.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClassSettings.cs" />

@@ -58,5 +58,29 @@ namespace VitSettings.Properties {
                 this["timeout"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string openFilePath {
+            get {
+                return ((string)(this["openFilePath"]));
+            }
+            set {
+                this["openFilePath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string pathTnp {
+            get {
+                return ((string)(this["pathTnp"]));
+            }
+            set {
+                this["pathTnp"] = value;
+            }
+        }
     }
 }

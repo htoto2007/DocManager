@@ -1,6 +1,6 @@
 ﻿namespace VitControls
 {
-    partial class Button
+    partial class VitButton
     {
         /// <summary>
         /// Обязательная переменная конструктора.

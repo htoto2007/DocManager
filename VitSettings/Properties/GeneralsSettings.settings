@@ -11,5 +11,11 @@
     <Setting Name="repositoryRootFolderName" Type="System.String" Scope="User">
       <Value Profile="(Default)">r</Value>
     </Setting>
+    <Setting Name="tmpFTP" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="fileTypeIcons" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

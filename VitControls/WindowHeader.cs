@@ -63,12 +63,12 @@ namespace VitControls
             if (ParentForm.WindowState == FormWindowState.Maximized)
             {
                 ParentForm.WindowState = FormWindowState.Normal;
-                buttonMaximize.BackgroundImage = VitIcons.Properties.ResourceColorImage.icons8_maximize_window_48;
+                buttonMaximize.BackgroundImage = Properties.Resources.icons8_maximize_window_48;
             }
             else
             {
                 ParentForm.WindowState = FormWindowState.Maximized;
-                buttonMaximize.BackgroundImage = VitIcons.Properties.ResourceColorImage.icons8_restore_window_48;
+                buttonMaximize.BackgroundImage = Properties.Resources.icons8_restore_window_48;
             }
             ParentForm.Update();
         }

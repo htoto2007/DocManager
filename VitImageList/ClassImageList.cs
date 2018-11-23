@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
@@ -15,6 +16,13 @@ namespace VitIcons
             imageList.Images.Add("default_file", Properties.ResourceColorImage.icons8_document_48);
             imageList.Images.Add("default_folder", Properties.ResourceColorImage.icons8_folder_48);
             imageList.Images.Add("root", Properties.ResourceColorImage.icons8_tree_structure_40);
+
+            foreach (string path in Directory.GetFiles(VitSettings.Properties.GeneralsSettings.Default.fileTypeIcons))
+            {
+                Image image = Image.FromFile(path);
+                imageList.Images.Add(Path.GetFileNameWithoutExtension(path).TrimStart('.'), image);
+                Console.WriteLine("Загружен значек: " + Path.GetFileNameWithoutExtension(path).TrimStart('.'));
+            }
         }
 
         public string addIconFile(string pathToFile)

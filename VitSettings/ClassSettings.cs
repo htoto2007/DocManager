@@ -21,6 +21,24 @@ namespace VitSettings
             {
                 Directory.CreateDirectory(Properties.GeneralsSettings.Default.repositiryPayh);
             }
+            if (Properties.FTPSettings.Default.pathTnp == "")
+            {
+                Properties.FTPSettings.Default.pathTnp = Properties.GeneralsSettings.Default.programPath + "\\tmp\\ftp";
+                Properties.FTPSettings.Default.Save();
+            }
+            if (!Directory.Exists(Properties.FTPSettings.Default.pathTnp))
+            {
+                Directory.CreateDirectory(Properties.FTPSettings.Default.pathTnp);
+            }
+            if (Properties.GeneralsSettings.Default.fileTypeIcons == "")
+            {
+                Properties.GeneralsSettings.Default.fileTypeIcons = Properties.GeneralsSettings.Default.programPath + "\\icons\\fileType";
+                Properties.GeneralsSettings.Default.Save();
+            }
+            if (!Directory.Exists(Properties.GeneralsSettings.Default.fileTypeIcons))
+            {
+                Directory.CreateDirectory(Properties.GeneralsSettings.Default.fileTypeIcons);
+            }
         }
 
         public Props GetProperties()

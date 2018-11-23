@@ -1,7 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using VitFolderAccess;
 using VitMysql;
 
 namespace VitAccessGroup
@@ -57,8 +56,6 @@ namespace VitAccessGroup
         {
             FormAccessGroup formAccessGroup = new FormAccessGroup();
             AccessGroupCollection[] accessGroups = getInfo();
-            ClassFolderAccess classFolderAccess = new ClassFolderAccess();
-            classFolderAccess.getInfo();
 
             formAccessGroup.listView1.View = System.Windows.Forms.View.Details;
             formAccessGroup.listView1.MultiSelect = true;

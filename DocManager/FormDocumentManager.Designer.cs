@@ -68,16 +68,16 @@
             this.ToolStripMenuItemAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.timerSearcher = new System.Windows.Forms.Timer(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.button2 = new VitControls.Button();
-            this.buttonSettingsDocumentCard = new VitControls.Button();
-            this.buttonSettingsAccessGroup = new VitControls.Button();
-            this.buttonUsers = new VitControls.Button();
-            this.buttonSettings = new VitControls.Button();
-            this.buttonScan = new VitControls.Button();
-            this.buttonAddBranch = new VitControls.Button();
+            this.button2 = new VitControls.VitButton();
+            this.buttonSettingsDocumentCard = new VitControls.VitButton();
+            this.buttonSettingsAccessGroup = new VitControls.VitButton();
+            this.buttonUsers = new VitControls.VitButton();
+            this.buttonSettings = new VitControls.VitButton();
+            this.buttonScan = new VitControls.VitButton();
+            this.buttonAddBranch = new VitControls.VitButton();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new VitControls.Button();
-            this.buttonExit = new VitControls.Button();
+            this.button1 = new VitControls.VitButton();
+            this.buttonExit = new VitControls.VitButton();
             this.panelUserMenu = new System.Windows.Forms.Panel();
             this.flowLayoutPanelAdmin = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanelUserMenu = new System.Windows.Forms.FlowLayoutPanel();
@@ -208,7 +208,7 @@
             this.ToolStripMenuItemDelete.Name = "ToolStripMenuItemDelete";
             this.ToolStripMenuItemDelete.Size = new System.Drawing.Size(222, 22);
             this.ToolStripMenuItemDelete.Text = "Удалить";
-            this.ToolStripMenuItemDelete.Click += new System.EventHandler(this.ToolStripMenuItemDelete_Click_1);
+            this.ToolStripMenuItemDelete.Click += new System.EventHandler(this.ToolStripMenuItemDelete_Click);
             // 
             // ToolStripMenuItemCopy
             // 
@@ -815,17 +815,17 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panelExplorer;
-        private VitControls.Button buttonScan;
-        private VitControls.Button buttonAddBranch;
+        private VitControls.VitButton buttonScan;
+        private VitControls.VitButton buttonAddBranch;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemHelp;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemAbout;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelAdmin;
-        private VitControls.Button button2;
-        private VitControls.Button buttonSettingsDocumentCard;
-        private VitControls.Button buttonSettingsAccessGroup;
-        private VitControls.Button buttonUsers;
-        private VitControls.Button buttonSettings;
+        private VitControls.VitButton button2;
+        private VitControls.VitButton buttonSettingsDocumentCard;
+        private VitControls.VitButton buttonSettingsAccessGroup;
+        private VitControls.VitButton buttonUsers;
+        private VitControls.VitButton buttonSettings;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemAddDocument;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemCopy;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemSend;
@@ -843,9 +843,9 @@
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemScanToThisFolder;
         private VitControls.WindowHeader windowHeader1;
-        private VitControls.Button button1;
+        private VitControls.VitButton button1;
         private System.Windows.Forms.Label labelUserName;
-        private VitControls.Button buttonExit;
+        private VitControls.VitButton buttonExit;
     }
 }
 

@@ -1,8 +1,10 @@
 ﻿using System;
+using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 using VitCardPropsValue;
 using VitFiles;
+using VitFTP;
 using VitTree;
 using VitTypeCard;
 using vitTypeCardProps;
@@ -13,7 +15,6 @@ namespace VitListView
     {
         private readonly ClassCardPropsValue classCardPropsValue = new ClassCardPropsValue();
         private readonly ClassFiles classFiles = new ClassFiles();
-        private readonly VitFolder.ClassFolder classFolder = new VitFolder.ClassFolder();
         private readonly ClassTypeCard classTypeCard = new ClassTypeCard();
         private readonly ClassTypeCardProps classTypeCardProps = new ClassTypeCardProps();
         private readonly Thread threedLoadInfo;
@@ -55,8 +56,30 @@ namespace VitListView
             listView.Columns.Add("#");
             listView.Columns.Add("Имя");
             listView.Columns.Add("тип");
-            listView.Columns.Add("Дата создания");
+            //listView.Columns.Add("Дата создания");
             listView.Columns.Add("Путь");
+
+            TreeNode treeNode = treeView.SelectedNode;
+
+            foreach (TreeNode tn in treeNode.Nodes)
+            {
+                ListViewItem listViewItem = new ListViewItem
+                {
+                    ImageKey = tn.ImageKey
+                };
+
+                listViewItem.SubItems.Add(tn.Text).Name = "name";
+                if (Path.GetExtension(tn.Text) != "")
+                    listViewItem.SubItems.Add("file").Name = "type";
+                else
+                    listViewItem.SubItems.Add("folder").Name = "type";
+                listViewItem.SubItems.Add(tn.Name).Name = "path";
+                //listViewItem.SubItems.Add(fileCollection.createDateTime.ToString()).Name = "createDateTime";
+                listView.Items.Add(listViewItem);
+            }
+            listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            listView.EndUpdate();
+            listView.Update();
         }
 
         /// <summary>

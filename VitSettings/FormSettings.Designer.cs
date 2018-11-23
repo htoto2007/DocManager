@@ -30,8 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormSettings));
             this.windowHeader1 = new VitControls.WindowHeader();
-            this.button2 = new VitControls.Button();
-            this.button3 = new VitControls.Button();
+            this.button2 = new VitControls.VitButton();
+            this.button3 = new VitControls.VitButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tabControlSettings = new System.Windows.Forms.TabControl();
             this.tabPageConnectToData = new System.Windows.Forms.TabPage();
@@ -48,7 +48,7 @@
             this.tabPageGeneralsSettings = new System.Windows.Forms.TabPage();
             this.textBoxRootFolderName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.buttonOpenFolderDirectory = new VitControls.Button();
+            this.buttonOpenFolderDirectory = new VitControls.VitButton();
             this.linkLabelRepositoryToDocuments = new System.Windows.Forms.LinkLabel();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPageSettings = new System.Windows.Forms.TabPage();
@@ -347,8 +347,8 @@
 
         #endregion
         private VitControls.WindowHeader windowHeader1;
-        private VitControls.Button button2;
-        private VitControls.Button button3;
+        private VitControls.VitButton button2;
+        private VitControls.VitButton button3;
         private System.Windows.Forms.TabControl tabControlSettings;
         private System.Windows.Forms.TabPage tabPageConnectToData;
         private System.Windows.Forms.Label label7;
@@ -364,7 +364,7 @@
         private System.Windows.Forms.TabPage tabPageGeneralsSettings;
         private System.Windows.Forms.TextBox textBoxRootFolderName;
         private System.Windows.Forms.Label label2;
-        private VitControls.Button buttonOpenFolderDirectory;
+        private VitControls.VitButton buttonOpenFolderDirectory;
         private System.Windows.Forms.LinkLabel linkLabelRepositoryToDocuments;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabPage tabPageSettings;

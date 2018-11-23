@@ -75,9 +75,9 @@
       <Project>{66017a02-c3d9-4809-b788-6b91df08be99}</Project>
       <Name>VitFiles</Name>
     </ProjectReference>
-    <ProjectReference Include="..\VitFolder2\VitFolder.csproj">
-      <Project>{ce2f89f9-6bfa-4fcb-ac90-368e7fccb70f}</Project>
-      <Name>VitFolder</Name>
+    <ProjectReference Include="..\VitFTP\VitFTP.csproj">
+      <Project>{8E118625-8DED-4D15-9B41-0292A968ADFC}</Project>
+      <Name>VitFTP</Name>
     </ProjectReference>
     <ProjectReference Include="..\VitImageList\VitIcons.csproj">
       <Project>{2b2e0264-ef18-4e6d-8069-6a87ae4b37ba}</Project>

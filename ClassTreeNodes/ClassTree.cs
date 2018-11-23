@@ -7,7 +7,6 @@ using VitFiles;
 using VitFTP;
 using VitIcons;
 using vitProgressStatus;
-using VitRelationFolders;
 using VitTypeCard;
 
 namespace VitTree
@@ -22,8 +21,6 @@ namespace VitTree
         private readonly ClassFiles classFiles = new ClassFiles();
 
         private readonly VitIcons.ClassImageList ClassImageList = new VitIcons.ClassImageList();
-
-        private readonly ClassRelationFolders classRelationFolders = new ClassRelationFolders();
 
         private readonly ClassTypeCard classTypeCard = new ClassTypeCard();
 
@@ -45,7 +42,7 @@ namespace VitTree
                 {
                     treeView.Invoke((Action)(() =>
                     {
-                        classFTP.Upload2(openFileDialog.FileNames, paths + "/");
+                        classFTP.Upload2Async(openFileDialog.FileNames, paths + "/");
                     }));
                 });
             }
@@ -57,11 +54,28 @@ namespace VitTree
 
         public void copy(TreeView treeView)
         {
+            string sourcePath = treeView.SelectedNode.FullPath;
             FormTree formTree = new FormTree();
             if (formTree.ShowDialog() == DialogResult.OK)
             {
+                string targetPath = formTree.treeView1.SelectedNode.FullPath;
+                Console.WriteLine(sourcePath + "    ->    " + targetPath);
                 ClassFTP classFTP = new ClassFTP();
-                classFTP.copyAsync(treeView.SelectedNode.FullPath, formTree.treeView1.SelectedNode.FullPath + "/");
+                classFTP.copyAsync(sourcePath, targetPath);
+                update(treeView);
+            }
+        }
+
+        public void move(TreeView treeView)
+        {
+            string sourcePath = treeView.SelectedNode.FullPath;
+            FormTree formTree = new FormTree();
+            if (formTree.ShowDialog() == DialogResult.OK)
+            {
+                string targetPath = formTree.treeView1.SelectedNode.FullPath;
+                Console.WriteLine(sourcePath + "    ->    " + targetPath);
+                ClassFTP classFTP = new ClassFTP();
+                classFTP.moveAsync(sourcePath, targetPath);
                 update(treeView);
             }
         }
@@ -91,39 +105,19 @@ namespace VitTree
 
         public void getNextNodes(TreeNode treeNode)
         {
-            if (Path.GetExtension(treeNode.Name) != "")
-            {
-                return;
-            }
-
             if (treeNode.Nodes.Count > 0)
             {
                 return;
             }
 
             ClassFTP classFTP = new ClassFTP();
-
-            Console.WriteLine(treeNode.FullPath);
-            string[] arrDirectoryesName = treeNode.FullPath.Split('\\');
-            Console.WriteLine(classFTP.ChangeWorkingDirectory(""));
-
-            foreach (string folderName in arrDirectoryesName)
+            classFTP.ChangeWorkingDirectory(treeNode.FullPath);
+            foreach (string directory in classFTP.ListDirectory())
             {
-                Console.WriteLine(folderName);
-                classFTP.ChangeWorkingDirectory(folderName);
-            }
-
-            string[] directoryes = classFTP.ListDirectory();
-            foreach (string direcory in directoryes)
-            {
-                TreeNode tn = new TreeNode
-                {
-                    Name = direcory,
-                    ImageKey = "icons8-folder-48.png",
-                    Text = Path.GetFileName(direcory)
-                };
-
-                getSubdirectoryes(classFTP, tn, Path.GetFileName(direcory));
+                TreeNode tn = new TreeNode();
+                tn.Name = directory;
+                tn.Text = Path.GetFileName(directory);
+                addIcon(tn);
                 treeNode.Nodes.Add(tn);
             }
         }
@@ -140,12 +134,11 @@ namespace VitTree
             {
                 foreach (string direcory in directoryes)
                 {
-                    TreeNode treeNode = new TreeNode
-                    {
-                        Name = direcory,
-                        ImageKey = "icons8-folder-48.png",
-                        Text = direcory
-                    };
+                    TreeNode treeNode = new TreeNode();
+                    treeNode.Name = direcory;
+                    treeNode.Text = direcory;
+                    addIcon(treeNode);
+
                     if (Path.GetExtension(treeNode.Name) == "")
                     {
                         await getSubdirectoryes(classFTP, treeNode, Path.GetFileName(direcory));
@@ -171,10 +164,10 @@ namespace VitTree
 
         public async Task update(TreeView treeView)
         {
-            if ((treeView.SelectedNode.Nodes.Count == 0) && (Path.GetExtension(treeView.SelectedNode.FullPath) == ""))
-            {
-                getNextNodes(treeView.SelectedNode);
-            }
+            treeView.SelectedNode.Nodes.Clear();
+            getNextNodes(treeView.SelectedNode);
+            preLoadNodes(treeView.SelectedNode);
+            treeView.SelectedNode.Expand();
         }
 
         private async Task getSubdirectoryes(ClassFTP classFTP, TreeNode treeNode, string directory)
@@ -184,17 +177,67 @@ namespace VitTree
             string[] dsubirectoryes = classFTP.ListDirectory();
             foreach (string subdirecory in dsubirectoryes)
             {
-                if (Path.GetExtension(subdirecory) == "")
-                {
-                    treeNode.Nodes.Add(subdirecory, Path.GetFileName(subdirecory), "icons8-folder-48.png");
-                }
-                else
-                {
-                    treeNode.Nodes.Add(subdirecory, Path.GetFileName(subdirecory), "icons8-folder-48.png");
-                }
+                TreeNode tn = new TreeNode();
+                tn.Name = subdirecory;
+                tn.Text = Path.GetFileName(subdirecory);
+                addIcon(tn);
+
+                treeNode.Nodes.Add(tn);
             }
             classFTP.ChangeWorkingDirectory("..");
             Console.WriteLine(classFTP.ChangeWorkingDirectory(""));
+        }
+
+        private void addIcon(TreeNode treeNode)
+        {
+            if (Path.GetExtension(treeNode.Name) != "")
+            {
+                if (ClassImageList.imageList.Images.ContainsKey(Path.GetExtension(treeNode.Name).TrimStart('.')))
+                {
+                    treeNode.ImageKey = Path.GetExtension(treeNode.Name).TrimStart('.');
+                    treeNode.SelectedImageKey = Path.GetExtension(treeNode.Name).TrimStart('.');
+                }
+                else
+                {
+                    treeNode.ImageKey = "default_file";
+                    treeNode.SelectedImageKey = "default_file";
+                }
+            }
+            else
+            {
+                treeNode.ImageKey = "default_folder";
+                treeNode.SelectedImageKey = "default_folder";
+            }
+        }
+
+        public void addNodeFolder(TreeView treeView)
+        {
+            string path = "";
+            if (treeView.SelectedNode != null)
+            {
+                path = treeView.SelectedNode.FullPath;
+            }
+
+            FormTreeInput formTreeInput = new FormTreeInput();
+            if (formTreeInput.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+
+            ClassFTP classFTP = new ClassFTP();
+            classFTP.CreateDirectory(path + "/" + formTreeInput.textBox1.Text);
+
+            if (classFTP.FileExist(path + "/" + formTreeInput.textBox1.Text))
+            {
+                TreeNode treeNode = new TreeNode
+                {
+                    Name = formTreeInput.textBox1.Text,
+                    Text = formTreeInput.textBox1.Text,
+                    ImageKey = "default_folder",
+                };
+
+                treeView.SelectedNode.Nodes.Add(treeNode);
+            }
         }
 
         public struct TypeNodeCollection
