@@ -494,5 +494,10 @@ namespace DocManager
             string displayableVersion = $"{version.Major + "." + (version.Build)}";
             Text = programName;
         }
+
+        private void помощьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start(VitSettings.Properties.GeneralsSettings.Default.programPath + "\\help\\AEархив.html");
+        }
     }
 }

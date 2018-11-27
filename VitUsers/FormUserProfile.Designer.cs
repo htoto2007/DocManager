@@ -315,12 +315,14 @@
             this.windowHeader1.AutoSize = true;
             this.windowHeader1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.windowHeader1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(207)))), ((int)(((byte)(251)))));
+            this.windowHeader1.close = true;
             this.windowHeader1.Dock = System.Windows.Forms.DockStyle.Top;
             this.windowHeader1.Location = new System.Drawing.Point(0, 0);
             this.windowHeader1.Margin = new System.Windows.Forms.Padding(0);
             this.windowHeader1.maximize = false;
             this.windowHeader1.minimize = false;
             this.windowHeader1.Name = "windowHeader1";
+            this.windowHeader1.showInTaskbar = false;
             this.windowHeader1.Size = new System.Drawing.Size(536, 34);
             this.windowHeader1.TabIndex = 40;
             // 

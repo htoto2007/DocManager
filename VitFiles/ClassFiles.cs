@@ -26,7 +26,7 @@ namespace VitFiles
 
         private readonly string root = "";
 
-        private ClassFTP classFTP = new ClassFTP();
+        //private ClassFTP classFTP = new ClassFTP();
 
         public ClassFiles()
 

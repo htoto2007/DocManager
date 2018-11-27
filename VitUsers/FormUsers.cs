@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
+using VitAccessGroup;
+using VitSubdivision;
+using VitUserPositions;
 
 namespace VitUsers
 {
@@ -9,8 +12,36 @@ namespace VitUsers
         {
             InitializeComponent();
             init();
+        }
+
+        private void init()
+        {
             Random random = new Random();
             textBoxPassword.Text = random.Next(100000, 999999).ToString();
+
+            ClassSubdivision classSubdivision = new ClassSubdivision();
+            ClassSubdivision.SubdivisionCollection[] subdivisionCollections = classSubdivision.getAllInfo();
+            comboBoxSubdivision.Items.Clear();
+            foreach (ClassSubdivision.SubdivisionCollection subdivisionCollection in subdivisionCollections)
+            {
+                comboBoxSubdivision.Items.Add(subdivisionCollection.name);
+            }
+
+            ClassUserPositions classUserPositions = new ClassUserPositions();
+            ClassUserPositions.positionCollection[] positionCollections = classUserPositions.getAllInfo();
+            comboBoxPosition.Items.Clear();
+            foreach (ClassUserPositions.positionCollection positionCollection in positionCollections)
+            {
+                comboBoxPosition.Items.Add(positionCollection.name);
+            }
+
+            ClassAccessGroup classAccessGroup = new ClassAccessGroup();
+            ClassAccessGroup.AccessGroupCollection[] accessGroupCollections = classAccessGroup.getInfo();
+            comboBoxAccessGroup.Items.Clear();
+            foreach (ClassAccessGroup.AccessGroupCollection accessGroupCollection in accessGroupCollections)
+            {
+                comboBoxAccessGroup.Items.Add(accessGroupCollection.name);
+            }
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)
@@ -21,7 +52,17 @@ namespace VitUsers
         private void buttonOk_Click(object sender, EventArgs e)
         {
             ClassUsers classUsers = new ClassUsers();
-            classUsers.AddUser();
+            classUsers.AddUser(
+                textBoxLastName.Text,
+                textBoxFirstName.Text,
+                textBoxMiddleName.Text,
+                textBoxMail.Text,
+                textBoxMailPass.Text,
+                comboBoxAccessGroup.Text,
+                comboBoxPosition.Text,
+                comboBoxSubdivision.Text,
+                textBoxLogin.Text,
+                textBoxPassword.Text);
         }
 
         private void buttonUSerEdit_Click(object sender, EventArgs e)
@@ -30,16 +71,52 @@ namespace VitUsers
             classUsers.SendToEdit();
         }
 
-        private void init()
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
-            /*
-            Panel panelClose = (Panel)windowHeader1.Controls["panelButtonClose"];
-            ClassColors classColors = new ClassColors();
-            panelClose.BackgroundImage = VitIcons.Properties.ResourceColorImage.icons8_close_window_48;
-            Panel panelMinimize = (Panel)windowHeader1.Controls["panelButtonMinimize"];
-            panelMinimize.
-            windowHeader1.BackColor = classColors.getCollection().primary1;
-            */
+        }
+
+        private void textBoxFirstName_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void textBoxMiddleName_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void textBoxMail_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void textBoxLogin_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void textBoxMailPass_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void comboBoxAccessGroup_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void comboBoxPosition_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void comboBoxSubdivision_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void textBoxIdUser_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void textBoxPassword_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void textBoxLastName_TextChanged(object sender, EventArgs e)
+        {
         }
     }
 }

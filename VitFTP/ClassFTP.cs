@@ -5,6 +5,7 @@ using System.IO;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using VitUsers;
 using WinSCP;
 
@@ -33,9 +34,11 @@ namespace VitFTP
             userName = ClassUsers.getThisUser().login;
             password = ClassUsers.getThisUser().password;
 
+            //MessageBox.Show(ClassUsers.getThisUser().login + " " + ClassUsers.getThisUser().password);
+
             sessionOptions = new SessionOptions
             {
-                Protocol = Protocol.Sftp,
+                Protocol = Protocol.Ftp,
                 HostName = VitSettings.Properties.FTPSettings.Default.host,
                 UserName = ClassUsers.getThisUser().login,
                 Password = ClassUsers.getThisUser().password,

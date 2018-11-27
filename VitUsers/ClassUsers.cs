@@ -7,6 +7,8 @@ using System.Windows.Forms;
 using VitAccessGroup;
 using VitMysql;
 using VitSettings;
+using VitSubdivision;
+using VitUserPositions;
 
 namespace VitUsers
 {
@@ -23,6 +25,8 @@ namespace VitUsers
         private ClassAccessGroup classAccessGroup = new ClassAccessGroup();
         private ClassMysql classMysql = new ClassMysql();
         private ClassSettings classSettings = new ClassSettings();
+        private ClassSubdivision classSubdivision = new ClassSubdivision();
+        private ClassUserPositions classUserPositions = new ClassUserPositions();
 
         public ClassUsers()
         {
@@ -31,18 +35,27 @@ namespace VitUsers
             cashLoginFile = programPath + "\\" + tmpFile;
         }
 
-        public void AddUser()
+        public void AddUser(string lastName, string firstName, string MiddleName, string mail, string mailPass, string accessGroup, string position, string subdivision, string login, string password)
         {
-            string password = formUsers.textBoxPassword.Text;
-            string name = formUsers.textBoxLogin.Text;
-            int idAccessGroup = classAccessGroup.getIdByName(formUsers.listBoxAccessGroup.SelectedItem.ToString());
+            int idAccessGroup = classAccessGroup.getIdByName(accessGroup);
+            int idUserPosition = classUserPositions.getInfoByName(position).id;
+            int idDivision = classSubdivision.getInfoByName(subdivision).id;
 
             classMysql.Insert("" +
                 "INSERT INTO tb_users " +
                 "SET " +
-                "name = '" + name + "', " +
+                "first_name = '" + firstName + "', " +
+                "last_name = '" + lastName + "', " +
+                "middle_name = '" + MiddleName + "', " +
+                "login = '" + login + "', " +
+                "mail = '" + mail + "', " +
+                "mail_password = '" + mailPass + "', " +
+                "id_subdivision = '" + idDivision + "', " +
+                "id_position = '" + idUserPosition + "', " +
                 "id_access_group = '" + idAccessGroup + "', " +
                 "password = '" + password + "'");
+
+            Init();
         }
 
         public bool changePassword(string oldPass, string newPass, string retryPass)
@@ -86,7 +99,9 @@ namespace VitUsers
         public UserColection getThisUser()
         {
             UserColection userColection = new UserColection();
-            int id = Convert.ToInt32(File.ReadAllLines(cashLoginFile)[1]);
+            
+                int id = Convert.ToInt32(File.ReadAllLines(cashLoginFile)[1]);
+            
             userColection = GetUserByid(id);
             return userColection;
         }
@@ -97,19 +112,22 @@ namespace VitUsers
                 "SELECT * " +
                 "FROM tb_users " +
                 "WHERE id = " + id);
-            UserColection userColection = new UserColection
-            {
-                firstName = rows[0]["first_name"],
-                lastName = rows[0]["last_name"],
-                middleName = rows[0]["middle_name"],
-                login = rows[0]["login"],
-                idPosition = Convert.ToInt32(rows[0]["id_position"]),
-                idSubdivision = Convert.ToInt32(rows[0]["id_subdivision"]),
-                id = Convert.ToInt32(rows[0]["id"]),
-                password = rows[0]["password"],
-                imagePath = rows[0]["image"],
-                idAccessGroup = Convert.ToInt32(rows[0]["id_access_group"])
-            };
+
+            UserColection userColection = new UserColection();
+            //if (rows.GetLength(0) < 1) return userColection;
+
+
+            userColection.firstName = rows[0]["first_name"];
+            userColection.lastName = rows[0]["last_name"];
+            userColection.middleName = rows[0]["middle_name"];
+            userColection.login = rows[0]["login"];
+            userColection.idPosition = Convert.ToInt32(rows[0]["id_position"]);
+            userColection.idSubdivision = Convert.ToInt32(rows[0]["id_subdivision"]);
+            userColection.id = Convert.ToInt32(rows[0]["id"]);
+            userColection.password = rows[0]["password"];
+            userColection.imagePath = rows[0]["image"];
+            userColection.idAccessGroup = Convert.ToInt32(rows[0]["id_access_group"]);
+            
 
             return userColection;
         }
@@ -124,10 +142,14 @@ namespace VitUsers
         /// </returns>
         public int Login()
         {
+            Console.WriteLine("Делаем проверку кеша логина -> ");
             if (CheckLoginCesh())
             {
+                Console.Write("вналичии");
                 return 1;
             }
+            Console.Write("отсутствует");
+
 
             FormUserLogin formUserLogin = new FormUserLogin();
             UserColection[] userColections = GetAllUsers();
@@ -136,12 +158,15 @@ namespace VitUsers
             {
                 formUserLogin.comboBoxLogin.Items.Add(userColection.login);
             }
+            Console.WriteLine("Выводим форму пользователя -> ");
             DialogResult dialogResult = formUserLogin.ShowDialog();
 
             if (dialogResult != DialogResult.OK)
             {
+                Console.Write(" Форма закрыта");
                 return 2;
             }
+            Console.Write(" форма отправлена на подтверждение.");
 
             Dictionary<string, string>[] rows = classMysql.getArrayByQuery("" +
             "SELECT id " +
@@ -150,11 +175,14 @@ namespace VitUsers
             "login = '" + MySqlHelper.EscapeString(formUserLogin.comboBoxLogin.Text) + "' AND " +
             "password = '" + MySqlHelper.EscapeString(formUserLogin.textBoxPass.Text) + "'");
 
+            Console.WriteLine("Проверяем наличие пользователя согласно данным из формы -> ");
             if (rows.GetLength(0) == 1)
             {
+                Console.Write("пользователь найден");
                 CashLogin(rows[0]["id"]);
                 return 1;
             }
+            Console.Write("пользователь не найден!");
             return 0;
         }
 
@@ -165,29 +193,6 @@ namespace VitUsers
 
         public void SendToEdit()
         {
-            ListView.SelectedListViewItemCollection selectedListViewItemCollection = formUsers.listView1.SelectedItems;
-            ListViewItem listViewItem = null;
-            foreach (ListViewItem listViewItem2 in selectedListViewItemCollection)
-            {
-                listViewItem = listViewItem2;
-            }
-
-            if (listViewItem == null)
-            {
-                Console.WriteLine("ERR: listViewItem is null!");
-                return;
-            }
-
-            formUsers.textBoxIdUser.Text = listViewItem.SubItems["id"].Text;
-            formUsers.textBoxLogin.Text = listViewItem.SubItems["name"].Text;
-            for (int i = 0; i < formUsers.listBoxAccessGroup.Items.Count; i++)
-            {
-                if (formUsers.listBoxAccessGroup.Items[i].ToString() == listViewItem.SubItems["idAccessGroup"].Text)
-                {
-                    formUsers.listBoxAccessGroup.SetSelected(i, true);
-                }
-            }
-            formUsers.textBoxPassword.Text = listViewItem.SubItems["password"].Text;
         }
 
         public DialogResult showDialog()
@@ -266,19 +271,22 @@ namespace VitUsers
 
         private bool CheckLoginCesh()
         {
+            Console.WriteLine("Проверка файла пользователя " + programPath + "\\" + tmpFile + "-> ");
             if (!File.Exists(programPath + "\\" + tmpFile))
             {
-                Console.WriteLine("user file not found " + programPath + "\\" + tmpFile);
+                Console.Write("user file not found " + programPath + "\\" + tmpFile);
                 return false;
             }
+            Console.Write("Успешно");
 
             string[] text = File.ReadAllLines(programPath + "\\" + tmpFile);
-
+            Console.WriteLine("Проверка содержимого файла пользователя -> ");
             if (text.GetLength(0) != 3)
             {
-                Console.WriteLine("user count " + text.GetLength(0).ToString());
+                Console.Write("Ошибка! Count " + text.GetLength(0).ToString());
                 return false;
             }
+            Console.Write("Успешно ");
 
             // проверяем время
             if (!text[0].Equals(DateLogin().GetHashCode().ToString()))
@@ -312,12 +320,6 @@ namespace VitUsers
 
         private void Init()
         {
-            formUsers.listBoxAccessGroup.Items.Clear();
-            ClassAccessGroup.AccessGroupCollection[] accessGroups = classAccessGroup.getInfo();
-            foreach (ClassAccessGroup.AccessGroupCollection accessGroup in accessGroups)
-            {
-                formUsers.listBoxAccessGroup.Items.Add(accessGroup.name);
-            }
             VitIcons.FormCompanents formCompanents = new VitIcons.FormCompanents();
             formUsers.listView1.LargeImageList = formCompanents.imageListColor;
             formUsers.listView1.SmallImageList = formCompanents.imageListColor;
@@ -368,6 +370,8 @@ namespace VitUsers
             public int idAccessGroup;
             public int idPosition;
             public int idSubdivision;
+            public string mail;
+            public string mailPass;
             public string imagePath;
             public string lastName;
             public string login;
