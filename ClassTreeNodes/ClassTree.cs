@@ -52,6 +52,36 @@ namespace VitTree
             }));
         }
 
+        public void addNodeFolder(TreeView treeView)
+        {
+            string path = "";
+            if (treeView.SelectedNode != null)
+            {
+                path = treeView.SelectedNode.FullPath;
+            }
+
+            FormTreeInput formTreeInput = new FormTreeInput();
+            if (formTreeInput.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+
+            ClassFTP classFTP = new ClassFTP();
+            classFTP.CreateDirectory(path + "/" + formTreeInput.textBox1.Text);
+
+            if (classFTP.FileExist(path + "/" + formTreeInput.textBox1.Text))
+            {
+                TreeNode treeNode = new TreeNode
+                {
+                    Name = formTreeInput.textBox1.Text,
+                    Text = formTreeInput.textBox1.Text,
+                    ImageKey = "default_folder",
+                };
+
+                treeView.SelectedNode.Nodes.Add(treeNode);
+            }
+        }
+
         public void copy(TreeView treeView)
         {
             string sourcePath = treeView.SelectedNode.FullPath;
@@ -62,20 +92,6 @@ namespace VitTree
                 Console.WriteLine(sourcePath + "    ->    " + targetPath);
                 ClassFTP classFTP = new ClassFTP();
                 classFTP.copyAsync(sourcePath, targetPath);
-                update(treeView);
-            }
-        }
-
-        public void move(TreeView treeView)
-        {
-            string sourcePath = treeView.SelectedNode.FullPath;
-            FormTree formTree = new FormTree();
-            if (formTree.ShowDialog() == DialogResult.OK)
-            {
-                string targetPath = formTree.treeView1.SelectedNode.FullPath;
-                Console.WriteLine(sourcePath + "    ->    " + targetPath);
-                ClassFTP classFTP = new ClassFTP();
-                classFTP.moveAsync(sourcePath, targetPath);
                 update(treeView);
             }
         }
@@ -114,9 +130,11 @@ namespace VitTree
             classFTP.ChangeWorkingDirectory(treeNode.FullPath);
             foreach (string directory in classFTP.ListDirectory())
             {
-                TreeNode tn = new TreeNode();
-                tn.Name = directory;
-                tn.Text = Path.GetFileName(directory);
+                TreeNode tn = new TreeNode
+                {
+                    Name = directory,
+                    Text = Path.GetFileName(directory)
+                };
                 addIcon(tn);
                 treeNode.Nodes.Add(tn);
             }
@@ -134,9 +152,11 @@ namespace VitTree
             {
                 foreach (string direcory in directoryes)
                 {
-                    TreeNode treeNode = new TreeNode();
-                    treeNode.Name = direcory;
-                    treeNode.Text = direcory;
+                    TreeNode treeNode = new TreeNode
+                    {
+                        Name = direcory,
+                        Text = direcory
+                    };
                     addIcon(treeNode);
 
                     if (Path.GetExtension(treeNode.Name) == "")
@@ -149,6 +169,20 @@ namespace VitTree
                     }));
                 }
             });
+        }
+
+        public void move(TreeView treeView)
+        {
+            string sourcePath = treeView.SelectedNode.FullPath;
+            FormTree formTree = new FormTree();
+            if (formTree.ShowDialog() == DialogResult.OK)
+            {
+                string targetPath = formTree.treeView1.SelectedNode.FullPath;
+                Console.WriteLine(sourcePath + "    ->    " + targetPath);
+                ClassFTP classFTP = new ClassFTP();
+                classFTP.moveAsync(sourcePath, targetPath);
+                update(treeView);
+            }
         }
 
         public void preLoadNodes(TreeNode treeNode)
@@ -168,24 +202,6 @@ namespace VitTree
             getNextNodes(treeView.SelectedNode);
             preLoadNodes(treeView.SelectedNode);
             treeView.SelectedNode.Expand();
-        }
-
-        private async Task getSubdirectoryes(ClassFTP classFTP, TreeNode treeNode, string directory)
-        {
-            classFTP.ChangeWorkingDirectory(directory);
-            Console.WriteLine(classFTP.ChangeWorkingDirectory(""));
-            string[] dsubirectoryes = classFTP.ListDirectory();
-            foreach (string subdirecory in dsubirectoryes)
-            {
-                TreeNode tn = new TreeNode();
-                tn.Name = subdirecory;
-                tn.Text = Path.GetFileName(subdirecory);
-                addIcon(tn);
-
-                treeNode.Nodes.Add(tn);
-            }
-            classFTP.ChangeWorkingDirectory("..");
-            Console.WriteLine(classFTP.ChangeWorkingDirectory(""));
         }
 
         private void addIcon(TreeNode treeNode)
@@ -210,34 +226,24 @@ namespace VitTree
             }
         }
 
-        public void addNodeFolder(TreeView treeView)
+        private async Task getSubdirectoryes(ClassFTP classFTP, TreeNode treeNode, string directory)
         {
-            string path = "";
-            if (treeView.SelectedNode != null)
+            classFTP.ChangeWorkingDirectory(directory);
+            Console.WriteLine(classFTP.ChangeWorkingDirectory(""));
+            string[] dsubirectoryes = classFTP.ListDirectory();
+            foreach (string subdirecory in dsubirectoryes)
             {
-                path = treeView.SelectedNode.FullPath;
-            }
-
-            FormTreeInput formTreeInput = new FormTreeInput();
-            if (formTreeInput.ShowDialog() != DialogResult.OK)
-            {
-                return;
-            }
-
-            ClassFTP classFTP = new ClassFTP();
-            classFTP.CreateDirectory(path + "/" + formTreeInput.textBox1.Text);
-
-            if (classFTP.FileExist(path + "/" + formTreeInput.textBox1.Text))
-            {
-                TreeNode treeNode = new TreeNode
+                TreeNode tn = new TreeNode
                 {
-                    Name = formTreeInput.textBox1.Text,
-                    Text = formTreeInput.textBox1.Text,
-                    ImageKey = "default_folder",
+                    Name = subdirecory,
+                    Text = Path.GetFileName(subdirecory)
                 };
+                addIcon(tn);
 
-                treeView.SelectedNode.Nodes.Add(treeNode);
+                treeNode.Nodes.Add(tn);
             }
+            classFTP.ChangeWorkingDirectory("..");
+            Console.WriteLine(classFTP.ChangeWorkingDirectory(""));
         }
 
         public struct TypeNodeCollection

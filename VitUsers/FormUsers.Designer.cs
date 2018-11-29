@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormUsers));
             this.windowHeader1 = new VitControls.WindowHeader();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label12 = new System.Windows.Forms.Label();
@@ -57,7 +59,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxLogin = new System.Windows.Forms.TextBox();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.panel1.SuspendLayout();
+            this.tabControl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // windowHeader1
@@ -80,6 +88,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.tabControl1);
             this.panel1.Controls.Add(this.label12);
             this.panel1.Controls.Add(this.comboBoxSubdivision);
             this.panel1.Controls.Add(this.label11);
@@ -293,7 +302,7 @@
             this.listView1.Location = new System.Drawing.Point(13, 333);
             this.listView1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(644, 250);
+            this.listView1.Size = new System.Drawing.Size(264, 250);
             this.listView1.TabIndex = 21;
             this.listView1.UseCompatibleStateImageBehavior = false;
             // 
@@ -330,13 +339,19 @@
             // 
             // buttonOk
             // 
+            this.buttonOk.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttonOk.Location = new System.Drawing.Point(396, 220);
+            this.buttonOk.FlatAppearance.BorderSize = 0;
+            this.buttonOk.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonOk.ImageKey = "icons8-checkmark-48.png";
+            this.buttonOk.ImageList = this.imageList1;
+            this.buttonOk.Location = new System.Drawing.Point(396, 251);
             this.buttonOk.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonOk.Name = "buttonOk";
-            this.buttonOk.Size = new System.Drawing.Size(261, 61);
+            this.buttonOk.Size = new System.Drawing.Size(181, 30);
             this.buttonOk.TabIndex = 17;
             this.buttonOk.Text = "Создать пользователя";
+            this.buttonOk.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.buttonOk.UseVisualStyleBackColor = true;
             this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
             // 
@@ -367,6 +382,92 @@
             this.textBoxLogin.TabIndex = 13;
             this.textBoxLogin.TextChanged += new System.EventHandler(this.textBoxLogin_TextChanged);
             // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Location = new System.Drawing.Point(283, 333);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(374, 252);
+            this.tabControl1.TabIndex = 45;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Location = new System.Drawing.Point(4, 26);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(366, 222);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Location = new System.Drawing.Point(4, 26);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(366, 222);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "icons8-about-48.png");
+            this.imageList1.Images.SetKeyName(1, "icons8-add-file-48.png");
+            this.imageList1.Images.SetKeyName(2, "icons8-add-folder-48.png");
+            this.imageList1.Images.SetKeyName(3, "icons8-add-new-16.png");
+            this.imageList1.Images.SetKeyName(4, "icons8-administrator-male-26.png");
+            this.imageList1.Images.SetKeyName(5, "icons8-administrator-male-208.png");
+            this.imageList1.Images.SetKeyName(6, "icons8-admin-menu-48.png");
+            this.imageList1.Images.SetKeyName(7, "icons8-book-shelf-16.png");
+            this.imageList1.Images.SetKeyName(8, "icons8-checkmark-48.png");
+            this.imageList1.Images.SetKeyName(9, "icons8-close-window-48.png");
+            this.imageList1.Images.SetKeyName(10, "icons8-conference-48.png");
+            this.imageList1.Images.SetKeyName(11, "icons8-copy-40.png");
+            this.imageList1.Images.SetKeyName(12, "icons8-crown-50.png");
+            this.imageList1.Images.SetKeyName(13, "icons8-cursor-32.png");
+            this.imageList1.Images.SetKeyName(14, "icons8-database-administrator-64.png");
+            this.imageList1.Images.SetKeyName(15, "icons8-delete-48.png");
+            this.imageList1.Images.SetKeyName(16, "icons8-document-48.png");
+            this.imageList1.Images.SetKeyName(17, "icons8-exit-48.png");
+            this.imageList1.Images.SetKeyName(18, "icons8-folder-48.png");
+            this.imageList1.Images.SetKeyName(19, "icons8-left-64.png");
+            this.imageList1.Images.SetKeyName(20, "icons8-maximize-window-48.png");
+            this.imageList1.Images.SetKeyName(21, "icons8-minimize-window-48.png");
+            this.imageList1.Images.SetKeyName(22, "icons8-open-48.png");
+            this.imageList1.Images.SetKeyName(23, "icons8-paper-plane-48.png");
+            this.imageList1.Images.SetKeyName(24, "icons8-password-48.png");
+            this.imageList1.Images.SetKeyName(25, "icons8-paste-48.png");
+            this.imageList1.Images.SetKeyName(26, "icons8-pencil-48.png");
+            this.imageList1.Images.SetKeyName(27, "icons8-plus-48.png");
+            this.imageList1.Images.SetKeyName(28, "icons8-question-mark-48.png");
+            this.imageList1.Images.SetKeyName(29, "icons8-questions-48.png");
+            this.imageList1.Images.SetKeyName(30, "icons8-red-card-40.png");
+            this.imageList1.Images.SetKeyName(31, "icons8-restore-window-48.png");
+            this.imageList1.Images.SetKeyName(32, "icons8-scanner-40.png");
+            this.imageList1.Images.SetKeyName(33, "icons8-search-48.png");
+            this.imageList1.Images.SetKeyName(34, "icons8-search-50.png");
+            this.imageList1.Images.SetKeyName(35, "icons8-services-48.png");
+            this.imageList1.Images.SetKeyName(36, "icons8-tree-structure-40.png");
+            this.imageList1.Images.SetKeyName(37, "icons8-user-avatar-48.png");
+            this.imageList1.Images.SetKeyName(38, "icons8-user-menu-male-48.png");
+            this.imageList1.Images.SetKeyName(39, "icons8-waste-filled-50.png");
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Location = new System.Drawing.Point(4, 26);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(366, 222);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "tabPage3";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
             // FormUsers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -385,6 +486,7 @@
             this.Text = "Пользователи";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.tabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -421,5 +523,10 @@
         public System.Windows.Forms.ComboBox comboBoxPosition;
         public System.Windows.Forms.ComboBox comboBoxAccessGroup;
         public System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.TabPage tabPage3;
     }
 }
