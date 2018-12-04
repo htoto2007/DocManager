@@ -49,5 +49,10 @@ namespace VitUsers
         {
             GetKeyboardLayout();
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

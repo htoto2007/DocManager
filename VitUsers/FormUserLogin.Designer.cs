@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormUserLogin));
             this.panel1 = new System.Windows.Forms.Panel();
             this.labelInputLanguage = new System.Windows.Forms.Label();
             this.comboBoxLogin = new System.Windows.Forms.ComboBox();
@@ -39,12 +40,16 @@
             this.label1 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.windowHeader1 = new VitControls.WindowHeader();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.labelInputLanguage);
             this.panel1.Controls.Add(this.comboBoxLogin);
             this.panel1.Controls.Add(this.buttonCancel);
@@ -55,7 +60,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(1, 34);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(336, 125);
+            this.panel1.Size = new System.Drawing.Size(422, 125);
             this.panel1.TabIndex = 7;
             // 
             // labelInputLanguage
@@ -64,7 +69,7 @@
             this.labelInputLanguage.BackColor = System.Drawing.Color.DodgerBlue;
             this.labelInputLanguage.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelInputLanguage.ForeColor = System.Drawing.Color.White;
-            this.labelInputLanguage.Location = new System.Drawing.Point(294, 17);
+            this.labelInputLanguage.Location = new System.Drawing.Point(380, 20);
             this.labelInputLanguage.Name = "labelInputLanguage";
             this.labelInputLanguage.Size = new System.Drawing.Size(30, 21);
             this.labelInputLanguage.TabIndex = 12;
@@ -73,7 +78,7 @@
             // comboBoxLogin
             // 
             this.comboBoxLogin.FormattingEnabled = true;
-            this.comboBoxLogin.Location = new System.Drawing.Point(79, 15);
+            this.comboBoxLogin.Location = new System.Drawing.Point(165, 18);
             this.comboBoxLogin.Name = "comboBoxLogin";
             this.comboBoxLogin.Size = new System.Drawing.Size(209, 25);
             this.comboBoxLogin.Sorted = true;
@@ -83,23 +88,31 @@
             // buttonCancel
             // 
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonCancel.Location = new System.Drawing.Point(236, 77);
+            this.buttonCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonCancel.ImageKey = "icons8-delete-48.png";
+            this.buttonCancel.ImageList = this.imageList1;
+            this.buttonCancel.Location = new System.Drawing.Point(322, 80);
             this.buttonCancel.Margin = new System.Windows.Forms.Padding(4);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(88, 30);
             this.buttonCancel.TabIndex = 4;
             this.buttonCancel.Text = "Отмена";
+            this.buttonCancel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.buttonCancel.UseVisualStyleBackColor = true;
             // 
             // buttonOk
             // 
             this.buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttonOk.Location = new System.Drawing.Point(140, 77);
+            this.buttonOk.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonOk.ImageKey = "icons8-checkmark-48.png";
+            this.buttonOk.ImageList = this.imageList1;
+            this.buttonOk.Location = new System.Drawing.Point(226, 80);
             this.buttonOk.Margin = new System.Windows.Forms.Padding(4);
             this.buttonOk.Name = "buttonOk";
             this.buttonOk.Size = new System.Drawing.Size(88, 30);
             this.buttonOk.TabIndex = 3;
-            this.buttonOk.Text = "Ok";
+            this.buttonOk.Text = "Войти";
+            this.buttonOk.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.buttonOk.UseVisualStyleBackColor = true;
             this.buttonOk.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
@@ -108,7 +121,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(10, 49);
+            this.label2.Location = new System.Drawing.Point(96, 52);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(54, 17);
@@ -117,7 +130,7 @@
             // 
             // textBoxPass
             // 
-            this.textBoxPass.Location = new System.Drawing.Point(79, 44);
+            this.textBoxPass.Location = new System.Drawing.Point(165, 47);
             this.textBoxPass.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxPass.Name = "textBoxPass";
             this.textBoxPass.PasswordChar = '*';
@@ -129,7 +142,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(10, 20);
+            this.label1.Location = new System.Drawing.Point(96, 23);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(44, 17);
@@ -156,8 +169,26 @@
             this.windowHeader1.minimize = false;
             this.windowHeader1.Name = "windowHeader1";
             this.windowHeader1.showInTaskbar = false;
-            this.windowHeader1.Size = new System.Drawing.Size(336, 33);
+            this.windowHeader1.Size = new System.Drawing.Size(422, 33);
             this.windowHeader1.TabIndex = 6;
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "icons8-checkmark-48.png");
+            this.imageList1.Images.SetKeyName(1, "icons8-delete-48.png");
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(14, 18);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(73, 92);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 13;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // FormUserLogin
             // 
@@ -166,7 +197,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(12)))), ((int)(((byte)(255)))));
             this.CancelButton = this.buttonCancel;
-            this.ClientSize = new System.Drawing.Size(338, 160);
+            this.ClientSize = new System.Drawing.Size(424, 160);
             this.ControlBox = false;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.windowHeader1);
@@ -182,6 +213,7 @@
             this.Shown += new System.EventHandler(this.FormUserLogin_Shown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -198,5 +230,7 @@
         public System.Windows.Forms.TextBox textBoxPass;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ImageList imageList1;
     }
 }

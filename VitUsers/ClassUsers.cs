@@ -33,6 +33,7 @@ namespace VitUsers
             programPath = classSettings.GetProperties().generalsSttings.programPath;
             repositiryPayh = classSettings.GetProperties().generalsSttings.repositiryPayh;
             cashLoginFile = programPath + "\\" + tmpFile;
+            
         }
 
         public void AddUser(string lastName, string firstName, string MiddleName, string mail, string mailPass, string accessGroup, string position, string subdivision, string login, string password)

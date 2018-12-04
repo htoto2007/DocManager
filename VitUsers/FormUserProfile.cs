@@ -65,7 +65,7 @@ namespace VitUsers
             {
                 pictureBox1.BackgroundImage = VitIcons.Properties.ResourceColorImage.icons8_user_male_208;
             }
-            labelUserName.Text = userColection.firstName + " " + userColection.lastName + " " + userColection.middleName;
+            richTextBox1.Text = userColection.lastName + " " + userColection.firstName + " " + userColection.middleName;
 
             ClassUserPositions classUserPositions = new ClassUserPositions();
             labelPosition.Text = classUserPositions.getInfoById(userColection.idPosition).name;
@@ -84,6 +84,26 @@ namespace VitUsers
             }
             classUsers.deleteImage(classUsers.getThisUser().id);
             init();
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

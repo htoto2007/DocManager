@@ -176,7 +176,7 @@ namespace DocManager
             string firstName = userColection.firstName;
             string lastName = userColection.lastName;
             string middleName = userColection.middleName;
-            labelUserName.Text = firstName + " " + lastName + " " + middleName;
+            richTextBox1.Text =  lastName + " " + firstName + " " + middleName;
 
             ClassAccessGroup classAccessGroup = new ClassAccessGroup();
             ClassAccessGroup.AccessGroupCollection accessGroupCollection = classAccessGroup.getInfoById(userColection.idAccessGroup);

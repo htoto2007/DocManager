@@ -187,6 +187,26 @@ namespace VitFTP
             return icon;
         }
 
+        public string[] listDirectoryWithoutFiles()
+        {
+            string[] arrStr = ListDirectory();
+            List<string> res = new List<string>();
+            foreach(string str in arrStr)
+            {
+                using (Session session = new Session())
+                {
+                    // Connect
+                    session.Open(sessionOptions);
+                    if (session.GetFileInfo(str).IsDirectory)
+                    {
+                        res.Add(str);
+                    }
+                    session.Close();
+                }
+            }
+            return res.ToArray();
+        }
+
         public string[] ListDirectory()
         {
             List<string> list = new List<string>();
