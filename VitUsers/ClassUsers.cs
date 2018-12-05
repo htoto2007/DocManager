@@ -322,19 +322,19 @@ namespace VitUsers
         private void Init()
         {
             VitIcons.FormCompanents formCompanents = new VitIcons.FormCompanents();
-            formUsers.listView1.LargeImageList = formCompanents.imageListColor;
-            formUsers.listView1.SmallImageList = formCompanents.imageListColor;
-            formUsers.listView1.BeginUpdate();
-            formUsers.listView1.View = View.Details;
-            formUsers.listView1.FullRowSelect = true;
-            formUsers.listView1.MultiSelect = false;
-            formUsers.listView1.Columns.Clear();
-            formUsers.listView1.Columns.Add("");
-            formUsers.listView1.Columns.Add("id");
-            formUsers.listView1.Columns.Add("Имя");
-            formUsers.listView1.Columns.Add("Тип доступа");
-            formUsers.listView1.Columns.Add("Логин");
-            formUsers.listView1.Columns.Add("Пароль");
+            formUsers.listViewUsers.LargeImageList = formCompanents.imageListColor;
+            formUsers.listViewUsers.SmallImageList = formCompanents.imageListColor;
+            formUsers.listViewUsers.BeginUpdate();
+            formUsers.listViewUsers.View = View.Details;
+            formUsers.listViewUsers.FullRowSelect = true;
+            formUsers.listViewUsers.MultiSelect = false;
+            formUsers.listViewUsers.Columns.Clear();
+            formUsers.listViewUsers.Columns.Add("");
+            formUsers.listViewUsers.Columns.Add("id");
+            formUsers.listViewUsers.Columns.Add("Имя");
+            formUsers.listViewUsers.Columns.Add("Тип доступа");
+            formUsers.listViewUsers.Columns.Add("Логин");
+            formUsers.listViewUsers.Columns.Add("Пароль");
             ClassUsers classUsers = new ClassUsers();
             UserColection[] userColections = classUsers.GetAllUsers();
             foreach (ClassUsers.UserColection userColection in userColections)
@@ -357,11 +357,11 @@ namespace VitUsers
                 listViewItem.SubItems.Add(userColection.login).Name = "login";
                 listViewItem.SubItems.Add(accessGroupName).Name = "idAccessGroup";
                 listViewItem.SubItems.Add(userColection.password).Name = "password";
-                formUsers.listView1.Items.Add(listViewItem);
+                formUsers.listViewUsers.Items.Add(listViewItem);
             }
-            formUsers.listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-            formUsers.listView1.EndUpdate();
-            formUsers.listView1.Update();
+            formUsers.listViewUsers.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            formUsers.listViewUsers.EndUpdate();
+            formUsers.listViewUsers.Update();
         }
 
         public struct UserColection

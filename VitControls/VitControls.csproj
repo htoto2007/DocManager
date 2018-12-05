@@ -82,6 +82,12 @@
     <Compile Include="WindowHeader.Designer.cs">
       <DependentUpon>WindowHeader.cs</DependentUpon>
     </Compile>
+    <Compile Include="WindowResizer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WindowResizer.Designer.cs">
+      <DependentUpon>WindowResizer.cs</DependentUpon>
+    </Compile>
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
@@ -94,6 +100,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="WindowHeader.resx">
       <DependentUpon>WindowHeader.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WindowResizer.resx">
+      <DependentUpon>WindowResizer.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

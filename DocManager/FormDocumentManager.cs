@@ -189,6 +189,8 @@ namespace DocManager
 
         private void InitControlsStyle()
         {
+            MaximumSize = Screen.PrimaryScreen.WorkingArea.Size;
+
             buttonScan.BackgroundImage = VitIcons.Properties.ResourceColorImage.icons8_scanner_40;
             buttonAddBranch.BackgroundImage = VitIcons.Properties.ResourceColorImage.icons8_plus_48;
             ToolStripMenuItemAbout.Image = VitIcons.Properties.ResourceColorImage.icons8_about_48;

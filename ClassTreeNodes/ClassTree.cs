@@ -8,6 +8,7 @@ using VitFTP;
 using VitIcons;
 using vitProgressStatus;
 using VitTypeCard;
+using VitUsers;
 
 namespace VitTree
 {
@@ -31,7 +32,8 @@ namespace VitTree
         {
             string paths = treeView.SelectedNode.FullPath;
             TreeNode treeNode = treeView.SelectedNode;
-            ClassFTP classFTP = new ClassFTP();
+            ClassUsers classUsers = new ClassUsers();
+            ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
                 Multiselect = true
@@ -66,7 +68,8 @@ namespace VitTree
                 return;
             }
 
-            ClassFTP classFTP = new ClassFTP();
+            ClassUsers classUsers = new ClassUsers();
+            ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
             classFTP.CreateDirectory(path + "/" + formTreeInput.textBox1.Text);
 
             if (classFTP.FileExist(path + "/" + formTreeInput.textBox1.Text))
@@ -90,7 +93,8 @@ namespace VitTree
             {
                 string targetPath = formTree.treeView1.SelectedNode.FullPath;
                 Console.WriteLine(sourcePath + "    ->    " + targetPath);
-                ClassFTP classFTP = new ClassFTP();
+                ClassUsers classUsers = new ClassUsers();
+                ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
                 classFTP.copyAsync(sourcePath, targetPath);
                 update(treeView);
             }
@@ -98,7 +102,8 @@ namespace VitTree
 
         public void DeleteNode(TreeView treeView)
         {
-            ClassFTP classFTP = new ClassFTP();
+            ClassUsers classUsers = new ClassUsers();
+            ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
             classFTP.ChangeWorkingDirectory("");
 
             string result = "";
@@ -126,7 +131,8 @@ namespace VitTree
                 return;
             }
 
-            ClassFTP classFTP = new ClassFTP();
+            ClassUsers classUsers = new ClassUsers();
+            ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
             classFTP.ChangeWorkingDirectory(treeNode.FullPath);
             foreach (string directory in classFTP.ListDirectory())
             {
@@ -142,7 +148,8 @@ namespace VitTree
 
         public async void init(TreeView treeView)
         {
-            ClassFTP classFTP = new ClassFTP();
+            ClassUsers classUsers = new ClassUsers();
+            ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
             string[] directoryes = classFTP.ListDirectory();
 
             treeView.ImageList = ClassImageList.imageList;
@@ -179,7 +186,8 @@ namespace VitTree
             {
                 string targetPath = formTree.treeView1.SelectedNode.FullPath;
                 Console.WriteLine(sourcePath + "    ->    " + targetPath);
-                ClassFTP classFTP = new ClassFTP();
+                ClassUsers classUsers = new ClassUsers();
+                ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
                 classFTP.moveAsync(sourcePath, targetPath);
                 update(treeView);
             }

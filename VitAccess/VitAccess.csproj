@@ -64,5 +64,11 @@
     <Compile Include="ClassAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VitFTP\VitFTP.csproj">
+      <Project>{8E118625-8DED-4D15-9B41-0292A968ADFC}</Project>
+      <Name>VitFTP</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

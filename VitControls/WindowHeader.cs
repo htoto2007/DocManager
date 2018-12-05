@@ -60,6 +60,7 @@ namespace VitControls
 
         private void buttonMaximize_Click(object sender, EventArgs e)
         {
+            
             if (ParentForm.WindowState == FormWindowState.Maximized)
             {
                 ParentForm.WindowState = FormWindowState.Normal;
@@ -113,6 +114,7 @@ namespace VitControls
 
         private void WindowHeader_Paint(object sender, PaintEventArgs e)
         {
+            
             labelText.Text = ParentForm.Text;
             labelText.Font = ParentForm.Font;
             labelText.ForeColor = Color.Black;
@@ -122,6 +124,8 @@ namespace VitControls
             ParentForm.BackColor = classColors.getCollection().darckBlue;
             ParentForm.Padding = new Padding(1, 1, 1, 1);
             ParentForm.TransparencyKey = Color.Empty;
+            ParentForm.Cursor = Cursors.Arrow;
+
             ParentForm.Update();
             Update();
 
@@ -130,5 +134,7 @@ namespace VitControls
             buttonClose.Visible = close;
             //ParentForm.ShowInTaskbar = showInTaskbar;
         }
+
+        
     }
 }

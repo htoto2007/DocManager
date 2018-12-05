@@ -5,6 +5,7 @@ using System.IO;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using VitUsers;
 using WinSCP;
 
@@ -27,23 +28,47 @@ namespace VitFTP
         private vitProgressStatus.FormProgressStatus formProgressStatus;
         private string uri;
 
-        public ClassFTP()
+        public ClassFTP(string userName, string password)
         {
             uri = "ftp://" + VitSettings.Properties.FTPSettings.Default.host + ":" + VitSettings.Properties.FTPSettings.Default.port + "/";
-            userName = ClassUsers.getThisUser().login;
-            password = ClassUsers.getThisUser().password;
+            this.userName = userName;
+            this.password = password;
 
-            //MessageBox.Show(ClassUsers.getThisUser().login + " " + ClassUsers.getThisUser().password);
+            //MessageBox.Show(userName + " " + password);
 
             sessionOptions = new SessionOptions
             {
                 Protocol = Protocol.Ftp,
                 HostName = VitSettings.Properties.FTPSettings.Default.host,
-                UserName = ClassUsers.getThisUser().login,
-                Password = ClassUsers.getThisUser().password,
+                UserName = userName,
+                Password = password,
                 GiveUpSecurityAndAcceptAnySshHostKey = false,
             };
             new Thread(() => { formProgressStatus = new vitProgressStatus.FormProgressStatus(); }).Start();
+        }
+
+        public AccessToFolder getAccess(string path)
+        {
+            AccessToFolder accessToFolder = new AccessToFolder();
+            using (Session session = new Session())
+            {
+                // Connect
+                session.Open(sessionOptions);
+                RemoteFileInfo remoteFileInfo = session.GetFileInfo(path);
+                accessToFolder.execute = remoteFileInfo.FilePermissions.UserExecute;
+                accessToFolder.read = remoteFileInfo.FilePermissions.UserRead;
+                accessToFolder.write = remoteFileInfo.FilePermissions.UserWrite;
+                session.Close();
+            }
+
+            return accessToFolder;
+        }
+
+        public struct AccessToFolder
+        {
+            public bool read;
+            public bool write;
+            public bool execute;
         }
 
         public string ChangeWorkingDirectory(string path)
