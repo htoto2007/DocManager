@@ -6,6 +6,7 @@ using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 using VitUsers;
 using WinSCP;
 
@@ -69,6 +70,161 @@ namespace VitFTP
             public bool read;
             public bool write;
             public bool execute;
+        }
+
+        public void changeUserProperties(string userName)
+        {
+            string xmlFileName = "FileZilla Server.xml";
+            XmlDocument xmlDoc = new XmlDocument();
+            xmlDoc.Load(xmlFileName);
+            XmlElement xRoot = xmlDoc.DocumentElement;
+
+            XmlElement xmlUsers = null;
+            // получаем елемент с пользователями
+            foreach (XmlElement xmlElem in xRoot.ChildNodes)
+            {
+                if (xmlElem.Name == "Users")
+                    xmlUsers = xmlElem;
+            }
+
+            foreach (XmlElement xmlElem in xmlUsers.ChildNodes)
+            {
+
+            }
+        }
+
+
+
+        private void AddUser(string name, string Dir)
+        {
+            string xmlFileName = "FileZilla Server.xml";
+            XmlDocument xmlDoc = new XmlDocument();
+            xmlDoc.Load(xmlFileName);
+            XmlElement xRoot = xmlDoc.DocumentElement;
+
+            XmlElement xmlUsers = null;
+            // получаем елемент с пользователями
+            foreach (XmlElement xmlElem in xRoot.ChildNodes)
+            {
+                if (xmlElem.Name == "Users")
+                    xmlUsers = xmlElem;
+            }
+
+            XmlElement xmlUser = createNode(xmlDoc, "User", "", "Name", name);
+
+            XmlElement xmlOption = createNode(xmlDoc, "Option", "", "Name", "Pass");
+            xmlUser.AppendChild(xmlOption);
+            xmlOption = createNode(xmlDoc, "Option", "1", "Name", "Enabled");
+            xmlUser.AppendChild(xmlOption);
+            xmlOption = createNode(xmlDoc, "Option", "", "Name", "Salt");
+            xmlUser.AppendChild(xmlOption);
+            xmlOption = createNode(xmlDoc, "Option", "", "Name", "Group");
+            xmlUser.AppendChild(xmlOption);
+            xmlOption = createNode(xmlDoc, "Option", "0", "Name", "Bypass server userlimit");
+            xmlUser.AppendChild(xmlOption);
+            xmlOption = createNode(xmlDoc, "Option", "0", "Name", "User Limit");
+            xmlUser.AppendChild(xmlOption);
+            xmlOption = createNode(xmlDoc, "Option", "0", "Name", "IP Limit");
+            xmlUser.AppendChild(xmlOption);
+            xmlOption = createNode(xmlDoc, "Option", "", "Name", "Comments");
+            xmlUser.AppendChild(xmlOption);
+            xmlOption = createNode(xmlDoc, "Option", "0", "Name", "ForceSsl");
+            xmlUser.AppendChild(xmlOption);
+
+            XmlElement xmlIpFilter = createNode(xmlDoc, "IpFilter", "", "", "");
+            xmlUser.AppendChild(xmlIpFilter);
+            XmlElement xmlIpFilterDisallowed = createNode(xmlDoc, "Disallowed", "", "", "");
+            xmlIpFilter.AppendChild(xmlIpFilterDisallowed);
+            XmlElement xmlIpFilterAllowed = createNode(xmlDoc, "Allowed", "", "", "");
+            xmlIpFilter.AppendChild(xmlIpFilterAllowed);
+
+            XmlElement xmlSpeedLimits = createNode(xmlDoc, "SpeedLimits", "", "DlType", "0");
+            xmlUser.AppendChild(xmlSpeedLimits);
+
+            XmlText xmlAttrText = xmlDoc.CreateTextNode("10");
+            XmlAttribute xmlAttribute = xmlDoc.CreateAttribute("DlLimit");
+            xmlAttribute.AppendChild(xmlAttrText);
+            xmlSpeedLimits.Attributes.Append(xmlAttribute);
+
+            xmlAttrText = xmlDoc.CreateTextNode("0");
+            xmlAttribute = xmlDoc.CreateAttribute("ServerDlLimitBypass");
+            xmlAttribute.AppendChild(xmlAttrText);
+            xmlSpeedLimits.Attributes.Append(xmlAttribute);
+
+            xmlAttrText = xmlDoc.CreateTextNode("0");
+            xmlAttribute = xmlDoc.CreateAttribute("UlType");
+            xmlAttribute.AppendChild(xmlAttrText);
+            xmlSpeedLimits.Attributes.Append(xmlAttribute);
+
+            xmlAttrText = xmlDoc.CreateTextNode("10");
+            xmlAttribute = xmlDoc.CreateAttribute("UlLimit");
+            xmlAttribute.AppendChild(xmlAttrText);
+            xmlSpeedLimits.Attributes.Append(xmlAttribute);
+
+            xmlAttrText = xmlDoc.CreateTextNode("0");
+            xmlAttribute = xmlDoc.CreateAttribute("ServerUlLimitBypass");
+            xmlAttribute.AppendChild(xmlAttrText);
+            xmlSpeedLimits.Attributes.Append(xmlAttribute);
+
+            XmlElement xmlUserDownload = createNode(xmlDoc, "Download", "", "", "");
+            xmlSpeedLimits.AppendChild(xmlUserDownload);
+            XmlElement xmlUserUpload = createNode(xmlDoc, "Upload", "", "", "");
+            xmlSpeedLimits.AppendChild(xmlUserUpload);
+
+            xmlUser.AppendChild(xmlSpeedLimits);
+
+            XmlElement xmlUserPermissions = createNode(xmlDoc, "Permissions", "", "", "");
+
+            XmlElement xmlUserPermission = createNode(xmlDoc, "Permission", "", "Dir", Dir);
+
+            XmlElement xmlUserPermissionOption = createNode(xmlDoc, "Option", "1", "Name", "FileRead");
+            xmlUserPermission.AppendChild(xmlUserPermissionOption);
+            xmlUserPermissionOption = createNode(xmlDoc, "Option", "1", "Name", "FileWrite");
+            xmlUserPermission.AppendChild(xmlUserPermissionOption);
+            xmlUserPermissionOption = createNode(xmlDoc, "Option", "1", "Name", "FileDelete");
+            xmlUserPermission.AppendChild(xmlUserPermissionOption);
+            xmlUserPermissionOption = createNode(xmlDoc, "Option", "1", "Name", "FileAppend");
+            xmlUserPermission.AppendChild(xmlUserPermissionOption);
+            xmlUserPermissionOption = createNode(xmlDoc, "Option", "1", "Name", "DirCreate");
+            xmlUserPermission.AppendChild(xmlUserPermissionOption);
+            xmlUserPermissionOption = createNode(xmlDoc, "Option", "1", "Name", "DirDelete");
+            xmlUserPermission.AppendChild(xmlUserPermissionOption);
+            xmlUserPermissionOption = createNode(xmlDoc, "Option", "1", "Name", "DirList");
+            xmlUserPermission.AppendChild(xmlUserPermissionOption);
+            xmlUserPermissionOption = createNode(xmlDoc, "Option", "1", "Name", "DirSubdirs");
+            xmlUserPermission.AppendChild(xmlUserPermissionOption);
+            xmlUserPermissionOption = createNode(xmlDoc, "Option", "1", "Name", "IsHome");
+            xmlUserPermission.AppendChild(xmlUserPermissionOption);
+            xmlUserPermissionOption = createNode(xmlDoc, "Option", "1", "Name", "AutoCreate");
+            xmlUserPermission.AppendChild(xmlUserPermissionOption);
+
+            xmlUserPermissions.AppendChild(xmlUserPermission);
+
+            xmlUser.AppendChild(xmlUserPermissions);
+
+            xmlUsers.AppendChild(xmlUser);
+
+            xmlDoc.Save(xmlFileName);
+        }
+
+        private XmlElement createNode(XmlDocument xmlDocument,
+            string elemName,
+            string elemValue,
+            string attrName,
+            string attrValue)
+        {
+            XmlElement xmlElement = xmlDocument.CreateElement(elemName);
+
+            XmlText xmlAttrText = xmlDocument.CreateTextNode(attrValue);
+            XmlText xmlText = xmlDocument.CreateTextNode(elemValue);
+            if (attrName != "")
+            {
+                XmlAttribute xmlAttribute = xmlDocument.CreateAttribute(attrName);
+                xmlAttribute.AppendChild(xmlAttrText);
+                xmlElement.Attributes.Append(xmlAttribute);
+            }
+            xmlElement.AppendChild(xmlText);
+            return xmlElement;
         }
 
         public string ChangeWorkingDirectory(string path)
@@ -319,16 +475,20 @@ namespace VitFTP
 
         public bool RemoveDirecroty2(string directoryName)
         {
-            bool res = false;
+            RemovalOperationResult removalOperationResult;
             using (Session session = new Session())
             {
                 // Connect
                 session.Open(sessionOptions);
-
-                res = session.RemoveFiles("/" + directoryName).IsSuccess;
+                removalOperationResult = session.RemoveFiles("\\" + directoryName);
+                if(removalOperationResult.IsSuccess == false)
+                {
+                    SessionRemoteExceptionCollection sessionRemoteExceptions = removalOperationResult.Failures;
+                    MessageBox.Show(sessionRemoteExceptions[0].Message);
+                }
                 session.Close();
             }
-            return res;
+            return removalOperationResult.IsSuccess;
         }
 
         public string RemoveDirectory(string directoryName)

@@ -127,8 +127,8 @@ namespace DocManager
 
         private void buttonUsers_Click(object sender, EventArgs e)
         {
-            ClassUsers classUsers = new ClassUsers();
-            classUsers.showDialog();
+            FormUsers formUsers = new FormUsers();
+            formUsers.ShowDialog();
         }
 
         private void contextMenuStripTreeView_Opened(object sender, EventArgs e)
@@ -176,7 +176,7 @@ namespace DocManager
             string firstName = userColection.firstName;
             string lastName = userColection.lastName;
             string middleName = userColection.middleName;
-            richTextBox1.Text =  lastName + " " + firstName + " " + middleName;
+            textBoxUserName.Text =  lastName + " " + firstName + " " + middleName;
 
             ClassAccessGroup classAccessGroup = new ClassAccessGroup();
             ClassAccessGroup.AccessGroupCollection accessGroupCollection = classAccessGroup.getInfoById(userColection.idAccessGroup);
@@ -448,8 +448,8 @@ namespace DocManager
 
         private void ToolStripMenuItemUsers_Click(object sender, EventArgs e)
         {
-            ClassUsers classUsers = new ClassUsers();
-            classUsers.showDialog();
+            FormUsers formUsers = new FormUsers();
+            formUsers.ShowDialog();
         }
 
         /// <summary>

@@ -14,7 +14,7 @@ namespace VitUsers
 {
     public class ClassUsers
     {
-        public FormUsers formUsers = new FormUsers();
+        //public FormUsers formUsers = new FormUsers();
         public int id = 0;
         public int idAccessGroup = 0;
         public string name = "";
@@ -42,7 +42,7 @@ namespace VitUsers
             int idUserPosition = classUserPositions.getInfoByName(position).id;
             int idDivision = classSubdivision.getInfoByName(subdivision).id;
 
-            classMysql.Insert("" +
+            var id = classMysql.Insert("" +
                 "INSERT INTO tb_users " +
                 "SET " +
                 "first_name = '" + firstName + "', " +
@@ -56,7 +56,17 @@ namespace VitUsers
                 "id_access_group = '" + idAccessGroup + "', " +
                 "password = '" + password + "'");
 
-            Init();
+            classMysql.UpdateOrDelete("" +
+                "UPDATE tb_users " +
+                "SET login = '" + login + "-" + id.ToString() + "' " +
+                "WHERE id = " + id);
+        }
+
+        public void deleteById(int id)
+        {
+            classMysql.UpdateOrDelete("" +
+                "DELETE FROM tb_users " +
+                "WHERE id = " + id);
         }
 
         public bool changePassword(string oldPass, string newPass, string retryPass)
@@ -196,11 +206,7 @@ namespace VitUsers
         {
         }
 
-        public DialogResult showDialog()
-        {
-            Init();
-            return formUsers.ShowDialog();
-        }
+        
 
         public void updateImage(int id)
         {
@@ -319,50 +325,7 @@ namespace VitUsers
             return year + "." + month + "." + day + "." + hour;
         }
 
-        private void Init()
-        {
-            VitIcons.FormCompanents formCompanents = new VitIcons.FormCompanents();
-            formUsers.listViewUsers.LargeImageList = formCompanents.imageListColor;
-            formUsers.listViewUsers.SmallImageList = formCompanents.imageListColor;
-            formUsers.listViewUsers.BeginUpdate();
-            formUsers.listViewUsers.View = View.Details;
-            formUsers.listViewUsers.FullRowSelect = true;
-            formUsers.listViewUsers.MultiSelect = false;
-            formUsers.listViewUsers.Columns.Clear();
-            formUsers.listViewUsers.Columns.Add("");
-            formUsers.listViewUsers.Columns.Add("id");
-            formUsers.listViewUsers.Columns.Add("Имя");
-            formUsers.listViewUsers.Columns.Add("Тип доступа");
-            formUsers.listViewUsers.Columns.Add("Логин");
-            formUsers.listViewUsers.Columns.Add("Пароль");
-            ClassUsers classUsers = new ClassUsers();
-            UserColection[] userColections = classUsers.GetAllUsers();
-            foreach (ClassUsers.UserColection userColection in userColections)
-            {
-                string accessGroupName = classAccessGroup.getNameById(userColection.idAccessGroup);
-
-                ListViewItem listViewItem = new ListViewItem();
-
-                if (accessGroupName == "Админ")
-                {
-                    listViewItem.ImageKey = "icons8-crown-50.png";
-                }
-                else
-                {
-                    listViewItem.ImageKey = "icons8-user-avatar-48.png";
-                }
-
-                listViewItem.SubItems.Add(userColection.id.ToString()).Name = "id";
-                listViewItem.SubItems.Add(userColection.firstName + " " + userColection.lastName + " " + userColection.middleName).Name = "name";
-                listViewItem.SubItems.Add(userColection.login).Name = "login";
-                listViewItem.SubItems.Add(accessGroupName).Name = "idAccessGroup";
-                listViewItem.SubItems.Add(userColection.password).Name = "password";
-                formUsers.listViewUsers.Items.Add(listViewItem);
-            }
-            formUsers.listViewUsers.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-            formUsers.listViewUsers.EndUpdate();
-            formUsers.listViewUsers.Update();
-        }
+        
 
         public struct UserColection
         {

@@ -1,6 +1,6 @@
 ﻿namespace VitUsers
 {
-    partial class FormUserAdd
+    partial class FormUserEdit
     {
         /// <summary>
         /// Required designer variable.
@@ -29,11 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormUserAdd));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormUserEdit));
             this.windowHeader1 = new VitControls.WindowHeader();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.windowResizer1 = new VitControls.WindowResizer();
             this.comboBoxSubdivision = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
             this.comboBoxPosition = new System.Windows.Forms.ComboBox();
@@ -49,16 +47,16 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.comboBoxAccessGroup = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBoxIdUser = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxPassword = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxLogin = new System.Windows.Forms.TextBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.buttonOk = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.windowResizer1 = new VitControls.WindowResizer();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -98,8 +96,6 @@
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.comboBoxAccessGroup);
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.textBoxIdUser);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.textBoxPassword);
             this.panel1.Controls.Add(this.label2);
@@ -110,32 +106,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(371, 406);
             this.panel1.TabIndex = 1;
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.White;
-            this.panel2.Controls.Add(this.button1);
-            this.panel2.Controls.Add(this.buttonOk);
-            this.panel2.Controls.Add(this.windowResizer1);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(1, 411);
-            this.panel2.Margin = new System.Windows.Forms.Padding(0);
-            this.panel2.Name = "panel2";
-            this.panel2.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.panel2.Size = new System.Drawing.Size(371, 30);
-            this.panel2.TabIndex = 2;
-            // 
-            // windowResizer1
-            // 
-            this.windowResizer1.BackColor = System.Drawing.Color.Transparent;
-            this.windowResizer1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("windowResizer1.BackgroundImage")));
-            this.windowResizer1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.windowResizer1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.windowResizer1.Location = new System.Drawing.Point(347, 3);
-            this.windowResizer1.Margin = new System.Windows.Forms.Padding(0);
-            this.windowResizer1.Name = "windowResizer1";
-            this.windowResizer1.Size = new System.Drawing.Size(24, 27);
-            this.windowResizer1.TabIndex = 0;
             // 
             // comboBoxSubdivision
             // 
@@ -228,6 +198,7 @@
             this.textBoxLastName.Name = "textBoxLastName";
             this.textBoxLastName.Size = new System.Drawing.Size(210, 20);
             this.textBoxLastName.TabIndex = 56;
+            this.textBoxLastName.TextChanged += new System.EventHandler(this.textBoxLastName_TextChanged);
             // 
             // label7
             // 
@@ -263,24 +234,6 @@
             this.comboBoxAccessGroup.Name = "comboBoxAccessGroup";
             this.comboBoxAccessGroup.Size = new System.Drawing.Size(210, 21);
             this.comboBoxAccessGroup.TabIndex = 52;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(9, 263);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(41, 13);
-            this.label4.TabIndex = 51;
-            this.label4.Text = "Номер";
-            // 
-            // textBoxIdUser
-            // 
-            this.textBoxIdUser.Location = new System.Drawing.Point(142, 260);
-            this.textBoxIdUser.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBoxIdUser.Name = "textBoxIdUser";
-            this.textBoxIdUser.ReadOnly = true;
-            this.textBoxIdUser.Size = new System.Drawing.Size(210, 20);
-            this.textBoxIdUser.TabIndex = 50;
             // 
             // label3
             // 
@@ -326,37 +279,25 @@
             this.textBoxLogin.Size = new System.Drawing.Size(210, 20);
             this.textBoxLogin.TabIndex = 44;
             // 
-            // imageList1
+            // panel2
             // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "icons8-checkmark-48.png");
-            this.imageList1.Images.SetKeyName(1, "icons8-delete-48.png");
-            // 
-            // buttonOk
-            // 
-            this.buttonOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonOk.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttonOk.FlatAppearance.BorderSize = 0;
-            this.buttonOk.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonOk.ImageKey = "icons8-checkmark-48.png";
-            this.buttonOk.ImageList = this.imageList1;
-            this.buttonOk.Location = new System.Drawing.Point(187, 2);
-            this.buttonOk.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.buttonOk.Name = "buttonOk";
-            this.buttonOk.Size = new System.Drawing.Size(156, 24);
-            this.buttonOk.TabIndex = 48;
-            this.buttonOk.Text = "Создать пользователя";
-            this.buttonOk.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.buttonOk.UseVisualStyleBackColor = true;
-            this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
+            this.panel2.BackColor = System.Drawing.Color.White;
+            this.panel2.Controls.Add(this.button1);
+            this.panel2.Controls.Add(this.buttonOk);
+            this.panel2.Controls.Add(this.windowResizer1);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(1, 411);
+            this.panel2.Margin = new System.Windows.Forms.Padding(0);
+            this.panel2.Name = "panel2";
+            this.panel2.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.panel2.Size = new System.Drawing.Size(371, 30);
+            this.panel2.TabIndex = 2;
             // 
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.button1.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button1.ImageKey = "icons8-delete-48.png";
@@ -371,17 +312,56 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // FormUserAdd
+            // imageList1
             // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "icons8-checkmark-48.png");
+            this.imageList1.Images.SetKeyName(1, "icons8-delete-48.png");
+            // 
+            // buttonOk
+            // 
+            this.buttonOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonOk.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.buttonOk.FlatAppearance.BorderSize = 0;
+            this.buttonOk.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonOk.ImageKey = "icons8-checkmark-48.png";
+            this.buttonOk.ImageList = this.imageList1;
+            this.buttonOk.Location = new System.Drawing.Point(187, 2);
+            this.buttonOk.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.buttonOk.Name = "buttonOk";
+            this.buttonOk.Size = new System.Drawing.Size(156, 24);
+            this.buttonOk.TabIndex = 48;
+            this.buttonOk.Text = "Создать пользователя";
+            this.buttonOk.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.buttonOk.UseVisualStyleBackColor = true;
+            this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
+            // 
+            // windowResizer1
+            // 
+            this.windowResizer1.BackColor = System.Drawing.Color.Transparent;
+            this.windowResizer1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("windowResizer1.BackgroundImage")));
+            this.windowResizer1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.windowResizer1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.windowResizer1.Location = new System.Drawing.Point(347, 3);
+            this.windowResizer1.Margin = new System.Windows.Forms.Padding(0);
+            this.windowResizer1.Name = "windowResizer1";
+            this.windowResizer1.Size = new System.Drawing.Size(24, 27);
+            this.windowResizer1.TabIndex = 0;
+            // 
+            // FormUserEdit
+            // 
+            this.AcceptButton = this.buttonOk;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.button1;
             this.ClientSize = new System.Drawing.Size(373, 442);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.windowHeader1);
             this.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "FormUserAdd";
+            this.Name = "FormUserEdit";
             this.Padding = new System.Windows.Forms.Padding(1);
             this.Text = "Создание пользователя";
             this.panel1.ResumeLayout(false);
@@ -411,8 +391,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         public System.Windows.Forms.ComboBox comboBoxAccessGroup;
-        private System.Windows.Forms.Label label4;
-        public System.Windows.Forms.TextBox textBoxIdUser;
         private System.Windows.Forms.Label label3;
         public System.Windows.Forms.TextBox textBoxPassword;
         private System.Windows.Forms.Label label2;

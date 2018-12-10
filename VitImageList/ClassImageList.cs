@@ -23,6 +23,8 @@ namespace VitIcons
                 imageList.Images.Add(Path.GetFileNameWithoutExtension(path).TrimStart('.'), image);
                 Console.WriteLine("Загружен значек: " + Path.GetFileNameWithoutExtension(path).TrimStart('.'));
             }
+
+            
         }
 
         public string addIconFile(string pathToFile)

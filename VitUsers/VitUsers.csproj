@@ -66,6 +66,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClassTranslit.cs" />
     <Compile Include="ClassUsers.cs" />
     <Compile Include="FormUserAdd.cs">
       <SubType>Form</SubType>

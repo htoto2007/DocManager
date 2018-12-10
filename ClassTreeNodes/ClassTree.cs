@@ -102,6 +102,11 @@ namespace VitTree
 
         public void DeleteNode(TreeView treeView)
         {
+            VitNotifyMessage.ClassNotifyMessage classNotifyMessage = new VitNotifyMessage.ClassNotifyMessage();
+
+            DialogResult dialogResult = classNotifyMessage.showDialog(VitNotifyMessage.ClassNotifyMessage.TypeMessage.QUESTION, "Вы точно хотите удалить" + treeView.SelectedNode.FullPath + "?");
+            if (dialogResult == DialogResult.No) return;
+
             ClassUsers classUsers = new ClassUsers();
             ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
             classFTP.ChangeWorkingDirectory("");
@@ -121,6 +126,10 @@ namespace VitTree
             if ((result.Split(' ')[0] == "250") || (result.Equals("True")))
             {
                 treeView.SelectedNode.Remove();
+            }
+            else
+            {
+                classNotifyMessage.showDialog(VitNotifyMessage.ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, "Ошибка, не получилось удалить объект!");
             }
         }
 

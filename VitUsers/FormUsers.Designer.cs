@@ -34,24 +34,33 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageUsers = new System.Windows.Forms.TabPage();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.buttonUsersDeleteUser = new System.Windows.Forms.Button();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.listViewUsers = new System.Windows.Forms.ListView();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPageUserProperties = new System.Windows.Forms.TabPage();
-            this.tabPageUserGroups = new System.Windows.Forms.TabPage();
-            this.tabPageGroups = new System.Windows.Forms.TabPage();
-            this.tabPageFolsers = new System.Windows.Forms.TabPage();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.windowResizer1 = new VitControls.WindowResizer();
-            this.tabPageUserAccess = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.textBoxUsersUserMail = new System.Windows.Forms.TextBox();
+            this.textBoxUsersSubdivisions = new System.Windows.Forms.TextBox();
+            this.textBoxUsersUserPositions = new System.Windows.Forms.TextBox();
+            this.textBoxUsersAccessGroupName = new System.Windows.Forms.TextBox();
+            this.textBoxUsersUserName = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.tabPageUserGroups = new System.Windows.Forms.TabPage();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
+            this.listView4 = new System.Windows.Forms.ListView();
+            this.tabPageUserAccess = new System.Windows.Forms.TabPage();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.treeView2 = new System.Windows.Forms.TreeView();
+            this.tabPageGroups = new System.Windows.Forms.TabPage();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
@@ -65,44 +74,35 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.tabPageroupsUsers = new System.Windows.Forms.TabPage();
-            this.tabPageGroupsAccess = new System.Windows.Forms.TabPage();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.treeView1 = new System.Windows.Forms.TreeView();
-            this.listView3 = new System.Windows.Forms.ListView();
-            this.listView4 = new System.Windows.Forms.ListView();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.treeView2 = new System.Windows.Forms.TreeView();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.listView5 = new System.Windows.Forms.ListView();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.button10 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
+            this.listView5 = new System.Windows.Forms.ListView();
+            this.listView3 = new System.Windows.Forms.ListView();
+            this.tabPageGroupsAccess = new System.Windows.Forms.TabPage();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.checkBox5 = new System.Windows.Forms.CheckBox();
             this.checkBox6 = new System.Windows.Forms.CheckBox();
             this.treeView3 = new System.Windows.Forms.TreeView();
+            this.tabPageFolsers = new System.Windows.Forms.TabPage();
+            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.windowResizer1 = new VitControls.WindowResizer();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageUsers.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPageUserProperties.SuspendLayout();
             this.tabPageUserGroups.SuspendLayout();
-            this.tabPageGroups.SuspendLayout();
-            this.tabPageFolsers.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.tabPageUserAccess.SuspendLayout();
+            this.tabPageGroups.SuspendLayout();
             this.tabControl3.SuspendLayout();
             this.tabPageGroupsProperties.SuspendLayout();
             this.tabPageroupsUsers.SuspendLayout();
             this.tabPageGroupsAccess.SuspendLayout();
+            this.tabPageFolsers.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // windowHeader1
@@ -146,10 +146,10 @@
             // 
             // tabPageUsers
             // 
-            this.tabPageUsers.Controls.Add(this.button3);
+            this.tabPageUsers.Controls.Add(this.buttonUsersDeleteUser);
             this.tabPageUsers.Controls.Add(this.button2);
             this.tabPageUsers.Controls.Add(this.button1);
-            this.tabPageUsers.Controls.Add(this.listView1);
+            this.tabPageUsers.Controls.Add(this.listViewUsers);
             this.tabPageUsers.Controls.Add(this.tabControl2);
             this.tabPageUsers.Location = new System.Drawing.Point(4, 26);
             this.tabPageUsers.Name = "tabPageUsers";
@@ -159,87 +159,20 @@
             this.tabPageUsers.Text = "Пользователи";
             this.tabPageUsers.UseVisualStyleBackColor = true;
             // 
-            // listView1
+            // buttonUsersDeleteUser
             // 
-            this.listView1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.listView1.Location = new System.Drawing.Point(3, 3);
-            this.listView1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(572, 301);
-            this.listView1.TabIndex = 22;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            // 
-            // tabControl2
-            // 
-            this.tabControl2.Controls.Add(this.tabPageUserProperties);
-            this.tabControl2.Controls.Add(this.tabPageUserGroups);
-            this.tabControl2.Controls.Add(this.tabPageUserAccess);
-            this.tabControl2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tabControl2.Location = new System.Drawing.Point(3, 304);
-            this.tabControl2.Margin = new System.Windows.Forms.Padding(0);
-            this.tabControl2.Name = "tabControl2";
-            this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(784, 197);
-            this.tabControl2.TabIndex = 23;
-            // 
-            // tabPageUserProperties
-            // 
-            this.tabPageUserProperties.Controls.Add(this.textBox7);
-            this.tabPageUserProperties.Controls.Add(this.textBox8);
-            this.tabPageUserProperties.Controls.Add(this.textBox1);
-            this.tabPageUserProperties.Controls.Add(this.textBox2);
-            this.tabPageUserProperties.Controls.Add(this.textBox6);
-            this.tabPageUserProperties.Controls.Add(this.label8);
-            this.tabPageUserProperties.Controls.Add(this.label9);
-            this.tabPageUserProperties.Controls.Add(this.label7);
-            this.tabPageUserProperties.Controls.Add(this.label6);
-            this.tabPageUserProperties.Controls.Add(this.label5);
-            this.tabPageUserProperties.Location = new System.Drawing.Point(4, 26);
-            this.tabPageUserProperties.Name = "tabPageUserProperties";
-            this.tabPageUserProperties.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageUserProperties.Size = new System.Drawing.Size(776, 167);
-            this.tabPageUserProperties.TabIndex = 0;
-            this.tabPageUserProperties.Text = "Свойства";
-            this.tabPageUserProperties.UseVisualStyleBackColor = true;
-            // 
-            // tabPageUserGroups
-            // 
-            this.tabPageUserGroups.Controls.Add(this.button7);
-            this.tabPageUserGroups.Controls.Add(this.button8);
-            this.tabPageUserGroups.Controls.Add(this.listView4);
-            this.tabPageUserGroups.Location = new System.Drawing.Point(4, 26);
-            this.tabPageUserGroups.Name = "tabPageUserGroups";
-            this.tabPageUserGroups.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageUserGroups.Size = new System.Drawing.Size(776, 167);
-            this.tabPageUserGroups.TabIndex = 1;
-            this.tabPageUserGroups.Text = "Группы";
-            this.tabPageUserGroups.UseVisualStyleBackColor = true;
-            // 
-            // tabPageGroups
-            // 
-            this.tabPageGroups.Controls.Add(this.button4);
-            this.tabPageGroups.Controls.Add(this.button5);
-            this.tabPageGroups.Controls.Add(this.button6);
-            this.tabPageGroups.Controls.Add(this.listView2);
-            this.tabPageGroups.Controls.Add(this.tabControl3);
-            this.tabPageGroups.Location = new System.Drawing.Point(4, 26);
-            this.tabPageGroups.Name = "tabPageGroups";
-            this.tabPageGroups.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageGroups.Size = new System.Drawing.Size(790, 504);
-            this.tabPageGroups.TabIndex = 1;
-            this.tabPageGroups.Text = "Группы";
-            this.tabPageGroups.UseVisualStyleBackColor = true;
-            // 
-            // tabPageFolsers
-            // 
-            this.tabPageFolsers.Controls.Add(this.treeView1);
-            this.tabPageFolsers.Location = new System.Drawing.Point(4, 26);
-            this.tabPageFolsers.Name = "tabPageFolsers";
-            this.tabPageFolsers.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageFolsers.Size = new System.Drawing.Size(790, 504);
-            this.tabPageFolsers.TabIndex = 2;
-            this.tabPageFolsers.Text = "Папки";
-            this.tabPageFolsers.UseVisualStyleBackColor = true;
+            this.buttonUsersDeleteUser.AutoSize = true;
+            this.buttonUsersDeleteUser.Enabled = false;
+            this.buttonUsersDeleteUser.ImageKey = "icons8-delete-48.png";
+            this.buttonUsersDeleteUser.ImageList = this.imageList1;
+            this.buttonUsersDeleteUser.Location = new System.Drawing.Point(581, 78);
+            this.buttonUsersDeleteUser.Name = "buttonUsersDeleteUser";
+            this.buttonUsersDeleteUser.Size = new System.Drawing.Size(206, 30);
+            this.buttonUsersDeleteUser.TabIndex = 26;
+            this.buttonUsersDeleteUser.Text = "Удалить пользователя";
+            this.buttonUsersDeleteUser.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.buttonUsersDeleteUser.UseVisualStyleBackColor = true;
+            this.buttonUsersDeleteUser.Click += new System.EventHandler(this.buttonUsersDeleteUser_Click);
             // 
             // imageList1
             // 
@@ -288,41 +221,19 @@
             this.imageList1.Images.SetKeyName(40, "icons8-back-arrow-64.png");
             this.imageList1.Images.SetKeyName(41, "icons8-forward-button-64.png");
             // 
-            // panel2
+            // button2
             // 
-            this.panel2.BackColor = System.Drawing.Color.White;
-            this.panel2.Controls.Add(this.windowResizer1);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(1, 569);
-            this.panel2.Name = "panel2";
-            this.panel2.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.panel2.Size = new System.Drawing.Size(798, 30);
-            this.panel2.TabIndex = 15;
-            // 
-            // windowResizer1
-            // 
-            this.windowResizer1.BackColor = System.Drawing.Color.Transparent;
-            this.windowResizer1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("windowResizer1.BackgroundImage")));
-            this.windowResizer1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.windowResizer1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.windowResizer1.Location = new System.Drawing.Point(774, 3);
-            this.windowResizer1.Margin = new System.Windows.Forms.Padding(0);
-            this.windowResizer1.Name = "windowResizer1";
-            this.windowResizer1.Size = new System.Drawing.Size(24, 27);
-            this.windowResizer1.TabIndex = 0;
-            // 
-            // tabPageUserAccess
-            // 
-            this.tabPageUserAccess.Controls.Add(this.checkBox3);
-            this.tabPageUserAccess.Controls.Add(this.checkBox2);
-            this.tabPageUserAccess.Controls.Add(this.checkBox1);
-            this.tabPageUserAccess.Controls.Add(this.treeView2);
-            this.tabPageUserAccess.Location = new System.Drawing.Point(4, 26);
-            this.tabPageUserAccess.Name = "tabPageUserAccess";
-            this.tabPageUserAccess.Size = new System.Drawing.Size(776, 167);
-            this.tabPageUserAccess.TabIndex = 2;
-            this.tabPageUserAccess.Text = "Права";
-            this.tabPageUserAccess.UseVisualStyleBackColor = true;
+            this.button2.AutoSize = true;
+            this.button2.Enabled = false;
+            this.button2.ImageKey = "icons8-pencil-48.png";
+            this.button2.ImageList = this.imageList1;
+            this.button2.Location = new System.Drawing.Point(581, 42);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(206, 30);
+            this.button2.TabIndex = 25;
+            this.button2.Text = "Изменить свойства";
+            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button2.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
@@ -338,31 +249,89 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2
+            // listViewUsers
             // 
-            this.button2.AutoSize = true;
-            this.button2.ImageKey = "icons8-pencil-48.png";
-            this.button2.ImageList = this.imageList1;
-            this.button2.Location = new System.Drawing.Point(581, 42);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(206, 30);
-            this.button2.TabIndex = 25;
-            this.button2.Text = "Изменить свойства";
-            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button2.UseVisualStyleBackColor = true;
+            this.listViewUsers.Dock = System.Windows.Forms.DockStyle.Left;
+            this.listViewUsers.Location = new System.Drawing.Point(3, 3);
+            this.listViewUsers.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.listViewUsers.Name = "listViewUsers";
+            this.listViewUsers.Size = new System.Drawing.Size(572, 301);
+            this.listViewUsers.TabIndex = 22;
+            this.listViewUsers.UseCompatibleStateImageBehavior = false;
+            this.listViewUsers.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.listViewUsers_ItemSelectionChanged);
             // 
-            // button3
+            // tabControl2
             // 
-            this.button3.AutoSize = true;
-            this.button3.ImageKey = "icons8-delete-48.png";
-            this.button3.ImageList = this.imageList1;
-            this.button3.Location = new System.Drawing.Point(581, 78);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(206, 30);
-            this.button3.TabIndex = 26;
-            this.button3.Text = "Удалить пользователя";
-            this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button3.UseVisualStyleBackColor = true;
+            this.tabControl2.Controls.Add(this.tabPageUserProperties);
+            this.tabControl2.Controls.Add(this.tabPageUserGroups);
+            this.tabControl2.Controls.Add(this.tabPageUserAccess);
+            this.tabControl2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tabControl2.Location = new System.Drawing.Point(3, 304);
+            this.tabControl2.Margin = new System.Windows.Forms.Padding(0);
+            this.tabControl2.Name = "tabControl2";
+            this.tabControl2.SelectedIndex = 0;
+            this.tabControl2.Size = new System.Drawing.Size(784, 197);
+            this.tabControl2.TabIndex = 23;
+            // 
+            // tabPageUserProperties
+            // 
+            this.tabPageUserProperties.Controls.Add(this.textBoxUsersUserMail);
+            this.tabPageUserProperties.Controls.Add(this.textBoxUsersSubdivisions);
+            this.tabPageUserProperties.Controls.Add(this.textBoxUsersUserPositions);
+            this.tabPageUserProperties.Controls.Add(this.textBoxUsersAccessGroupName);
+            this.tabPageUserProperties.Controls.Add(this.textBoxUsersUserName);
+            this.tabPageUserProperties.Controls.Add(this.label8);
+            this.tabPageUserProperties.Controls.Add(this.label9);
+            this.tabPageUserProperties.Controls.Add(this.label7);
+            this.tabPageUserProperties.Controls.Add(this.label6);
+            this.tabPageUserProperties.Controls.Add(this.label5);
+            this.tabPageUserProperties.Location = new System.Drawing.Point(4, 26);
+            this.tabPageUserProperties.Name = "tabPageUserProperties";
+            this.tabPageUserProperties.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageUserProperties.Size = new System.Drawing.Size(776, 167);
+            this.tabPageUserProperties.TabIndex = 0;
+            this.tabPageUserProperties.Text = "Свойства";
+            this.tabPageUserProperties.UseVisualStyleBackColor = true;
+            // 
+            // textBoxUsersUserMail
+            // 
+            this.textBoxUsersUserMail.Location = new System.Drawing.Point(197, 133);
+            this.textBoxUsersUserMail.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBoxUsersUserMail.Name = "textBoxUsersUserMail";
+            this.textBoxUsersUserMail.Size = new System.Drawing.Size(446, 25);
+            this.textBoxUsersUserMail.TabIndex = 75;
+            // 
+            // textBoxUsersSubdivisions
+            // 
+            this.textBoxUsersSubdivisions.Location = new System.Drawing.Point(197, 100);
+            this.textBoxUsersSubdivisions.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBoxUsersSubdivisions.Name = "textBoxUsersSubdivisions";
+            this.textBoxUsersSubdivisions.Size = new System.Drawing.Size(446, 25);
+            this.textBoxUsersSubdivisions.TabIndex = 74;
+            // 
+            // textBoxUsersUserPositions
+            // 
+            this.textBoxUsersUserPositions.Location = new System.Drawing.Point(197, 67);
+            this.textBoxUsersUserPositions.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBoxUsersUserPositions.Name = "textBoxUsersUserPositions";
+            this.textBoxUsersUserPositions.Size = new System.Drawing.Size(446, 25);
+            this.textBoxUsersUserPositions.TabIndex = 73;
+            // 
+            // textBoxUsersAccessGroupName
+            // 
+            this.textBoxUsersAccessGroupName.Location = new System.Drawing.Point(197, 34);
+            this.textBoxUsersAccessGroupName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBoxUsersAccessGroupName.Name = "textBoxUsersAccessGroupName";
+            this.textBoxUsersAccessGroupName.Size = new System.Drawing.Size(446, 25);
+            this.textBoxUsersAccessGroupName.TabIndex = 72;
+            // 
+            // textBoxUsersUserName
+            // 
+            this.textBoxUsersUserName.Location = new System.Drawing.Point(197, 1);
+            this.textBoxUsersUserName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBoxUsersUserName.Name = "textBoxUsersUserName";
+            this.textBoxUsersUserName.Size = new System.Drawing.Size(446, 25);
+            this.textBoxUsersUserName.TabIndex = 71;
             // 
             // label8
             // 
@@ -408,6 +377,120 @@
             this.label5.Size = new System.Drawing.Size(46, 17);
             this.label5.TabIndex = 63;
             this.label5.Text = "Ф.И.О.";
+            // 
+            // tabPageUserGroups
+            // 
+            this.tabPageUserGroups.Controls.Add(this.button7);
+            this.tabPageUserGroups.Controls.Add(this.button8);
+            this.tabPageUserGroups.Controls.Add(this.listView4);
+            this.tabPageUserGroups.Location = new System.Drawing.Point(4, 26);
+            this.tabPageUserGroups.Name = "tabPageUserGroups";
+            this.tabPageUserGroups.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageUserGroups.Size = new System.Drawing.Size(776, 167);
+            this.tabPageUserGroups.TabIndex = 1;
+            this.tabPageUserGroups.Text = "Группы";
+            this.tabPageUserGroups.UseVisualStyleBackColor = true;
+            // 
+            // button7
+            // 
+            this.button7.AutoSize = true;
+            this.button7.ImageKey = "icons8-delete-48.png";
+            this.button7.ImageList = this.imageList1;
+            this.button7.Location = new System.Drawing.Point(574, 42);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(206, 30);
+            this.button7.TabIndex = 33;
+            this.button7.Text = "Удалить группу";
+            this.button7.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button7.UseVisualStyleBackColor = true;
+            // 
+            // button8
+            // 
+            this.button8.AutoSize = true;
+            this.button8.ImageKey = "icons8-plus-48.png";
+            this.button8.ImageList = this.imageList1;
+            this.button8.Location = new System.Drawing.Point(574, 6);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(206, 30);
+            this.button8.TabIndex = 32;
+            this.button8.Text = "Добавить группу";
+            this.button8.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button8.UseVisualStyleBackColor = true;
+            // 
+            // listView4
+            // 
+            this.listView4.Dock = System.Windows.Forms.DockStyle.Left;
+            this.listView4.Location = new System.Drawing.Point(3, 3);
+            this.listView4.Name = "listView4";
+            this.listView4.Size = new System.Drawing.Size(565, 161);
+            this.listView4.TabIndex = 1;
+            this.listView4.UseCompatibleStateImageBehavior = false;
+            // 
+            // tabPageUserAccess
+            // 
+            this.tabPageUserAccess.Controls.Add(this.checkBox3);
+            this.tabPageUserAccess.Controls.Add(this.checkBox2);
+            this.tabPageUserAccess.Controls.Add(this.checkBox1);
+            this.tabPageUserAccess.Controls.Add(this.treeView2);
+            this.tabPageUserAccess.Location = new System.Drawing.Point(4, 26);
+            this.tabPageUserAccess.Name = "tabPageUserAccess";
+            this.tabPageUserAccess.Size = new System.Drawing.Size(776, 167);
+            this.tabPageUserAccess.TabIndex = 2;
+            this.tabPageUserAccess.Text = "Права";
+            this.tabPageUserAccess.UseVisualStyleBackColor = true;
+            // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Location = new System.Drawing.Point(574, 57);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(101, 21);
+            this.checkBox3.TabIndex = 3;
+            this.checkBox3.Text = "Добавление";
+            this.checkBox3.UseVisualStyleBackColor = true;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(574, 30);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(68, 21);
+            this.checkBox2.TabIndex = 2;
+            this.checkBox2.Text = "Запись";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(574, 3);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(69, 21);
+            this.checkBox1.TabIndex = 1;
+            this.checkBox1.Text = "Чтение";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // treeView2
+            // 
+            this.treeView2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.treeView2.Location = new System.Drawing.Point(0, 0);
+            this.treeView2.Name = "treeView2";
+            this.treeView2.Size = new System.Drawing.Size(568, 167);
+            this.treeView2.TabIndex = 0;
+            // 
+            // tabPageGroups
+            // 
+            this.tabPageGroups.Controls.Add(this.button4);
+            this.tabPageGroups.Controls.Add(this.button5);
+            this.tabPageGroups.Controls.Add(this.button6);
+            this.tabPageGroups.Controls.Add(this.listView2);
+            this.tabPageGroups.Controls.Add(this.tabControl3);
+            this.tabPageGroups.Location = new System.Drawing.Point(4, 26);
+            this.tabPageGroups.Name = "tabPageGroups";
+            this.tabPageGroups.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageGroups.Size = new System.Drawing.Size(790, 504);
+            this.tabPageGroups.TabIndex = 1;
+            this.tabPageGroups.Text = "Группы";
+            this.tabPageGroups.UseVisualStyleBackColor = true;
             // 
             // button4
             // 
@@ -554,169 +637,23 @@
             this.tabPageroupsUsers.Text = "Пользователи";
             this.tabPageroupsUsers.UseVisualStyleBackColor = true;
             // 
-            // tabPageGroupsAccess
+            // label2
             // 
-            this.tabPageGroupsAccess.Controls.Add(this.checkBox4);
-            this.tabPageGroupsAccess.Controls.Add(this.checkBox5);
-            this.tabPageGroupsAccess.Controls.Add(this.checkBox6);
-            this.tabPageGroupsAccess.Controls.Add(this.treeView3);
-            this.tabPageGroupsAccess.Location = new System.Drawing.Point(4, 26);
-            this.tabPageGroupsAccess.Name = "tabPageGroupsAccess";
-            this.tabPageGroupsAccess.Size = new System.Drawing.Size(776, 167);
-            this.tabPageGroupsAccess.TabIndex = 2;
-            this.tabPageGroupsAccess.Text = "Права";
-            this.tabPageGroupsAccess.UseVisualStyleBackColor = true;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(405, 3);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(115, 17);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Все пользователи";
             // 
-            // textBox1
+            // label1
             // 
-            this.textBox1.Location = new System.Drawing.Point(197, 67);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(446, 25);
-            this.textBox1.TabIndex = 73;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(197, 34);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(446, 25);
-            this.textBox2.TabIndex = 72;
-            // 
-            // textBox6
-            // 
-            this.textBox6.Location = new System.Drawing.Point(197, 1);
-            this.textBox6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(446, 25);
-            this.textBox6.TabIndex = 71;
-            // 
-            // textBox7
-            // 
-            this.textBox7.Location = new System.Drawing.Point(197, 133);
-            this.textBox7.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(446, 25);
-            this.textBox7.TabIndex = 75;
-            // 
-            // textBox8
-            // 
-            this.textBox8.Location = new System.Drawing.Point(197, 100);
-            this.textBox8.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(446, 25);
-            this.textBox8.TabIndex = 74;
-            // 
-            // treeView1
-            // 
-            this.treeView1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.treeView1.Location = new System.Drawing.Point(3, 3);
-            this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(784, 291);
-            this.treeView1.TabIndex = 0;
-            // 
-            // listView3
-            // 
-            this.listView3.Location = new System.Drawing.Point(3, 23);
-            this.listView3.Name = "listView3";
-            this.listView3.Size = new System.Drawing.Size(365, 141);
-            this.listView3.TabIndex = 0;
-            this.listView3.UseCompatibleStateImageBehavior = false;
-            // 
-            // listView4
-            // 
-            this.listView4.Dock = System.Windows.Forms.DockStyle.Left;
-            this.listView4.Location = new System.Drawing.Point(3, 3);
-            this.listView4.Name = "listView4";
-            this.listView4.Size = new System.Drawing.Size(565, 161);
-            this.listView4.TabIndex = 1;
-            this.listView4.UseCompatibleStateImageBehavior = false;
-            // 
-            // button7
-            // 
-            this.button7.AutoSize = true;
-            this.button7.ImageKey = "icons8-delete-48.png";
-            this.button7.ImageList = this.imageList1;
-            this.button7.Location = new System.Drawing.Point(574, 42);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(206, 30);
-            this.button7.TabIndex = 33;
-            this.button7.Text = "Удалить группу";
-            this.button7.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button7.UseVisualStyleBackColor = true;
-            // 
-            // button8
-            // 
-            this.button8.AutoSize = true;
-            this.button8.ImageKey = "icons8-plus-48.png";
-            this.button8.ImageList = this.imageList1;
-            this.button8.Location = new System.Drawing.Point(574, 6);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(206, 30);
-            this.button8.TabIndex = 32;
-            this.button8.Text = "Добавить группу";
-            this.button8.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button8.UseVisualStyleBackColor = true;
-            // 
-            // treeView2
-            // 
-            this.treeView2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.treeView2.Location = new System.Drawing.Point(0, 0);
-            this.treeView2.Name = "treeView2";
-            this.treeView2.Size = new System.Drawing.Size(568, 167);
-            this.treeView2.TabIndex = 0;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(574, 3);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(69, 21);
-            this.checkBox1.TabIndex = 1;
-            this.checkBox1.Text = "Чтение";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(574, 30);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(68, 21);
-            this.checkBox2.TabIndex = 2;
-            this.checkBox2.Text = "Запись";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            // 
-            // checkBox3
-            // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(574, 57);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(101, 21);
-            this.checkBox3.TabIndex = 3;
-            this.checkBox3.Text = "Добавление";
-            this.checkBox3.UseVisualStyleBackColor = true;
-            // 
-            // listView5
-            // 
-            this.listView5.Location = new System.Drawing.Point(408, 23);
-            this.listView5.Name = "listView5";
-            this.listView5.Size = new System.Drawing.Size(365, 141);
-            this.listView5.TabIndex = 1;
-            this.listView5.UseCompatibleStateImageBehavior = false;
-            // 
-            // button9
-            // 
-            this.button9.AutoSize = true;
-            this.button9.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.button9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button9.ImageKey = "icons8-back-arrow-64.png";
-            this.button9.ImageList = this.imageList1;
-            this.button9.Location = new System.Drawing.Point(375, 23);
-            this.button9.Margin = new System.Windows.Forms.Padding(0);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(30, 30);
-            this.button9.TabIndex = 2;
-            this.button9.UseVisualStyleBackColor = true;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 3);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(148, 17);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Пользователи в группе";
             // 
             // button10
             // 
@@ -732,23 +669,48 @@
             this.button10.TabIndex = 3;
             this.button10.UseVisualStyleBackColor = true;
             // 
-            // label1
+            // button9
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 3);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(148, 17);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Пользователи в группе";
+            this.button9.AutoSize = true;
+            this.button9.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.button9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button9.ImageKey = "icons8-back-arrow-64.png";
+            this.button9.ImageList = this.imageList1;
+            this.button9.Location = new System.Drawing.Point(375, 23);
+            this.button9.Margin = new System.Windows.Forms.Padding(0);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(30, 30);
+            this.button9.TabIndex = 2;
+            this.button9.UseVisualStyleBackColor = true;
             // 
-            // label2
+            // listView5
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(405, 3);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(115, 17);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Все пользователи";
+            this.listView5.Location = new System.Drawing.Point(408, 23);
+            this.listView5.Name = "listView5";
+            this.listView5.Size = new System.Drawing.Size(365, 141);
+            this.listView5.TabIndex = 1;
+            this.listView5.UseCompatibleStateImageBehavior = false;
+            // 
+            // listView3
+            // 
+            this.listView3.Location = new System.Drawing.Point(3, 23);
+            this.listView3.Name = "listView3";
+            this.listView3.Size = new System.Drawing.Size(365, 141);
+            this.listView3.TabIndex = 0;
+            this.listView3.UseCompatibleStateImageBehavior = false;
+            // 
+            // tabPageGroupsAccess
+            // 
+            this.tabPageGroupsAccess.Controls.Add(this.checkBox4);
+            this.tabPageGroupsAccess.Controls.Add(this.checkBox5);
+            this.tabPageGroupsAccess.Controls.Add(this.checkBox6);
+            this.tabPageGroupsAccess.Controls.Add(this.treeView3);
+            this.tabPageGroupsAccess.Location = new System.Drawing.Point(4, 26);
+            this.tabPageGroupsAccess.Name = "tabPageGroupsAccess";
+            this.tabPageGroupsAccess.Size = new System.Drawing.Size(776, 167);
+            this.tabPageGroupsAccess.TabIndex = 2;
+            this.tabPageGroupsAccess.Text = "Права";
+            this.tabPageGroupsAccess.UseVisualStyleBackColor = true;
             // 
             // checkBox4
             // 
@@ -788,6 +750,48 @@
             this.treeView3.Size = new System.Drawing.Size(568, 167);
             this.treeView3.TabIndex = 4;
             // 
+            // tabPageFolsers
+            // 
+            this.tabPageFolsers.Controls.Add(this.treeView1);
+            this.tabPageFolsers.Location = new System.Drawing.Point(4, 26);
+            this.tabPageFolsers.Name = "tabPageFolsers";
+            this.tabPageFolsers.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageFolsers.Size = new System.Drawing.Size(790, 504);
+            this.tabPageFolsers.TabIndex = 2;
+            this.tabPageFolsers.Text = "Папки";
+            this.tabPageFolsers.UseVisualStyleBackColor = true;
+            // 
+            // treeView1
+            // 
+            this.treeView1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.treeView1.Location = new System.Drawing.Point(3, 3);
+            this.treeView1.Name = "treeView1";
+            this.treeView1.Size = new System.Drawing.Size(784, 291);
+            this.treeView1.TabIndex = 0;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.White;
+            this.panel2.Controls.Add(this.windowResizer1);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(1, 569);
+            this.panel2.Name = "panel2";
+            this.panel2.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.panel2.Size = new System.Drawing.Size(798, 30);
+            this.panel2.TabIndex = 15;
+            // 
+            // windowResizer1
+            // 
+            this.windowResizer1.BackColor = System.Drawing.Color.Transparent;
+            this.windowResizer1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("windowResizer1.BackgroundImage")));
+            this.windowResizer1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.windowResizer1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.windowResizer1.Location = new System.Drawing.Point(774, 3);
+            this.windowResizer1.Margin = new System.Windows.Forms.Padding(0);
+            this.windowResizer1.Name = "windowResizer1";
+            this.windowResizer1.Size = new System.Drawing.Size(24, 27);
+            this.windowResizer1.TabIndex = 0;
+            // 
             // FormUsers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -814,12 +818,10 @@
             this.tabPageUserProperties.PerformLayout();
             this.tabPageUserGroups.ResumeLayout(false);
             this.tabPageUserGroups.PerformLayout();
-            this.tabPageGroups.ResumeLayout(false);
-            this.tabPageGroups.PerformLayout();
-            this.tabPageFolsers.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
             this.tabPageUserAccess.ResumeLayout(false);
             this.tabPageUserAccess.PerformLayout();
+            this.tabPageGroups.ResumeLayout(false);
+            this.tabPageGroups.PerformLayout();
             this.tabControl3.ResumeLayout(false);
             this.tabPageGroupsProperties.ResumeLayout(false);
             this.tabPageGroupsProperties.PerformLayout();
@@ -827,6 +829,8 @@
             this.tabPageroupsUsers.PerformLayout();
             this.tabPageGroupsAccess.ResumeLayout(false);
             this.tabPageGroupsAccess.PerformLayout();
+            this.tabPageFolsers.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -841,14 +845,14 @@
         private System.Windows.Forms.TabPage tabPageGroups;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.TabPage tabPageFolsers;
-        public System.Windows.Forms.ListView listView1;
+        public System.Windows.Forms.ListView listViewUsers;
         private System.Windows.Forms.TabControl tabControl2;
         private System.Windows.Forms.TabPage tabPageUserProperties;
         private System.Windows.Forms.TabPage tabPageUserGroups;
         private System.Windows.Forms.Panel panel2;
         private VitControls.WindowResizer windowResizer1;
         private System.Windows.Forms.TabPage tabPageUserAccess;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button buttonUsersDeleteUser;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label8;
@@ -856,11 +860,11 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
-        public System.Windows.Forms.TextBox textBox7;
-        public System.Windows.Forms.TextBox textBox8;
-        public System.Windows.Forms.TextBox textBox1;
-        public System.Windows.Forms.TextBox textBox2;
-        public System.Windows.Forms.TextBox textBox6;
+        public System.Windows.Forms.TextBox textBoxUsersUserMail;
+        public System.Windows.Forms.TextBox textBoxUsersSubdivisions;
+        public System.Windows.Forms.TextBox textBoxUsersUserPositions;
+        public System.Windows.Forms.TextBox textBoxUsersAccessGroupName;
+        public System.Windows.Forms.TextBox textBoxUsersUserName;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
