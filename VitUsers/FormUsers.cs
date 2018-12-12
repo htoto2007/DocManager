@@ -91,6 +91,8 @@ namespace VitUsers
                 textBoxUsersUserPositions.Text = listViewUsers.SelectedItems[0].SubItems["userPosition"].Text;
                 textBoxUsersSubdivisions.Text = listViewUsers.SelectedItems[0].SubItems["subdivision"].Text;
                 textBoxUsersUserMail.Text = listViewUsers.SelectedItems[0].SubItems["Mail"].Text;
+
+                buttonUsersUserEdit.Enabled = true;
             }
 
             if (listViewUsers.SelectedItems.Count != 1)
@@ -100,6 +102,8 @@ namespace VitUsers
                 textBoxUsersUserPositions.Text = "";
                 textBoxUsersSubdivisions.Text = "";
                 textBoxUsersUserMail.Text = "";
+
+                buttonUsersUserEdit.Enabled = false;
             }
             if (listViewUsers.SelectedItems.Count <= 0)
             {
@@ -123,6 +127,14 @@ namespace VitUsers
                 int id = Convert.ToInt32(item.SubItems["id"].Text);
                 classUsers.deleteById(id);
             }
+            Init();
+        }
+
+        private void buttonUsersUserEdit_Click(object sender, EventArgs e)
+        {
+            int idUser = Convert.ToInt32(listViewUsers.SelectedItems[0].SubItems["id"].Text);
+            FormUserPropertyEdit formUserPropertyEdit = new FormUserPropertyEdit(idUser);
+            formUserPropertyEdit.ShowDialog();
             Init();
         }
     }

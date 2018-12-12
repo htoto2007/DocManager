@@ -7,7 +7,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
-using VitUsers;
 using WinSCP;
 
 namespace VitFTP
@@ -25,7 +24,7 @@ namespace VitFTP
         private readonly string password;
         private readonly SessionOptions sessionOptions;
         private readonly string userName;
-        private ClassUsers ClassUsers = new ClassUsers();
+        
         private vitProgressStatus.FormProgressStatus formProgressStatus;
         private string uri;
 
@@ -93,11 +92,81 @@ namespace VitFTP
             }
         }
 
-
-
-        private void AddUser(string name, string Dir)
+        public struct UserCollection
         {
-            string xmlFileName = "FileZilla Server.xml";
+            public string name;
+            public string pass;
+            public bool enable;
+            public string salt;
+            public string group;
+            public bool bypassServerUserlimit;
+            public int userLimit;
+            public int ipLimit;
+            public string comments;
+            public bool forceSsl;
+            public DirCollection DirCollection;
+
+        }
+
+        public struct DirCollection
+        {
+            public string dir;
+            public bool FileWrite;
+            public bool FileDelete;
+            public bool FileAppend;
+            public bool DirCreate;
+            public bool DirDelete;
+            public bool DirList;
+            public bool DirSubdirs;
+            public bool IsHome;
+            public bool AutoCreate;
+        }
+
+        private bool getFileConfig()
+        {
+            
+
+            using (Session session = new Session())
+            {
+                // Connect
+                session.Open(sessionOptions);
+                TransferOperationResult transferOperationResult = session.GetFiles("FileZilla Server.xml", VitSettings.Properties.FTPSettings.Default.openFilePath, false, null);
+                session.Close();
+                if (!transferOperationResult.IsSuccess)
+                {
+                    VitNotifyMessage.ClassNotifyMessage classNotifyMessage = new VitNotifyMessage.ClassNotifyMessage();
+                    classNotifyMessage.showDialog(VitNotifyMessage.ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, "Не удалось получить файл конфигурации с сервера!");
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private bool sendFileConfig()
+        {
+           
+
+            using (Session session = new Session())
+            {
+                // Connect
+                session.Open(sessionOptions);
+                TransferOperationResult transferOperationResult = session.PutFiles(VitSettings.Properties.FTPSettings.Default.openFilePath, "\\", false, null);
+                session.Close();
+                if (!transferOperationResult.IsSuccess)
+                {
+                    VitNotifyMessage.ClassNotifyMessage classNotifyMessage = new VitNotifyMessage.ClassNotifyMessage();
+                    classNotifyMessage.showDialog(VitNotifyMessage.ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, "Не удалось отправить файл конфигурации на сервер!");
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public void AddUser(UserCollection userCollection)
+        {
+            if (getFileConfig() == false) return;
+
+            string xmlFileName = VitSettings.Properties.FTPSettings.Default.openFilePath + "\\FileZilla Server.xml"; 
             XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.Load(xmlFileName);
             XmlElement xRoot = xmlDoc.DocumentElement;
@@ -110,25 +179,25 @@ namespace VitFTP
                     xmlUsers = xmlElem;
             }
 
-            XmlElement xmlUser = createNode(xmlDoc, "User", "", "Name", name);
+            XmlElement xmlUser = createNode(xmlDoc, "User", "", "Name", userCollection.name);
 
             XmlElement xmlOption = createNode(xmlDoc, "Option", "", "Name", "Pass");
             xmlUser.AppendChild(xmlOption);
-            xmlOption = createNode(xmlDoc, "Option", "1", "Name", "Enabled");
+            xmlOption = createNode(xmlDoc, "Option", Convert.ToInt32(userCollection.enable).ToString(), "Name", "Enabled");
             xmlUser.AppendChild(xmlOption);
-            xmlOption = createNode(xmlDoc, "Option", "", "Name", "Salt");
+            xmlOption = createNode(xmlDoc, "Option", userCollection.salt, "Name", "Salt");
             xmlUser.AppendChild(xmlOption);
-            xmlOption = createNode(xmlDoc, "Option", "", "Name", "Group");
+            xmlOption = createNode(xmlDoc, "Option", userCollection.group, "Name", "Group");
             xmlUser.AppendChild(xmlOption);
-            xmlOption = createNode(xmlDoc, "Option", "0", "Name", "Bypass server userlimit");
+            xmlOption = createNode(xmlDoc, "Option", Convert.ToInt32(userCollection.bypassServerUserlimit).ToString(), "Name", "Bypass server userlimit");
             xmlUser.AppendChild(xmlOption);
-            xmlOption = createNode(xmlDoc, "Option", "0", "Name", "User Limit");
+            xmlOption = createNode(xmlDoc, "Option", userCollection.userLimit.ToString(), "Name", "User Limit");
             xmlUser.AppendChild(xmlOption);
-            xmlOption = createNode(xmlDoc, "Option", "0", "Name", "IP Limit");
+            xmlOption = createNode(xmlDoc, "Option", userCollection.ipLimit.ToString(), "Name", "IP Limit");
             xmlUser.AppendChild(xmlOption);
-            xmlOption = createNode(xmlDoc, "Option", "", "Name", "Comments");
+            xmlOption = createNode(xmlDoc, "Option", userCollection.comments, "Name", "Comments");
             xmlUser.AppendChild(xmlOption);
-            xmlOption = createNode(xmlDoc, "Option", "0", "Name", "ForceSsl");
+            xmlOption = createNode(xmlDoc, "Option", Convert.ToInt32(userCollection.forceSsl).ToString(), "Name", "ForceSsl");
             xmlUser.AppendChild(xmlOption);
 
             XmlElement xmlIpFilter = createNode(xmlDoc, "IpFilter", "", "", "");
@@ -175,27 +244,27 @@ namespace VitFTP
 
             XmlElement xmlUserPermissions = createNode(xmlDoc, "Permissions", "", "", "");
 
-            XmlElement xmlUserPermission = createNode(xmlDoc, "Permission", "", "Dir", Dir);
+            XmlElement xmlUserPermission = createNode(xmlDoc, "Permission", "", "Dir", userCollection.DirCollection.dir);
 
             XmlElement xmlUserPermissionOption = createNode(xmlDoc, "Option", "1", "Name", "FileRead");
             xmlUserPermission.AppendChild(xmlUserPermissionOption);
-            xmlUserPermissionOption = createNode(xmlDoc, "Option", "1", "Name", "FileWrite");
+            xmlUserPermissionOption = createNode(xmlDoc, "Option", Convert.ToInt32(userCollection.DirCollection.FileWrite).ToString(), "Name", "FileWrite");
             xmlUserPermission.AppendChild(xmlUserPermissionOption);
-            xmlUserPermissionOption = createNode(xmlDoc, "Option", "1", "Name", "FileDelete");
+            xmlUserPermissionOption = createNode(xmlDoc, "Option", Convert.ToInt32(userCollection.DirCollection.FileDelete).ToString(), "Name", "FileDelete");
             xmlUserPermission.AppendChild(xmlUserPermissionOption);
-            xmlUserPermissionOption = createNode(xmlDoc, "Option", "1", "Name", "FileAppend");
+            xmlUserPermissionOption = createNode(xmlDoc, "Option", Convert.ToInt32(userCollection.DirCollection.FileAppend).ToString(), "Name", "FileAppend");
             xmlUserPermission.AppendChild(xmlUserPermissionOption);
-            xmlUserPermissionOption = createNode(xmlDoc, "Option", "1", "Name", "DirCreate");
+            xmlUserPermissionOption = createNode(xmlDoc, "Option", Convert.ToInt32(userCollection.DirCollection.DirCreate).ToString(), "Name", "DirCreate");
             xmlUserPermission.AppendChild(xmlUserPermissionOption);
-            xmlUserPermissionOption = createNode(xmlDoc, "Option", "1", "Name", "DirDelete");
+            xmlUserPermissionOption = createNode(xmlDoc, "Option", Convert.ToInt32(userCollection.DirCollection.DirDelete).ToString(), "Name", "DirDelete");
             xmlUserPermission.AppendChild(xmlUserPermissionOption);
-            xmlUserPermissionOption = createNode(xmlDoc, "Option", "1", "Name", "DirList");
+            xmlUserPermissionOption = createNode(xmlDoc, "Option", Convert.ToInt32(userCollection.DirCollection.DirList).ToString(), "Name", "DirList");
             xmlUserPermission.AppendChild(xmlUserPermissionOption);
-            xmlUserPermissionOption = createNode(xmlDoc, "Option", "1", "Name", "DirSubdirs");
+            xmlUserPermissionOption = createNode(xmlDoc, "Option", Convert.ToInt32(userCollection.DirCollection.DirSubdirs).ToString(), "Name", "DirSubdirs");
             xmlUserPermission.AppendChild(xmlUserPermissionOption);
-            xmlUserPermissionOption = createNode(xmlDoc, "Option", "1", "Name", "IsHome");
+            xmlUserPermissionOption = createNode(xmlDoc, "Option", Convert.ToInt32(userCollection.DirCollection.IsHome).ToString(), "Name", "IsHome");
             xmlUserPermission.AppendChild(xmlUserPermissionOption);
-            xmlUserPermissionOption = createNode(xmlDoc, "Option", "1", "Name", "AutoCreate");
+            xmlUserPermissionOption = createNode(xmlDoc, "Option", Convert.ToInt32(userCollection.DirCollection.AutoCreate).ToString(), "Name", "AutoCreate");
             xmlUserPermission.AppendChild(xmlUserPermissionOption);
 
             xmlUserPermissions.AppendChild(xmlUserPermission);
@@ -205,6 +274,8 @@ namespace VitFTP
             xmlUsers.AppendChild(xmlUser);
 
             xmlDoc.Save(xmlFileName);
+
+            if(sendFileConfig() == false) return;
         }
 
         private XmlElement createNode(XmlDocument xmlDocument,
@@ -480,7 +551,7 @@ namespace VitFTP
             {
                 // Connect
                 session.Open(sessionOptions);
-                removalOperationResult = session.RemoveFiles("\\" + directoryName);
+                removalOperationResult = session.RemoveFiles(directoryName.Replace("\\","/"));
                 if(removalOperationResult.IsSuccess == false)
                 {
                     SessionRemoteExceptionCollection sessionRemoteExceptions = removalOperationResult.Failures;

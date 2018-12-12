@@ -5,6 +5,7 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using VitAccessGroup;
+using VitFTP;
 using VitMysql;
 using VitSettings;
 using VitSubdivision;
@@ -33,9 +34,30 @@ namespace VitUsers
             programPath = classSettings.GetProperties().generalsSttings.programPath;
             repositiryPayh = classSettings.GetProperties().generalsSttings.repositiryPayh;
             cashLoginFile = programPath + "\\" + tmpFile;
-            
         }
 
+        /// <summary>
+        /// Представление системного пользователя для
+        /// </summary>
+        struct SystemUser
+        {
+            public const string PASS = "";
+            public const string LOGIN = "SYSTEM";
+        }
+
+        /// <summary>
+        /// Создает нового пользователя
+        /// </summary>
+        /// <param name="lastName">Фамилия</param>
+        /// <param name="firstName">Имя</param>
+        /// <param name="MiddleName">Отчество</param>
+        /// <param name="mail">Электронная почта</param>
+        /// <param name="mailPass">Пароль от электоронной почты</param>
+        /// <param name="accessGroup">Имя группы доступа</param>
+        /// <param name="position">Название должности</param>
+        /// <param name="subdivision">Название подразделения</param>
+        /// <param name="login">Логин для входа</param>
+        /// <param name="password">Пароль для входа в программу</param>
         public void AddUser(string lastName, string firstName, string MiddleName, string mail, string mailPass, string accessGroup, string position, string subdivision, string login, string password)
         {
             int idAccessGroup = classAccessGroup.getIdByName(accessGroup);
@@ -60,8 +82,32 @@ namespace VitUsers
                 "UPDATE tb_users " +
                 "SET login = '" + login + "-" + id.ToString() + "' " +
                 "WHERE id = " + id);
+
+            ClassFTP classFTP = new ClassFTP(SystemUser.LOGIN, SystemUser.PASS);
+            ClassFTP.UserCollection userCollection = new ClassFTP.UserCollection();
+
+            userCollection.name = login + "-" + id.ToString();
+            userCollection.pass = password;
+            userCollection.enable = true;
+            userCollection.bypassServerUserlimit = false;
+            userCollection.DirCollection.dir = "D:\\";
+            userCollection.DirCollection.DirCreate = true;
+            userCollection.DirCollection.DirDelete = true;
+            userCollection.DirCollection.DirList = true;
+            userCollection.DirCollection.DirSubdirs = true;
+            userCollection.DirCollection.FileAppend = true;
+            userCollection.DirCollection.FileDelete = true;
+            userCollection.DirCollection.FileWrite = true;
+            userCollection.DirCollection.IsHome = true;
+            userCollection.DirCollection.AutoCreate = true;
+
+            classFTP.AddUser(userCollection);
         }
 
+        /// <summary>
+        /// Удаляет пользователя из базы по его номеру
+        /// </summary>
+        /// <param name="id">Номер пользователя в базе</param>
         public void deleteById(int id)
         {
             classMysql.UpdateOrDelete("" +
@@ -69,6 +115,56 @@ namespace VitUsers
                 "WHERE id = " + id);
         }
 
+        /// <summary>
+        /// Обновляет свойства пользователя
+        /// </summary>
+        /// <param name="lastName">Фамилия</param>
+        /// <param name="firstName">Имя</param>
+        /// <param name="MiddleName">Отчество</param>
+        /// <param name="mail">Электронная почта</param>
+        /// <param name="mailPass">Пароль от электоронной почты</param>
+        /// <param name="accessGroup">Имя группы доступа</param>
+        /// <param name="position">Название должности</param>
+        /// <param name="subdivision">Название подразделения</param>
+        /// <param name="login">Логин для входа</param>
+        /// <param name="password">Пароль для входа в программу</param>
+        /// <param name="id">Номер пользователя</param>
+        public void UpdateUser(string lastName, string firstName, string MiddleName, string mail, string mailPass, string accessGroup, string position, string subdivision, string login, string password, string id)
+        {
+            var idUser = Convert.ToInt32(id);
+            if (GetUserByid(idUser).id == 0)
+            {
+                VitNotifyMessage.ClassNotifyMessage classNotifyMessage = new VitNotifyMessage.ClassNotifyMessage();
+                classNotifyMessage.showDialog(VitNotifyMessage.ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, "Пользователя по такому номеру не существует! '" + id + "'");
+                return;
+            }
+            int idAccessGroup = classAccessGroup.getIdByName(accessGroup);
+            int idUserPosition = classUserPositions.getInfoByName(position).id;
+            int idDivision = classSubdivision.getInfoByName(subdivision).id;
+
+            classMysql.UpdateOrDelete("" +
+                "UPDATE tb_users " +
+                "SET " +
+                "first_name = '" + firstName + "', " +
+                "last_name = '" + lastName + "', " +
+                "middle_name = '" + MiddleName + "', " +
+                "login = '" + login + "', " +
+                "mail = '" + mail + "', " +
+                "mail_password = '" + mailPass + "', " +
+                "id_subdivision = '" + idDivision + "', " +
+                "id_position = '" + idUserPosition + "', " +
+                "id_access_group = '" + idAccessGroup + "', " +
+                "password = '" + password + "' " +
+                "WHERE id = " + idUser);
+        }
+
+        /// <summary>
+        /// Производит процедуру смены пароля
+        /// </summary>
+        /// <param name="oldPass">Стары пароль</param>
+        /// <param name="newPass">Новый пароль</param>
+        /// <param name="retryPass">Повторно новый пароль</param>
+        /// <returns></returns>
         public bool changePassword(string oldPass, string newPass, string retryPass)
         {
             UserColection userColection = getThisUser();
@@ -125,9 +221,7 @@ namespace VitUsers
                 "WHERE id = " + id);
 
             UserColection userColection = new UserColection();
-            //if (rows.GetLength(0) < 1) return userColection;
-
-
+            
             userColection.firstName = rows[0]["first_name"];
             userColection.lastName = rows[0]["last_name"];
             userColection.middleName = rows[0]["middle_name"];
@@ -138,7 +232,8 @@ namespace VitUsers
             userColection.password = rows[0]["password"];
             userColection.imagePath = rows[0]["image"];
             userColection.idAccessGroup = Convert.ToInt32(rows[0]["id_access_group"]);
-            
+            userColection.mail = rows[0]["mail"];
+            userColection.mailPass = rows[0]["mail_password"];
 
             return userColection;
         }

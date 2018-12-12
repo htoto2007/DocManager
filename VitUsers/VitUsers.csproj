@@ -80,6 +80,12 @@
     <Compile Include="FormUserProfile.Designer.cs">
       <DependentUpon>FormUserProfile.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormUserPropertyEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormUserPropertyEdit.Designer.cs">
+      <DependentUpon>FormUserPropertyEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormUsers.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +113,10 @@
     <ProjectReference Include="..\VitControls\VitControls.csproj">
       <Project>{0D2381AF-887D-4DE5-98FA-1E77AD098931}</Project>
       <Name>VitControls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VitFTP\VitFTP.csproj">
+      <Project>{8E118625-8DED-4D15-9B41-0292A968ADFC}</Project>
+      <Name>VitFTP</Name>
     </ProjectReference>
     <ProjectReference Include="..\VitImageList\VitIcons.csproj">
       <Project>{2b2e0264-ef18-4e6d-8069-6a87ae4b37ba}</Project>
@@ -139,6 +149,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormUserProfile.resx">
       <DependentUpon>FormUserProfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUserPropertyEdit.resx">
+      <DependentUpon>FormUserPropertyEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormUsers.resx">
       <DependentUpon>FormUsers.cs</DependentUpon>

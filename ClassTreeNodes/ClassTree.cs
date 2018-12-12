@@ -112,14 +112,7 @@ namespace VitTree
             classFTP.ChangeWorkingDirectory("");
 
             string result = "";
-            if (Path.GetExtension(treeView.SelectedNode.FullPath) == "")
-            {
-                result = classFTP.RemoveDirecroty2(treeView.SelectedNode.FullPath).ToString();
-            }
-            else
-            {
-                result = classFTP.DeleteFile(treeView.SelectedNode.FullPath);
-            }
+            result = classFTP.RemoveDirecroty2(treeView.SelectedNode.FullPath).ToString();
 
             Console.WriteLine(result);
 

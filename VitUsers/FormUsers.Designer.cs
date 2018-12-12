@@ -36,7 +36,7 @@
             this.tabPageUsers = new System.Windows.Forms.TabPage();
             this.buttonUsersDeleteUser = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.button2 = new System.Windows.Forms.Button();
+            this.buttonUsersUserEdit = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.listViewUsers = new System.Windows.Forms.ListView();
             this.tabControl2 = new System.Windows.Forms.TabControl();
@@ -147,7 +147,7 @@
             // tabPageUsers
             // 
             this.tabPageUsers.Controls.Add(this.buttonUsersDeleteUser);
-            this.tabPageUsers.Controls.Add(this.button2);
+            this.tabPageUsers.Controls.Add(this.buttonUsersUserEdit);
             this.tabPageUsers.Controls.Add(this.button1);
             this.tabPageUsers.Controls.Add(this.listViewUsers);
             this.tabPageUsers.Controls.Add(this.tabControl2);
@@ -221,19 +221,20 @@
             this.imageList1.Images.SetKeyName(40, "icons8-back-arrow-64.png");
             this.imageList1.Images.SetKeyName(41, "icons8-forward-button-64.png");
             // 
-            // button2
+            // buttonUsersUserEdit
             // 
-            this.button2.AutoSize = true;
-            this.button2.Enabled = false;
-            this.button2.ImageKey = "icons8-pencil-48.png";
-            this.button2.ImageList = this.imageList1;
-            this.button2.Location = new System.Drawing.Point(581, 42);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(206, 30);
-            this.button2.TabIndex = 25;
-            this.button2.Text = "Изменить свойства";
-            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button2.UseVisualStyleBackColor = true;
+            this.buttonUsersUserEdit.AutoSize = true;
+            this.buttonUsersUserEdit.Enabled = false;
+            this.buttonUsersUserEdit.ImageKey = "icons8-pencil-48.png";
+            this.buttonUsersUserEdit.ImageList = this.imageList1;
+            this.buttonUsersUserEdit.Location = new System.Drawing.Point(581, 42);
+            this.buttonUsersUserEdit.Name = "buttonUsersUserEdit";
+            this.buttonUsersUserEdit.Size = new System.Drawing.Size(206, 30);
+            this.buttonUsersUserEdit.TabIndex = 25;
+            this.buttonUsersUserEdit.Text = "Изменить свойства";
+            this.buttonUsersUserEdit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.buttonUsersUserEdit.UseVisualStyleBackColor = true;
+            this.buttonUsersUserEdit.Click += new System.EventHandler(this.buttonUsersUserEdit_Click);
             // 
             // button1
             // 
@@ -808,6 +809,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FormUsers";
             this.Padding = new System.Windows.Forms.Padding(1);
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Пользователи";
             this.panel1.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
@@ -853,7 +855,7 @@
         private VitControls.WindowResizer windowResizer1;
         private System.Windows.Forms.TabPage tabPageUserAccess;
         private System.Windows.Forms.Button buttonUsersDeleteUser;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button buttonUsersUserEdit;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;

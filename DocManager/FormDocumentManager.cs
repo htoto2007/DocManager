@@ -75,6 +75,8 @@ namespace DocManager
             timerSearcher.Enabled = true;
 
             twain32.AcquireCompleted += new EventHandler(scanEvent);
+            VitNotifyMessage.FormWarning formWarning = new VitNotifyMessage.FormWarning("Сейчас возможно произайдет запуск программы. Может быть вы даже увидите граФИЧЕСКИЙ ИНТЕРФЕЙС ПОЛЬЗОВАТЕЛЯ.");
+            formWarning.ShowDialog();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -139,7 +141,7 @@ namespace DocManager
             }
             if (contextMenuStripTreeView.SourceControl.GetType() == treeView1.GetType())
             {
-                treeView1ContextMenu();
+                
             }
             contextMenuStripTreeView.Update();
             Console.WriteLine(contextMenuStripTreeView.SourceControl.GetType());
@@ -484,17 +486,13 @@ namespace DocManager
             }
         }
 
-        private void treeView1ContextMenu()
-        {
-        }
-
         private void Version()
         {
             Version version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
             string programName = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
             DateTime buildDate = new DateTime(2000, 1, 1).AddDays(version.Build);
             string displayableVersion = $"{version.Major + "." + (version.Build)}";
-            Text = programName;
+            Text = programName + " 1.0.1";
         }
 
         private void помощьToolStripMenuItem_Click(object sender, EventArgs e)
