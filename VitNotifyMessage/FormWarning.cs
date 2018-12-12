@@ -19,14 +19,14 @@ namespace VitNotifyMessage
             
         }
 
-        private void panel2_Paint(object sender, PaintEventArgs e)
+        private void button1_Click_1(object sender, EventArgs e)
         {
-
+            Close();
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void FormWarning_Shown(object sender, EventArgs e)
         {
-
+            Update();
         }
     }
 }
