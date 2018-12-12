@@ -1,5 +1,4 @@
-﻿using MySql.Data.MySqlClient;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using VitDBConnect;
@@ -23,19 +22,8 @@ namespace VitTypeCard
                     "INSERT INTO tb_type_card " +
                     "SET " +
                     "name = '" + name + "'";
-            classDB.dbLink.Open();
-            MySqlCommand command = new MySqlCommand(query, classDB.dbLink);
-            try
-            {
-                command.ExecuteNonQuery();
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.ToString(), "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            int id = Convert.ToInt32(command.LastInsertedId);
-            classDB.dbLink.Close();
-            return id;
+            
+            return classMysql.Insert(query);
         }
 
         public TypeCardCollection[] getAllInfo()

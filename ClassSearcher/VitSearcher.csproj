@@ -66,6 +66,10 @@
       <Project>{66017a02-c3d9-4809-b788-6b91df08be99}</Project>
       <Name>VitFiles</Name>
     </ProjectReference>
+    <ProjectReference Include="..\vitMysql\VitMysql.csproj">
+      <Project>{0312B089-F072-499E-97CD-701A78E6C425}</Project>
+      <Name>VitMysql</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

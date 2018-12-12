@@ -1,5 +1,4 @@
-﻿using MySql.Data.MySqlClient;
-using System;
+﻿using System;
 using System.Windows.Forms;
 using VitDBConnect;
 using VitMysql;
@@ -27,19 +26,8 @@ namespace vitTypeCardProps
                     "name = '" + name + "', " +
                     "type_value = '" + typeValue + "', " +
                     "id_type = '" + idType + "'";
-            classDB.dbLink.Open();
-            MySqlCommand command = new MySqlCommand(query, classDB.dbLink);
-            try
-            {
-                command.ExecuteNonQuery();
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-            }
-            int id = Convert.ToInt32(command.LastInsertedId);
-            classDB.dbLink.Close();
-            return id;
+            
+            return classMysql.Insert(query);
         }
 
         public TypeCardProps[] getInfoByIdType(int idType)
@@ -49,23 +37,20 @@ namespace vitTypeCardProps
                 "FROM tb_type_card_props " +
                 "WHERE " +
                 "id_type = '" + idType + "'";
-            int numRows = classMysql.getNumRows(query);
-            TypeCardProps[] typeCardProps = new TypeCardProps[numRows];
+            var rows =  classMysql.getArrayByQuery(query);
 
-            classDB.dbLink.Open();
-            MySqlCommand command = new MySqlCommand(query, classDB.dbLink);
-            MySqlDataReader mysqlDataReaderFiles = command.ExecuteReader();
+            int numRows = classMysql.getNumRows(query);
+            TypeCardProps[] typeCardProps = new TypeCardProps[rows.GetLength(0)];
 
             numRows = 0;
-            while (mysqlDataReaderFiles.Read())
+            foreach (var row in rows)
             {
-                typeCardProps[numRows].id = Convert.ToInt32(mysqlDataReaderFiles.GetString("id"));
-                typeCardProps[numRows].idType = Convert.ToInt32(mysqlDataReaderFiles.GetString("id_type"));
-                typeCardProps[numRows].typeValue = Convert.ToInt32(mysqlDataReaderFiles.GetString("type_value"));
-                typeCardProps[numRows].name = mysqlDataReaderFiles.GetString("name");
+                typeCardProps[numRows].id = Convert.ToInt32(row["id"]);
+                typeCardProps[numRows].idType = Convert.ToInt32(row["id_type"]);
+                typeCardProps[numRows].typeValue = Convert.ToInt32(row["type_value"]);
+                typeCardProps[numRows].name = row["name"];
                 numRows++;
             }
-            classDB.dbLink.Close();
             return typeCardProps;
         }
     }

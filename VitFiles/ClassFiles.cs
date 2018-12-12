@@ -12,7 +12,6 @@ namespace VitFiles
 {
     public class ClassFiles
     {
-        private readonly ClassDBConnect classDB = new ClassDBConnect();
 
         private readonly ClassMysql classMysql = new ClassMysql();
         private readonly ClassNotifyMessage classNotifyMessage = new ClassNotifyMessage();

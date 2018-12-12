@@ -52,11 +52,11 @@ namespace VitMysql
             return rows;
         }
 
-        public void UpdateOrDelete(object p, string v)
-        {
-            throw new NotImplementedException();
-        }
-
+        /// <summary>
+        /// Получает количество строк по запросу
+        /// </summary>
+        /// <param name="query"></param>
+        /// <returns></returns>
         public int getNumRows(string query)
         {
             int numRows = 0;

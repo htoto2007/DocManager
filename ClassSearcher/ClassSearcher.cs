@@ -1,16 +1,17 @@
-﻿using MySql.Data.MySqlClient;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using VitDBConnect;
 using VitFiles;
+using VitMysql;
 
 namespace VitSearcher
 {
     public class ClassSearcher
     {
         private readonly ClassFiles classFiles = new ClassFiles();
-        private ClassDBConnect classDB = new ClassDBConnect();
+
+        ClassMysql classMysql = new ClassMysql();
 
         private string[] fraseToWords(string frase)
         {
@@ -35,7 +36,6 @@ namespace VitSearcher
                     words = listWord.ToArray();
                     break;
                 }
-                //Console.WriteLine("fraseToWords [" +  + "]");
             }
             return words;
         }
@@ -85,32 +85,25 @@ namespace VitSearcher
                 string query = "SELECT id_file " +
                     "FROM tb_card_props_value " +
                     "WHERE value LIKE '%" + word + "%'";
-
-                classDB.dbLink.Open();
-                MySqlCommand command = new MySqlCommand(query, classDB.dbLink);
-                MySqlDataReader mysqlDataReader = command.ExecuteReader();
-
+                var rows = classMysql.getArrayByQuery(query);
+                
                 // создаем строку из id файлов
-                while (mysqlDataReader.Read())
+                foreach(var row in rows)
                 {
-                    if (mysqlDataReader.GetString("id_file") != "")
+                    if (row["id_file"] != "")
                     {
-                        str += " " + mysqlDataReader.GetString("id_file");
+                        str += " " + row["id_file"];
                     }
                 }
-
-                classDB.dbLink.Close();
             }
-            Console.WriteLine("[" + str + "]");
+
             if (str == "")
             {
                 return null;
             }
 
             str = str.TrimStart(' ');
-            Console.WriteLine("Trim [" + str + "]");
             string[] arrStr = str.Split(' ');
-            Console.WriteLine("arrStr [" + arrStr.ToString() + "]");
             resultId = new int[arrStr.Length];
             for (int i = 0; i < arrStr.Length; i++)
             {
@@ -129,31 +122,23 @@ namespace VitSearcher
                 string query = "SELECT id " +
                     "FROM tb_files " +
                     "WHERE name LIKE '%" + word + "%'";
-
-                classDB.dbLink.Open();
-                MySqlCommand command = new MySqlCommand(query, classDB.dbLink);
-                MySqlDataReader mysqlDataReader = command.ExecuteReader();
-
-                while (mysqlDataReader.Read())
+                var rows = classMysql.getArrayByQuery(query);
+                foreach(var row in rows)
                 {
-                    if (mysqlDataReader.GetString("id") != "")
+                    if (row["id"] != "")
                     {
-                        str += " " + mysqlDataReader.GetString("id");
+                        str += " " + row["id"];
                     }
                 }
-
-                classDB.dbLink.Close();
             }
-            //Console.WriteLine("[" + str + "]");
+
             if (str == "")
             {
                 return null;
             }
 
             str = str.TrimStart(' ');
-            //Console.WriteLine("Trim [" + str + "]");
             string[] arrStr = str.Split(' ');
-            //Console.WriteLine("arrStr [" + arrStr.ToString() + "]");
             resultId = new int[arrStr.Length];
             for (int i = 0; i < arrStr.Length; i++)
             {
