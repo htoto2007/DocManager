@@ -75,8 +75,6 @@ namespace DocManager
             timerSearcher.Enabled = true;
 
             twain32.AcquireCompleted += new EventHandler(scanEvent);
-            VitNotifyMessage.FormWarning formWarning = new VitNotifyMessage.FormWarning("Сейчас возможно произайдет запуск программы. Может быть вы даже увидите граФИЧЕСКИЙ ИНТЕРФЕЙС ПОЛЬЗОВАТЕЛЯ. Также здесь будет еще какой-то текст, который будет двигатьб элемент под Label.");
-            formWarning.ShowDialog();
         }
 
         private void button1_Click(object sender, EventArgs e)

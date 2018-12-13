@@ -29,8 +29,9 @@ namespace VitMysql
             {
                 classDB.dbLink.Open();
             }
-            catch (MySql.Data.MySqlClient.MySqlException)
+            catch (MySql.Data.MySqlClient.MySqlException e)
             {
+                classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, e.Message);
                 ShowDialogMysqlSettingsAndRestart();
                 return null;
             }
@@ -77,7 +78,8 @@ namespace VitMysql
                 string currMthod = System.Reflection.MethodInfo.GetCurrentMethod().Name;
                 string currClass = ToString();
                 string text = currClass + "->" + currMthod + " saye: " + e.ToString() + "\n\n" + query;
-                MessageBox.Show(text, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //MessageBox.Show(text, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, e.ToString());
                 ShowDialogMysqlSettingsAndRestart();
             }
             return numRows;

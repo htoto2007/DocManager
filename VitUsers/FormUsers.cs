@@ -18,8 +18,12 @@ namespace VitUsers
 
         private void Init()
         {
+            initUsers();
+        }
+
+        private void initUsers()
+        {
             VitIcons.FormCompanents formCompanents = new VitIcons.FormCompanents();
-            //VitIcons.ClassImageList classImageList = new VitIcons.ClassImageList();
             listViewUsers.Clear();
             listViewUsers.MultiSelect = true;
             listViewUsers.LargeImageList = formCompanents.imageListColor;
@@ -75,6 +79,27 @@ namespace VitUsers
             listViewUsers.Update();
         }
 
+        private void InitUsersProperties()
+        {
+            if (listViewUsers.SelectedItems.Count == 1)
+            {
+                textBoxUsersUserName.Text = listViewUsers.SelectedItems[0].SubItems["name"].Text;
+                textBoxUsersAccessGroupName.Text = listViewUsers.SelectedItems[0].SubItems["accessGroup"].Text;
+                textBoxUsersUserPositions.Text = listViewUsers.SelectedItems[0].SubItems["userPosition"].Text;
+                textBoxUsersSubdivisions.Text = listViewUsers.SelectedItems[0].SubItems["subdivision"].Text;
+                textBoxUsersUserMail.Text = listViewUsers.SelectedItems[0].SubItems["Mail"].Text;
+            }
+
+            if (listViewUsers.SelectedItems.Count != 1)
+            {
+                textBoxUsersUserName.Text = "";
+                textBoxUsersAccessGroupName.Text = "";
+                textBoxUsersUserPositions.Text = "";
+                textBoxUsersSubdivisions.Text = "";
+                textBoxUsersUserMail.Text = "";
+            }
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             FormUserEdit formUserAdd = new FormUserEdit();
@@ -85,30 +110,22 @@ namespace VitUsers
 
         private void listViewUsers_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
-            if (listViewUsers.SelectedItems.Count == 1) {
-                textBoxUsersUserName.Text = listViewUsers.SelectedItems[0].SubItems["name"].Text;
-                textBoxUsersAccessGroupName.Text = listViewUsers.SelectedItems[0].SubItems["accessGroup"].Text;
-                textBoxUsersUserPositions.Text = listViewUsers.SelectedItems[0].SubItems["userPosition"].Text;
-                textBoxUsersSubdivisions.Text = listViewUsers.SelectedItems[0].SubItems["subdivision"].Text;
-                textBoxUsersUserMail.Text = listViewUsers.SelectedItems[0].SubItems["Mail"].Text;
+            InitUsersProperties();
 
+            if (listViewUsers.SelectedItems.Count == 1) {
                 buttonUsersUserEdit.Enabled = true;
             }
 
             if (listViewUsers.SelectedItems.Count != 1)
             {
-                textBoxUsersUserName.Text = "";
-                textBoxUsersAccessGroupName.Text = "";
-                textBoxUsersUserPositions.Text = "";
-                textBoxUsersSubdivisions.Text = "";
-                textBoxUsersUserMail.Text = "";
-
                 buttonUsersUserEdit.Enabled = false;
             }
+
             if (listViewUsers.SelectedItems.Count <= 0)
             {
                 buttonUsersDeleteUser.Enabled = false;
             }
+
             if (listViewUsers.SelectedItems.Count >= 1)
             {
                 buttonUsersDeleteUser.Enabled = true;

@@ -112,7 +112,7 @@
             this.comboBoxSubdivision.Location = new System.Drawing.Point(142, 230);
             this.comboBoxSubdivision.Name = "comboBoxSubdivision";
             this.comboBoxSubdivision.Size = new System.Drawing.Size(210, 21);
-            this.comboBoxSubdivision.TabIndex = 66;
+            this.comboBoxSubdivision.TabIndex = 54;
             // 
             // label11
             // 
@@ -129,7 +129,7 @@
             this.comboBoxPosition.Location = new System.Drawing.Point(142, 199);
             this.comboBoxPosition.Name = "comboBoxPosition";
             this.comboBoxPosition.Size = new System.Drawing.Size(210, 21);
-            this.comboBoxPosition.TabIndex = 64;
+            this.comboBoxPosition.TabIndex = 53;
             // 
             // label10
             // 
@@ -146,7 +146,7 @@
             this.textBoxMailPass.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxMailPass.Name = "textBoxMailPass";
             this.textBoxMailPass.Size = new System.Drawing.Size(210, 20);
-            this.textBoxMailPass.TabIndex = 62;
+            this.textBoxMailPass.TabIndex = 45;
             // 
             // textBoxMail
             // 
@@ -154,7 +154,7 @@
             this.textBoxMail.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxMail.Name = "textBoxMail";
             this.textBoxMail.Size = new System.Drawing.Size(210, 20);
-            this.textBoxMail.TabIndex = 61;
+            this.textBoxMail.TabIndex = 44;
             // 
             // label8
             // 
@@ -180,7 +180,7 @@
             this.textBoxMiddleName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxMiddleName.Name = "textBoxMiddleName";
             this.textBoxMiddleName.Size = new System.Drawing.Size(210, 20);
-            this.textBoxMiddleName.TabIndex = 58;
+            this.textBoxMiddleName.TabIndex = 43;
             // 
             // textBoxFirstName
             // 
@@ -188,7 +188,7 @@
             this.textBoxFirstName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxFirstName.Name = "textBoxFirstName";
             this.textBoxFirstName.Size = new System.Drawing.Size(210, 20);
-            this.textBoxFirstName.TabIndex = 57;
+            this.textBoxFirstName.TabIndex = 42;
             // 
             // textBoxLastName
             // 
@@ -196,7 +196,7 @@
             this.textBoxLastName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxLastName.Name = "textBoxLastName";
             this.textBoxLastName.Size = new System.Drawing.Size(210, 20);
-            this.textBoxLastName.TabIndex = 56;
+            this.textBoxLastName.TabIndex = 40;
             this.textBoxLastName.TextChanged += new System.EventHandler(this.textBoxLastName_TextChanged);
             // 
             // label7
@@ -232,7 +232,7 @@
             this.comboBoxAccessGroup.Location = new System.Drawing.Point(142, 168);
             this.comboBoxAccessGroup.Name = "comboBoxAccessGroup";
             this.comboBoxAccessGroup.Size = new System.Drawing.Size(210, 21);
-            this.comboBoxAccessGroup.TabIndex = 52;
+            this.comboBoxAccessGroup.TabIndex = 46;
             // 
             // label3
             // 
@@ -250,7 +250,7 @@
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.ReadOnly = true;
             this.textBoxPassword.Size = new System.Drawing.Size(210, 20);
-            this.textBoxPassword.TabIndex = 48;
+            this.textBoxPassword.TabIndex = 55;
             // 
             // label2
             // 
@@ -276,7 +276,7 @@
             this.textBoxLogin.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxLogin.Name = "textBoxLogin";
             this.textBoxLogin.Size = new System.Drawing.Size(210, 20);
-            this.textBoxLogin.TabIndex = 44;
+            this.textBoxLogin.TabIndex = 56;
             // 
             // panel2
             // 
@@ -304,7 +304,7 @@
             this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(78, 24);
-            this.button1.TabIndex = 49;
+            this.button1.TabIndex = 58;
             this.button1.Text = "Отмена";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button1.UseVisualStyleBackColor = true;
@@ -329,7 +329,7 @@
             this.buttonOk.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonOk.Name = "buttonOk";
             this.buttonOk.Size = new System.Drawing.Size(156, 24);
-            this.buttonOk.TabIndex = 48;
+            this.buttonOk.TabIndex = 57;
             this.buttonOk.Text = "Создать пользователя";
             this.buttonOk.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.buttonOk.UseVisualStyleBackColor = true;

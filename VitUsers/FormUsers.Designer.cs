@@ -52,9 +52,9 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.tabPageUserGroups = new System.Windows.Forms.TabPage();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.listView4 = new System.Windows.Forms.ListView();
+            this.buttonUsersGroupsDeleteGroup = new System.Windows.Forms.Button();
+            this.buttonUsersGroupsAddGroup = new System.Windows.Forms.Button();
+            this.listViewUsersGroups = new System.Windows.Forms.ListView();
             this.tabPageUserAccess = new System.Windows.Forms.TabPage();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
@@ -381,9 +381,9 @@
             // 
             // tabPageUserGroups
             // 
-            this.tabPageUserGroups.Controls.Add(this.button7);
-            this.tabPageUserGroups.Controls.Add(this.button8);
-            this.tabPageUserGroups.Controls.Add(this.listView4);
+            this.tabPageUserGroups.Controls.Add(this.buttonUsersGroupsDeleteGroup);
+            this.tabPageUserGroups.Controls.Add(this.buttonUsersGroupsAddGroup);
+            this.tabPageUserGroups.Controls.Add(this.listViewUsersGroups);
             this.tabPageUserGroups.Location = new System.Drawing.Point(4, 26);
             this.tabPageUserGroups.Name = "tabPageUserGroups";
             this.tabPageUserGroups.Padding = new System.Windows.Forms.Padding(3);
@@ -392,40 +392,40 @@
             this.tabPageUserGroups.Text = "Группы";
             this.tabPageUserGroups.UseVisualStyleBackColor = true;
             // 
-            // button7
+            // buttonUsersGroupsDeleteGroup
             // 
-            this.button7.AutoSize = true;
-            this.button7.ImageKey = "icons8-delete-48.png";
-            this.button7.ImageList = this.imageList1;
-            this.button7.Location = new System.Drawing.Point(574, 42);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(206, 30);
-            this.button7.TabIndex = 33;
-            this.button7.Text = "Удалить группу";
-            this.button7.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button7.UseVisualStyleBackColor = true;
+            this.buttonUsersGroupsDeleteGroup.AutoSize = true;
+            this.buttonUsersGroupsDeleteGroup.ImageKey = "icons8-delete-48.png";
+            this.buttonUsersGroupsDeleteGroup.ImageList = this.imageList1;
+            this.buttonUsersGroupsDeleteGroup.Location = new System.Drawing.Point(574, 42);
+            this.buttonUsersGroupsDeleteGroup.Name = "buttonUsersGroupsDeleteGroup";
+            this.buttonUsersGroupsDeleteGroup.Size = new System.Drawing.Size(206, 30);
+            this.buttonUsersGroupsDeleteGroup.TabIndex = 33;
+            this.buttonUsersGroupsDeleteGroup.Text = "Удалить группу";
+            this.buttonUsersGroupsDeleteGroup.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.buttonUsersGroupsDeleteGroup.UseVisualStyleBackColor = true;
             // 
-            // button8
+            // buttonUsersGroupsAddGroup
             // 
-            this.button8.AutoSize = true;
-            this.button8.ImageKey = "icons8-plus-48.png";
-            this.button8.ImageList = this.imageList1;
-            this.button8.Location = new System.Drawing.Point(574, 6);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(206, 30);
-            this.button8.TabIndex = 32;
-            this.button8.Text = "Добавить группу";
-            this.button8.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button8.UseVisualStyleBackColor = true;
+            this.buttonUsersGroupsAddGroup.AutoSize = true;
+            this.buttonUsersGroupsAddGroup.ImageKey = "icons8-plus-48.png";
+            this.buttonUsersGroupsAddGroup.ImageList = this.imageList1;
+            this.buttonUsersGroupsAddGroup.Location = new System.Drawing.Point(574, 6);
+            this.buttonUsersGroupsAddGroup.Name = "buttonUsersGroupsAddGroup";
+            this.buttonUsersGroupsAddGroup.Size = new System.Drawing.Size(206, 30);
+            this.buttonUsersGroupsAddGroup.TabIndex = 32;
+            this.buttonUsersGroupsAddGroup.Text = "Добавить группу";
+            this.buttonUsersGroupsAddGroup.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.buttonUsersGroupsAddGroup.UseVisualStyleBackColor = true;
             // 
-            // listView4
+            // listViewUsersGroups
             // 
-            this.listView4.Dock = System.Windows.Forms.DockStyle.Left;
-            this.listView4.Location = new System.Drawing.Point(3, 3);
-            this.listView4.Name = "listView4";
-            this.listView4.Size = new System.Drawing.Size(565, 161);
-            this.listView4.TabIndex = 1;
-            this.listView4.UseCompatibleStateImageBehavior = false;
+            this.listViewUsersGroups.Dock = System.Windows.Forms.DockStyle.Left;
+            this.listViewUsersGroups.Location = new System.Drawing.Point(3, 3);
+            this.listViewUsersGroups.Name = "listViewUsersGroups";
+            this.listViewUsersGroups.Size = new System.Drawing.Size(565, 161);
+            this.listViewUsersGroups.TabIndex = 1;
+            this.listViewUsersGroups.UseCompatibleStateImageBehavior = false;
             // 
             // tabPageUserAccess
             // 
@@ -881,9 +881,9 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TabPage tabPageroupsUsers;
         private System.Windows.Forms.TabPage tabPageGroupsAccess;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.ListView listView4;
+        private System.Windows.Forms.Button buttonUsersGroupsDeleteGroup;
+        private System.Windows.Forms.Button buttonUsersGroupsAddGroup;
+        private System.Windows.Forms.ListView listViewUsersGroups;
         private System.Windows.Forms.CheckBox checkBox3;
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.CheckBox checkBox1;

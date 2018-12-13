@@ -130,7 +130,7 @@ namespace VitFTP
             {
                 // Connect
                 session.Open(sessionOptions);
-                TransferOperationResult transferOperationResult = session.GetFiles("FileZilla Server.xml", VitSettings.Properties.FTPSettings.Default.openFilePath, false, null);
+                TransferOperationResult transferOperationResult = session.GetFiles("FileZilla Server.xml", VitSettings.Properties.FTPSettings.Default.openFilePath + "\\FileZilla Server.xml", false, null);
                 session.Close();
                 if (!transferOperationResult.IsSuccess)
                 {
@@ -138,6 +138,7 @@ namespace VitFTP
                     classNotifyMessage.showDialog(VitNotifyMessage.ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, "Не удалось получить файл конфигурации с сервера!");
                     return false;
                 }
+                if (!File.Exists(VitSettings.Properties.FTPSettings.Default.openFilePath + "\\FileZilla Server.xml")) return false;
             }
             return true;
         }
@@ -150,7 +151,7 @@ namespace VitFTP
             {
                 // Connect
                 session.Open(sessionOptions);
-                TransferOperationResult transferOperationResult = session.PutFiles(VitSettings.Properties.FTPSettings.Default.openFilePath, "\\", false, null);
+                TransferOperationResult transferOperationResult = session.PutFiles(VitSettings.Properties.FTPSettings.Default.openFilePath + "\\FileZilla Server.xml", "\\FileZilla Server.xml", true, null);
                 session.Close();
                 if (!transferOperationResult.IsSuccess)
                 {
@@ -158,6 +159,7 @@ namespace VitFTP
                     classNotifyMessage.showDialog(VitNotifyMessage.ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, "Не удалось отправить файл конфигурации на сервер!");
                     return false;
                 }
+
             }
             return true;
         }
