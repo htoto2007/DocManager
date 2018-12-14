@@ -256,6 +256,18 @@ namespace VitTree
             Console.WriteLine(classFTP.ChangeWorkingDirectory(""));
         }
 
+        public void rename(TreeView treeView)
+        {
+            ClassUsers classUsers = new ClassUsers();
+            ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
+            FormTreeInput formTreeInput = new FormTreeInput();
+            formTreeInput.Text = "Переименовать";
+            formTreeInput.textBox1.Text = Path.GetFileName(treeView.SelectedNode.FullPath);
+            formTreeInput.ShowDialog();
+            bool res = classFTP.Rename(treeView.SelectedNode.FullPath, formTreeInput.textBox1.Text);
+            if (res == true) treeView.SelectedNode.Text = formTreeInput.textBox1.Text;
+        }
+
         public struct TypeNodeCollection
         {
             public const string FILE = "file";

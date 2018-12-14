@@ -398,6 +398,7 @@ namespace DocManager
 
         private void ToolStripMenuItemRename_Click(object sender, EventArgs e)
         {
+            classTree.rename(treeView1);
         }
 
         private void ToolStripMenuItemSendToDesctop_Click(object sender, EventArgs e)

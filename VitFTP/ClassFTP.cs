@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using WinSCP;
+using VitNotifyMessage;
 
 namespace VitFTP
 {
@@ -24,7 +25,8 @@ namespace VitFTP
         private readonly string password;
         private readonly SessionOptions sessionOptions;
         private readonly string userName;
-        
+        ClassNotifyMessage classNotifyMessage = new ClassNotifyMessage();
+
         private vitProgressStatus.FormProgressStatus formProgressStatus;
         private string uri;
 
@@ -124,8 +126,6 @@ namespace VitFTP
 
         private bool getFileConfig()
         {
-            
-
             using (Session session = new Session())
             {
                 // Connect
@@ -145,8 +145,6 @@ namespace VitFTP
 
         private bool sendFileConfig()
         {
-           
-
             using (Session session = new Session())
             {
                 // Connect
@@ -608,13 +606,31 @@ namespace VitFTP
             return getStatusDescription(request);
         }
 
-        public string Rename(string currentName, string newName)
+        public bool Rename(string remotePath, string newName)
         {
-            FtpWebRequest request = createRequest(combine(uri, currentName), WebRequestMethods.Ftp.Rename);
+            newName = Path.GetDirectoryName(remotePath) + newName;
+            using (Session session = new Session())
+            {
+                // Connect
+                session.Open(sessionOptions);
+                if (!session.FileExists(newName))
+                {
+                    session.Close();
+                    classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, "Файл для переименовывания не найден!");
+                    return false;
+                }
 
-            request.RenameTo = newName;
+                session.MoveFile(remotePath, newName);
 
-            return getStatusDescription(request);
+                if (!session.FileExists(newName))
+                {
+                    session.Close();
+                    classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, "Не удалось переименовать файл!");
+                    return false;
+                }
+                session.Close();
+            }
+            return true;
         }
 
         public async Task<bool> Upload2Async(string localPath, string remotePath)
