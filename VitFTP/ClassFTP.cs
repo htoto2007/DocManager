@@ -164,6 +164,42 @@ namespace VitFTP
             return true;
         }
 
+        public void deleteUserByLogin(string login)
+        {
+            if (getFileConfig() == false) return;
+            string xmlFileName = VitSettings.Properties.FTPSettings.Default.openFilePath + "\\FileZilla Server.xml";
+            XmlDocument xmlDoc = new XmlDocument();
+            xmlDoc.Load(xmlFileName);
+            XmlElement xRoot = xmlDoc.DocumentElement;
+
+            XmlElement xmlUsers = null;
+            // получаем елемент с пользователями
+            foreach (XmlElement xmlElem in xRoot.ChildNodes)
+            {
+                if (xmlElem.Name == "Users")
+                {
+                    xmlUsers = xmlElem;
+                    break;
+                }
+            }
+
+            //XmlElement xmlUser = null;
+            // получаем елемент "Пользователь по логину"
+            foreach (XmlElement xmlUser in xmlUsers.ChildNodes)
+            {
+                Console.WriteLine(xmlUser.GetAttribute("Name") + " }{ " + login);
+                if (xmlUser.GetAttribute("Name") == login)
+                {
+                    //xmlUser.RemoveAll();
+                    xmlUsers.RemoveChild(xmlUser);
+                    break;
+                }
+            }
+
+            xmlDoc.Save(xmlFileName);
+            if (sendFileConfig() == false) return;
+        }
+
         public void AddUser(UserCollection userCollection)
         {
             if (getFileConfig() == false) return;
@@ -179,6 +215,7 @@ namespace VitFTP
             {
                 if (xmlElem.Name == "Users")
                     xmlUsers = xmlElem;
+                
             }
 
             XmlElement xmlUser = createNode(xmlDoc, "User", "", "Name", userCollection.name);

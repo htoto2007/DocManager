@@ -110,9 +110,15 @@ namespace VitUsers
         /// <param name="id">Номер пользователя в базе</param>
         public void deleteById(int id)
         {
+            var user = GetUserByid(id);
+
+            ClassFTP classFTP = new ClassFTP(SystemUser.LOGIN, SystemUser.PASS);
+            classFTP.deleteUserByLogin(user.login);
+
             classMysql.UpdateOrDelete("" +
                 "DELETE FROM tb_users " +
                 "WHERE id = " + id);
+
         }
 
         /// <summary>
