@@ -53,7 +53,6 @@ namespace VitListView
         {
             Init(listView);
             listView.Columns.Add("");
-            listView.Columns.Add("#");
             listView.Columns.Add("Имя");
             listView.Columns.Add("тип");
             //listView.Columns.Add("Дата создания");
@@ -73,7 +72,7 @@ namespace VitListView
                     listViewItem.SubItems.Add("file").Name = "type";
                 else
                     listViewItem.SubItems.Add("folder").Name = "type";
-                listViewItem.SubItems.Add(tn.Name).Name = "path";
+                listViewItem.SubItems.Add(tn.FullPath).Name = "path";
                 //listViewItem.SubItems.Add(fileCollection.createDateTime.ToString()).Name = "createDateTime";
                 listView.Items.Add(listViewItem);
             }

@@ -136,6 +136,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.CancelButton = this.buttonClose;
             this.ClientSize = new System.Drawing.Size(541, 159);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -144,6 +145,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormWarning";
             this.Padding = new System.Windows.Forms.Padding(1);
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Внимание!";
             this.Shown += new System.EventHandler(this.FormWarning_Shown);
             this.panel2.ResumeLayout(false);

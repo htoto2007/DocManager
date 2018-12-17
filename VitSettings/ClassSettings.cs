@@ -21,6 +21,7 @@ namespace VitSettings
             {
                 Directory.CreateDirectory(Properties.GeneralsSettings.Default.repositiryPayh);
             }
+
             if (Properties.FTPSettings.Default.pathTnp == "")
             {
                 Properties.FTPSettings.Default.pathTnp = Properties.GeneralsSettings.Default.programPath + "\\tmp\\ftp";
@@ -30,6 +31,40 @@ namespace VitSettings
             {
                 Directory.CreateDirectory(Properties.FTPSettings.Default.pathTnp);
             }
+            else
+            {
+                try
+                {
+                    Directory.Delete(Properties.FTPSettings.Default.pathTnp, true);
+                }
+                catch (System.IO.IOException)
+                {
+
+                }
+                Directory.CreateDirectory(Properties.FTPSettings.Default.pathTnp);
+            }
+
+            if (Properties.FTPSettings.Default.openFilePath == "")
+            {
+                Properties.FTPSettings.Default.openFilePath = Properties.GeneralsSettings.Default.programPath + "\\tmp\\ftpOpenFile";
+                Properties.FTPSettings.Default.Save();
+            }
+            if (!Directory.Exists(Properties.FTPSettings.Default.openFilePath))
+            {
+                Directory.CreateDirectory(Properties.FTPSettings.Default.openFilePath);
+            }
+            else
+            {
+                try
+                {
+                    Directory.Delete(Properties.FTPSettings.Default.openFilePath, true);
+                }
+                catch (System.IO.IOException){
+
+                }
+                Directory.CreateDirectory(Properties.FTPSettings.Default.openFilePath);
+            }
+
             if (Properties.GeneralsSettings.Default.fileTypeIcons == "")
             {
                 Properties.GeneralsSettings.Default.fileTypeIcons = Properties.GeneralsSettings.Default.programPath + "\\icons\\fileType";

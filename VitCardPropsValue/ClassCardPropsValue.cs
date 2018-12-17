@@ -13,7 +13,7 @@ namespace VitCardPropsValue
                 "SET " +
                 "id_card_prop = '" + idCardProps + "', " +
                 "value = '" + value + "', " +
-                "id_file = '" + idFile + "'");
+                "file_path = '" + idFile + "'");
             return lastId;
         }
     }

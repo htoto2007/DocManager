@@ -7,6 +7,8 @@ using System.Windows.Forms;
 using VitAccess;
 using VitAccessGroup;
 using VitDBConnect;
+using VitFileCard;
+using VitNotifyMessage;
 using VitSearcher;
 using VitSendToProgram;
 using VitSettings;
@@ -205,13 +207,24 @@ namespace DocManager
 
         private void listView1_DoubleClick(object sender, EventArgs e)
         {
-            if (listView1.SelectedItems.Count > 0)
+            ClassNotifyMessage classNotifyMessage = new ClassNotifyMessage();
+            if (listView1.SelectedItems.Count == 1)
             {
-                foreach (ListViewItem listViewItem in listView1.SelectedItems)
+                string openFilePath = VitSettings.Properties.FTPSettings.Default.openFilePath + "\\" + Path.GetFileName(listView1.SelectedItems[0].SubItems["path"].Text);
+                string remoteFilePath = listView1.SelectedItems[0].SubItems["path"].Text;
+                ClassUsers classUsers = new ClassUsers();
+
+                VitFTP.ClassFTP classFTP = new VitFTP.ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
+                if (classFTP.FileExist(remoteFilePath)) return;
+                if (Path.GetExtension(remoteFilePath) == "") return;
+                classFTP.DownloadFile(remoteFilePath, openFilePath);
+                
+                if (!File.Exists(openFilePath))
                 {
-                    //Console.WriteLine(listViewItem.SubItems["path"].Text);
-                    Process.Start(listViewItem.SubItems["path"].Text);
+                    classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, "Не удалось получить файл с сервера!");
+                    return;
                 }
+                Process.Start(VitSettings.Properties.FTPSettings.Default.openFilePath + "\\" + Path.GetFileName(remoteFilePath));
             }
         }
 
@@ -374,6 +387,8 @@ namespace DocManager
 
         private void ToolStripMenuItemAddDocumentWithCard_Click(object sender, EventArgs e)
         {
+            ClassFileCard classFileCard = new ClassFileCard();
+            classFileCard.create();
         }
 
         private void ToolStripMenuItemAddFolder_Click(object sender, EventArgs e)

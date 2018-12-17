@@ -36,8 +36,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.buttonClose = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.buttonClose = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -119,21 +119,6 @@
             this.panel1.Size = new System.Drawing.Size(529, 52);
             this.panel1.TabIndex = 8;
             // 
-            // buttonClose
-            // 
-            this.buttonClose.AutoSize = true;
-            this.buttonClose.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.buttonClose.DialogResult = System.Windows.Forms.DialogResult.No;
-            this.buttonClose.ImageKey = "icons8-delete-48.png";
-            this.buttonClose.ImageList = this.imageList1;
-            this.buttonClose.Location = new System.Drawing.Point(176, 14);
-            this.buttonClose.Name = "buttonClose";
-            this.buttonClose.Size = new System.Drawing.Size(60, 30);
-            this.buttonClose.TabIndex = 0;
-            this.buttonClose.Text = "Нет";
-            this.buttonClose.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.buttonClose.UseVisualStyleBackColor = true;
-            // 
             // button1
             // 
             this.button1.AutoSize = true;
@@ -149,12 +134,29 @@
             this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button1.UseVisualStyleBackColor = true;
             // 
+            // buttonClose
+            // 
+            this.buttonClose.AutoSize = true;
+            this.buttonClose.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.buttonClose.DialogResult = System.Windows.Forms.DialogResult.No;
+            this.buttonClose.ImageKey = "icons8-delete-48.png";
+            this.buttonClose.ImageList = this.imageList1;
+            this.buttonClose.Location = new System.Drawing.Point(176, 14);
+            this.buttonClose.Name = "buttonClose";
+            this.buttonClose.Size = new System.Drawing.Size(60, 30);
+            this.buttonClose.TabIndex = 0;
+            this.buttonClose.Text = "Нет";
+            this.buttonClose.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.buttonClose.UseVisualStyleBackColor = true;
+            // 
             // FormQuestion
             // 
+            this.AcceptButton = this.button1;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.CancelButton = this.buttonClose;
             this.ClientSize = new System.Drawing.Size(571, 156);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -163,6 +165,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormQuestion";
             this.Padding = new System.Windows.Forms.Padding(1);
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Выберите действие";
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();

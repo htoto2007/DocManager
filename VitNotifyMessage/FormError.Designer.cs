@@ -138,6 +138,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.CancelButton = this.buttonClose;
             this.ClientSize = new System.Drawing.Size(571, 156);
             this.Controls.Add(this.windowHeader1);
             this.Controls.Add(this.panel2);
@@ -146,6 +147,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormError";
             this.Padding = new System.Windows.Forms.Padding(1);
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ошибка";
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();

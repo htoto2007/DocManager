@@ -6,6 +6,7 @@ using VitCardPropsValue;
 using VitFiles;
 using VitFTP;
 using VitIcons;
+using VitNotifyMessage;
 using vitProgressStatus;
 using VitTypeCard;
 using VitUsers;
@@ -29,6 +30,32 @@ namespace VitTree
         private readonly FormProgressStatus formProgressStatus = new FormProgressStatus();
 
         public async void AddFileNode(TreeView treeView)
+        {
+            string paths = treeView.SelectedNode.FullPath;
+            TreeNode treeNode = treeView.SelectedNode;
+            ClassUsers classUsers = new ClassUsers();
+            ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Multiselect = true
+            };
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                await Task.Run(() =>
+                {
+                    treeView.Invoke((Action)(() =>
+                    {
+                        classFTP.Upload2Async(openFileDialog.FileNames, paths + "/");
+                    }));
+                });
+            }
+            treeView.Invoke((Action)(async () =>
+            {
+                await update(treeView);
+            }));
+        }
+
+        public async void AddFileNodeWithCard(TreeView treeView)
         {
             string paths = treeView.SelectedNode.FullPath;
             TreeNode treeNode = treeView.SelectedNode;
@@ -263,9 +290,17 @@ namespace VitTree
             FormTreeInput formTreeInput = new FormTreeInput();
             formTreeInput.Text = "Переименовать";
             formTreeInput.textBox1.Text = Path.GetFileName(treeView.SelectedNode.FullPath);
-            formTreeInput.ShowDialog();
-            bool res = classFTP.Rename(treeView.SelectedNode.FullPath, formTreeInput.textBox1.Text);
-            if (res == true) treeView.SelectedNode.Text = formTreeInput.textBox1.Text;
+            formTreeInput.buttonOk.Text = "Переименовать";
+            DialogResult dialogResult = formTreeInput.ShowDialog();
+            if (dialogResult != DialogResult.OK) return;
+            string res = classFTP.Rename(treeView.SelectedNode.FullPath, formTreeInput.textBox1.Text);
+            if (res.Contains("250") == true) treeView.SelectedNode.Text = formTreeInput.textBox1.Text;
+            else
+            {
+                ClassNotifyMessage classNotifyMessage = new ClassNotifyMessage();
+                classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, "Не удалось переименовать!");
+            }
+            treeView.Sort();
         }
 
         public struct TypeNodeCollection
