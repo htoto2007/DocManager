@@ -15,11 +15,15 @@ namespace VitTypeCard
         public FormCreatTypeCard()
         {
             InitializeComponent();
+            comboBoxType_0.Items.Clear();
+            foreach (var prop in classTypeCard.typeProp) {
+                comboBoxType_0.Items.Add(prop);
+            }
         }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            int lastElementNumber = int.Parse(panel1.Controls[panel1.Controls.Count - 1].Name.Split('_')[1]);
+            int lastElementNumber = int.Parse(panelProps.Controls[panelProps.Controls.Count - 1].Name.Split('_')[1]);
             textBoxNameAdd(lastElementNumber);
             comboBoxTypeAdd(lastElementNumber);
             buttonDeletePropAdd(lastElementNumber);
@@ -28,24 +32,24 @@ namespace VitTypeCard
         private void textBoxNameAdd(int lastElementNumber)
         {
             TextBox textBox = new TextBox();
-            int x = panel1.Controls["textBoxName_" + (lastElementNumber).ToString()].Location.X;
-            int y = panel1.Controls["textBoxName_" + (lastElementNumber).ToString()].Location.Y;
+            int x = panelProps.Controls["textBoxName_" + (lastElementNumber).ToString()].Location.X;
+            int y = 5 + panelProps.Controls["textBoxName_" + (lastElementNumber).ToString()].Location.Y;
             textBox.Location = new Point(x, y + 20);
-            textBox.Width = panel1.Controls["textBoxName_" + (lastElementNumber).ToString()].Width;
-            textBox.Height = panel1.Controls["textBoxName_" + (lastElementNumber).ToString()].Height;
+            textBox.Width = panelProps.Controls["textBoxName_" + (lastElementNumber).ToString()].Width;
+            textBox.Height = panelProps.Controls["textBoxName_" + (lastElementNumber).ToString()].Height;
             textBox.Name = "textBoxName_" + (lastElementNumber + 1).ToString();
             //textBox.Text = textBox.Name;
-            panel1.Controls.Add(textBox);
+            panelProps.Controls.Add(textBox);
         }
 
         private void comboBoxTypeAdd(int lastElementNumber)
         {
             ComboBox comboBoxType = new ComboBox();
-            int x = panel1.Controls["comboBoxType_" + (lastElementNumber).ToString()].Location.X;
-            int y = panel1.Controls["comboBoxType_" + (lastElementNumber).ToString()].Location.Y;
+            int x = panelProps.Controls["comboBoxType_" + (lastElementNumber).ToString()].Location.X;
+            int y = 5 + panelProps.Controls["comboBoxType_" + (lastElementNumber).ToString()].Location.Y;
             comboBoxType.Location = new Point(x, y + 20);
-            comboBoxType.Width = panel1.Controls["comboBoxType_" + (lastElementNumber).ToString()].Width;
-            comboBoxType.Height = panel1.Controls["comboBoxType_" + (lastElementNumber).ToString()].Height;
+            comboBoxType.Width = panelProps.Controls["comboBoxType_" + (lastElementNumber).ToString()].Width;
+            comboBoxType.Height = panelProps.Controls["comboBoxType_" + (lastElementNumber).ToString()].Height;
             comboBoxType.Name = "comboBoxType_" + (lastElementNumber + 1).ToString();
             //comboBoxType.Text = comboBoxType.Name;
 
@@ -55,41 +59,41 @@ namespace VitTypeCard
                 comboBoxType.Items.Add(item);
             }
 
-            panel1.Controls.Add(comboBoxType);
+            panelProps.Controls.Add(comboBoxType);
         }
 
         private void buttonDeletePropAdd(int lastElementNumber)
         {
             Button buttonDeleteProp = new Button();
-            int x = panel1.Controls["buttonDeleteProp_" + (lastElementNumber).ToString()].Location.X;
-            int y = panel1.Controls["buttonDeleteProp_" + (lastElementNumber).ToString()].Location.Y;
+            int x = panelProps.Controls["buttonDeleteProp_" + (lastElementNumber).ToString()].Location.X;
+            int y = 5 + panelProps.Controls["buttonDeleteProp_" + (lastElementNumber).ToString()].Location.Y;
             buttonDeleteProp.Location = new Point(x, y + 20);
             buttonDeleteProp.ImageList = imageList1;
             buttonDeleteProp.ImageIndex = 1;
-            buttonDeleteProp.Width = panel1.Controls["buttonDeleteProp_" + (lastElementNumber).ToString()].Width;
-            buttonDeleteProp.Height = panel1.Controls["buttonDeleteProp_" + (lastElementNumber).ToString()].Height;
+            buttonDeleteProp.Width = panelProps.Controls["buttonDeleteProp_" + (lastElementNumber).ToString()].Width;
+            buttonDeleteProp.Height = panelProps.Controls["buttonDeleteProp_" + (lastElementNumber).ToString()].Height;
             buttonDeleteProp.Name = "buttonDeleteProp_" + (lastElementNumber + 1).ToString();
             buttonDeleteProp.Text = "";
             buttonDeleteProp.Click += new EventHandler(buttonDeleteProp_Click);
-            panel1.Controls.Add(buttonDeleteProp);
+            panelProps.Controls.Add(buttonDeleteProp);
         }
 
         private void buttonDeleteProp_Click(object sender, EventArgs e)
         {
             string elementNumber = ((Button)sender).Name.Split('_')[1];
-            panel1.Controls["textBoxName_" + elementNumber].Dispose();
-            panel1.Controls["comboBoxType_" + elementNumber].Dispose();
-            panel1.Controls["buttonDeleteProp_" + elementNumber].Dispose();
+            panelProps.Controls["textBoxName_" + elementNumber].Dispose();
+            panelProps.Controls["comboBoxType_" + elementNumber].Dispose();
+            panelProps.Controls["buttonDeleteProp_" + elementNumber].Dispose();
             updatePosition();
         }
 
         private void updatePosition()
         {
             string buf = "";
-            int groupHeght = panel1.Controls["textBoxName_0"].Height + panel1.Controls["textBoxName_0"].Location.Y;
-            int positionIterator = panel1.Controls["textBoxName_0"].Location.Y;
-            buf = panel1.Controls["textBoxName_0"].Name.Split('_')[1];
-            foreach (Control control in panel1.Controls)
+            int groupHeght = panelProps.Controls["textBoxName_0"].Height + panelProps.Controls["textBoxName_0"].Location.Y;
+            int positionIterator = panelProps.Controls["textBoxName_0"].Location.Y;
+            buf = panelProps.Controls["textBoxName_0"].Name.Split('_')[1];
+            foreach (Control control in panelProps.Controls)
             {
                 if (buf != control.Name.Split('_')[1])
                 {
@@ -106,7 +110,7 @@ namespace VitTypeCard
 
         private void button3_Click(object sender, EventArgs e)
         {
-            Hide();
+            Close();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -127,7 +131,7 @@ namespace VitTypeCard
                 return;
             }
 
-            foreach (Control control in panel1.Controls)
+            foreach (Control control in panelProps.Controls)
             {
                 string number = control.Name.Split('_')[1];
                 if (buf == number)
@@ -136,7 +140,7 @@ namespace VitTypeCard
                 }
 
                 buf = number;
-                TextBox tb = (TextBox)panel1.Controls["textBoxName_" + number];
+                TextBox tb = (TextBox)panelProps.Controls["textBoxName_" + number];
                 string name = tb.Text;
 
                 if (name == "")
@@ -144,7 +148,7 @@ namespace VitTypeCard
                     continue;
                 }
 
-                ComboBox cb = (ComboBox)panel1.Controls["comboBoxType_" + number];
+                ComboBox cb = (ComboBox)panelProps.Controls["comboBoxType_" + number];
                 int typeValue = cb.SelectedIndex;
 
                 //if (typeValue == "") continue;

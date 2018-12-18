@@ -273,6 +273,7 @@
     <Content Include="bin\Debug\icons\color\icons8-search-48.png" />
     <Content Include="bin\Debug\icons\color\icons8-search-50.png" />
     <Content Include="bin\Debug\icons\color\icons8-services-48.png" />
+    <None Include="bin\Debug\icons\color\icons8-tags-96.png" />
     <Content Include="bin\Debug\icons\color\icons8-tree-structure-40.png" />
     <Content Include="bin\Debug\icons\color\icons8-user-avatar-48.png" />
     <Content Include="bin\Debug\icons\color\icons8-user-menu-male-48.png" />

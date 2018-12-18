@@ -27,7 +27,7 @@ namespace VitTree
         private readonly ClassTypeCard classTypeCard = new ClassTypeCard();
 
         private readonly VitIcons.FormCompanents formCompanents = new VitIcons.FormCompanents();
-        private readonly FormProgressStatus formProgressStatus = new FormProgressStatus();
+        //private readonly FormProgressStatus formProgressStatus = new FormProgressStatus();
 
         public async void AddFileNode(TreeView treeView)
         {

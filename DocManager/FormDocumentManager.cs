@@ -124,7 +124,8 @@ namespace DocManager
 
         private void buttonSettingsDocumentCard_Click(object sender, EventArgs e)
         {
-            formCreatTypeCard.Show();
+            FormTypeCard formTypeCard = new FormTypeCard();
+            formTypeCard.ShowDialog();
         }
 
         private void buttonUsers_Click(object sender, EventArgs e)
@@ -192,17 +193,6 @@ namespace DocManager
         private void InitControlsStyle()
         {
             MaximumSize = Screen.PrimaryScreen.WorkingArea.Size;
-
-            buttonScan.BackgroundImage = VitIcons.Properties.ResourceColorImage.icons8_scanner_40;
-            buttonAddBranch.BackgroundImage = VitIcons.Properties.ResourceColorImage.icons8_plus_48;
-            ToolStripMenuItemAbout.Image = VitIcons.Properties.ResourceColorImage.icons8_about_48;
-            ToolStripMenuItemUserMenu.Image = VitIcons.Properties.ResourceColorImage.icons8_user_avatar_48;
-            ToolStripMenuItemUserMenu.Image = VitIcons.Properties.ResourceColorImage.icons8_user_menu_male_48;
-            ToolStripMenuItemSettingsConnectToDataBase.Image = VitIcons.Properties.ResourceColorImage.icons8_database_administrator_64;
-            ToolStripMenuItemSettingsAccessGroup.Image = VitIcons.Properties.ResourceColorImage.icons8_password_48;
-            ToolStripMenuItemUsers.Image = VitIcons.Properties.ResourceColorImage.icons8_conference_48;
-            ToolStripMenuItemSettings.Image = VitIcons.Properties.ResourceColorImage.icons8_services_48;
-            ToolStripMenuItemSettingsDocumentCard.Image = VitIcons.Properties.ResourceColorImage.icons8_red_card_40;
         }
 
         private void listView1_DoubleClick(object sender, EventArgs e)
@@ -387,8 +377,16 @@ namespace DocManager
 
         private void ToolStripMenuItemAddDocumentWithCard_Click(object sender, EventArgs e)
         {
-            ClassFileCard classFileCard = new ClassFileCard();
-            classFileCard.create();
+            //ClassFileCard classFileCard = new ClassFileCard();
+            //classFileCard.create();
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Multiselect = true;
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                VitFiles.ClassFiles classFiles = new VitFiles.ClassFiles();
+                classFiles.createFileAsync(openFileDialog.FileNames, treeView1.SelectedNode.FullPath);
+
+            }
         }
 
         private void ToolStripMenuItemAddFolder_Click(object sender, EventArgs e)

@@ -31,16 +31,14 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormFileCard));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.buttonCansel = new System.Windows.Forms.Button();
             this.panelCardProps = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBoxTypeCard = new System.Windows.Forms.ComboBox();
             this.windowHeader1 = new VitControls.WindowHeader();
-            this.buttonCansel = new System.Windows.Forms.Button();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.button1 = new System.Windows.Forms.Button();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
             this.panel1.SuspendLayout();
-            this.panelCardProps.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -57,11 +55,45 @@
             this.panel1.Size = new System.Drawing.Size(638, 444);
             this.panel1.TabIndex = 3;
             // 
+            // button1
+            // 
+            this.button1.AutoSize = true;
+            this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.button1.ImageKey = "icons8-ok-480.png";
+            this.button1.ImageList = this.imageList1;
+            this.button1.Location = new System.Drawing.Point(6, 404);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(94, 30);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Сохранить";
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "icons8-ok-480.png");
+            this.imageList1.Images.SetKeyName(1, "icons8-unavailable-480.png");
+            // 
+            // buttonCansel
+            // 
+            this.buttonCansel.AutoSize = true;
+            this.buttonCansel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.buttonCansel.ImageKey = "icons8-unavailable-480.png";
+            this.buttonCansel.ImageList = this.imageList1;
+            this.buttonCansel.Location = new System.Drawing.Point(555, 404);
+            this.buttonCansel.Name = "buttonCansel";
+            this.buttonCansel.Size = new System.Drawing.Size(80, 30);
+            this.buttonCansel.TabIndex = 3;
+            this.buttonCansel.Text = "Отмена";
+            this.buttonCansel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.buttonCansel.UseVisualStyleBackColor = true;
+            // 
             // panelCardProps
             // 
             this.panelCardProps.AutoScroll = true;
             this.panelCardProps.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelCardProps.Controls.Add(this.maskedTextBox1);
             this.panelCardProps.Location = new System.Drawing.Point(0, 53);
             this.panelCardProps.Name = "panelCardProps";
             this.panelCardProps.Size = new System.Drawing.Size(638, 345);
@@ -102,48 +134,6 @@
             this.windowHeader1.Size = new System.Drawing.Size(638, 34);
             this.windowHeader1.TabIndex = 2;
             // 
-            // buttonCansel
-            // 
-            this.buttonCansel.AutoSize = true;
-            this.buttonCansel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonCansel.ImageKey = "icons8-delete-48.png";
-            this.buttonCansel.ImageList = this.imageList1;
-            this.buttonCansel.Location = new System.Drawing.Point(555, 404);
-            this.buttonCansel.Name = "buttonCansel";
-            this.buttonCansel.Size = new System.Drawing.Size(80, 30);
-            this.buttonCansel.TabIndex = 3;
-            this.buttonCansel.Text = "Отмена";
-            this.buttonCansel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.buttonCansel.UseVisualStyleBackColor = true;
-            // 
-            // imageList1
-            // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "icons8-checkmark-48.png");
-            this.imageList1.Images.SetKeyName(1, "icons8-delete-48.png");
-            // 
-            // button1
-            // 
-            this.button1.AutoSize = true;
-            this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button1.ImageIndex = 0;
-            this.button1.ImageList = this.imageList1;
-            this.button1.Location = new System.Drawing.Point(6, 404);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(94, 30);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Сохранить";
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // maskedTextBox1
-            // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(168, 188);
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(100, 20);
-            this.maskedTextBox1.TabIndex = 0;
-            // 
             // FormFileCard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -158,8 +148,6 @@
             this.Text = "FormFileCard";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.panelCardProps.ResumeLayout(false);
-            this.panelCardProps.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -175,6 +163,5 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.Button buttonCansel;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
     }
 }

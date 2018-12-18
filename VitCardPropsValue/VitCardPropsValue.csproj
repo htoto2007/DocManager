@@ -50,6 +50,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -65,6 +66,10 @@
     <ProjectReference Include="..\vitMysql\VitMysql.csproj">
       <Project>{0312b089-f072-499e-97cd-701a78e6c425}</Project>
       <Name>VitMysql</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VitNotifyMessage\VitNotifyMessage.csproj">
+      <Project>{a8d9c15a-3f3c-423a-be05-293de5941bb7}</Project>
+      <Name>VitNotifyMessage</Name>
     </ProjectReference>
     <ProjectReference Include="..\vitTypeCardProps\vitTypeCardProps.csproj">
       <Project>{fddb1cd0-bcfe-46d9-b0bd-66f6603016c9}</Project>

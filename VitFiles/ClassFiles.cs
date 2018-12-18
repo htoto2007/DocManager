@@ -1,12 +1,13 @@
-﻿using MySql.Data.MySqlClient;
-using System;
-using VitDBConnect;
+﻿using System;
+using System.IO;
+using System.Threading.Tasks;
 using VitFTP;
 using VitMysql;
 using VitNotifyMessage;
-using VitSettings;
+using vitProgressStatus;
 using VitTextStringMask;
 using VitTypeCard;
+using VitUsers;
 
 namespace VitFiles
 {
@@ -15,45 +16,40 @@ namespace VitFiles
 
         private readonly ClassMysql classMysql = new ClassMysql();
         private readonly ClassNotifyMessage classNotifyMessage = new ClassNotifyMessage();
-        private readonly ClassSettings classSettings = new ClassSettings();
-
-        private readonly ClassTextStringMask classTextStringMask = new ClassTextStringMask();
-
-        private readonly ClassTypeCard classTypeCard = new ClassTypeCard();
-
-        private readonly string repositiryPayh = "";
-
-        private readonly string root = "";
-
-        //private ClassFTP classFTP = new ClassFTP();
+        
 
         public ClassFiles()
-
         {
             
         }
 
         public void createFile(string path, string hashCode, int idTypeCard)
         {
-            classMysql.Insert("" +
-                "insert into tb_tb+files " +
-                "SET " +
-                "name = '" + MySqlHelper.EscapeString(path) +"', " +
-                "hash_code = '" + hashCode + "' " +
-                "id_typw_card = '" + idTypeCard + "' ");
+            
         }
 
-        public void createFile(string[] arrPath, string hashCode, int idTypeCard)
+        public void createFile(string[] arrPath, string remotePath)
         {
+            FormProgressStatus formProgressStatus = new FormProgressStatus(0, arrPath.GetLength(0));
+            int iterator = 0;
             foreach (string path in arrPath)
             {
-                classMysql.Insert("" +
-                    "INSERT INTO tb_files " +
-                    "SET " +
-                    "name = '" + MySqlHelper.EscapeString(path) + "', " +
-                    "hash_code = '" + hashCode + "' " +
-                    "id_typw_card = '" + idTypeCard + "' ");
+                formProgressStatus.iterator(iterator, path);
+                checkMatchPath(remotePath + "\\" + Path.GetFileName(path));
+                iterator++;
             }
+        }
+
+        public async Task createFileAsync(string[] arrPath, string remotePath)
+        {
+            await Task.Run(() => createFile(arrPath, remotePath));
+        }
+
+        public bool checkMatchPath(string remotePath)
+        {
+            ClassUsers classUsers = new ClassUsers();
+            ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
+            return classFTP.FileExist(remotePath);
         }
 
         /// <summary>
@@ -62,20 +58,8 @@ namespace VitFiles
         /// <param name="name">z://directory/fileName.ext</param>
         public void getInfoByName(string name)
         {
-                classMysql.Insert("" +
-                    "SELECT * " +
-                    "FROM tb_files " +
-                    "WHERE " +
-                    "name = '" + MySqlHelper.EscapeString(name) + "'");
+                
             
-        }
-
-        public struct WhereParams
-        {
-            public const string hashCode = "hash_code";
-            public const string id = "id";
-            public const string idTypeCard = "id_typw_card";
-            public const string name = "name";
         }
 
         public struct FileCollection

@@ -31,10 +31,10 @@
             this.components = new System.ComponentModel.Container();
             this.windowHeader1 = new VitControls.WindowHeader();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new VitControls.VitButton();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelInfo = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.labelPercent = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,60 +52,56 @@
             this.windowHeader1.minimize = false;
             this.windowHeader1.Name = "windowHeader1";
             this.windowHeader1.showInTaskbar = true;
-            this.windowHeader1.Size = new System.Drawing.Size(346, 34);
+            this.windowHeader1.Size = new System.Drawing.Size(358, 34);
             this.windowHeader1.TabIndex = 0;
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.button1);
-            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.labelPercent);
+            this.panel1.Controls.Add(this.labelInfo);
             this.panel1.Controls.Add(this.progressBar1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(1, 35);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(346, 86);
+            this.panel1.Size = new System.Drawing.Size(358, 84);
             this.panel1.TabIndex = 1;
             // 
-            // button1
+            // labelInfo
             // 
-            this.button1.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
-            this.button1.BackColor = System.Drawing.Color.Transparent;
-            this.button1.BackgroundImage = global::vitProgressStatus.Properties.Resources.icons8_delete_48;
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button1.Location = new System.Drawing.Point(151, 46);
-            this.button1.Margin = new System.Windows.Forms.Padding(0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(32, 32);
-            this.button1.TabIndex = 2;
-            this.toolTip1.SetToolTip(this.button1, "Прервать операцию");
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 13);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "label1";
+            this.labelInfo.AutoSize = true;
+            this.labelInfo.Location = new System.Drawing.Point(3, 13);
+            this.labelInfo.Name = "labelInfo";
+            this.labelInfo.Size = new System.Drawing.Size(47, 13);
+            this.labelInfo.TabIndex = 1;
+            this.labelInfo.Text = "Ждем...";
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(3, 29);
+            this.progressBar1.Location = new System.Drawing.Point(0, 29);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(340, 14);
+            this.progressBar1.Size = new System.Drawing.Size(352, 14);
             this.progressBar1.Step = 1;
             this.progressBar1.TabIndex = 0;
             this.progressBar1.Value = 50;
+            // 
+            // labelPercent
+            // 
+            this.labelPercent.AutoSize = true;
+            this.labelPercent.Location = new System.Drawing.Point(157, 61);
+            this.labelPercent.Name = "labelPercent";
+            this.labelPercent.Size = new System.Drawing.Size(21, 13);
+            this.labelPercent.TabIndex = 2;
+            this.labelPercent.Text = "0%";
             // 
             // FormProgressStatus
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(348, 122);
+            this.ClientSize = new System.Drawing.Size(360, 120);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.windowHeader1);
+            this.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormProgressStatus";
@@ -123,9 +119,9 @@
 
         private VitControls.WindowHeader windowHeader1;
         private System.Windows.Forms.Panel panel1;
-        private VitControls.VitButton button1;
         private System.Windows.Forms.ToolTip toolTip1;
-        public System.Windows.Forms.Label label1;
+        public System.Windows.Forms.Label labelInfo;
         public System.Windows.Forms.ProgressBar progressBar1;
+        public System.Windows.Forms.Label labelPercent;
     }
 }

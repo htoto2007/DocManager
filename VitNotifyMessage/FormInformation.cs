@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace VitNotifyMessage
 {
-    public partial class FormInformation : Form
+    partial class FormInformation : Form
     {
         public FormInformation(string str)
         {

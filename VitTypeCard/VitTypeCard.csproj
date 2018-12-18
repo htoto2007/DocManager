@@ -38,7 +38,7 @@
     <OutputPath>bin\x64\Release\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MySql.Data, Version=8.0.11.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="MySql.Data, Version=8.0.13.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -66,6 +66,12 @@
     <Compile Include="FormCreatTypeCard.Designer.cs">
       <DependentUpon>FormCreatTypeCard.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormTypeCard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTypeCard.Designer.cs">
+      <DependentUpon>FormTypeCard.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -81,6 +87,10 @@
       <Project>{0312b089-f072-499e-97cd-701a78e6c425}</Project>
       <Name>VitMysql</Name>
     </ProjectReference>
+    <ProjectReference Include="..\VitNotifyMessage\VitNotifyMessage.csproj">
+      <Project>{a8d9c15a-3f3c-423a-be05-293de5941bb7}</Project>
+      <Name>VitNotifyMessage</Name>
+    </ProjectReference>
     <ProjectReference Include="..\vitTypeCardProps\vitTypeCardProps.csproj">
       <Project>{fddb1cd0-bcfe-46d9-b0bd-66f6603016c9}</Project>
       <Name>vitTypeCardProps</Name>
@@ -89,6 +99,9 @@
   <ItemGroup>
     <EmbeddedResource Include="FormCreatTypeCard.resx">
       <DependentUpon>FormCreatTypeCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTypeCard.resx">
+      <DependentUpon>FormTypeCard.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

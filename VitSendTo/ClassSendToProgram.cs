@@ -92,7 +92,7 @@ namespace VitSendToProgram
 
                         idCardProps = Convert.ToInt32(arrNameControl[1]);
                         value = ((TextBox)control).Text;
-                        classCardPropsValue.createValue(idCardProps, value, idFile);
+                        //classCardPropsValue.createValue(idCardProps, value, idFile);
                         break;
 
                     case "System.Windows.Forms.NumericUpDown":
@@ -101,7 +101,7 @@ namespace VitSendToProgram
 
                         idCardProps = Convert.ToInt32(arrNameControl[1]);
                         value = ((NumericUpDown)control).Text;
-                        classCardPropsValue.createValue(idCardProps, value, idFile);
+                        //classCardPropsValue.createValue(idCardProps, value, idFile);
                         break;
 
                     case "System.Windows.Forms.MaskedTextBox":
@@ -110,7 +110,7 @@ namespace VitSendToProgram
 
                         idCardProps = Convert.ToInt32(arrNameControl[1]);
                         value = ((MaskedTextBox)control).Text;
-                        classCardPropsValue.createValue(idCardProps, value, idFile);
+                        //classCardPropsValue.createValue(idCardProps, value, idFile);
                         break;
 
                     case "System.Windows.Forms.CheckBox":
@@ -119,7 +119,7 @@ namespace VitSendToProgram
 
                         idCardProps = Convert.ToInt32(arrNameControl[1]);
                         value = Convert.ToInt32(((CheckBox)control).Checked).ToString();
-                        classCardPropsValue.createValue(idCardProps, value, idFile);
+                        //classCardPropsValue.createValue(idCardProps, value, idFile);
                         break;
 
                     case "System.Windows.Forms.Label":

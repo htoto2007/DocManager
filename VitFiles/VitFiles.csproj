@@ -38,9 +38,6 @@
     <OutputPath>bin\x64\Release\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MySql.Data">
-      <HintPath>..\VitDBConnect\bin\Debug\v4.5.2\MySql.Data.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -73,6 +70,10 @@
       <Project>{f92548b9-5df7-4c56-acbd-e0d091a47d2b}</Project>
       <Name>VitDBConnect</Name>
     </ProjectReference>
+    <ProjectReference Include="..\VitFileCard\VitFileCard.csproj">
+      <Project>{6b8d849b-7847-4359-a140-1feef254717a}</Project>
+      <Name>VitFileCard</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VitFTP\VitFTP.csproj">
       <Project>{8E118625-8DED-4D15-9B41-0292A968ADFC}</Project>
       <Name>VitFTP</Name>
@@ -85,9 +86,9 @@
       <Project>{A8D9C15A-3F3C-423A-BE05-293DE5941BB7}</Project>
       <Name>VitNotifyMessage</Name>
     </ProjectReference>
-    <ProjectReference Include="..\VitSettings\VitSettings.csproj">
-      <Project>{8ba14954-8676-4a60-b58f-7e5d8f71eac8}</Project>
-      <Name>VitSettings</Name>
+    <ProjectReference Include="..\vitProgressStatus\vitProgressStatus.csproj">
+      <Project>{ca92b19d-73e7-4942-9777-723e83b6f444}</Project>
+      <Name>vitProgressStatus</Name>
     </ProjectReference>
     <ProjectReference Include="..\VitTextStringMask\VitTextStringMask.csproj">
       <Project>{acf4b011-efa2-41e6-8a17-24150f2e3530}</Project>
@@ -100,6 +101,10 @@
     <ProjectReference Include="..\VitTypeCard\VitTypeCard.csproj">
       <Project>{ce939e31-b292-47bb-92d3-085d95fb3f67}</Project>
       <Name>VitTypeCard</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VitUsers\VitUsers.csproj">
+      <Project>{df071434-102d-4c05-a18e-f0f67d81dded}</Project>
+      <Name>VitUsers</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace VitNotifyMessage
 {
-    public partial class FormError : Form
+    partial class FormError : Form
     {
         public FormError(string mess, string title)
         {

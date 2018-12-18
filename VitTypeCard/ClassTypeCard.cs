@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using VitDBConnect;
 using VitMysql;
+using VitNotifyMessage;
 
 namespace VitTypeCard
 {
@@ -15,6 +16,33 @@ namespace VitTypeCard
 
         private ClassDBConnect classDB = new ClassDBConnect();
         private ClassMysql classMysql = new ClassMysql();
+        private ClassNotifyMessage classNotifyMessage = new ClassNotifyMessage();
+
+        public string[] typeProp = new string[]
+        {
+            "Строковый",
+            "Числовой",
+            "Дата",
+            "Дата и всремя",
+            "Логический",
+            "Текстовой"
+        };
+
+        public string getNamePropById(int id)
+        {
+            if(id < 0)
+            {
+                classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, "Номер типа значения свойства меньше нуля!");
+                return "";
+            }
+            if (id > typeProp.GetLength(0) - 1)
+            {
+                classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, "Номер типа значения свойства выходит за границу списка!");
+                return "";
+            }
+
+            return typeProp[id];
+        }
 
         public int add(string name)
         {
@@ -24,6 +52,17 @@ namespace VitTypeCard
                     "name = '" + name + "'";
             
             return classMysql.Insert(query);
+        }
+
+        public void DeleteById(int id)
+        {
+            string query = "" +
+                    "DELETE " +
+                    "FROM tb_type_card " +
+                    "WHERE " +
+                    "id = '" + id + "'";
+
+            classMysql.UpdateOrDelete(query);
         }
 
         public TypeCardCollection[] getAllInfo()

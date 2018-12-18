@@ -46,7 +46,7 @@ namespace VitFTP
                 Password = password,
                 GiveUpSecurityAndAcceptAnySshHostKey = false,
             };
-            new Thread(() => { formProgressStatus = new vitProgressStatus.FormProgressStatus(); }).Start();
+            //new Thread(() => { formProgressStatus = new vitProgressStatus.FormProgressStatus(); }).Start();
         }
 
         public AccessToFolder getAccess(string path)
@@ -847,9 +847,9 @@ namespace VitFTP
 
         private void ProgressFormAsync(int max, int value, string fileName)
         {
-            formProgressStatus.label1.Invoke((Action)(() =>
+            formProgressStatus.labelInfo.Invoke((Action)(() =>
             {
-                formProgressStatus.label1.Text = fileName;
+                formProgressStatus.labelInfo.Text = fileName;
             }));
             formProgressStatus.progressBar1.Invoke((Action)(() =>
             {

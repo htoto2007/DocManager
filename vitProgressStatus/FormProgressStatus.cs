@@ -12,14 +12,25 @@ namespace vitProgressStatus
 {
     public partial class FormProgressStatus : Form
     {
-        public FormProgressStatus()
+        public FormProgressStatus(int min, int max)
         {
             InitializeComponent();
+            progressBar1.Minimum = min;
+            progressBar1.Maximum = max;
+            progressBar1.Step = 1;
+            progressBar1.Value = min;
+            Show();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        public void iterator(int value, string info)
         {
-            Dispose();
+            progressBar1.PerformStep();
+            labelPercent.Text = (progressBar1.Maximum / 100 * value).ToString() + "%";
+            labelInfo.Text = info;
+            if(value == progressBar1.Maximum)
+            {
+                Close();
+            }
         }
     }
 }
