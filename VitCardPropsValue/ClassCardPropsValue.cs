@@ -34,5 +34,6 @@ namespace VitCardPropsValue
             if (row.GetLength(0) > 0) return true;
             return false;
         }
+        
     }
 }

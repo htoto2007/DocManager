@@ -58,7 +58,7 @@
             // button1
             // 
             this.button1.AutoSize = true;
-            this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.button1.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.button1.ImageKey = "icons8-ok-480.png";
             this.button1.ImageList = this.imageList1;
             this.button1.Location = new System.Drawing.Point(6, 404);
@@ -156,12 +156,12 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panelCardProps;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBoxTypeCard;
         private VitControls.WindowHeader windowHeader1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.Button buttonCansel;
+        public System.Windows.Forms.Panel panelCardProps;
+        public System.Windows.Forms.ComboBox comboBoxTypeCard;
     }
 }

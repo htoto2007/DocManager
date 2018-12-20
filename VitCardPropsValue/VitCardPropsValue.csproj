@@ -50,6 +50,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -57,12 +58,25 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="VitColors">
+      <HintPath>..\VitColors\bin\Debug\VitColors.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClassCardPropsValue.cs" />
+    <Compile Include="FormFileCard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFileCard.Designer.cs">
+      <DependentUpon>FormFileCard.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\VitControls\VitControls.csproj">
+      <Project>{0D2381AF-887D-4DE5-98FA-1E77AD098931}</Project>
+      <Name>VitControls</Name>
+    </ProjectReference>
     <ProjectReference Include="..\vitMysql\VitMysql.csproj">
       <Project>{0312b089-f072-499e-97cd-701a78e6c425}</Project>
       <Name>VitMysql</Name>
@@ -79,6 +93,11 @@
       <Project>{ce939e31-b292-47bb-92d3-085d95fb3f67}</Project>
       <Name>VitTypeCard</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FormFileCard.resx">
+      <DependentUpon>FormFileCard.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

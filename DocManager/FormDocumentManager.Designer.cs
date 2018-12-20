@@ -90,15 +90,15 @@
             this.textBoxUserName = new System.Windows.Forms.TextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.видToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.выводМенюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.администратированиеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.помощьToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.подключениеКБазеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.пользователиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.настройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.настройкиКарточекToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.выводМенюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.помощьToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStripTreeView.SuspendLayout();
             this.panelUserMenu.SuspendLayout();
             this.flowLayoutPanelAdmin.SuspendLayout();
@@ -157,14 +157,14 @@
             // ToolStripMenuItemAddDocumentWithCard
             // 
             this.ToolStripMenuItemAddDocumentWithCard.Name = "ToolStripMenuItemAddDocumentWithCard";
-            this.ToolStripMenuItemAddDocumentWithCard.Size = new System.Drawing.Size(154, 22);
+            this.ToolStripMenuItemAddDocumentWithCard.Size = new System.Drawing.Size(180, 22);
             this.ToolStripMenuItemAddDocumentWithCard.Text = "С карточкой";
             this.ToolStripMenuItemAddDocumentWithCard.Click += new System.EventHandler(this.ToolStripMenuItemAddDocumentWithCard_Click);
             // 
             // безКарточкиToolStripMenuItem
             // 
             this.безКарточкиToolStripMenuItem.Name = "безКарточкиToolStripMenuItem";
-            this.безКарточкиToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.безКарточкиToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.безКарточкиToolStripMenuItem.Text = "Без карточки";
             this.безКарточкиToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItemWithoutCard_ClickAsync);
             // 
@@ -537,7 +537,7 @@
             this.flowLayoutPanelAdmin.Location = new System.Drawing.Point(86, 2);
             this.flowLayoutPanelAdmin.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
             this.flowLayoutPanelAdmin.Name = "flowLayoutPanelAdmin";
-            this.flowLayoutPanelAdmin.Size = new System.Drawing.Size(197, 33);
+            this.flowLayoutPanelAdmin.Size = new System.Drawing.Size(163, 33);
             this.flowLayoutPanelAdmin.TabIndex = 10;
             // 
             // flowLayoutPanelUserMenu
@@ -737,6 +737,12 @@
             this.видToolStripMenuItem.Size = new System.Drawing.Size(41, 26);
             this.видToolStripMenuItem.Text = "Вид";
             // 
+            // выводМенюToolStripMenuItem
+            // 
+            this.выводМенюToolStripMenuItem.Name = "выводМенюToolStripMenuItem";
+            this.выводМенюToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.выводМенюToolStripMenuItem.Text = "Вывод меню";
+            // 
             // администратированиеToolStripMenuItem
             // 
             this.администратированиеToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -747,29 +753,6 @@
             this.администратированиеToolStripMenuItem.Name = "администратированиеToolStripMenuItem";
             this.администратированиеToolStripMenuItem.Size = new System.Drawing.Size(154, 26);
             this.администратированиеToolStripMenuItem.Text = "Администратирование";
-            // 
-            // справкаToolStripMenuItem
-            // 
-            this.справкаToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.оПрограммеToolStripMenuItem,
-            this.помощьToolStripMenuItem1});
-            this.справкаToolStripMenuItem.Name = "справкаToolStripMenuItem";
-            this.справкаToolStripMenuItem.Size = new System.Drawing.Size(70, 26);
-            this.справкаToolStripMenuItem.Text = "Справка";
-            // 
-            // оПрограммеToolStripMenuItem
-            // 
-            this.оПрограммеToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("оПрограммеToolStripMenuItem.Image")));
-            this.оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
-            this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(188, 30);
-            this.оПрограммеToolStripMenuItem.Text = "О программе";
-            // 
-            // помощьToolStripMenuItem1
-            // 
-            this.помощьToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("помощьToolStripMenuItem1.Image")));
-            this.помощьToolStripMenuItem1.Name = "помощьToolStripMenuItem1";
-            this.помощьToolStripMenuItem1.Size = new System.Drawing.Size(188, 30);
-            this.помощьToolStripMenuItem1.Text = "Помощь";
             // 
             // подключениеКБазеToolStripMenuItem
             // 
@@ -799,11 +782,28 @@
             this.настройкиКарточекToolStripMenuItem.Size = new System.Drawing.Size(209, 30);
             this.настройкиКарточекToolStripMenuItem.Text = "Настройки карточек";
             // 
-            // выводМенюToolStripMenuItem
+            // справкаToolStripMenuItem
             // 
-            this.выводМенюToolStripMenuItem.Name = "выводМенюToolStripMenuItem";
-            this.выводМенюToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.выводМенюToolStripMenuItem.Text = "Вывод меню";
+            this.справкаToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.оПрограммеToolStripMenuItem,
+            this.помощьToolStripMenuItem1});
+            this.справкаToolStripMenuItem.Name = "справкаToolStripMenuItem";
+            this.справкаToolStripMenuItem.Size = new System.Drawing.Size(70, 26);
+            this.справкаToolStripMenuItem.Text = "Справка";
+            // 
+            // оПрограммеToolStripMenuItem
+            // 
+            this.оПрограммеToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("оПрограммеToolStripMenuItem.Image")));
+            this.оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
+            this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(166, 30);
+            this.оПрограммеToolStripMenuItem.Text = "О программе";
+            // 
+            // помощьToolStripMenuItem1
+            // 
+            this.помощьToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("помощьToolStripMenuItem1.Image")));
+            this.помощьToolStripMenuItem1.Name = "помощьToolStripMenuItem1";
+            this.помощьToolStripMenuItem1.Size = new System.Drawing.Size(166, 30);
+            this.помощьToolStripMenuItem1.Text = "Помощь";
             // 
             // FormDocumentManager
             // 
@@ -821,7 +821,7 @@
             this.Controls.Add(this.windowHeader1);
             this.Controls.Add(this.panelStatusProgress);
             this.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MainMenuStrip = this.menuStrip1;

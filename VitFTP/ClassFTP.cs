@@ -27,7 +27,7 @@ namespace VitFTP
         private readonly string userName;
         ClassNotifyMessage classNotifyMessage = new ClassNotifyMessage();
 
-        private vitProgressStatus.FormProgressStatus formProgressStatus;
+        
         private string uri;
 
         public ClassFTP(string userName, string password)
@@ -429,6 +429,8 @@ namespace VitFTP
         public bool FileExist(string path)
         {
             bool res = false;
+            path = path.Replace("\\", "/");
+            Console.WriteLine(path);
             using (Session session = new Session())
             {
                 // Connect
@@ -436,6 +438,7 @@ namespace VitFTP
                 res = session.FileExists(path);
                 session.Close();
             }
+            Console.WriteLine(res);
             return res;
         }
 
@@ -683,11 +686,8 @@ namespace VitFTP
                 session.Open(sessionOptions);
 
                 int iterator = 0;
-                if (iterator == 0)
-                {
-                    formProgressStatus.Show();
-                    ProgressFormAsync(localPaths.GetLength(0), iterator, "");
-                }
+                vitProgressStatus.FormProgressStatus formProgressStatus = new vitProgressStatus.FormProgressStatus(0, localPaths.GetLength(0));
+                    
                 foreach (string localPath in localPaths)
                 {
                     if (Path.GetExtension(localPath) == "")
@@ -695,14 +695,7 @@ namespace VitFTP
                         continue;
                     }
 
-                    if (!formProgressStatus.IsDisposed)
-                    {
-                        formProgressStatus.progressBar1.PerformStep();
-                    }
-                    else
-                    {
-                        break;
-                    }
+                    
 
                     iterator++;
                     if (Path.GetExtension(localPath) != "")
@@ -731,6 +724,7 @@ namespace VitFTP
                     }
 
                     arrComplete.Add(remotePath + Path.GetFileName(localPath));
+                    formProgressStatus.Iterator(iterator, localPath);
                 }
                 session.Close();
                 formProgressStatus.Hide();
@@ -843,29 +837,6 @@ namespace VitFTP
                 Console.WriteLine(e.Message + " " + e.InnerException);
                 return "";
             }
-        }
-
-        private void ProgressFormAsync(int max, int value, string fileName)
-        {
-            formProgressStatus.labelInfo.Invoke((Action)(() =>
-            {
-                formProgressStatus.labelInfo.Text = fileName;
-            }));
-            formProgressStatus.progressBar1.Invoke((Action)(() =>
-            {
-                formProgressStatus.progressBar1.Minimum = 0;
-                formProgressStatus.progressBar1.Maximum = max;
-                formProgressStatus.progressBar1.Step = 1;
-                formProgressStatus.progressBar1.Value = value;
-            }));
-        }
-
-        private void ProgressFormCloseAsync()
-        {
-            formProgressStatus.Invoke((Action)(() =>
-            {
-                formProgressStatus.Hide();
-            }));
         }
     }
 }

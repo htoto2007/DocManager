@@ -31,10 +31,11 @@
             this.components = new System.ComponentModel.Container();
             this.windowHeader1 = new VitControls.WindowHeader();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.labelPercent = new System.Windows.Forms.Label();
             this.labelInfo = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.labelPercent = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -44,7 +45,7 @@
             this.windowHeader1.AutoSize = true;
             this.windowHeader1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.windowHeader1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(207)))), ((int)(((byte)(251)))));
-            this.windowHeader1.close = true;
+            this.windowHeader1.close = false;
             this.windowHeader1.Dock = System.Windows.Forms.DockStyle.Top;
             this.windowHeader1.Location = new System.Drawing.Point(1, 1);
             this.windowHeader1.Margin = new System.Windows.Forms.Padding(0);
@@ -67,8 +68,18 @@
             this.panel1.Size = new System.Drawing.Size(358, 84);
             this.panel1.TabIndex = 1;
             // 
+            // labelPercent
+            // 
+            this.labelPercent.AutoSize = true;
+            this.labelPercent.Location = new System.Drawing.Point(157, 61);
+            this.labelPercent.Name = "labelPercent";
+            this.labelPercent.Size = new System.Drawing.Size(21, 13);
+            this.labelPercent.TabIndex = 2;
+            this.labelPercent.Text = "0%";
+            // 
             // labelInfo
             // 
+            this.labelInfo.AutoEllipsis = true;
             this.labelInfo.AutoSize = true;
             this.labelInfo.Location = new System.Drawing.Point(3, 13);
             this.labelInfo.Name = "labelInfo";
@@ -85,14 +96,10 @@
             this.progressBar1.TabIndex = 0;
             this.progressBar1.Value = 50;
             // 
-            // labelPercent
+            // timer1
             // 
-            this.labelPercent.AutoSize = true;
-            this.labelPercent.Location = new System.Drawing.Point(157, 61);
-            this.labelPercent.Name = "labelPercent";
-            this.labelPercent.Size = new System.Drawing.Size(21, 13);
-            this.labelPercent.TabIndex = 2;
-            this.labelPercent.Text = "0%";
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // FormProgressStatus
             // 
@@ -107,6 +114,7 @@
             this.Name = "FormProgressStatus";
             this.Padding = new System.Windows.Forms.Padding(1);
             this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Загрузка....";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -123,5 +131,6 @@
         public System.Windows.Forms.Label labelInfo;
         public System.Windows.Forms.ProgressBar progressBar1;
         public System.Windows.Forms.Label labelPercent;
+        private System.Windows.Forms.Timer timer1;
     }
 }

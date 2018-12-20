@@ -7,7 +7,6 @@ using System.Windows.Forms;
 using VitAccess;
 using VitAccessGroup;
 using VitDBConnect;
-using VitFileCard;
 using VitNotifyMessage;
 using VitSearcher;
 using VitSendToProgram;
@@ -384,8 +383,7 @@ namespace DocManager
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 VitFiles.ClassFiles classFiles = new VitFiles.ClassFiles();
-                classFiles.createFileAsync(openFileDialog.FileNames, treeView1.SelectedNode.FullPath);
-
+                classFiles.createFile(openFileDialog.FileNames, treeView1.SelectedNode.FullPath);
             }
         }
 
