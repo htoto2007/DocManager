@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 using VitCardPropsValue;
 using VitFiles;
 using VitFTP;
+using VitNotifyMessage;
 using VitTree;
 using VitTypeCard;
 using vitTypeCardProps;
@@ -48,6 +50,8 @@ namespace VitListView
             listView.EndUpdate();
             listView.Update();
         }
+
+        
 
         public void FromTreeVuew(TreeView treeView, ListView listView)
         {
@@ -121,6 +125,24 @@ namespace VitListView
                     }
                 }
             });
+        }
+
+        public void deleteFiles(ListView listView)
+        {
+            ClassNotifyMessage classNotifyMessage = new ClassNotifyMessage();
+            DialogResult dialogResult = classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.QUESTION, "Вы точно хотите удплить выбранные обьекты?");
+            if (dialogResult == DialogResult.Yes)
+            {
+                List<string> fileList = new List<string>();
+                foreach (ListViewItem listViewItem in listView.SelectedItems)
+                {
+                    fileList.Add(listViewItem.SubItems["path"].Text);
+                    listViewItem.Remove();
+                }
+
+                classFiles.deleteFiles(fileList.ToArray());
+                
+            }
         }
     }
 

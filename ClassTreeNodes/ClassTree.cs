@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing.Printing;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -55,30 +56,69 @@ namespace VitTree
             }));
         }
 
-        public async void AddFileNodeWithCard(TreeView treeView)
+        public void sendToDesctop(TreeView treeView)
         {
-            string paths = treeView.SelectedNode.FullPath;
-            TreeNode treeNode = treeView.SelectedNode;
             ClassUsers classUsers = new ClassUsers();
             ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
-            OpenFileDialog openFileDialog = new OpenFileDialog
+            string dest = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "\\" + Path.GetFileName(treeView.SelectedNode.FullPath);
+            classFTP.DownloadFile(treeView.SelectedNode.FullPath, dest);
+            ClassNotifyMessage classNotifyMessage = new ClassNotifyMessage();
+            if (File.Exists(dest)) classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.INFORMATION, "Файд отправлен на ваш рабочий стол.");
+            else classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, "Файд не удалось отправить на ваш рабочий стол.");
+        }
+
+        public void sendToPrint(TreeView treeView)
+        {
+            ClassUsers classUsers = new ClassUsers();
+            ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
+            string dest = VitSettings.Properties.FTPSettings.Default.pathTnp + "\\" + Path.GetFileName(treeView.SelectedNode.FullPath);
+            classFTP.DownloadFile(treeView.SelectedNode.FullPath, dest);
+            ClassNotifyMessage classNotifyMessage = new ClassNotifyMessage();
+            if (File.Exists(dest)) classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.INFORMATION, "Файд отправлен на печать.");
+            else
             {
-                Multiselect = true
-            };
+                classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, "Файд не удалось отправить на печать.");
+                return;
+            }
+            PrintDocument PrintD = new PrintDocument();
+            PrintD.DocumentName = dest;
+            PrintD.Print();
+        }
+
+        public void sendToAnyFolder(TreeView treeView)
+        {
+            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+            DialogResult dialogResult = folderBrowserDialog.ShowDialog();
+            if (dialogResult == DialogResult.OK)
+            {
+                ClassUsers classUsers = new ClassUsers();
+                ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
+                string dest = folderBrowserDialog.SelectedPath + "\\" + Path.GetFileName(treeView.SelectedNode.FullPath);
+                classFTP.DownloadFile(treeView.SelectedNode.FullPath, dest);
+                ClassNotifyMessage classNotifyMessage = new ClassNotifyMessage();
+                if (File.Exists(dest)) classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.INFORMATION, "Файд отправлен в " + dest);
+                else classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, "Файд не удалось отправить в " + dest);
+            }
+        }
+
+        public async void AddFileNodeWithCard(TreeView treeView)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Multiselect = true;
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                await Task.Run(() =>
+                VitFiles.ClassFiles classFiles = new VitFiles.ClassFiles();
+                string[] files = classFiles.createFile(openFileDialog.FileNames, treeView.SelectedNode.FullPath);
+                foreach (var file in files)
                 {
-                    treeView.Invoke((Action)(() =>
+                    TreeNode[] treeNodes = treeView.SelectedNode.Nodes.Find(file, false);
+                    if (treeNodes.GetLength(0) == 0)
                     {
-                        classFTP.Upload2Async(openFileDialog.FileNames, paths + "/");
-                    }));
-                });
+                        treeView.SelectedNode.Nodes.Add(file, Path.GetFileName(file));
+                    }
+                }
+                treeView.Sort();
             }
-            treeView.Invoke((Action)(async () =>
-            {
-                await update(treeView);
-            }));
         }
 
         public void addNodeFolder(TreeView treeView)
@@ -118,12 +158,25 @@ namespace VitTree
             FormTree formTree = new FormTree();
             if (formTree.ShowDialog() == DialogResult.OK)
             {
-                string targetPath = formTree.treeView1.SelectedNode.FullPath;
-                Console.WriteLine(sourcePath + "    ->    " + targetPath);
+                string targetPath = formTree.treeView1.SelectedNode.FullPath + "/копия - " + Path.GetFileName(treeView.SelectedNode.FullPath);
                 ClassUsers classUsers = new ClassUsers();
                 ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
                 classFTP.copyAsync(sourcePath, targetPath);
-                update(treeView);
+                ClassNotifyMessage classNotifyMessage = new ClassNotifyMessage();
+                if (classFTP.FileExist(targetPath))
+                {
+                    classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.USER_ERROR, "Не получилось скопироватиь файл.");
+                    return;
+                }
+
+                TreeNode[] treeNodes = treeView.Nodes.Find(formTree.treeView1.SelectedNode.Name, true);
+                if(treeNodes.GetLength(0) > 0)
+                {
+                    TreeNode treeNode = (TreeNode)formTree.treeView1.SelectedNode.Clone();
+                    treeNode.Name = targetPath;
+                    treeNode.Text = "копия - " + Path.GetFileName(treeView.SelectedNode.FullPath);
+                    treeNodes[0].Nodes.Add(treeNode);
+                }
             }
         }
 

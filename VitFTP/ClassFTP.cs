@@ -370,7 +370,7 @@ namespace VitFTP
                 else
                 {
                     await Task.Run(() => DownloadFile(sourcePath, VitSettings.Properties.FTPSettings.Default.pathTnp + "\\" + Path.GetFileName(sourcePath)));
-                    await Task.Run(() => session.PutFiles(VitSettings.Properties.FTPSettings.Default.pathTnp + "\\" + Path.GetFileName(sourcePath), targetPath + "/"));
+                    await Task.Run(() => session.PutFiles(VitSettings.Properties.FTPSettings.Default.pathTnp + "\\" + Path.GetFileName(sourcePath), targetPath));
                 }
                 await Task.Run(() => EraseDirectory(VitSettings.Properties.FTPSettings.Default.pathTnp));
                 session.Close();
@@ -642,7 +642,7 @@ namespace VitFTP
 
         
 
-        public async Task<bool> Upload2Async(string localPath, string remotePath)
+        public async Task<bool> Upload2Async(string localPath, string remotePath, bool overwrite)
         {
             if (Path.GetExtension(localPath) != "")
             {
@@ -665,11 +665,14 @@ namespace VitFTP
                     }
                 }
 
-                TransferOptions transferOptions = new TransferOptions
-                {
-                    TransferMode = TransferMode.Automatic,
-                    OverwriteMode = OverwriteMode.Resume
-                };
+
+                TransferOptions transferOptions = new TransferOptions();
+
+                transferOptions.TransferMode = TransferMode.Automatic;
+                if(overwrite == false) transferOptions.OverwriteMode = OverwriteMode.Resume;
+                else transferOptions.OverwriteMode = OverwriteMode.Overwrite;
+
+
                 res = await Task.Run<bool>(() => session.PutFiles(localPath, remotePath, false, transferOptions).IsSuccess);
                 session.Close();
             }
