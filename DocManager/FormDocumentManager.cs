@@ -7,7 +7,6 @@ using System.Windows.Forms;
 using VitAccess;
 using VitAccessGroup;
 using VitDBConnect;
-using VitListView;
 using VitNotifyMessage;
 using VitSearcher;
 using VitSendToProgram;
@@ -30,8 +29,6 @@ namespace DocManager
         private FormCreatTypeCard formCreatTypeCard = new FormCreatTypeCard();
         private FormDBConnect formDB = new FormDBConnect();
         private FormVerifycationFiles formVerifycationFiles = new FormVerifycationFiles();
-
-        private Control lastControl = null;
 
         /// <summary>
         /// Хранит в себе тип последнего пользовательского элемента, который вызвал контекстное меню
@@ -381,7 +378,13 @@ namespace DocManager
         {
             //ClassFileCard classFileCard = new ClassFileCard();
             //classFileCard.create();
-            classTree.AddFileNodeWithCard(treeView1);
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Multiselect = true;
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                VitFiles.ClassFiles classFiles = new VitFiles.ClassFiles();
+                classFiles.createFile(openFileDialog.FileNames, treeView1.SelectedNode.FullPath);
+            }
         }
 
         private void ToolStripMenuItemAddFolder_Click(object sender, EventArgs e)
@@ -396,23 +399,7 @@ namespace DocManager
 
         private void ToolStripMenuItemDelete_Click(object sender, EventArgs e)
         {
-            if (lastControl.GetType() == typeof(TreeView))
-            {
-                classTree.DeleteNode(treeView1);
-            }else if(lastControl.GetType() == typeof(ListView))
-            {
-                ClassLisView classLisView = new ClassLisView();
-                classLisView.deleteFiles(listView1);
-                foreach(ListViewItem listViewItem in listView1.SelectedItems)
-                {
-                    TreeNode[] treeNodes = treeView1.Nodes.Find(listViewItem.SubItems["path"].Text.Replace('\\', '/'), true);
-                    if(treeNodes.GetLength(0) > 0)
-                    {
-                        treeNodes[0].Remove();
-                    }
-                }
-            }
-            
+            classTree.DeleteNode(treeView1);
         }
 
         private void ToolStripMenuItemMove_Click(object sender, EventArgs e)
@@ -427,10 +414,6 @@ namespace DocManager
 
         private void ToolStripMenuItemSendToDesctop_Click(object sender, EventArgs e)
         {
-            if(lastControl.GetType() == typeof(TreeView))
-            {
-                classTree.sendToDesctop(treeView1);
-            }
         }
 
         private void ToolStripMenuItemSendToEmail_Click(object sender, EventArgs e)
@@ -439,18 +422,10 @@ namespace DocManager
 
         private void ToolStripMenuItemSendToFolder_Click(object sender, EventArgs e)
         {
-            if (lastControl.GetType() == typeof(TreeView))
-            {
-                classTree.sendToAnyFolder(treeView1);
-            }
         }
 
         private void ToolStripMenuItemSendToPrint_Click(object sender, EventArgs e)
         {
-            if (lastControl.GetType() == typeof(TreeView))
-            {
-                classTree.sendToPrint(treeView1);
-            }
         }
 
         private void ToolStripMenuItemSettings_Click(object sender, EventArgs e)
@@ -533,24 +508,6 @@ namespace DocManager
         private void помощьToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Process.Start(VitSettings.Properties.GeneralsSettings.Default.programPath + "\\help\\AEархив.html");
-        }
-
-        private void ToolStripMenuItemSelectAll_Click(object sender, EventArgs e)
-        {
-            foreach(ListViewItem listViewItem in listView1.Items)
-            {
-                listViewItem.Selected = true;
-            }
-        }
-
-        private void treeView1_MouseHover(object sender, EventArgs e)
-        {
-            lastControl = (Control)sender;
-        }
-
-        private void listView1_MouseHover(object sender, EventArgs e)
-        {
-            lastControl = (Control)sender;
         }
     }
 }

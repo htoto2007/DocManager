@@ -83,10 +83,6 @@
       <Project>{2b2e0264-ef18-4e6d-8069-6a87ae4b37ba}</Project>
       <Name>VitIcons</Name>
     </ProjectReference>
-    <ProjectReference Include="..\VitNotifyMessage\VitNotifyMessage.csproj">
-      <Project>{a8d9c15a-3f3c-423a-be05-293de5941bb7}</Project>
-      <Name>VitNotifyMessage</Name>
-    </ProjectReference>
     <ProjectReference Include="..\vitTypeCardProps\vitTypeCardProps.csproj">
       <Project>{fddb1cd0-bcfe-46d9-b0bd-66f6603016c9}</Project>
       <Name>vitTypeCardProps</Name>
