@@ -114,6 +114,56 @@ namespace VitFiles
             return uploadRemoteFiles;
         }
 
+        public string[] createFileWithoutCard(string[] arrPath, string remotePath)
+        {
+            formProgressStatus = new FormProgressStatus(0, arrPath.GetLength(0));
+
+            int iterator = 0;
+            List<string> fileNames = new List<string>();
+            // делаем поиск дубликатов
+            foreach (string path in arrPath)
+            {
+                iterator++;
+                formProgressStatus.Iterator(iterator, "Проверка дубликатов " + path);
+                if (checkMatchPath("/" + remotePath + "/" + Path.GetFileName(path)) == true)
+                {
+                    fileNames.Add(path);
+                }
+            }
+
+            DialogResult dialogResult = DialogResult.None;
+            if (fileNames.Count > 0)
+            {
+                FormDuplicateFileList formDuplicateFileList = new FormDuplicateFileList(fileNames.ToArray());
+                dialogResult = formDuplicateFileList.ShowDialog();
+            }
+
+            if ((dialogResult != DialogResult.OK) && (dialogResult != DialogResult.None)) return null;
+
+            formProgressStatus = new FormProgressStatus(0, arrPath.GetLength(0));
+            iterator = 0;
+            string[] uploadRemoteFiles = new string[arrPath.GetLength(0)];
+            foreach (string path in arrPath)
+            {
+                formProgressStatus.Iterator(iterator, "Загрузка на сервер " + path);
+                
+                ClassUsers classUsers = new ClassUsers();
+                ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
+                classFTP.Upload2Async(path, "/" + remotePath + "/" + Path.GetFileName(path), true);
+                if (!checkMatchPath("/" + remotePath + "/" + Path.GetFileName(path)))
+                {
+                    Console.WriteLine("Не удалось загрузить файл! " + remotePath + "\\" + Path.GetFileName(path));
+                }
+                else
+                {
+                    uploadRemoteFiles[iterator] = "/" + remotePath + "/" + Path.GetFileName(path);
+                }
+                iterator++;
+            }
+            formProgressStatus.Close();
+            return uploadRemoteFiles;
+        }
+
         public void deleteFiles(string[] remotePathes)
         {
             ClassUsers classUsers = new ClassUsers();
@@ -141,7 +191,6 @@ namespace VitFiles
         /// <param name="name">z://directory/fileName.ext</param>
         public void getInfoByName(string name)
         {
-                
             
         }
 

@@ -28,6 +28,28 @@ namespace VitCardPropsValue
             return lastId;
         }
 
+        public CardPropsValueCollection[] getByFilePath(string filePath)
+        {
+            var rows = classMysql.getArrayByQuery("" +
+                "SELECT * " +
+                "FROM tb_card_props_value " +
+                "WHERE " +
+                "`file_path` = '" + filePath + "' ");
+            CardPropsValueCollection[] cardPropsValueCollections = null;
+            if (rows.GetLength(0) < 1) return cardPropsValueCollections;
+            cardPropsValueCollections = new CardPropsValueCollection[rows.GetLength(0)];
+
+            int iterator = 0;
+            foreach (var row in rows)
+            {
+                cardPropsValueCollections[iterator].filePath = row["file_path"];
+                cardPropsValueCollections[iterator].value = row["value"];
+                cardPropsValueCollections[iterator].idCardProp = Convert.ToInt32(row["id_card_prop"]);
+                cardPropsValueCollections[iterator].id = Convert.ToInt32(row["id"]);
+            }
+            return cardPropsValueCollections;
+        }
+
         public void updateById(int idCardProps, string value, string filePath, int id)
         {
             int lastId = classMysql.Insert("" +
@@ -58,6 +80,15 @@ namespace VitCardPropsValue
             if (rows.GetLength(0) > 0) return Convert.ToInt32(rows[0]["id"]);
             return 0;
         }
-        
+
+        public struct CardPropsValueCollection
+        {
+            public int idCardProp;
+            public string value;
+            public string filePath;
+            public int id;
+        }
+
+
     }
 }

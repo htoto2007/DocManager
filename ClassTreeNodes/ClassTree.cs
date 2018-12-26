@@ -30,30 +30,21 @@ namespace VitTree
         private readonly VitIcons.FormCompanents formCompanents = new VitIcons.FormCompanents();
         //private readonly FormProgressStatus formProgressStatus = new FormProgressStatus();
 
-        public async void AddFileNode(TreeView treeView)
+        public void AddFileNodeWithoutCard(TreeView treeView)
         {
-            string paths = treeView.SelectedNode.FullPath;
-            TreeNode treeNode = treeView.SelectedNode;
-            ClassUsers classUsers = new ClassUsers();
-            ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
-            OpenFileDialog openFileDialog = new OpenFileDialog
-            {
-                Multiselect = true
-            };
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                await Task.Run(() =>
-                {
-                    treeView.Invoke((Action)(() =>
-                    {
-                        classFTP.Upload2Async(openFileDialog.FileNames, paths + "/");
-                    }));
-                });
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Multiselect = true;
+            if (openFileDialog.ShowDialog() != DialogResult.OK) return;
+            var files = classFiles.createFileWithoutCard(openFileDialog.FileNames, treeView.SelectedNode.FullPath);
+            if (files == null) return;
+            foreach (var file in files) {
+                TreeNode treeNodeFile = new TreeNode();
+                treeNodeFile.Name = file;
+                treeNodeFile.Text = Path.GetFileName(file);
+                treeNodeFile.ImageKey = Path.GetExtension(file).Trim('.');
+
+                treeView.SelectedNode.Nodes.Add(treeNodeFile);
             }
-            treeView.Invoke((Action)(async () =>
-            {
-                await update(treeView);
-            }));
         }
 
         public void sendToDesctop(TreeView treeView)
@@ -101,7 +92,7 @@ namespace VitTree
             }
         }
 
-        public async void AddFileNodeWithCard(TreeView treeView)
+        public void AddFileNodeWithCard(TreeView treeView)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Multiselect = true;
@@ -109,13 +100,13 @@ namespace VitTree
             {
                 VitFiles.ClassFiles classFiles = new VitFiles.ClassFiles();
                 string[] files = classFiles.createFile(openFileDialog.FileNames, treeView.SelectedNode.FullPath);
+                if (files == null) return;
                 foreach (var file in files)
                 {
-                    TreeNode[] treeNodes = treeView.SelectedNode.Nodes.Find(file, false);
-                    if (treeNodes.GetLength(0) == 0)
-                    {
-                        treeView.SelectedNode.Nodes.Add(file, Path.GetFileName(file));
-                    }
+                    TreeNode treeNodeFile = new TreeNode();
+                    treeNodeFile.Name = file;
+                    treeNodeFile.Text = Path.GetFileName(file);
+                    treeNodeFile.ImageKey = Path.GetExtension(file).Trim('.');
                 }
                 treeView.Sort();
             }
@@ -130,6 +121,8 @@ namespace VitTree
             }
 
             FormTreeInput formTreeInput = new FormTreeInput();
+            formTreeInput.Text = "Создание папки";
+            formTreeInput.buttonOk.Text = "Создать";
             if (formTreeInput.ShowDialog() != DialogResult.OK)
             {
                 return;

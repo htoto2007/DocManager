@@ -55,15 +55,60 @@ namespace VitListView
 
         public void FromTreeVuew(TreeView treeView, ListView listView)
         {
+            TreeNode treeNode = treeView.SelectedNode;
             Init(listView);
+            // проверяем является ли выделенный узел файлом
+            if (Path.GetExtension(treeView.SelectedNode.Name) != "")
+            {
+                FromTreeVuewFile(treeView, listView);
+            }
+            else
+            {
+                FromTreeVuewFolder(treeView, listView);
+            }
+        }
+
+        private void FromTreeVuewFile(TreeView treeView, ListView listView)
+        {
+            
+            //listView.BeginUpdate();
+            listView.Columns.Add("");
+            listView.Columns.Add("Название");
+            listView.Columns.Add("Значение");
+            
+            TreeNode treeNode = treeView.SelectedNode;
+            var cardValues = classCardPropsValue.getByFilePath("/" + treeView.SelectedNode.Name);
+            if (cardValues == null)
+            {
+                listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+                listView.EndUpdate();
+                listView.Update();
+                return;
+            }
+            foreach (ClassCardPropsValue.CardPropsValueCollection cardValue in cardValues)
+            {
+                int idCardProp = cardValue.idCardProp;
+                ListViewItem listViewItem = new ListViewItem
+                {
+                    Text = classTypeCardProps.getInfoById(idCardProp).name,
+                    Name = "name"
+                };
+                listViewItem.SubItems.Add(cardValue.value).Name = "value";
+                listView.Items.Add(listViewItem);
+            }
+            listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            //listView.EndUpdate();
+            listView.Update();
+        }
+
+        private void FromTreeVuewFolder(TreeView treeView, ListView listView)
+        {
             listView.Columns.Add("");
             listView.Columns.Add("Имя");
             listView.Columns.Add("тип");
-            //listView.Columns.Add("Дата создания");
             listView.Columns.Add("Путь");
-
+            
             TreeNode treeNode = treeView.SelectedNode;
-
             foreach (TreeNode tn in treeNode.Nodes)
             {
                 ListViewItem listViewItem = new ListViewItem
@@ -76,8 +121,7 @@ namespace VitListView
                     listViewItem.SubItems.Add("file").Name = "type";
                 else
                     listViewItem.SubItems.Add("folder").Name = "type";
-                listViewItem.SubItems.Add(tn.FullPath).Name = "path";
-                //listViewItem.SubItems.Add(fileCollection.createDateTime.ToString()).Name = "createDateTime";
+                listViewItem.SubItems.Add(tn.FullPath.Replace('\\', '/')).Name = "path";
                 listView.Items.Add(listViewItem);
             }
             listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
@@ -127,22 +171,27 @@ namespace VitListView
             });
         }
 
-        public void deleteFiles(ListView listView)
+        public ListViewItem[] deleteFiles(ListView listView)
         {
             ClassNotifyMessage classNotifyMessage = new ClassNotifyMessage();
             DialogResult dialogResult = classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.QUESTION, "Вы точно хотите удплить выбранные обьекты?");
+            ListViewItem[] listViewItems = null;
             if (dialogResult == DialogResult.Yes)
             {
                 List<string> fileList = new List<string>();
+                listViewItems = new ListViewItem[listView.SelectedItems.Count];
+                int iterator = 0;
                 foreach (ListViewItem listViewItem in listView.SelectedItems)
                 {
                     fileList.Add(listViewItem.SubItems["path"].Text);
+                    listViewItems[iterator] = listViewItem;
+                    iterator++;
                     listViewItem.Remove();
                 }
 
                 classFiles.deleteFiles(fileList.ToArray());
-                
             }
+            return listViewItems;
         }
     }
 

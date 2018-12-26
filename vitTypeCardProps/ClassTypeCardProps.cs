@@ -53,5 +53,25 @@ namespace vitTypeCardProps
             }
             return typeCardProps;
         }
+
+        public TypeCardProps getInfoById(int id)
+        {
+            string query = "" +
+                "SELECT * " +
+                "FROM tb_type_card_props " +
+                "WHERE " +
+                "id = '" + id + "'";
+
+            var rows = classMysql.getArrayByQuery(query);
+
+            TypeCardProps typeCardProps = new TypeCardProps();
+            if (rows.GetLength(0) < 1) return typeCardProps;
+            var row = rows[0];
+            typeCardProps.id = Convert.ToInt32(row["id"]);
+            typeCardProps.idType = Convert.ToInt32(row["id_type"]);
+            typeCardProps.typeValue = Convert.ToInt32(row["type_value"]);
+            typeCardProps.name = row["name"];
+            return typeCardProps;
+        }
     }
 }

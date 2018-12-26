@@ -379,8 +379,6 @@ namespace DocManager
 
         private void ToolStripMenuItemAddDocumentWithCard_Click(object sender, EventArgs e)
         {
-            //ClassFileCard classFileCard = new ClassFileCard();
-            //classFileCard.create();
             classTree.AddFileNodeWithCard(treeView1);
         }
 
@@ -402,11 +400,18 @@ namespace DocManager
             }else if(lastControl.GetType() == typeof(ListView))
             {
                 ClassLisView classLisView = new ClassLisView();
-                classLisView.deleteFiles(listView1);
-                foreach(ListViewItem listViewItem in listView1.SelectedItems)
+                //ListViewItem[] listViewItems = new ListViewItem[listView1.SelectedItems.Count];
+
+                ListViewItem[] listViewItems = classLisView.deleteFiles(listView1);
+                if (listViewItems == null)
+                {
+                    Console.WriteLine("listViewItems " + listViewItems);
+                    return;
+                }
+                foreach (ListViewItem listViewItem in listViewItems)
                 {
                     TreeNode[] treeNodes = treeView1.Nodes.Find(listViewItem.SubItems["path"].Text.Replace('\\', '/'), true);
-                    if(treeNodes.GetLength(0) > 0)
+                    if (treeNodes.GetLength(0) > 0)
                     {
                         treeNodes[0].Remove();
                     }
@@ -496,7 +501,7 @@ namespace DocManager
         /// <param name="e"></param>
         private void ToolStripMenuItemWithoutCard_ClickAsync(object sender, EventArgs e)
         {
-            classTree.AddFileNode(treeView1);
+            classTree.AddFileNodeWithoutCard(treeView1);
         }
 
         private void treeView1_AfterExpand(object sender, TreeViewEventArgs e)
@@ -507,7 +512,7 @@ namespace DocManager
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
             //classTree.preLoadNodes(treeView1);
-
+            Console.WriteLine(treeView1.SelectedNode.Name);
             VitListView.ClassLisView classLisView = new VitListView.ClassLisView();
             classLisView.FromTreeVuew(treeView1, listView1);
         }
