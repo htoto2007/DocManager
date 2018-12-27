@@ -17,11 +17,12 @@ namespace VitIcons
             imageList.Images.Add("default_folder", Properties.ResourceColorImage.icons8_folder_48);
             imageList.Images.Add("root", Properties.ResourceColorImage.icons8_tree_structure_40);
 
+            Console.WriteLine("Обновление базы значков... ");
             foreach (string path in Directory.GetFiles(VitSettings.Properties.GeneralsSettings.Default.fileTypeIcons))
             {
                 Image image = Image.FromFile(path);
                 imageList.Images.Add(Path.GetFileNameWithoutExtension(path).TrimStart('.'), image);
-                Console.WriteLine("Загружен значек: " + Path.GetFileNameWithoutExtension(path).TrimStart('.'));
+                
             }
 
             

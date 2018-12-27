@@ -55,7 +55,6 @@ namespace VitListView
 
         public void FromTreeVuew(TreeView treeView, ListView listView)
         {
-            TreeNode treeNode = treeView.SelectedNode;
             Init(listView);
             // проверяем является ли выделенный узел файлом
             if (Path.GetExtension(treeView.SelectedNode.Name) != "")
@@ -70,22 +69,22 @@ namespace VitListView
 
         private void FromTreeVuewFile(TreeView treeView, ListView listView)
         {
-            
-            //listView.BeginUpdate();
-            listView.Columns.Add("");
             listView.Columns.Add("Название");
             listView.Columns.Add("Значение");
             
             TreeNode treeNode = treeView.SelectedNode;
-            var cardValues = classCardPropsValue.getByFilePath("/" + treeView.SelectedNode.Name);
-            if (cardValues == null)
+            ClassCardPropsValue.CardPropsValueCollection[] cardPropsValueCollections = classCardPropsValue.getByFilePath("/" + treeNode.Name);
+            
+            // если неудалось найти карточку
+            if (cardPropsValueCollections == null)
             {
                 listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
                 listView.EndUpdate();
                 listView.Update();
                 return;
             }
-            foreach (ClassCardPropsValue.CardPropsValueCollection cardValue in cardValues)
+
+            foreach (ClassCardPropsValue.CardPropsValueCollection cardValue in cardPropsValueCollections)
             {
                 int idCardProp = cardValue.idCardProp;
                 ListViewItem listViewItem = new ListViewItem
@@ -97,7 +96,7 @@ namespace VitListView
                 listView.Items.Add(listViewItem);
             }
             listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-            //listView.EndUpdate();
+            listView.EndUpdate();
             listView.Update();
         }
 
@@ -189,7 +188,7 @@ namespace VitListView
                     listViewItem.Remove();
                 }
 
-                classFiles.deleteFiles(fileList.ToArray());
+                classFiles.DeleteFiles(fileList.ToArray());
             }
             return listViewItems;
         }

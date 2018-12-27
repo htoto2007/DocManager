@@ -99,7 +99,7 @@ namespace VitTree
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 VitFiles.ClassFiles classFiles = new VitFiles.ClassFiles();
-                string[] files = classFiles.createFile(openFileDialog.FileNames, treeView.SelectedNode.FullPath);
+                string[] files = classFiles.createFileWithCard(openFileDialog.FileNames, treeView.SelectedNode.FullPath);
                 if (files == null) return;
                 foreach (var file in files)
                 {

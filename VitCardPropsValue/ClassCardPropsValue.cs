@@ -13,8 +13,6 @@ namespace VitCardPropsValue
             int id = IsMatches(filePath, idCardProps);
             if (id != 0)
             {
-                //ClassNotifyMessage classNotifyMessage = new ClassNotifyMessage();
-                //classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.USER_ERROR, filePath + " - файл с таким же расположением уже существует!");
                 updateById(idCardProps, value, filePath, id);
                 return id;
             }
@@ -46,6 +44,7 @@ namespace VitCardPropsValue
                 cardPropsValueCollections[iterator].value = row["value"];
                 cardPropsValueCollections[iterator].idCardProp = Convert.ToInt32(row["id_card_prop"]);
                 cardPropsValueCollections[iterator].id = Convert.ToInt32(row["id"]);
+                iterator++;
             }
             return cardPropsValueCollections;
         }
