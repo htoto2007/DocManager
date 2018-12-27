@@ -202,6 +202,7 @@ namespace DocManager
             ClassNotifyMessage classNotifyMessage = new ClassNotifyMessage();
             if (listView1.SelectedItems.Count == 1)
             {
+                if (listView1.SelectedItems[0].SubItems["path"] == null) return;
                 string openFilePath = VitSettings.Properties.FTPSettings.Default.openFilePath + "\\" + Path.GetFileName(listView1.SelectedItems[0].SubItems["path"].Text);
                 string remoteFilePath = listView1.SelectedItems[0].SubItems["path"].Text;
                 ClassUsers classUsers = new ClassUsers();
@@ -400,7 +401,6 @@ namespace DocManager
             }else if(lastControl.GetType() == typeof(ListView))
             {
                 ClassLisView classLisView = new ClassLisView();
-                //ListViewItem[] listViewItems = new ListViewItem[listView1.SelectedItems.Count];
 
                 ListViewItem[] listViewItems = classLisView.deleteFiles(listView1);
                 if (listViewItems == null)
@@ -410,7 +410,8 @@ namespace DocManager
                 }
                 foreach (ListViewItem listViewItem in listViewItems)
                 {
-                    TreeNode[] treeNodes = treeView1.Nodes.Find(listViewItem.SubItems["path"].Text.Replace('\\', '/'), true);
+                    TreeNode[] treeNodes = treeView1.Nodes.Find(listViewItem.SubItems["path"].Text, true);
+                    Console.WriteLine("find " + treeNodes.GetLength(0) + " files");
                     if (treeNodes.GetLength(0) > 0)
                     {
                         treeNodes[0].Remove();

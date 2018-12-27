@@ -37,7 +37,11 @@ namespace VitTree
             if (openFileDialog.ShowDialog() != DialogResult.OK) return;
             var files = classFiles.createFileWithoutCard(openFileDialog.FileNames, treeView.SelectedNode.FullPath);
             if (files == null) return;
+
+            // Добавляем узлы дерева из загруженых документов
             foreach (var file in files) {
+                TreeNode[] treeNodes = treeView.SelectedNode.Nodes.Find(file, false);
+                if (treeNodes.GetLength(0) > 0) continue;
                 TreeNode treeNodeFile = new TreeNode();
                 treeNodeFile.Name = file;
                 treeNodeFile.Text = Path.GetFileName(file);
@@ -208,13 +212,15 @@ namespace VitTree
 
             ClassUsers classUsers = new ClassUsers();
             ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
-            classFTP.ChangeWorkingDirectory(treeNode.FullPath);
-            foreach (string directory in classFTP.ListDirectory())
+            //classFTP.ChangeWorkingDirectory(treeNode.FullPath);
+            string[] files = classFTP.ListDirectory2("/" + treeNode.FullPath);
+            foreach (string file in files)
             {
+                if (file.Contains("..")) continue;
                 TreeNode tn = new TreeNode
                 {
-                    Name = directory,
-                    Text = Path.GetFileName(directory)
+                    Name = file,
+                    Text = Path.GetFileName(file)
                 };
                 addIcon(tn);
                 treeNode.Nodes.Add(tn);
@@ -225,7 +231,7 @@ namespace VitTree
         {
             ClassUsers classUsers = new ClassUsers();
             ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
-            string[] directoryes = classFTP.ListDirectory();
+            string[] directoryes = classFTP.ListDirectory2("/");
 
             treeView.ImageList = ClassImageList.imageList;
             treeView.Sort();
@@ -234,10 +240,11 @@ namespace VitTree
             {
                 foreach (string direcory in directoryes)
                 {
+                    if (direcory.Contains("..")) continue;
                     TreeNode treeNode = new TreeNode
                     {
                         Name = direcory,
-                        Text = direcory
+                        Text = direcory.Trim('/')
                     };
                     addIcon(treeNode);
 
@@ -311,22 +318,23 @@ namespace VitTree
 
         private async Task getSubdirectoryes(ClassFTP classFTP, TreeNode treeNode, string directory)
         {
-            classFTP.ChangeWorkingDirectory(directory);
-            Console.WriteLine(classFTP.ChangeWorkingDirectory(""));
-            string[] dsubirectoryes = classFTP.ListDirectory();
-            foreach (string subdirecory in dsubirectoryes)
+            //classFTP.ChangeWorkingDirectory(directory);
+            //Console.WriteLine(classFTP.ChangeWorkingDirectory(""));
+            string[] dsubirectoryes = classFTP.ListDirectory2(directory);
+            foreach (string subdirectory in dsubirectoryes)
             {
+                if (subdirectory.Contains("..")) continue;
+                Console.WriteLine(subdirectory);
                 TreeNode tn = new TreeNode
                 {
-                    Name = subdirecory,
-                    Text = Path.GetFileName(subdirecory)
+                    Name = subdirectory,
+                    Text = Path.GetFileName(subdirectory)
                 };
                 addIcon(tn);
-
                 treeNode.Nodes.Add(tn);
             }
-            classFTP.ChangeWorkingDirectory("..");
-            Console.WriteLine(classFTP.ChangeWorkingDirectory(""));
+            //classFTP.ChangeWorkingDirectory("..");
+            //Console.WriteLine(classFTP.ChangeWorkingDirectory(""));
         }
 
         public void rename(TreeView treeView)

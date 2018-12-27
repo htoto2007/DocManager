@@ -519,6 +519,37 @@ namespace VitFTP
             return res.ToArray();
         }
 
+        public string getFileFullNAme(string path)
+        {
+            string fileFullName = "";
+            using (Session session = new Session())
+            {
+                // Connect
+                session.Open(sessionOptions);
+                fileFullName = session.GetFileInfo(path).FullName;
+                session.Close();
+            }
+            return fileFullName;
+        }
+        
+
+        public string[] ListDirectory2(string path)
+        {
+            List<string> fileList = new List<string>();
+            using (Session session = new Session())
+            {
+                // Connect
+                session.Open(sessionOptions);
+                RemoteFileInfoCollection files = session.ListDirectory(path).Files;
+                foreach (RemoteFileInfo file in files)
+                {
+                    fileList.Add(file.FullName);
+                }
+                session.Close();
+            }
+            return fileList.ToArray();
+        }
+
         public string[] ListDirectory()
         {
             List<string> list = new List<string>();
