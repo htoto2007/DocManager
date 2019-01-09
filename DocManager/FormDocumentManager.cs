@@ -160,7 +160,7 @@ namespace DocManager
         private void Form1_Shown(object sender, EventArgs e)
         {
             Enabled = false;
-            classTree.init(treeView1);
+            classTree.Init(treeView1);
             Enabled = true;
         }
 
@@ -410,7 +410,7 @@ namespace DocManager
                 }
                 foreach (ListViewItem listViewItem in listViewItems)
                 {
-                    TreeNode[] treeNodes = treeView1.Nodes.Find(listViewItem.SubItems["path"].Text, true);
+                    TreeNode[] treeNodes = treeView1.Nodes.Find("/" + listViewItem.SubItems["path"].Text, true);
                     Console.WriteLine("find " + treeNodes.GetLength(0) + " files");
                     if (treeNodes.GetLength(0) > 0)
                     {

@@ -9,7 +9,7 @@ namespace VitTree
         {
             InitializeComponent();
             VitTree.ClassTree classTree = new ClassTree();
-            classTree.init(treeView1);
+            classTree.Init(treeView1);
             buttonOk.Enabled = false;
         }
 

@@ -227,13 +227,15 @@ namespace VitTree
             }
         }
 
-        public async void init(TreeView treeView)
+        public async void Init(TreeView treeView)
         {
             ClassUsers classUsers = new ClassUsers();
             ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
             string[] directoryes = classFTP.ListDirectory2("/");
 
             treeView.ImageList = ClassImageList.imageList;
+            //treeView.HideSelection = true;
+            //treeView.FullRowSelect = true;
             treeView.Sort();
             treeView.Nodes.Clear();
             await Task.Run(async () =>
@@ -327,7 +329,7 @@ namespace VitTree
                 Console.WriteLine(subdirectory);
                 TreeNode tn = new TreeNode
                 {
-                    Name = subdirectory,
+                    Name = subdirectory.Replace('\\', '/'),
                     Text = Path.GetFileName(subdirectory)
                 };
                 addIcon(tn);
