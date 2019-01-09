@@ -73,13 +73,40 @@ namespace VitFTP
             public bool execute;
         }
 
-        public void changeUserProperties(string userName)
+        public void changeUserProperties(string userName, string optionName, string value)
         {
             string xmlFileName = "FileZilla Server.xml";
             XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.Load(xmlFileName);
             XmlElement xRoot = xmlDoc.DocumentElement;
 
+            XmlElement xmlUsers = getXmlUsers(xRoot);
+            XmlElement xmlUser = getXmlUserByName(xmlUsers);
+            
+            // проверяем 
+            if(xmlUser == null)
+            {
+                classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, "Пользовател не найден!");
+                return;
+            }
+
+            XmlNodeList xmlNodeList = xmlUser.GetElementsByTagName("Option");
+            foreach (XmlDocument xmlElem in xmlNodeList)
+            {
+                if (xmlElem.Name == optionName)
+                {
+                    xmlElem.Value = value;
+                    break;
+                }
+            }
+
+
+
+            return;
+        }
+
+        private XmlElement getXmlUsers(XmlElement xRoot)
+        {
             XmlElement xmlUsers = null;
             // получаем елемент с пользователями
             foreach (XmlElement xmlElem in xRoot.ChildNodes)
@@ -87,39 +114,134 @@ namespace VitFTP
                 if (xmlElem.Name == "Users")
                     xmlUsers = xmlElem;
             }
+            return xmlUsers;
+        }
 
+        /// <summary>
+        /// Получает узел пользователя подпадаюзего под имя
+        /// </summary>
+        /// <param name="xmlUsers">Узел списка пользователей</param>
+        /// <returns></returns>
+        private XmlElement getXmlUserByName(XmlElement xmlUsers)
+        {
+            XmlElement xmlUser = null;
             foreach (XmlElement xmlElem in xmlUsers.ChildNodes)
             {
-
+                if (xmlElem.Name == userName) xmlUser = xmlElem;
             }
+            return xmlUser;
         }
 
+        public struct UserOptionName
+        {
+            
+            public const string NAME = "Name";
+
+            public const string PASS = "Pass";
+            /// <summary>
+            /// Активирует или дизактивирует пользователя
+            /// </summary>
+            public const string ENABLE = "Enabled";
+            public const string SALT = "Salt";
+            /// <summary>
+            /// Группа доступа присвоеная пользоватклю
+            /// </summary>
+            public const string GROUP = "Group";
+            public const string BYPASSSERVERUSERLIMIT = "Bypass server userlimit";
+            /// <summary>
+            /// Лимит подключившихся пользователей с такими же ключами доступа
+            /// </summary>
+            public const string USERLIMIT = "User Limit";
+            /// <summary>
+            /// Лимит подключений с одного IP адреса
+            /// </summary>
+            public const string IPLIMIT = "IP Limit";
+            /// <summary>
+            /// Комментарий к акаунту пользователя на FTP сервере
+            /// </summary>
+            public const string COMMENTS = "Comments";
+            public const string FORCESSL = "ForceSsl";
+        }
+
+        /// <summary>
+        /// Представление объекта пользователя
+        /// </summary>
         public struct UserCollection
         {
+            /// <summary>
+            /// Login пользователя для входа на FTP сервер
+            /// </summary>
             public string name;
+            /// <summary>
+            /// Проль для входа на FTP сервер
+            /// </summary>
             public string pass;
+            /// <summary>
+            /// Активирует или дизактивирует пользователя
+            /// </summary>
             public bool enable;
             public string salt;
+            /// <summary>
+            /// Группа доступа присвоеная пользоватклю
+            /// </summary>
             public string group;
             public bool bypassServerUserlimit;
+            /// <summary>
+            /// Лимит подключившихся пользователей с такими же ключами доступа
+            /// </summary>
             public int userLimit;
+            /// <summary>
+            /// Лимит подключений с одного IP адреса
+            /// </summary>
             public int ipLimit;
+            /// <summary>
+            /// Комментарий к акаунту пользователя на FTP сервере
+            /// </summary>
             public string comments;
             public bool forceSsl;
+            /// <summary>
+            /// Содержит коллекцию файлов и папок с определенными правами доступа этого пользователя
+            /// </summary>
             public DirCollection DirCollection;
-
         }
 
+        /// <summary>
+        /// Содержит коллекцию файлов и папок с определенными правами доступа этого пользователя
+        /// </summary>
         public struct DirCollection
         {
+            /// <summary>
+            /// Путь до папки доступной пользователю
+            /// </summary>
             public string dir;
+            /// <summary>
+            /// Запись файла
+            /// </summary>
             public bool FileWrite;
+            /// <summary>
+            /// Удаление файла
+            /// </summary>
             public bool FileDelete;
+            /// <summary>
+            /// Добавление в конец файла
+            /// </summary>
             public bool FileAppend;
+            /// <summary>
+            /// Создание папки
+            /// </summary>
             public bool DirCreate;
+            /// <summary>
+            /// Удаление папки
+            /// </summary>
             public bool DirDelete;
+            /// <summary>
+            /// Получение списка файлов и папок
+            /// </summary>
             public bool DirList;
             public bool DirSubdirs;
+            /// <summary>
+            /// Домашняя папка (может быть только одна)
+            /// </summary>
             public bool IsHome;
             public bool AutoCreate;
         }
@@ -543,7 +665,7 @@ namespace VitFTP
                 RemoteFileInfoCollection files = session.ListDirectory(path).Files;
                 foreach (RemoteFileInfo file in files)
                 {
-                    fileList.Add(file.FullName);
+                    fileList.Add(file.FullName.Replace("\\", "/"));
                 }
                 session.Close();
             }

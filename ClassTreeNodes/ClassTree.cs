@@ -326,7 +326,8 @@ namespace VitTree
             foreach (string subdirectory in dsubirectoryes)
             {
                 if (subdirectory.Contains("..")) continue;
-                Console.WriteLine(subdirectory);
+                
+                Console.WriteLine(subdirectory.Replace('\\', '/'));
                 TreeNode tn = new TreeNode
                 {
                     Name = subdirectory.Replace('\\', '/'),

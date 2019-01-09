@@ -100,6 +100,11 @@ namespace VitUsers
             }
         }
 
+        private void initGroups()
+        {
+
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             FormUserEdit formUserAdd = new FormUserEdit();
