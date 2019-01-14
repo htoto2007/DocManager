@@ -244,6 +244,33 @@ namespace VitUsers
             return userColection;
         }
 
+        public UserColection[] GetUserByidAccessGroup(int idAccessGroup)
+        {
+            Dictionary<string, string>[] rows = classMysql.getArrayByQuery("" +
+                "SELECT * " +
+                "FROM tb_users " +
+                "WHERE id_access_group = " + idAccessGroup);
+
+            UserColection[] userColection = new UserColection[rows.GetLength(0)];
+
+            for (int i = 0; i < rows.GetLength(0); i++) {
+                userColection[i].firstName = rows[i]["first_name"];
+                userColection[i].lastName = rows[i]["last_name"];
+                userColection[i].middleName = rows[i]["middle_name"];
+                userColection[i].login = rows[i]["login"];
+                userColection[i].idPosition = Convert.ToInt32(rows[i]["id_position"]);
+                userColection[i].idSubdivision = Convert.ToInt32(rows[i]["id_subdivision"]);
+                userColection[i].id = Convert.ToInt32(rows[i]["id"]);
+                userColection[i].password = rows[i]["password"];
+                userColection[i].imagePath = rows[i]["image"];
+                userColection[i].idAccessGroup = Convert.ToInt32(rows[i]["id_access_group"]);
+                userColection[i].mail = rows[i]["mail"];
+                userColection[i].mailPass = rows[i]["mail_password"];
+            }
+
+            return userColection;
+        }
+
         /// <summary>
         /// Форма входа пользователя
         /// </summary>

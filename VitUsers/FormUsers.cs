@@ -19,6 +19,7 @@ namespace VitUsers
         private void Init()
         {
             initUsers();
+            initGroups();
         }
 
         private void initUsers()
@@ -45,7 +46,7 @@ namespace VitUsers
             ClassUsers classUsers = new ClassUsers();
             UserColection[] userColections = classUsers.GetAllUsers();
             VitAccessGroup.ClassAccessGroup classAccessGroup = new ClassAccessGroup();
-            foreach (ClassUsers.UserColection userColection in userColections)
+            foreach (UserColection userColection in userColections)
             {
                 string accessGroupName = classAccessGroup.getNameById(userColection.idAccessGroup);
 
@@ -103,6 +104,37 @@ namespace VitUsers
         private void initGroups()
         {
 
+            VitIcons.FormCompanents formCompanents = new VitIcons.FormCompanents();
+            
+            listViewUsersGroups.Clear();
+            listViewUsersGroups.MultiSelect = true;
+            listViewUsersGroups.LargeImageList = formCompanents.imageListColor;
+            listViewUsersGroups.SmallImageList = formCompanents.imageListColor;
+            listViewUsersGroups.BeginUpdate();
+            listViewUsersGroups.View = View.Details;
+            listViewUsersGroups.FullRowSelect = true;
+            listViewUsersGroups.HideSelection = false;
+            listViewUsersGroups.Columns.Clear();
+            listViewUsersGroups.Columns.Add("#");
+            listViewUsersGroups.Columns.Add("Название группы");
+            listViewUsersGroups.Columns.Add("Количество пользователей");
+            listViewUsersGroups.Columns.Add("Ранг");
+            ClassAccessGroup classAccessGroup = new ClassAccessGroup();
+            var groups = classAccessGroup.getInfo();
+            foreach (var group in groups)
+            {
+                ClassUsers classUsers = new ClassUsers();
+                var users = classUsers.GetUserByidAccessGroup(group.id);
+                ListViewItem listViewItem = new ListViewItem(group.id.ToString());
+                listViewItem.Name = "id";
+                listViewItem.SubItems.Add(group.name).Name = "mame";
+                listViewItem.SubItems.Add(users.GetLength(0).ToString()).Name = "usersCount";
+                listViewItem.SubItems.Add(group.rank.ToString()).Name = "rank";
+                listViewUsersGroups.Items.Add(listViewItem);
+            }
+            listViewUsersGroups.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            listViewUsersGroups.EndUpdate();
+            listViewUsersGroups.Update();
         }
 
         private void button1_Click(object sender, EventArgs e)

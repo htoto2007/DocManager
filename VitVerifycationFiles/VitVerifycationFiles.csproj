@@ -83,10 +83,6 @@
       <Project>{0D2381AF-887D-4DE5-98FA-1E77AD098931}</Project>
       <Name>VitControls</Name>
     </ProjectReference>
-    <ProjectReference Include="..\VitExcel\VitExcel.csproj">
-      <Project>{b66f5c21-37f4-44ba-ac6b-fcaeb2a6a4f3}</Project>
-      <Name>VitExcel</Name>
-    </ProjectReference>
     <ProjectReference Include="..\VitFiles\VitFiles.csproj">
       <Project>{66017a02-c3d9-4809-b788-6b91df08be99}</Project>
       <Name>VitFiles</Name>
@@ -94,10 +90,6 @@
     <ProjectReference Include="..\VitSettings\VitSettings.csproj">
       <Project>{8ba14954-8676-4a60-b58f-7e5d8f71eac8}</Project>
       <Name>VitSettings</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\VitSyncronizationFiles\VitSyncronizationFiles.csproj">
-      <Project>{ee3331d5-9321-497f-8eb5-a23ba585f191}</Project>
-      <Name>VitSyncronizationFiles</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
