@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormUsers));
-            this.windowHeader1 = new VitControls.WindowHeader();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageUsers = new System.Windows.Forms.TabPage();
@@ -64,12 +63,12 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
-            this.listView2 = new System.Windows.Forms.ListView();
+            this.listViewGroups = new System.Windows.Forms.ListView();
             this.tabControl3 = new System.Windows.Forms.TabControl();
             this.tabPageGroupsProperties = new System.Windows.Forms.TabPage();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textBoxGroupsDescription = new System.Windows.Forms.TextBox();
+            this.textBoxGroupsUsersCount = new System.Windows.Forms.TextBox();
+            this.textBoxGroupsNameGroup = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -89,6 +88,7 @@
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.windowResizer1 = new VitControls.WindowResizer();
+            this.windowHeader1 = new VitControls.WindowHeader();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageUsers.SuspendLayout();
@@ -104,23 +104,6 @@
             this.tabPageFolsers.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // windowHeader1
-            // 
-            this.windowHeader1.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
-            this.windowHeader1.AutoSize = true;
-            this.windowHeader1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.windowHeader1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(207)))), ((int)(((byte)(251)))));
-            this.windowHeader1.close = true;
-            this.windowHeader1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.windowHeader1.Location = new System.Drawing.Point(1, 1);
-            this.windowHeader1.Margin = new System.Windows.Forms.Padding(0);
-            this.windowHeader1.maximize = false;
-            this.windowHeader1.minimize = false;
-            this.windowHeader1.Name = "windowHeader1";
-            this.windowHeader1.showInTaskbar = false;
-            this.windowHeader1.Size = new System.Drawing.Size(798, 34);
-            this.windowHeader1.TabIndex = 13;
             // 
             // panel1
             // 
@@ -248,7 +231,7 @@
             this.button1.Text = "Добавить пользователя";
             this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.buttonUsersAddUser_Click);
             // 
             // listViewUsers
             // 
@@ -423,7 +406,7 @@
             this.listViewUsersGroups.Dock = System.Windows.Forms.DockStyle.Left;
             this.listViewUsersGroups.Location = new System.Drawing.Point(3, 3);
             this.listViewUsersGroups.Name = "listViewUsersGroups";
-            this.listViewUsersGroups.Size = new System.Drawing.Size(565, 161);
+            this.listViewUsersGroups.Size = new System.Drawing.Size(565, 165);
             this.listViewUsersGroups.TabIndex = 1;
             this.listViewUsersGroups.UseCompatibleStateImageBehavior = false;
             // 
@@ -475,7 +458,7 @@
             this.treeView2.Dock = System.Windows.Forms.DockStyle.Left;
             this.treeView2.Location = new System.Drawing.Point(0, 0);
             this.treeView2.Name = "treeView2";
-            this.treeView2.Size = new System.Drawing.Size(568, 167);
+            this.treeView2.Size = new System.Drawing.Size(568, 171);
             this.treeView2.TabIndex = 0;
             // 
             // tabPageGroups
@@ -483,7 +466,7 @@
             this.tabPageGroups.Controls.Add(this.button4);
             this.tabPageGroups.Controls.Add(this.button5);
             this.tabPageGroups.Controls.Add(this.button6);
-            this.tabPageGroups.Controls.Add(this.listView2);
+            this.tabPageGroups.Controls.Add(this.listViewGroups);
             this.tabPageGroups.Controls.Add(this.tabControl3);
             this.tabPageGroups.Location = new System.Drawing.Point(4, 26);
             this.tabPageGroups.Name = "tabPageGroups";
@@ -532,15 +515,16 @@
             this.button6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button6.UseVisualStyleBackColor = true;
             // 
-            // listView2
+            // listViewGroups
             // 
-            this.listView2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.listView2.Location = new System.Drawing.Point(3, 3);
-            this.listView2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(572, 301);
-            this.listView2.TabIndex = 27;
-            this.listView2.UseCompatibleStateImageBehavior = false;
+            this.listViewGroups.Dock = System.Windows.Forms.DockStyle.Left;
+            this.listViewGroups.Location = new System.Drawing.Point(3, 3);
+            this.listViewGroups.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.listViewGroups.Name = "listViewGroups";
+            this.listViewGroups.Size = new System.Drawing.Size(572, 301);
+            this.listViewGroups.TabIndex = 27;
+            this.listViewGroups.UseCompatibleStateImageBehavior = false;
+            this.listViewGroups.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.listViewGroups_ItemSelectionChanged);
             // 
             // tabControl3
             // 
@@ -557,9 +541,9 @@
             // 
             // tabPageGroupsProperties
             // 
-            this.tabPageGroupsProperties.Controls.Add(this.textBox3);
-            this.tabPageGroupsProperties.Controls.Add(this.textBox4);
-            this.tabPageGroupsProperties.Controls.Add(this.textBox5);
+            this.tabPageGroupsProperties.Controls.Add(this.textBoxGroupsDescription);
+            this.tabPageGroupsProperties.Controls.Add(this.textBoxGroupsUsersCount);
+            this.tabPageGroupsProperties.Controls.Add(this.textBoxGroupsNameGroup);
             this.tabPageGroupsProperties.Controls.Add(this.label3);
             this.tabPageGroupsProperties.Controls.Add(this.label4);
             this.tabPageGroupsProperties.Controls.Add(this.label10);
@@ -571,29 +555,29 @@
             this.tabPageGroupsProperties.Text = "Свойства";
             this.tabPageGroupsProperties.UseVisualStyleBackColor = true;
             // 
-            // textBox3
+            // textBoxGroupsDescription
             // 
-            this.textBox3.Location = new System.Drawing.Point(197, 67);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(446, 25);
-            this.textBox3.TabIndex = 68;
+            this.textBoxGroupsDescription.Location = new System.Drawing.Point(197, 67);
+            this.textBoxGroupsDescription.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBoxGroupsDescription.Name = "textBoxGroupsDescription";
+            this.textBoxGroupsDescription.Size = new System.Drawing.Size(446, 25);
+            this.textBoxGroupsDescription.TabIndex = 68;
             // 
-            // textBox4
+            // textBoxGroupsUsersCount
             // 
-            this.textBox4.Location = new System.Drawing.Point(197, 34);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(446, 25);
-            this.textBox4.TabIndex = 67;
+            this.textBoxGroupsUsersCount.Location = new System.Drawing.Point(197, 34);
+            this.textBoxGroupsUsersCount.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBoxGroupsUsersCount.Name = "textBoxGroupsUsersCount";
+            this.textBoxGroupsUsersCount.Size = new System.Drawing.Size(446, 25);
+            this.textBoxGroupsUsersCount.TabIndex = 67;
             // 
-            // textBox5
+            // textBoxGroupsNameGroup
             // 
-            this.textBox5.Location = new System.Drawing.Point(197, 1);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(446, 25);
-            this.textBox5.TabIndex = 66;
+            this.textBoxGroupsNameGroup.Location = new System.Drawing.Point(197, 1);
+            this.textBoxGroupsNameGroup.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBoxGroupsNameGroup.Name = "textBoxGroupsNameGroup";
+            this.textBoxGroupsNameGroup.Size = new System.Drawing.Size(446, 25);
+            this.textBoxGroupsNameGroup.TabIndex = 66;
             // 
             // label3
             // 
@@ -748,7 +732,7 @@
             this.treeView3.Dock = System.Windows.Forms.DockStyle.Left;
             this.treeView3.Location = new System.Drawing.Point(0, 0);
             this.treeView3.Name = "treeView3";
-            this.treeView3.Size = new System.Drawing.Size(568, 167);
+            this.treeView3.Size = new System.Drawing.Size(568, 171);
             this.treeView3.TabIndex = 4;
             // 
             // tabPageFolsers
@@ -792,6 +776,23 @@
             this.windowResizer1.Name = "windowResizer1";
             this.windowResizer1.Size = new System.Drawing.Size(24, 27);
             this.windowResizer1.TabIndex = 0;
+            // 
+            // windowHeader1
+            // 
+            this.windowHeader1.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.windowHeader1.AutoSize = true;
+            this.windowHeader1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
+            this.windowHeader1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(207)))), ((int)(((byte)(251)))));
+            this.windowHeader1.close = true;
+            this.windowHeader1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.windowHeader1.Location = new System.Drawing.Point(1, 1);
+            this.windowHeader1.Margin = new System.Windows.Forms.Padding(0);
+            this.windowHeader1.maximize = false;
+            this.windowHeader1.minimize = false;
+            this.windowHeader1.Name = "windowHeader1";
+            this.windowHeader1.showInTaskbar = false;
+            this.windowHeader1.Size = new System.Drawing.Size(798, 34);
+            this.windowHeader1.TabIndex = 13;
             // 
             // FormUsers
             // 
@@ -870,12 +871,12 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
-        public System.Windows.Forms.ListView listView2;
+        public System.Windows.Forms.ListView listViewGroups;
         private System.Windows.Forms.TabControl tabControl3;
         private System.Windows.Forms.TabPage tabPageGroupsProperties;
-        public System.Windows.Forms.TextBox textBox3;
-        public System.Windows.Forms.TextBox textBox4;
-        public System.Windows.Forms.TextBox textBox5;
+        public System.Windows.Forms.TextBox textBoxGroupsDescription;
+        public System.Windows.Forms.TextBox textBoxGroupsUsersCount;
+        public System.Windows.Forms.TextBox textBoxGroupsNameGroup;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label10;

@@ -38,6 +38,7 @@ namespace VitAccessGroup
             if (rows.GetLength(0) < 1) return accessGroupCollection;
 
             accessGroupCollection.name = rows[0]["name"];
+            accessGroupCollection.description = rows[0]["description"];
             accessGroupCollection.id = Convert.ToInt32(rows[0]["id"]);
             accessGroupCollection.rank = Convert.ToInt32(rows[0]["rank"]);
             return accessGroupCollection;
@@ -70,6 +71,7 @@ namespace VitAccessGroup
             public int id;
             public string name;
             public int rank;
+            public string description;
         }
 
         public struct Ranks

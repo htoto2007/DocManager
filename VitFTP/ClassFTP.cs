@@ -26,7 +26,6 @@ namespace VitFTP
         private readonly SessionOptions sessionOptions;
         private readonly string userName;
         ClassNotifyMessage classNotifyMessage = new ClassNotifyMessage();
-
         
         private string uri;
 
@@ -80,8 +79,10 @@ namespace VitFTP
             xmlDoc.Load(xmlFileName);
             XmlElement xRoot = xmlDoc.DocumentElement;
 
+            // получили список польщ=зователей
             XmlElement xmlUsers = getXmlUsers(xRoot);
-            XmlElement xmlUser = getXmlUserByName(xmlUsers);
+            // получили пользователя
+            XmlElement xmlUser = getXmlUserByName(xmlUsers, userName);
             
             // проверяем 
             if(xmlUser == null)
@@ -91,6 +92,40 @@ namespace VitFTP
             }
 
             XmlNodeList xmlNodeList = xmlUser.GetElementsByTagName("Option");
+            for (int i = 0; i < xmlNodeList.Count; i++)
+            {
+                if (xmlNodeList[i].Name == optionName)
+                {
+                    xmlNodeList[i].Value = value;
+                    xmlUser.ReplaceChild(xmlNodeList[i], xmlUser.GetElementsByTagName("Option")[i]);
+                    break;
+                }
+            }
+            xmlUsers.ReplaceChild(xmlUser, getXmlUserByName(xmlUsers, userName));
+            xRoot.ReplaceChild(xmlUsers, getXmlUsers(xRoot));
+            return;
+        }
+
+        public void changeUserPermissions(string userName, string optionName, string value)
+        {
+            string xmlFileName = "FileZilla Server.xml";
+            XmlDocument xmlDoc = new XmlDocument();
+            xmlDoc.Load(xmlFileName);
+            XmlElement xRoot = xmlDoc.DocumentElement;
+
+            // получили список польщ=зователей
+            XmlElement xmlUsers = getXmlUsers(xRoot);
+            // получили пользователя
+            XmlElement xmlUser = getXmlUserByName(xmlUsers, userName);
+
+            // проверяем 
+            if (xmlUser == null)
+            {
+                classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, "Пользовател не найден!");
+                return;
+            }
+
+            XmlNodeList xmlNodeList = xmlUser.GetElementsByTagName("oermissions");
             foreach (XmlDocument xmlElem in xmlNodeList)
             {
                 if (xmlElem.Name == optionName)
@@ -99,11 +134,10 @@ namespace VitFTP
                     break;
                 }
             }
-
-
-
             return;
         }
+
+        
 
         private XmlElement getXmlUsers(XmlElement xRoot)
         {
@@ -122,7 +156,7 @@ namespace VitFTP
         /// </summary>
         /// <param name="xmlUsers">Узел списка пользователей</param>
         /// <returns></returns>
-        private XmlElement getXmlUserByName(XmlElement xmlUsers)
+        private XmlElement getXmlUserByName(XmlElement xmlUsers, string userName)
         {
             XmlElement xmlUser = null;
             foreach (XmlElement xmlElem in xmlUsers.ChildNodes)
@@ -130,6 +164,20 @@ namespace VitFTP
                 if (xmlElem.Name == userName) xmlUser = xmlElem;
             }
             return xmlUser;
+        }
+
+        public struct Permissions
+        {
+            public const string FILEREAD = "FileRead";
+            public const string FILEWRITE = "FileWrite";
+            public const string FILEDELETE = "FileDelete";
+            public const string FILEAPPEND = "FileAppend";
+            public const string DIRCREATE = "DirCreate";
+            public const string DIRDELETE = "DirDelete";
+            public const string DIRLIST = "DirList";
+            public const string DIRSUBDIRS = "DirSubdirs";
+            public const string ISHOME = "IsHome";
+            public const string AUTOCREATE = "AutoCreate";
         }
 
         public struct UserOptionName
