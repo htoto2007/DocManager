@@ -600,7 +600,6 @@ namespace VitFTP
         {
             bool res = false;
             path = path.Replace("\\", "/");
-            Console.WriteLine(path);
             using (Session session = new Session())
             {
                 // Connect
@@ -608,7 +607,6 @@ namespace VitFTP
                 res = session.FileExists(path);
                 session.Close();
             }
-            Console.WriteLine(res);
             return res;
         }
 

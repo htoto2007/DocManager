@@ -176,6 +176,7 @@ namespace DocManager
 
         private void initAccessToForm()
         {
+            // выводим имя пользователя в форму
             ClassUsers classUsers = new ClassUsers();
             ClassUsers.UserColection userColection = classUsers.getThisUser();
             string firstName = userColection.firstName;
@@ -183,11 +184,12 @@ namespace DocManager
             string middleName = userColection.middleName;
             textBoxUserName.Text =  lastName + " " + firstName + " " + middleName;
 
+            // работем с вывордом пользовательского меню.
             ClassAccessGroup classAccessGroup = new ClassAccessGroup();
             ClassAccessGroup.AccessGroupCollection accessGroupCollection = classAccessGroup.getInfoById(userColection.idAccessGroup);
             if (accessGroupCollection.rank != ClassAccessGroup.Ranks.ADMIN)
             {
-                flowLayoutPanelAdmin.Visible = false;
+                flowLayoutPanelUserMenu.Visible = false;
                 ToolStripMenuItemAdministration.Visible = false;
             }
         }

@@ -19,14 +19,6 @@ namespace VitUsers
             init();
         }
 
-        private void buttonEditPassword_Click(object sender, EventArgs e)
-        {
-            buttonOkPassword.Visible = true;
-            textBoxOldPassword.ReadOnly = false;
-            textBoxNewPassword.ReadOnly = false;
-            textBoxRetryPassword.ReadOnly = false;
-        }
-
         private void buttonEditUserPthoto_Click(object sender, EventArgs e)
         {
             if (pictureBox1.BackgroundImage != null)
@@ -36,20 +28,6 @@ namespace VitUsers
 
             classUsers.updateImage(classUsers.getThisUser().id);
             init();
-        }
-
-        private void buttonOkPassword_Click(object sender, EventArgs e)
-        {
-            ClassUsers classUsers = new ClassUsers();
-            if (classUsers.changePassword(textBoxOldPassword.Text, textBoxNewPassword.Text, textBoxRetryPassword.Text) == false)
-            {
-                classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.WARNING, "Пароли не совпадаются или старый пароль не верный!");
-            }
-            else
-            {
-                classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.INFORMATION, "Пароль изменен успешно.");
-                Application.Restart();
-            }
         }
 
         private void init()
@@ -86,24 +64,14 @@ namespace VitUsers
             init();
         }
 
-        private void label4_Click(object sender, EventArgs e)
+        private void buttonCancel_Click(object sender, EventArgs e)
         {
-
+            Close();
         }
 
-        private void label8_Click(object sender, EventArgs e)
+        private void buttonQueryPassword_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
-        {
-
+            classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, "Не могу запросить смену пароля!");
         }
     }
 }

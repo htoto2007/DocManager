@@ -30,7 +30,28 @@ namespace VitFiles
             //thread.Start();
         }
 
-        
+        public string[] Copy(string[] arrPath, string targetPath)
+        {
+            // делаем поиск дубликатов
+            if (DuplicateSearch(arrPath, targetPath) == false) return null;
+
+            List<string> filesOk = new List<string>();
+
+            ClassUsers classUsers = new ClassUsers();
+            ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
+            foreach (string sourcePath in arrPath)
+            {
+                classFTP.copyAsync(sourcePath, targetPath);
+                ClassNotifyMessage classNotifyMessage = new ClassNotifyMessage();
+                if (classFTP.FileExist(targetPath))
+                {
+                    classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.USER_ERROR, "Не получилось скопироватиь файл. " + targetPath);
+                    continue;
+                }
+                filesOk.Add(targetPath);
+            }
+            return filesOk.ToArray();
+        }
 
         public string[] createFileWithCard(string[] arrPath, string remotePath)
         {
