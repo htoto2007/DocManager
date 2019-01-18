@@ -38,6 +38,8 @@
             this.buttonUsersUserEdit = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.listViewUsers = new System.Windows.Forms.ListView();
+            this.id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.login = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPageUserProperties = new System.Windows.Forms.TabPage();
             this.textBoxUsersUserMail = new System.Windows.Forms.TextBox();
@@ -77,8 +79,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button10 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
-            this.listView5 = new System.Windows.Forms.ListView();
-            this.listView3 = new System.Windows.Forms.ListView();
+            this.listViewGroupsAllUsers = new System.Windows.Forms.ListView();
+            this.listViewGroupsUsersGroup = new System.Windows.Forms.ListView();
             this.tabPageGroupsAccess = new System.Windows.Forms.TabPage();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.checkBox5 = new System.Windows.Forms.CheckBox();
@@ -89,8 +91,6 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.windowResizer1 = new VitControls.WindowResizer();
             this.windowHeader1 = new VitControls.WindowHeader();
-            this.id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.login = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageUsers.SuspendLayout();
@@ -248,6 +248,14 @@
             this.listViewUsers.TabIndex = 22;
             this.listViewUsers.UseCompatibleStateImageBehavior = false;
             this.listViewUsers.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.listViewUsers_ItemSelectionChanged);
+            // 
+            // id
+            // 
+            this.id.Text = "#";
+            // 
+            // login
+            // 
+            this.login.Text = "login";
             // 
             // tabControl2
             // 
@@ -617,8 +625,8 @@
             this.tabPageroupsUsers.Controls.Add(this.label1);
             this.tabPageroupsUsers.Controls.Add(this.button10);
             this.tabPageroupsUsers.Controls.Add(this.button9);
-            this.tabPageroupsUsers.Controls.Add(this.listView5);
-            this.tabPageroupsUsers.Controls.Add(this.listView3);
+            this.tabPageroupsUsers.Controls.Add(this.listViewGroupsAllUsers);
+            this.tabPageroupsUsers.Controls.Add(this.listViewGroupsUsersGroup);
             this.tabPageroupsUsers.Location = new System.Drawing.Point(4, 26);
             this.tabPageroupsUsers.Name = "tabPageroupsUsers";
             this.tabPageroupsUsers.Padding = new System.Windows.Forms.Padding(3);
@@ -673,21 +681,21 @@
             this.button9.TabIndex = 2;
             this.button9.UseVisualStyleBackColor = true;
             // 
-            // listView5
+            // listViewGroupsAllUsers
             // 
-            this.listView5.Location = new System.Drawing.Point(408, 23);
-            this.listView5.Name = "listView5";
-            this.listView5.Size = new System.Drawing.Size(365, 141);
-            this.listView5.TabIndex = 1;
-            this.listView5.UseCompatibleStateImageBehavior = false;
+            this.listViewGroupsAllUsers.Location = new System.Drawing.Point(408, 23);
+            this.listViewGroupsAllUsers.Name = "listViewGroupsAllUsers";
+            this.listViewGroupsAllUsers.Size = new System.Drawing.Size(365, 141);
+            this.listViewGroupsAllUsers.TabIndex = 1;
+            this.listViewGroupsAllUsers.UseCompatibleStateImageBehavior = false;
             // 
-            // listView3
+            // listViewGroupsUsersGroup
             // 
-            this.listView3.Location = new System.Drawing.Point(3, 23);
-            this.listView3.Name = "listView3";
-            this.listView3.Size = new System.Drawing.Size(365, 141);
-            this.listView3.TabIndex = 0;
-            this.listView3.UseCompatibleStateImageBehavior = false;
+            this.listViewGroupsUsersGroup.Location = new System.Drawing.Point(3, 23);
+            this.listViewGroupsUsersGroup.Name = "listViewGroupsUsersGroup";
+            this.listViewGroupsUsersGroup.Size = new System.Drawing.Size(365, 141);
+            this.listViewGroupsUsersGroup.TabIndex = 0;
+            this.listViewGroupsUsersGroup.UseCompatibleStateImageBehavior = false;
             // 
             // tabPageGroupsAccess
             // 
@@ -799,14 +807,6 @@
             this.windowHeader1.Size = new System.Drawing.Size(798, 34);
             this.windowHeader1.TabIndex = 13;
             // 
-            // id
-            // 
-            this.id.Text = "#";
-            // 
-            // login
-            // 
-            this.login.Text = "login";
-            // 
             // FormUsers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -902,10 +902,10 @@
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.TreeView treeView2;
-        private System.Windows.Forms.ListView listView3;
+        private System.Windows.Forms.ListView listViewGroupsUsersGroup;
         private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.ListView listView5;
+        private System.Windows.Forms.ListView listViewGroupsAllUsers;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button10;

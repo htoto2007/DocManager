@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDocumentManager));
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
             ""}, -1, System.Drawing.Color.Empty, System.Drawing.Color.Transparent, null);
             this.contextMenuStripTreeView = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ToolStripMenuItemAddFolder = new System.Windows.Forms.ToolStripMenuItem();
@@ -583,7 +583,7 @@
             this.listView1.ContextMenuStrip = this.contextMenuStripTreeView;
             this.listView1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem2});
+            listViewItem1});
             this.listView1.Location = new System.Drawing.Point(401, 43);
             this.listView1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 4);
             this.listView1.Name = "listView1";
@@ -732,12 +732,15 @@
             // 
             this.видToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ToolStripMenuItemShowUserMenu});
+            this.видToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.видToolStripMenuItem.Name = "видToolStripMenuItem";
             this.видToolStripMenuItem.Size = new System.Drawing.Size(41, 26);
             this.видToolStripMenuItem.Text = "Вид";
             // 
             // ToolStripMenuItemShowUserMenu
             // 
+            this.ToolStripMenuItemShowUserMenu.Checked = true;
+            this.ToolStripMenuItemShowUserMenu.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ToolStripMenuItemShowUserMenu.Name = "ToolStripMenuItemShowUserMenu";
             this.ToolStripMenuItemShowUserMenu.Size = new System.Drawing.Size(180, 22);
             this.ToolStripMenuItemShowUserMenu.Text = "Вывод меню";
@@ -750,6 +753,7 @@
             this.пользователиToolStripMenuItem,
             this.настройкиToolStripMenuItem,
             this.настройкиКарточекToolStripMenuItem});
+            this.администратированиеToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.администратированиеToolStripMenuItem.Name = "администратированиеToolStripMenuItem";
             this.администратированиеToolStripMenuItem.Size = new System.Drawing.Size(154, 26);
             this.администратированиеToolStripMenuItem.Text = "Администратирование";
@@ -791,6 +795,7 @@
             this.справкаToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.оПрограммеToolStripMenuItem,
             this.помощьToolStripMenuItem1});
+            this.справкаToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.справкаToolStripMenuItem.Name = "справкаToolStripMenuItem";
             this.справкаToolStripMenuItem.Size = new System.Drawing.Size(70, 26);
             this.справкаToolStripMenuItem.Text = "Справка";

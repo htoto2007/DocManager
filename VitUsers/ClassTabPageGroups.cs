@@ -39,5 +39,62 @@ namespace VitUsers
             listViewGroups.EndUpdate();
             listViewGroups.Update();
         }
+
+        public void listViewGroupAllUser(ClassUsers.UserColection[] usersInGroup, ClassUsers.UserColection[] allUsers, ListView listViewAllUser)
+        {
+            VitIcons.FormCompanents formCompanents = new VitIcons.FormCompanents();
+            listViewAllUser.Clear();
+            listViewAllUser.MultiSelect = true;
+            listViewAllUser.LargeImageList = formCompanents.imageListColor;
+            listViewAllUser.SmallImageList = formCompanents.imageListColor;
+            listViewAllUser.BeginUpdate();
+            listViewAllUser.View = View.Details;
+            listViewAllUser.FullRowSelect = true;
+            listViewAllUser.HideSelection = false;
+            listViewAllUser.Columns.Clear();
+            listViewAllUser.Columns.Add("");
+            listViewAllUser.Columns.Add("id");
+            listViewAllUser.Columns.Add("Имя");
+            listViewAllUser.Columns.Add("Логин");
+            listViewAllUser.Columns.Add("Тип доступа");
+            
+            ClassAccessGroup classAccessGroup = new ClassAccessGroup();
+            foreach (ClassUsers.UserColection userColection in allUsers)
+            {
+                if (!findUser(usersInGroup, userColection)) continue;
+                string accessGroupName = classAccessGroup.getNameById(userColection.idAccessGroup);
+                ListViewItem listViewItem = new ListViewItem();
+
+                if (accessGroupName == "Админ")
+                {
+                    listViewItem.ImageKey = "icons8-crown-50.png";
+                }
+                else
+                {
+                    listViewItem.ImageKey = "icons8-user-avatar-48.png";
+                }
+
+                listViewItem.SubItems.Add(userColection.id.ToString()).Name = "id";
+                listViewItem.SubItems.Add(userColection.firstName + " " + userColection.lastName + " " + userColection.middleName).Name = "name";
+                listViewItem.SubItems.Add(userColection.login).Name = "login";
+                listViewItem.SubItems.Add(accessGroupName).Name = "accessGroup";
+                listViewAllUser.Items.Add(listViewItem);
+            }
+            listViewAllUser.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            listViewAllUser.EndUpdate();
+            listViewAllUser.Update();
+        }
+
+        private bool findUser(ClassUsers.UserColection[] userColections, ClassUsers.UserColection userColectionFinder )
+        {
+            foreach(ClassUsers.UserColection userColection in userColections)
+            {
+                if (userColection.Equals(userColectionFinder))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

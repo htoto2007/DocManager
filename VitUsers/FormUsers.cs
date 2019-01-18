@@ -116,6 +116,10 @@ namespace VitUsers
                 ClassAccessGroup classAccessGroup = new ClassAccessGroup();
                 int id = Convert.ToInt32(listViewGroups.SelectedItems[0].SubItems["id"].Text);
                 textBoxGroupsDescription.Text = classAccessGroup.getInfoById(id).description;
+
+                ClassUsers classUsers = new ClassUsers();
+                var usersInGroup = classUsers.GetUserByidAccessGroup(id);
+                ClassTabPageGroups.listViewGroupAllUser(usersInGroup, classUsers.GetAllUsers(), listViewGroups);
             }
         }
     }
