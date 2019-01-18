@@ -540,6 +540,13 @@ namespace DocManager
 
         private void помощьToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            bool isExist = File.Exists(VitSettings.Properties.GeneralsSettings.Default.programPath + "\\help\\AEархив.html");
+            if(isExist == false)
+            {
+                ClassNotifyMessage classNotifyMessage = new ClassNotifyMessage();
+                classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, "Помощь отсутствует или повреждена!");
+                return;
+            }
             Process.Start(VitSettings.Properties.GeneralsSettings.Default.programPath + "\\help\\AEархив.html");
         }
 

@@ -89,6 +89,8 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.windowResizer1 = new VitControls.WindowResizer();
             this.windowHeader1 = new VitControls.WindowHeader();
+            this.id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.login = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageUsers.SuspendLayout();
@@ -235,6 +237,9 @@
             // 
             // listViewUsers
             // 
+            this.listViewUsers.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.id,
+            this.login});
             this.listViewUsers.Dock = System.Windows.Forms.DockStyle.Left;
             this.listViewUsers.Location = new System.Drawing.Point(3, 3);
             this.listViewUsers.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -406,7 +411,7 @@
             this.listViewUsersGroups.Dock = System.Windows.Forms.DockStyle.Left;
             this.listViewUsersGroups.Location = new System.Drawing.Point(3, 3);
             this.listViewUsersGroups.Name = "listViewUsersGroups";
-            this.listViewUsersGroups.Size = new System.Drawing.Size(565, 165);
+            this.listViewUsersGroups.Size = new System.Drawing.Size(565, 161);
             this.listViewUsersGroups.TabIndex = 1;
             this.listViewUsersGroups.UseCompatibleStateImageBehavior = false;
             // 
@@ -458,7 +463,7 @@
             this.treeView2.Dock = System.Windows.Forms.DockStyle.Left;
             this.treeView2.Location = new System.Drawing.Point(0, 0);
             this.treeView2.Name = "treeView2";
-            this.treeView2.Size = new System.Drawing.Size(568, 171);
+            this.treeView2.Size = new System.Drawing.Size(568, 167);
             this.treeView2.TabIndex = 0;
             // 
             // tabPageGroups
@@ -732,7 +737,7 @@
             this.treeView3.Dock = System.Windows.Forms.DockStyle.Left;
             this.treeView3.Location = new System.Drawing.Point(0, 0);
             this.treeView3.Name = "treeView3";
-            this.treeView3.Size = new System.Drawing.Size(568, 171);
+            this.treeView3.Size = new System.Drawing.Size(568, 167);
             this.treeView3.TabIndex = 4;
             // 
             // tabPageFolsers
@@ -793,6 +798,14 @@
             this.windowHeader1.showInTaskbar = false;
             this.windowHeader1.Size = new System.Drawing.Size(798, 34);
             this.windowHeader1.TabIndex = 13;
+            // 
+            // id
+            // 
+            this.id.Text = "#";
+            // 
+            // login
+            // 
+            this.login.Text = "login";
             // 
             // FormUsers
             // 
@@ -900,5 +913,7 @@
         private System.Windows.Forms.CheckBox checkBox5;
         private System.Windows.Forms.CheckBox checkBox6;
         private System.Windows.Forms.TreeView treeView3;
+        private System.Windows.Forms.ColumnHeader id;
+        private System.Windows.Forms.ColumnHeader login;
     }
 }
