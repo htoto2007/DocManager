@@ -30,5 +30,10 @@ namespace VitFiles
             }
             listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
         }
+
+        private void buttonCreateIndex_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

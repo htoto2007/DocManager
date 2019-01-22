@@ -42,6 +42,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Debug\AEархив.xml</DocumentationFile>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -79,8 +81,10 @@
     <TargetZone>LocalIntranet</TargetZone>
   </PropertyGroup>
   <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup />
   <PropertyGroup>
-    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+    <ApplicationIcon>icons8-_-96_001.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualStudio.DebuggerVisualizers, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
@@ -265,6 +269,7 @@
     <Content Include="bin\Debug\icons\color\icons8-search-48.png" />
     <Content Include="bin\Debug\icons\color\icons8-search-50.png" />
     <Content Include="bin\Debug\icons\color\icons8-services-48.png" />
+    <Content Include="icons8-_-96_001.ico" />
     <None Include="bin\Debug\icons\color\icons8-tags-96.png" />
     <Content Include="bin\Debug\icons\color\icons8-tree-structure-40.png" />
     <Content Include="bin\Debug\icons\color\icons8-user-avatar-48.png" />

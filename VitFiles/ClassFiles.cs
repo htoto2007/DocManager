@@ -53,7 +53,7 @@ namespace VitFiles
             return filesOk.ToArray();
         }
 
-        public string[] createFileWithCard(string[] arrPath, string remotePath)
+        public string[] CreateFileWithCardAsync(string[] arrPath, string remotePath)
         {
             // делаем поиск дубликатов
             if (DuplicateSearch(arrPath, remotePath) == false) return null;
@@ -61,33 +61,30 @@ namespace VitFiles
             // создаем коллекцию для карты файла
             FormFileCard formFileCard = new FormFileCard();
             DialogResult dialogResult = formFileCard.ShowDialog();
+            // Если карточка не подтверждена
+            if (dialogResult != DialogResult.OK) return null;
+
+            
             FormFileCard.CardPropCollection[] cardPropCollections = new FormFileCard.CardPropCollection[formFileCard.panelCardProps.Controls.Count / 2];
+            //formProgressStatus = new FormProgressStatus(0, arrPath.GetLength(0));
 
-            formProgressStatus = new FormProgressStatus(0, arrPath.GetLength(0));
-           
-            // Если карточка подтверждена
-            if (dialogResult == DialogResult.OK)
+            int iterator = 0;
+            formProgressStatus = new FormProgressStatus(0, formFileCard.panelCardProps.Controls.Count);
+            foreach (Control control in formFileCard.panelCardProps.Controls)
             {
-                int iterator = 0;
-                formProgressStatus = new FormProgressStatus(0, formFileCard.panelCardProps.Controls.Count);
-                foreach (Control control in formFileCard.panelCardProps.Controls)
-                {
-                    
-                    if (control.Name.Split('_')[0] == "tb")
-                    {
-                        cardPropCollections[iterator].idProp = formFileCard.getValueByControl(control).idProp;
-                        cardPropCollections[iterator].text = formFileCard.getValueByControl(control).text;
-                    }
 
-                    if(control.Name.Split('_')[0] != "tb")
-                    {
-                        formProgressStatus.Iterator(iterator, "Собираем свойства карточки " + control.Text);
-                        continue;
-                    }
-                    iterator++;
+                if (control.Name.Split('_')[0] == "tb")
+                {
+                    cardPropCollections[iterator].idProp = formFileCard.getValueByControl(control).idProp;
+                    cardPropCollections[iterator].text = formFileCard.getValueByControl(control).text;
+                }else{
+                    formProgressStatus.Iterator(iterator, "Собираем свойства карточки " + control.Text);
+                    continue;
                 }
-                formProgressStatus.Close();
+                iterator++;
             }
+            formProgressStatus.Close();
+
 
             formProgressStatus = new FormProgressStatus(0, arrPath.GetLength(0));
             List<string> uploadRemoteFiles = new List<string>();
@@ -102,7 +99,8 @@ namespace VitFiles
                 ClassUsers classUsers = new ClassUsers();
                 ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
                 classFTP.Upload2Async(arrPath[i], "/" + remotePath + "/" + Path.GetFileName(arrPath[i]), true);
-                if(!CheckMatchPath("/" + remotePath + "/" + Path.GetFileName(arrPath[i]))){
+                if (!CheckMatchPath("/" + remotePath + "/" + Path.GetFileName(arrPath[i])))
+                {
                     Console.WriteLine("Не удалось загрузить файл! " + remotePath + "\\" + Path.GetFileName(arrPath[i]));
                 }
                 else
@@ -111,7 +109,7 @@ namespace VitFiles
                 }
             }
             formProgressStatus.Close();
-            formProgressStatus.Dispose();
+            //formProgressStatus.Dispose();
             return uploadRemoteFiles.ToArray();
         }
 

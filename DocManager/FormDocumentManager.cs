@@ -19,6 +19,9 @@ using VitVerifycationFiles;
 
 namespace DocManager
 {
+    /// <summary>
+    /// Основная форма программы
+    /// </summary>
     public partial class FormDocumentManager : Form
     {
         private ClassAccess classAccess = new ClassAccess();

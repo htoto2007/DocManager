@@ -17,9 +17,21 @@ namespace VitFTP
     /// </summary>
     public class ClassFTP
     {
+        /// <summary>
+        /// Включает двоичный тип файлов при загрузке
+        /// </summary>
         public bool Binary = true;
+        /// <summary>
+        /// Включает SSL протокол при подключении
+        /// </summary>
         public bool EnableSsl = false;
+        /// <summary>
+        /// Включает генерацию hash
+        /// </summary>
         public bool Hash = false;
+        /// <summary>
+        /// Отвечает за работу в пасивном режиме
+        /// </summary>
         public bool Passive = true;
         private readonly int bufferSize = 1024;
         private readonly string password;
@@ -29,6 +41,11 @@ namespace VitFTP
         
         private string uri;
 
+        /// <summary>
+        /// Конструктор класса. Инициализирует подключение после объявления экземпляоа класса.
+        /// </summary>
+        /// <param name="userName">имя пользователя FTP</param>
+        /// <param name="password">Gfhjkm gjkmpjdfntkz АЕЗ</param>
         public ClassFTP(string userName, string password)
         {
             uri = "ftp://" + VitSettings.Properties.FTPSettings.Default.host + ":" + VitSettings.Properties.FTPSettings.Default.port + "/";
@@ -48,6 +65,11 @@ namespace VitFTP
             //new Thread(() => { formProgressStatus = new vitProgressStatus.FormProgressStatus(); }).Start();
         }
 
+        /// <summary>
+        /// выдает информацию о параметрах доступа
+        /// </summary>
+        /// <param name="path">путь к файлу у которого нужно узнать параметры доступа</param>
+        /// <returns></returns>
         public AccessToFolder getAccess(string path)
         {
             AccessToFolder accessToFolder = new AccessToFolder();
@@ -65,13 +87,31 @@ namespace VitFTP
             return accessToFolder;
         }
 
+        /// <summary>
+        /// коллекция параметров доступа
+        /// </summary>
         public struct AccessToFolder
         {
+            /// <summary>
+            /// чтение
+            /// </summary>
             public bool read;
+            /// <summary>
+            /// запись
+            /// </summary>
             public bool write;
+            /// <summary>
+            /// запуск
+            /// </summary>
             public bool execute;
         }
 
+        /// <summary>
+        /// Позволяет изменять параметры пользователя на FTP сервере
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="optionName"></param>
+        /// <param name="value"></param>
         public void changeUserProperties(string userName, string optionName, string value)
         {
             string xmlFileName = "FileZilla Server.xml";
@@ -106,6 +146,12 @@ namespace VitFTP
             return;
         }
 
+        /// <summary>
+        /// позволяет изменять доступ к удаленным каталогам на сервере
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="optionName"></param>
+        /// <param name="value"></param>
         public void changeUserPermissions(string userName, string optionName, string value)
         {
             string xmlFileName = "FileZilla Server.xml";

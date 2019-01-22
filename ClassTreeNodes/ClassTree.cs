@@ -103,7 +103,8 @@ namespace VitTree
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 VitFiles.ClassFiles classFiles = new VitFiles.ClassFiles();
-                string[] files = classFiles.createFileWithCard(openFileDialog.FileNames, treeView.SelectedNode.FullPath);
+                string[] files = classFiles.CreateFileWithCardAsync(openFileDialog.FileNames, treeView.SelectedNode.FullPath.Replace('\\', '/'));
+                
                 if (files == null) return;
                 foreach (var file in files)
                 {
@@ -111,6 +112,7 @@ namespace VitTree
                     treeNodeFile.Name = file;
                     treeNodeFile.Text = Path.GetFileName(file);
                     treeNodeFile.ImageKey = Path.GetExtension(file).Trim('.');
+                    treeView.SelectedNode.Nodes.Add(treeNodeFile);
                 }
                 treeView.Sort();
             }

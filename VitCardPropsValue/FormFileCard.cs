@@ -130,22 +130,19 @@ namespace VitCardPropsValue
                 cardPropCollection.text = maskedTextBox.Text;
                 cardPropCollection.idProp = Convert.ToInt32(maskedTextBox.Name.Split('_')[1]);
             }
-
-            if (control.GetType() == typeof(TextBox))
+            else if (control.GetType() == typeof(TextBox))
             {
                 textBox = (TextBox)control;
                 cardPropCollection.text = textBox.Text;
                 cardPropCollection.idProp = Convert.ToInt32(textBox.Name.Split('_')[1]);
             }
-
-            if (control.GetType() == typeof(CheckBox))
+            else if (control.GetType() == typeof(CheckBox))
             {
                 checkBox = (CheckBox)control;
                 cardPropCollection.text = checkBox.Checked.ToString();
-                cardPropCollection.idProp = Convert.ToInt32(maskedTextBox.Name.Split('_')[1]);
+                cardPropCollection.idProp = Convert.ToInt32(checkBox.Name.Split('_')[1]);
             }
-
-            if (control.GetType() == typeof(RichTextBox))
+            else if (control.GetType() == typeof(RichTextBox))
             {
                 richTextBox = (RichTextBox)control;
                 cardPropCollection.text = richTextBox.Text;
