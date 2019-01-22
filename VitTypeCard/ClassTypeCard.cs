@@ -44,6 +44,28 @@ namespace VitTypeCard
             return typeProp[id];
         }
 
+        /// <summary>
+        /// Получает коллекцию типа карточки по ее номеру
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public TypeCardCollection getByid(int id)
+        {
+            string query = "" +
+                    "SELECT * " +
+                    "FROM tb_type_card " +
+                    "WHERE " +
+                    "id = '" + id + "'";
+
+            Dictionary<string, string>[] rows = classMysql.getArrayByQuery(query);
+            TypeCardCollection typeCardCollection = new TypeCardCollection();
+            if (rows.GetLength(0) < 1) return typeCardCollection;
+            
+            typeCardCollection.id = Convert.ToInt32(rows[0]["id"]);
+            typeCardCollection.namne = rows[0]["name"];
+            return typeCardCollection;
+        }
+
         public int add(string name)
         {
             string query = "" +

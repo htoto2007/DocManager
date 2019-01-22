@@ -36,7 +36,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonOk = new System.Windows.Forms.Button();
             this.buttonClose = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -111,7 +111,7 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.buttonOk);
             this.panel1.Controls.Add(this.buttonClose);
             this.panel1.Location = new System.Drawing.Point(1, 103);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
@@ -119,20 +119,20 @@
             this.panel1.Size = new System.Drawing.Size(529, 52);
             this.panel1.TabIndex = 8;
             // 
-            // button1
+            // buttonOk
             // 
-            this.button1.AutoSize = true;
-            this.button1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.button1.DialogResult = System.Windows.Forms.DialogResult.Yes;
-            this.button1.ImageKey = "icons8-checkmark-48.png";
-            this.button1.ImageList = this.imageList1;
-            this.button1.Location = new System.Drawing.Point(267, 14);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(56, 30);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Да";
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button1.UseVisualStyleBackColor = true;
+            this.buttonOk.AutoSize = true;
+            this.buttonOk.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.buttonOk.DialogResult = System.Windows.Forms.DialogResult.Yes;
+            this.buttonOk.ImageKey = "icons8-checkmark-48.png";
+            this.buttonOk.ImageList = this.imageList1;
+            this.buttonOk.Location = new System.Drawing.Point(267, 14);
+            this.buttonOk.Name = "buttonOk";
+            this.buttonOk.Size = new System.Drawing.Size(56, 30);
+            this.buttonOk.TabIndex = 1;
+            this.buttonOk.Text = "Да";
+            this.buttonOk.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.buttonOk.UseVisualStyleBackColor = true;
             // 
             // buttonClose
             // 
@@ -151,7 +151,7 @@
             // 
             // FormQuestion
             // 
-            this.AcceptButton = this.button1;
+            this.AcceptButton = this.buttonOk;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
@@ -184,7 +184,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonOk;
         private System.Windows.Forms.Button buttonClose;
     }
 }
