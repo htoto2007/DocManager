@@ -12,7 +12,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>true</IsWebBootstrapper>
-    <PublishUrl>ftp://ellen.timeweb.ru/public_html/publish/docmanager/</PublishUrl>
+    <PublishUrl>ftp://92.53.98.158/public_html/publish/docmanager/</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -22,14 +22,13 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>false</MapFileExtensions>
-    <InstallUrl>https://vitden.ri/publisher/docmanager/</InstallUrl>
+    <InstallUrl>https://vitden.ru/publish/docmanager/</InstallUrl>
     <UpdateUrl>https://vitden.ru/publish/DocManager/</UpdateUrl>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
-    <WebPage>index.htm</WebPage>
+    <WebPage>publish.htm</WebPage>
     <ApplicationRevision>9</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
-    <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -176,10 +175,6 @@
       <Project>{7aa747f4-9a9a-4a2a-83af-89d06797e173}</Project>
       <Name>VitAccess</Name>
     </ProjectReference>
-    <ProjectReference Include="..\VitCardPropsValue\VitCardPropsValue.csproj">
-      <Project>{36350F39-7577-4119-A3FE-7CB69DA65E5D}</Project>
-      <Name>VitCardPropsValue</Name>
-    </ProjectReference>
     <ProjectReference Include="..\VitColors\VitColors.csproj">
       <Project>{7485de72-c9f6-4547-aa4a-395c32de0b88}</Project>
       <Name>VitColors</Name>
@@ -275,7 +270,6 @@
     <Content Include="bin\Debug\icons\color\icons8-user-avatar-48.png" />
     <Content Include="bin\Debug\icons\color\icons8-user-menu-male-48.png" />
     <Content Include="bin\Debug\icons\color\icons8-waste-filled-50.png" />
-    <None Include="bin\Debug\icons\color\icons8-выбрать-все-96.png" />
     <Content Include="bin\Debug\icons\wb\arrow-alt-circle-right.png" />
     <Content Include="bin\Debug\icons\wb\copy.png" />
     <Content Include="bin\Debug\icons\wb\database.png" />

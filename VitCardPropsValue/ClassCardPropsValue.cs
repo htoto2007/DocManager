@@ -8,29 +8,24 @@ namespace VitCardPropsValue
     {
         private ClassMysql classMysql = new ClassMysql();
 
-        public int createValue(int idTypeCardProps, string value, string filePath)
+        public int createValue(int idCardProps, string value, string filePath)
         {
-            int id = IsMatches(filePath, idTypeCardProps);
+            int id = IsMatches(filePath, idCardProps);
             if (id != 0)
             {
-                updateById(idTypeCardProps, value, filePath, id);
+                updateById(idCardProps, value, filePath, id);
                 return id;
             }
 
             int lastId = classMysql.Insert("" +
                 "INSERT tb_card_props_value " +
                 "SET " +
-                "id_card_prop = '" + idTypeCardProps + "', " +
+                "id_card_prop = '" + idCardProps + "', " +
                 "value = '" + value + "', " +
                 "file_path = '" + filePath + "'");
             return lastId;
         }
 
-        /// <summary>
-        /// получаем значения карточки файла по пути к этому файлу
-        /// </summary>
-        /// <param name="filePath">/fileName.ext</param>
-        /// <returns>Получаем массив коллекций значений карточки</returns>
         public CardPropsValueCollection[] getByFilePath(string filePath)
         {
             var rows = classMysql.getArrayByQuery("" +
@@ -53,8 +48,6 @@ namespace VitCardPropsValue
             }
             return cardPropsValueCollections;
         }
-
-        
 
         public void updateById(int idCardProps, string value, string filePath, int id)
         {

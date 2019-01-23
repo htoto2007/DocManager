@@ -64,12 +64,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClassCardPropsValue.cs" />
-    <Compile Include="FormEditFileCard.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormEditFileCard.Designer.cs">
-      <DependentUpon>FormEditFileCard.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormFileCard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -101,9 +95,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="FormEditFileCard.resx">
-      <DependentUpon>FormEditFileCard.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormFileCard.resx">
       <DependentUpon>FormFileCard.cs</DependentUpon>
     </EmbeddedResource>

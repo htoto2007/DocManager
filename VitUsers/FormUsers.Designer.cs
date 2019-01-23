@@ -33,7 +33,10 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageUsers = new System.Windows.Forms.TabPage();
+            this.buttonUsersDeleteUser = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.buttonUsersUserEdit = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.listViewUsers = new System.Windows.Forms.ListView();
             this.id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.login = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -50,6 +53,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.tabPageUserGroups = new System.Windows.Forms.TabPage();
+            this.buttonUsersGroupsDeleteGroup = new System.Windows.Forms.Button();
+            this.buttonUsersGroupsAddGroup = new System.Windows.Forms.Button();
             this.listViewUsersGroups = new System.Windows.Forms.ListView();
             this.tabPageUserAccess = new System.Windows.Forms.TabPage();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
@@ -57,6 +62,9 @@
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.treeView2 = new System.Windows.Forms.TreeView();
             this.tabPageGroups = new System.Windows.Forms.TabPage();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
             this.listViewGroups = new System.Windows.Forms.ListView();
             this.tabControl3 = new System.Windows.Forms.TabControl();
             this.tabPageGroupsProperties = new System.Windows.Forms.TabPage();
@@ -69,6 +77,8 @@
             this.tabPageroupsUsers = new System.Windows.Forms.TabPage();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.button10 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
             this.listViewGroupsAllUsers = new System.Windows.Forms.ListView();
             this.listViewGroupsUsersGroup = new System.Windows.Forms.ListView();
             this.tabPageGroupsAccess = new System.Windows.Forms.TabPage();
@@ -79,18 +89,8 @@
             this.tabPageFolsers = new System.Windows.Forms.TabPage();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.windowHeader1 = new VitControls.WindowHeader();
-            this.buttonUsersDeleteUser = new System.Windows.Forms.Button();
-            this.buttonUsersUserEdit = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.buttonUsersGroupsDeleteGroup = new System.Windows.Forms.Button();
-            this.buttonUsersGroupsAddGroup = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
             this.windowResizer1 = new VitControls.WindowResizer();
+            this.windowHeader1 = new VitControls.WindowHeader();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageUsers.SuspendLayout();
@@ -144,6 +144,21 @@
             this.tabPageUsers.Text = "Пользователи";
             this.tabPageUsers.UseVisualStyleBackColor = true;
             // 
+            // buttonUsersDeleteUser
+            // 
+            this.buttonUsersDeleteUser.AutoSize = true;
+            this.buttonUsersDeleteUser.Enabled = false;
+            this.buttonUsersDeleteUser.ImageKey = "icons8-delete-48.png";
+            this.buttonUsersDeleteUser.ImageList = this.imageList1;
+            this.buttonUsersDeleteUser.Location = new System.Drawing.Point(581, 78);
+            this.buttonUsersDeleteUser.Name = "buttonUsersDeleteUser";
+            this.buttonUsersDeleteUser.Size = new System.Drawing.Size(206, 30);
+            this.buttonUsersDeleteUser.TabIndex = 26;
+            this.buttonUsersDeleteUser.Text = "Удалить пользователя";
+            this.buttonUsersDeleteUser.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.buttonUsersDeleteUser.UseVisualStyleBackColor = true;
+            this.buttonUsersDeleteUser.Click += new System.EventHandler(this.buttonUsersDeleteUser_Click);
+            // 
             // imageList1
             // 
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
@@ -190,6 +205,35 @@
             this.imageList1.Images.SetKeyName(39, "icons8-waste-filled-50.png");
             this.imageList1.Images.SetKeyName(40, "icons8-back-arrow-64.png");
             this.imageList1.Images.SetKeyName(41, "icons8-forward-button-64.png");
+            // 
+            // buttonUsersUserEdit
+            // 
+            this.buttonUsersUserEdit.AutoSize = true;
+            this.buttonUsersUserEdit.Enabled = false;
+            this.buttonUsersUserEdit.ImageKey = "icons8-pencil-48.png";
+            this.buttonUsersUserEdit.ImageList = this.imageList1;
+            this.buttonUsersUserEdit.Location = new System.Drawing.Point(581, 42);
+            this.buttonUsersUserEdit.Name = "buttonUsersUserEdit";
+            this.buttonUsersUserEdit.Size = new System.Drawing.Size(206, 30);
+            this.buttonUsersUserEdit.TabIndex = 25;
+            this.buttonUsersUserEdit.Text = "Изменить свойства";
+            this.buttonUsersUserEdit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.buttonUsersUserEdit.UseVisualStyleBackColor = true;
+            this.buttonUsersUserEdit.Click += new System.EventHandler(this.buttonUsersUserEdit_Click);
+            // 
+            // button1
+            // 
+            this.button1.AutoSize = true;
+            this.button1.ImageKey = "icons8-plus-48.png";
+            this.button1.ImageList = this.imageList1;
+            this.button1.Location = new System.Drawing.Point(581, 6);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(206, 30);
+            this.button1.TabIndex = 24;
+            this.button1.Text = "Добавить пользователя";
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.buttonUsersAddUser_Click);
             // 
             // listViewUsers
             // 
@@ -344,12 +388,38 @@
             this.tabPageUserGroups.Text = "Группы";
             this.tabPageUserGroups.UseVisualStyleBackColor = true;
             // 
+            // buttonUsersGroupsDeleteGroup
+            // 
+            this.buttonUsersGroupsDeleteGroup.AutoSize = true;
+            this.buttonUsersGroupsDeleteGroup.ImageKey = "icons8-delete-48.png";
+            this.buttonUsersGroupsDeleteGroup.ImageList = this.imageList1;
+            this.buttonUsersGroupsDeleteGroup.Location = new System.Drawing.Point(574, 42);
+            this.buttonUsersGroupsDeleteGroup.Name = "buttonUsersGroupsDeleteGroup";
+            this.buttonUsersGroupsDeleteGroup.Size = new System.Drawing.Size(206, 30);
+            this.buttonUsersGroupsDeleteGroup.TabIndex = 33;
+            this.buttonUsersGroupsDeleteGroup.Text = "Удалить группу";
+            this.buttonUsersGroupsDeleteGroup.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.buttonUsersGroupsDeleteGroup.UseVisualStyleBackColor = true;
+            // 
+            // buttonUsersGroupsAddGroup
+            // 
+            this.buttonUsersGroupsAddGroup.AutoSize = true;
+            this.buttonUsersGroupsAddGroup.ImageKey = "icons8-plus-48.png";
+            this.buttonUsersGroupsAddGroup.ImageList = this.imageList1;
+            this.buttonUsersGroupsAddGroup.Location = new System.Drawing.Point(574, 6);
+            this.buttonUsersGroupsAddGroup.Name = "buttonUsersGroupsAddGroup";
+            this.buttonUsersGroupsAddGroup.Size = new System.Drawing.Size(206, 30);
+            this.buttonUsersGroupsAddGroup.TabIndex = 32;
+            this.buttonUsersGroupsAddGroup.Text = "Добавить группу";
+            this.buttonUsersGroupsAddGroup.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.buttonUsersGroupsAddGroup.UseVisualStyleBackColor = true;
+            // 
             // listViewUsersGroups
             // 
             this.listViewUsersGroups.Dock = System.Windows.Forms.DockStyle.Left;
             this.listViewUsersGroups.Location = new System.Drawing.Point(3, 3);
             this.listViewUsersGroups.Name = "listViewUsersGroups";
-            this.listViewUsersGroups.Size = new System.Drawing.Size(565, 165);
+            this.listViewUsersGroups.Size = new System.Drawing.Size(565, 161);
             this.listViewUsersGroups.TabIndex = 1;
             this.listViewUsersGroups.UseCompatibleStateImageBehavior = false;
             // 
@@ -401,7 +471,7 @@
             this.treeView2.Dock = System.Windows.Forms.DockStyle.Left;
             this.treeView2.Location = new System.Drawing.Point(0, 0);
             this.treeView2.Name = "treeView2";
-            this.treeView2.Size = new System.Drawing.Size(568, 171);
+            this.treeView2.Size = new System.Drawing.Size(568, 167);
             this.treeView2.TabIndex = 0;
             // 
             // tabPageGroups
@@ -419,13 +489,52 @@
             this.tabPageGroups.Text = "Группы";
             this.tabPageGroups.UseVisualStyleBackColor = true;
             // 
+            // button4
+            // 
+            this.button4.AutoSize = true;
+            this.button4.ImageKey = "icons8-delete-48.png";
+            this.button4.ImageList = this.imageList1;
+            this.button4.Location = new System.Drawing.Point(581, 78);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(206, 30);
+            this.button4.TabIndex = 31;
+            this.button4.Text = "Удалить группу";
+            this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            this.button5.AutoSize = true;
+            this.button5.ImageKey = "icons8-pencil-48.png";
+            this.button5.ImageList = this.imageList1;
+            this.button5.Location = new System.Drawing.Point(581, 42);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(206, 30);
+            this.button5.TabIndex = 30;
+            this.button5.Text = "Изменить свойства";
+            this.button5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // button6
+            // 
+            this.button6.AutoSize = true;
+            this.button6.ImageKey = "icons8-plus-48.png";
+            this.button6.ImageList = this.imageList1;
+            this.button6.Location = new System.Drawing.Point(581, 6);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(206, 30);
+            this.button6.TabIndex = 29;
+            this.button6.Text = "Добавить группу";
+            this.button6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button6.UseVisualStyleBackColor = true;
+            // 
             // listViewGroups
             // 
             this.listViewGroups.Dock = System.Windows.Forms.DockStyle.Left;
             this.listViewGroups.Location = new System.Drawing.Point(3, 3);
             this.listViewGroups.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.listViewGroups.Name = "listViewGroups";
-            this.listViewGroups.Size = new System.Drawing.Size(572, 305);
+            this.listViewGroups.Size = new System.Drawing.Size(572, 301);
             this.listViewGroups.TabIndex = 27;
             this.listViewGroups.UseCompatibleStateImageBehavior = false;
             this.listViewGroups.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.listViewGroups_ItemSelectionChanged);
@@ -436,7 +545,7 @@
             this.tabControl3.Controls.Add(this.tabPageroupsUsers);
             this.tabControl3.Controls.Add(this.tabPageGroupsAccess);
             this.tabControl3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tabControl3.Location = new System.Drawing.Point(3, 308);
+            this.tabControl3.Location = new System.Drawing.Point(3, 304);
             this.tabControl3.Margin = new System.Windows.Forms.Padding(0);
             this.tabControl3.Name = "tabControl3";
             this.tabControl3.SelectedIndex = 0;
@@ -544,6 +653,34 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "Пользователи в группе";
             // 
+            // button10
+            // 
+            this.button10.AutoSize = true;
+            this.button10.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.button10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button10.ImageKey = "icons8-forward-button-64.png";
+            this.button10.ImageList = this.imageList1;
+            this.button10.Location = new System.Drawing.Point(375, 53);
+            this.button10.Margin = new System.Windows.Forms.Padding(0);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(30, 30);
+            this.button10.TabIndex = 3;
+            this.button10.UseVisualStyleBackColor = true;
+            // 
+            // button9
+            // 
+            this.button9.AutoSize = true;
+            this.button9.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.button9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button9.ImageKey = "icons8-back-arrow-64.png";
+            this.button9.ImageList = this.imageList1;
+            this.button9.Location = new System.Drawing.Point(375, 23);
+            this.button9.Margin = new System.Windows.Forms.Padding(0);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(30, 30);
+            this.button9.TabIndex = 2;
+            this.button9.UseVisualStyleBackColor = true;
+            // 
             // listViewGroupsAllUsers
             // 
             this.listViewGroupsAllUsers.Location = new System.Drawing.Point(408, 23);
@@ -608,7 +745,7 @@
             this.treeView3.Dock = System.Windows.Forms.DockStyle.Left;
             this.treeView3.Location = new System.Drawing.Point(0, 0);
             this.treeView3.Name = "treeView3";
-            this.treeView3.Size = new System.Drawing.Size(568, 171);
+            this.treeView3.Size = new System.Drawing.Size(568, 167);
             this.treeView3.TabIndex = 4;
             // 
             // tabPageFolsers
@@ -641,6 +778,18 @@
             this.panel2.Size = new System.Drawing.Size(798, 30);
             this.panel2.TabIndex = 15;
             // 
+            // windowResizer1
+            // 
+            this.windowResizer1.BackColor = System.Drawing.Color.Transparent;
+            this.windowResizer1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("windowResizer1.BackgroundImage")));
+            this.windowResizer1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.windowResizer1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.windowResizer1.Location = new System.Drawing.Point(774, 3);
+            this.windowResizer1.Margin = new System.Windows.Forms.Padding(0);
+            this.windowResizer1.Name = "windowResizer1";
+            this.windowResizer1.Size = new System.Drawing.Size(24, 27);
+            this.windowResizer1.TabIndex = 0;
+            // 
             // windowHeader1
             // 
             this.windowHeader1.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
@@ -658,155 +807,6 @@
             this.windowHeader1.Size = new System.Drawing.Size(798, 34);
             this.windowHeader1.TabIndex = 13;
             // 
-            // buttonUsersDeleteUser
-            // 
-            this.buttonUsersDeleteUser.AutoSize = true;
-            this.buttonUsersDeleteUser.Enabled = false;
-            this.buttonUsersDeleteUser.ImageKey = "icons8-delete-48.png";
-            this.buttonUsersDeleteUser.ImageList = this.imageList1;
-            this.buttonUsersDeleteUser.Location = new System.Drawing.Point(581, 78);
-            this.buttonUsersDeleteUser.Name = "buttonUsersDeleteUser";
-            this.buttonUsersDeleteUser.Size = new System.Drawing.Size(206, 30);
-            this.buttonUsersDeleteUser.TabIndex = 26;
-            this.buttonUsersDeleteUser.Text = "Удалить пользователя";
-            this.buttonUsersDeleteUser.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.buttonUsersDeleteUser.UseVisualStyleBackColor = true;
-            this.buttonUsersDeleteUser.Click += new System.EventHandler(this.buttonUsersDeleteUser_Click);
-            // 
-            // buttonUsersUserEdit
-            // 
-            this.buttonUsersUserEdit.AutoSize = true;
-            this.buttonUsersUserEdit.Enabled = false;
-            this.buttonUsersUserEdit.ImageKey = "icons8-pencil-48.png";
-            this.buttonUsersUserEdit.ImageList = this.imageList1;
-            this.buttonUsersUserEdit.Location = new System.Drawing.Point(581, 42);
-            this.buttonUsersUserEdit.Name = "buttonUsersUserEdit";
-            this.buttonUsersUserEdit.Size = new System.Drawing.Size(206, 30);
-            this.buttonUsersUserEdit.TabIndex = 25;
-            this.buttonUsersUserEdit.Text = "Изменить свойства";
-            this.buttonUsersUserEdit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.buttonUsersUserEdit.UseVisualStyleBackColor = true;
-            this.buttonUsersUserEdit.Click += new System.EventHandler(this.buttonUsersUserEdit_Click);
-            // 
-            // button1
-            // 
-            this.button1.AutoSize = true;
-            this.button1.ImageKey = "icons8-plus-48.png";
-            this.button1.ImageList = this.imageList1;
-            this.button1.Location = new System.Drawing.Point(581, 6);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(206, 30);
-            this.button1.TabIndex = 24;
-            this.button1.Text = "Добавить пользователя";
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.buttonUsersAddUser_Click);
-            // 
-            // buttonUsersGroupsDeleteGroup
-            // 
-            this.buttonUsersGroupsDeleteGroup.AutoSize = true;
-            this.buttonUsersGroupsDeleteGroup.ImageKey = "icons8-delete-48.png";
-            this.buttonUsersGroupsDeleteGroup.ImageList = this.imageList1;
-            this.buttonUsersGroupsDeleteGroup.Location = new System.Drawing.Point(574, 42);
-            this.buttonUsersGroupsDeleteGroup.Name = "buttonUsersGroupsDeleteGroup";
-            this.buttonUsersGroupsDeleteGroup.Size = new System.Drawing.Size(206, 30);
-            this.buttonUsersGroupsDeleteGroup.TabIndex = 33;
-            this.buttonUsersGroupsDeleteGroup.Text = "Удалить группу";
-            this.buttonUsersGroupsDeleteGroup.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.buttonUsersGroupsDeleteGroup.UseVisualStyleBackColor = true;
-            // 
-            // buttonUsersGroupsAddGroup
-            // 
-            this.buttonUsersGroupsAddGroup.AutoSize = true;
-            this.buttonUsersGroupsAddGroup.ImageKey = "icons8-plus-48.png";
-            this.buttonUsersGroupsAddGroup.ImageList = this.imageList1;
-            this.buttonUsersGroupsAddGroup.Location = new System.Drawing.Point(574, 6);
-            this.buttonUsersGroupsAddGroup.Name = "buttonUsersGroupsAddGroup";
-            this.buttonUsersGroupsAddGroup.Size = new System.Drawing.Size(206, 30);
-            this.buttonUsersGroupsAddGroup.TabIndex = 32;
-            this.buttonUsersGroupsAddGroup.Text = "Добавить группу";
-            this.buttonUsersGroupsAddGroup.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.buttonUsersGroupsAddGroup.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.AutoSize = true;
-            this.button4.ImageKey = "icons8-delete-48.png";
-            this.button4.ImageList = this.imageList1;
-            this.button4.Location = new System.Drawing.Point(581, 78);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(206, 30);
-            this.button4.TabIndex = 31;
-            this.button4.Text = "Удалить группу";
-            this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            this.button5.AutoSize = true;
-            this.button5.ImageKey = "icons8-pencil-48.png";
-            this.button5.ImageList = this.imageList1;
-            this.button5.Location = new System.Drawing.Point(581, 42);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(206, 30);
-            this.button5.TabIndex = 30;
-            this.button5.Text = "Изменить свойства";
-            this.button5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button5.UseVisualStyleBackColor = true;
-            // 
-            // button6
-            // 
-            this.button6.AutoSize = true;
-            this.button6.ImageKey = "icons8-plus-48.png";
-            this.button6.ImageList = this.imageList1;
-            this.button6.Location = new System.Drawing.Point(581, 6);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(206, 30);
-            this.button6.TabIndex = 29;
-            this.button6.Text = "Добавить группу";
-            this.button6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button6.UseVisualStyleBackColor = true;
-            // 
-            // button10
-            // 
-            this.button10.AutoSize = true;
-            this.button10.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.button10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button10.ImageKey = "icons8-forward-button-64.png";
-            this.button10.ImageList = this.imageList1;
-            this.button10.Location = new System.Drawing.Point(375, 53);
-            this.button10.Margin = new System.Windows.Forms.Padding(0);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(30, 30);
-            this.button10.TabIndex = 3;
-            this.button10.UseVisualStyleBackColor = true;
-            // 
-            // button9
-            // 
-            this.button9.AutoSize = true;
-            this.button9.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.button9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button9.ImageKey = "icons8-back-arrow-64.png";
-            this.button9.ImageList = this.imageList1;
-            this.button9.Location = new System.Drawing.Point(375, 23);
-            this.button9.Margin = new System.Windows.Forms.Padding(0);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(30, 30);
-            this.button9.TabIndex = 2;
-            this.button9.UseVisualStyleBackColor = true;
-            // 
-            // windowResizer1
-            // 
-            this.windowResizer1.BackColor = System.Drawing.Color.Transparent;
-            this.windowResizer1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("windowResizer1.BackgroundImage")));
-            this.windowResizer1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.windowResizer1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.windowResizer1.Location = new System.Drawing.Point(774, 3);
-            this.windowResizer1.Margin = new System.Windows.Forms.Padding(0);
-            this.windowResizer1.Name = "windowResizer1";
-            this.windowResizer1.Size = new System.Drawing.Size(24, 27);
-            this.windowResizer1.TabIndex = 0;
-            // 
             // FormUsers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -820,7 +820,6 @@
             this.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FormUsers";
             this.Padding = new System.Windows.Forms.Padding(1);

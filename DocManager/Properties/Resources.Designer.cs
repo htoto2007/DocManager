@@ -123,29 +123,9 @@ namespace DocManager.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap icons8_tags_961 {
-            get {
-                object obj = ResourceManager.GetObject("icons8-tags-961", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
         public static System.Drawing.Bitmap icons8_user_avatar_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8-user-avatar-48", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
-        public static System.Drawing.Bitmap icons8_выбрать_все_96 {
-            get {
-                object obj = ResourceManager.GetObject("icons8-выбрать-все-96", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

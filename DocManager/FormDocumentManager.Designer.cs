@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDocumentManager));
             System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
             ""}, -1, System.Drawing.Color.Empty, System.Drawing.Color.Transparent, null);
-            this.contextMenuStripTreeView = new System.Windows.Forms.ContextMenuStrip();
-            this.ToolStripMenuItemDocumentCard = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStripTreeView = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ToolStripMenuItemAddFolder = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemRequestOriginal = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemAddDocument = new System.Windows.Forms.ToolStripMenuItem();
@@ -49,7 +49,7 @@
             this.ToolStripMenuItemRename = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemScanToThisFolder = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemSelectAll = new System.Windows.Forms.ToolStripMenuItem();
-            this.imageList1 = new System.Windows.Forms.ImageList();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.ToolStripMenuItemView = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemUserMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemAdministration = new System.Windows.Forms.ToolStripMenuItem();
@@ -61,8 +61,8 @@
             this.ToolStripMenuItemHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.помощьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.timerSearcher = new System.Windows.Forms.Timer();
-            this.toolTip1 = new System.Windows.Forms.ToolTip();
+            this.timerSearcher = new System.Windows.Forms.Timer(this.components);
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new VitControls.VitButton();
             this.buttonExit = new VitControls.VitButton();
@@ -112,7 +112,6 @@
             // 
             this.contextMenuStripTreeView.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.contextMenuStripTreeView.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ToolStripMenuItemDocumentCard,
             this.ToolStripMenuItemAddFolder,
             this.ToolStripMenuItemRequestOriginal,
             this.ToolStripMenuItemAddDocument,
@@ -124,16 +123,8 @@
             this.toolStripMenuItemScanToThisFolder,
             this.ToolStripMenuItemSelectAll});
             this.contextMenuStripTreeView.Name = "contextMenuStrip1";
-            this.contextMenuStripTreeView.Size = new System.Drawing.Size(262, 268);
+            this.contextMenuStripTreeView.Size = new System.Drawing.Size(262, 224);
             this.contextMenuStripTreeView.Opened += new System.EventHandler(this.contextMenuStripTreeView_Opened);
-            // 
-            // ToolStripMenuItemDocumentCard
-            // 
-            this.ToolStripMenuItemDocumentCard.Image = global::DocManager.Properties.Resources.icons8_tags_961;
-            this.ToolStripMenuItemDocumentCard.Name = "ToolStripMenuItemDocumentCard";
-            this.ToolStripMenuItemDocumentCard.Size = new System.Drawing.Size(261, 22);
-            this.ToolStripMenuItemDocumentCard.Text = "Карточка документа";
-            this.ToolStripMenuItemDocumentCard.Click += new System.EventHandler(this.ToolStripMenuItemDocumentCard_Click);
             // 
             // ToolStripMenuItemAddFolder
             // 
@@ -268,7 +259,6 @@
             // 
             // ToolStripMenuItemSelectAll
             // 
-            this.ToolStripMenuItemSelectAll.Image = global::DocManager.Properties.Resources.icons8_выбрать_все_96;
             this.ToolStripMenuItemSelectAll.Name = "ToolStripMenuItemSelectAll";
             this.ToolStripMenuItemSelectAll.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
             this.ToolStripMenuItemSelectAll.Size = new System.Drawing.Size(261, 22);
@@ -749,8 +739,10 @@
             // 
             // ToolStripMenuItemShowUserMenu
             // 
+            this.ToolStripMenuItemShowUserMenu.Checked = true;
+            this.ToolStripMenuItemShowUserMenu.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ToolStripMenuItemShowUserMenu.Name = "ToolStripMenuItemShowUserMenu";
-            this.ToolStripMenuItemShowUserMenu.Size = new System.Drawing.Size(152, 22);
+            this.ToolStripMenuItemShowUserMenu.Size = new System.Drawing.Size(180, 22);
             this.ToolStripMenuItemShowUserMenu.Text = "Вывод меню";
             this.ToolStripMenuItemShowUserMenu.CheckedChanged += new System.EventHandler(this.ToolStripMenuItemUserMenu_CheckedChanged);
             // 
@@ -812,7 +804,7 @@
             // 
             this.оПрограммеToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("оПрограммеToolStripMenuItem.Image")));
             this.оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
-            this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(166, 30);
+            this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(188, 30);
             this.оПрограммеToolStripMenuItem.Text = "О программе";
             this.оПрограммеToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItemAbout_Click);
             // 
@@ -820,7 +812,7 @@
             // 
             this.помощьToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("помощьToolStripMenuItem1.Image")));
             this.помощьToolStripMenuItem1.Name = "помощьToolStripMenuItem1";
-            this.помощьToolStripMenuItem1.Size = new System.Drawing.Size(166, 30);
+            this.помощьToolStripMenuItem1.Size = new System.Drawing.Size(188, 30);
             this.помощьToolStripMenuItem1.Text = "Помощь";
             this.помощьToolStripMenuItem1.Click += new System.EventHandler(this.помощьToolStripMenuItem_Click);
             // 
@@ -843,12 +835,12 @@
             this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MinimumSize = new System.Drawing.Size(640, 480);
             this.Name = "FormDocumentManager";
             this.Padding = new System.Windows.Forms.Padding(1);
+            this.ShowIcon = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "z";
@@ -937,7 +929,6 @@
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemSelectAll;
         private VitControls.VitButton buttonScan;
         private VitControls.VitButton buttonAddBranch;
-        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemDocumentCard;
     }
 }
 

@@ -6,7 +6,6 @@ using System.Threading;
 using System.Windows.Forms;
 using VitAccess;
 using VitAccessGroup;
-using VitCardPropsValue;
 using VitDBConnect;
 using VitListView;
 using VitNotifyMessage;
@@ -567,13 +566,6 @@ namespace DocManager
         private void listView1_MouseHover(object sender, EventArgs e)
         {
             lastControl = (Control)sender;
-        }
-
-        private void ToolStripMenuItemDocumentCard_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show(treeView1.SelectedNode.Name);
-            FormEditFileCard formEditFileCard = new FormEditFileCard(treeView1.SelectedNode.Name);
-            formEditFileCard.ShowDialog();
         }
     }
 }
