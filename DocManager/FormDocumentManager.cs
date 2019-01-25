@@ -150,7 +150,6 @@ namespace DocManager
                 
             }
             contextMenuStripTreeView.Update();
-            Console.WriteLine(contextMenuStripTreeView.SourceControl.GetType());
             lastRequireContextMenu = contextMenuStripTreeView.SourceControl.GetType();
         }
 
@@ -416,7 +415,6 @@ namespace DocManager
                 foreach (ListViewItem listViewItem in listViewItems)
                 {
                     TreeNode[] treeNodes = treeView1.Nodes.Find("/" + listViewItem.SubItems["path"].Text, true);
-                    Console.WriteLine("find " + treeNodes.GetLength(0) + " files");
                     if (treeNodes.GetLength(0) > 0)
                     {
                         treeNodes[0].Remove();
@@ -428,7 +426,7 @@ namespace DocManager
 
         private void ToolStripMenuItemMove_Click(object sender, EventArgs e)
         {
-            classTree.move(treeView1);
+            classTree.Move(treeView1);
         }
 
         private void ToolStripMenuItemRename_Click(object sender, EventArgs e)
@@ -517,8 +515,7 @@ namespace DocManager
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            //classTree.preLoadNodes(treeView1);
-            Console.WriteLine(treeView1.SelectedNode.Name);
+            
             VitListView.ClassLisView classLisView = new VitListView.ClassLisView();
             classLisView.FromTreeVuew(treeView1, listView1);
         }
@@ -569,6 +566,12 @@ namespace DocManager
         private void listView1_MouseHover(object sender, EventArgs e)
         {
             lastControl = (Control)sender;
+        }
+
+        private void vitButtonUpdateInfo_Click(object sender, EventArgs e)
+        {
+            classTree.Init(treeView1);
+            listView1.Clear();
         }
     }
 }

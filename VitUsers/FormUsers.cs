@@ -119,7 +119,8 @@ namespace VitUsers
 
                 ClassUsers classUsers = new ClassUsers();
                 var usersInGroup = classUsers.GetUserByidAccessGroup(id);
-                ClassTabPageGroups.listViewGroupAllUser(usersInGroup, classUsers.GetAllUsers(), listViewGroups);
+                ClassTabPageGroups.listViewGroupUserNoThisGroup(usersInGroup, classUsers.GetAllUsers(), listViewGroupsAllUsers);
+                ClassTabPageGroups.listViewGroupUserThisGroup(usersInGroup, classUsers.GetAllUsers(), listViewGroupsUsersThisGroup);
             }
         }
     }

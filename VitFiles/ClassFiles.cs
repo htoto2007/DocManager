@@ -189,6 +189,18 @@ namespace VitFiles
             formProgressStatus.Dispose();
         }
 
+        public bool MoveFile(string sourcePath, string targetPath)
+        {
+            // делаем поиск дубликатов
+            if (DuplicateSearch(new string[] { sourcePath }, Path.GetDirectoryName(targetPath)) == false) return false;
+
+            ClassUsers classUsers = new ClassUsers();
+            ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
+            classFTP.moveAsync(sourcePath, targetPath);
+            if (!classFTP.FileExist(targetPath)) return false;
+            return true;
+        }
+
         public bool CheckMatchPath(string remotePath)
         {
             ClassUsers classUsers = new ClassUsers();

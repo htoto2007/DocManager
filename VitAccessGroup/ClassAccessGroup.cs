@@ -53,18 +53,7 @@ namespace VitAccessGroup
             return rows[0]["name"];
         }
 
-        public void initFormAccessGroup()
-        {
-            FormAccessGroup formAccessGroup = new FormAccessGroup();
-            AccessGroupCollection[] accessGroups = getInfo();
-
-            formAccessGroup.listView1.View = System.Windows.Forms.View.Details;
-            formAccessGroup.listView1.MultiSelect = true;
-            formAccessGroup.listView1.FullRowSelect = true;
-            formAccessGroup.listView1.Columns.Clear();
-            formAccessGroup.listView1.Columns.Add("name", 200, System.Windows.Forms.HorizontalAlignment.Center);
-            formAccessGroup.listView1.Columns.Add("Количество пользователей", 200, System.Windows.Forms.HorizontalAlignment.Center);
-        }
+        
 
         public struct AccessGroupCollection
         {

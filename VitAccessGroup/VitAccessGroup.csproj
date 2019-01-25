@@ -62,6 +62,10 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="VitColors, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\VitColors\bin\Debug\VitColors.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClassAccessGroup.cs" />
@@ -71,9 +75,19 @@
     <Compile Include="FormAccessGroup.Designer.cs">
       <DependentUpon>FormAccessGroup.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormAddGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAddGroup.Designer.cs">
+      <DependentUpon>FormAddGroup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\VitControls\VitControls.csproj">
+      <Project>{0D2381AF-887D-4DE5-98FA-1E77AD098931}</Project>
+      <Name>VitControls</Name>
+    </ProjectReference>
     <ProjectReference Include="..\vitMysql\VitMysql.csproj">
       <Project>{0312B089-F072-499E-97CD-701A78E6C425}</Project>
       <Name>VitMysql</Name>
@@ -82,6 +96,9 @@
   <ItemGroup>
     <EmbeddedResource Include="FormAccessGroup.resx">
       <DependentUpon>FormAccessGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAddGroup.resx">
+      <DependentUpon>FormAddGroup.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

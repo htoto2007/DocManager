@@ -40,24 +40,25 @@ namespace VitUsers
             listViewGroups.Update();
         }
 
-        public void listViewGroupAllUser(ClassUsers.UserColection[] usersInGroup, ClassUsers.UserColection[] allUsers, ListView listViewAllUser)
+        public void listViewGroupUserThisGroup(ClassUsers.UserColection[] usersInGroup, ClassUsers.UserColection[] allUsers, ListView listViewUserThisGroup)
         {
+
             VitIcons.FormCompanents formCompanents = new VitIcons.FormCompanents();
-            listViewAllUser.Clear();
-            listViewAllUser.MultiSelect = true;
-            listViewAllUser.LargeImageList = formCompanents.imageListColor;
-            listViewAllUser.SmallImageList = formCompanents.imageListColor;
-            listViewAllUser.BeginUpdate();
-            listViewAllUser.View = View.Details;
-            listViewAllUser.FullRowSelect = true;
-            listViewAllUser.HideSelection = false;
-            listViewAllUser.Columns.Clear();
-            listViewAllUser.Columns.Add("");
-            listViewAllUser.Columns.Add("id");
-            listViewAllUser.Columns.Add("Имя");
-            listViewAllUser.Columns.Add("Логин");
-            listViewAllUser.Columns.Add("Тип доступа");
-            
+            listViewUserThisGroup.Clear();
+            listViewUserThisGroup.MultiSelect = true;
+            listViewUserThisGroup.LargeImageList = formCompanents.imageListColor;
+            listViewUserThisGroup.SmallImageList = formCompanents.imageListColor;
+            listViewUserThisGroup.BeginUpdate();
+            listViewUserThisGroup.View = View.Details;
+            listViewUserThisGroup.FullRowSelect = true;
+            listViewUserThisGroup.HideSelection = false;
+            listViewUserThisGroup.Columns.Clear();
+            listViewUserThisGroup.Columns.Add("");
+            listViewUserThisGroup.Columns.Add("id");
+            listViewUserThisGroup.Columns.Add("Имя");
+            listViewUserThisGroup.Columns.Add("Логин");
+            listViewUserThisGroup.Columns.Add("Тип доступа");
+
             ClassAccessGroup classAccessGroup = new ClassAccessGroup();
             foreach (ClassUsers.UserColection userColection in allUsers)
             {
@@ -78,11 +79,56 @@ namespace VitUsers
                 listViewItem.SubItems.Add(userColection.firstName + " " + userColection.lastName + " " + userColection.middleName).Name = "name";
                 listViewItem.SubItems.Add(userColection.login).Name = "login";
                 listViewItem.SubItems.Add(accessGroupName).Name = "accessGroup";
-                listViewAllUser.Items.Add(listViewItem);
+                listViewUserThisGroup.Items.Add(listViewItem);
             }
-            listViewAllUser.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
-            listViewAllUser.EndUpdate();
-            listViewAllUser.Update();
+            listViewUserThisGroup.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            listViewUserThisGroup.EndUpdate();
+            listViewUserThisGroup.Update();
+        }
+
+        public void listViewGroupUserNoThisGroup(ClassUsers.UserColection[] usersInGroup, ClassUsers.UserColection[] allUsers, ListView listViewUserNoThisGroup)
+        {
+            VitIcons.FormCompanents formCompanents = new VitIcons.FormCompanents();
+            listViewUserNoThisGroup.Clear();
+            listViewUserNoThisGroup.MultiSelect = true;
+            listViewUserNoThisGroup.LargeImageList = formCompanents.imageListColor;
+            listViewUserNoThisGroup.SmallImageList = formCompanents.imageListColor;
+            listViewUserNoThisGroup.BeginUpdate();
+            listViewUserNoThisGroup.View = View.Details;
+            listViewUserNoThisGroup.FullRowSelect = true;
+            listViewUserNoThisGroup.HideSelection = false;
+            listViewUserNoThisGroup.Columns.Clear();
+            listViewUserNoThisGroup.Columns.Add("");
+            listViewUserNoThisGroup.Columns.Add("id");
+            listViewUserNoThisGroup.Columns.Add("Имя");
+            listViewUserNoThisGroup.Columns.Add("Логин");
+            listViewUserNoThisGroup.Columns.Add("Тип доступа");
+            
+            ClassAccessGroup classAccessGroup = new ClassAccessGroup();
+            foreach (ClassUsers.UserColection userColection in allUsers)
+            {
+                if (findUser(usersInGroup, userColection)) continue;
+                string accessGroupName = classAccessGroup.getNameById(userColection.idAccessGroup);
+                ListViewItem listViewItem = new ListViewItem();
+
+                if (accessGroupName == "Админ")
+                {
+                    listViewItem.ImageKey = "icons8-crown-50.png";
+                }
+                else
+                {
+                    listViewItem.ImageKey = "icons8-user-avatar-48.png";
+                }
+
+                listViewItem.SubItems.Add(userColection.id.ToString()).Name = "id";
+                listViewItem.SubItems.Add(userColection.firstName + " " + userColection.lastName + " " + userColection.middleName).Name = "name";
+                listViewItem.SubItems.Add(userColection.login).Name = "login";
+                listViewItem.SubItems.Add(accessGroupName).Name = "accessGroup";
+                listViewUserNoThisGroup.Items.Add(listViewItem);
+            }
+            listViewUserNoThisGroup.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            listViewUserNoThisGroup.EndUpdate();
+            listViewUserNoThisGroup.Update();
         }
 
         private bool findUser(ClassUsers.UserColection[] userColections, ClassUsers.UserColection userColectionFinder )

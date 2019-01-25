@@ -155,9 +155,18 @@ namespace VitTree
         {
             string sourcePath = treeView.SelectedNode.FullPath;
             FormTree formTree = new FormTree();
+            formTree.Text = "Копирование";
+            formTree.textBoxSelectedPath.Text = sourcePath;
             if (formTree.ShowDialog() == DialogResult.OK)
             {
-                string targetPath = formTree.treeView1.SelectedNode.FullPath + "/копия - " + Path.GetFileName(treeView.SelectedNode.FullPath);
+                // Задаем новое имя для копии файла
+                string newName = "";
+                if (Path.GetExtension(treeView.SelectedNode.FullPath) != "")
+                    newName = Path.GetFileNameWithoutExtension(treeView.SelectedNode.FullPath) + " - копия" + Path.GetExtension(treeView.SelectedNode.FullPath);
+                else
+                    newName = Path.GetFileNameWithoutExtension(treeView.SelectedNode.FullPath) + " - копия";
+
+                string targetPath = formTree.treeView1.SelectedNode.FullPath + "/" + newName;
                 string[] copyFilesOk = classFiles.Copy(new string[] { sourcePath }, targetPath);
                 if(copyFilesOk.GetLength(0) < 1)
                 {
@@ -170,11 +179,9 @@ namespace VitTree
                 {
                     TreeNode treeNodeClone = (TreeNode)treeView.SelectedNode.Clone();
                     treeNodeClone.Name = targetPath;
-                    //treeNodeClone.ImageKey = Path.GetExtension(treeView.SelectedNode.FullPath);
-                    //treeNodeClone.SelectedImageKey = Path.GetExtension(treeView.SelectedNode.FullPath);
-                    //treeNodeClone.StateImageKey = Path.GetExtension(treeView.SelectedNode.FullPath);
-                    treeNodeClone.Text = "копия - " + Path.GetFileName(treeView.SelectedNode.FullPath);
+                    treeNodeClone.Text = newName;
                     treeNodes[0].Nodes.Add(treeNodeClone);
+                    treeView.Sort();
                 }
             }
         }
@@ -192,8 +199,6 @@ namespace VitTree
 
             string result = "";
             result = classFTP.RemoveDirecroty2(treeView.SelectedNode.FullPath).ToString();
-
-            Console.WriteLine(result);
 
             if ((result.Split(' ')[0] == "250") || (result.Equals("True")))
             {
@@ -264,23 +269,31 @@ namespace VitTree
             });
         }
 
-        public void move(TreeView treeView)
+        /// <summary>
+        /// Обращается к функции перемещения файлов на сервере и отправляет ей данные.
+        /// </summary>
+        /// <param name="treeView">Дерево в котором находится нужный файл для перемещения</param>
+        public void Move(TreeView treeView)
         {
             string sourcePath = treeView.SelectedNode.FullPath;
             FormTree formTree = new FormTree();
+            formTree.Text = "Перемещение";
+            formTree.textBoxSelectedPath.Text = sourcePath;
             if (formTree.ShowDialog() == DialogResult.OK)
             {
                 string targetPath = formTree.treeView1.SelectedNode.FullPath;
-                Console.WriteLine(sourcePath + "    ->    " + targetPath);
-                ClassUsers classUsers = new ClassUsers();
-                ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
-                classFTP.moveAsync(sourcePath, targetPath);
+                bool res = classFiles.MoveFile(sourcePath, targetPath);
+                if(res == false)
+                {
+                    ClassNotifyMessage classNotifyMessage = new ClassNotifyMessage();
+                    classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, "Не удалось перемечстить файл!");
+                    return;
+                }
                 TreeNode treeNodeClone = (TreeNode)treeView.SelectedNode.Clone();
                 treeNodeClone.Name = targetPath + "\\" + Path.GetFileName(sourcePath);
                 treeView.SelectedNode.Remove();
                 TreeNode[] treeNodes = treeView.Nodes.Find(formTree.treeView1.SelectedNode.Name, true);
                 treeNodes[0].Nodes.Add(treeNodeClone);
-                //update(treeView);
             }
         }
 
@@ -326,15 +339,12 @@ namespace VitTree
         }
 
         private async Task getSubdirectoryes(ClassFTP classFTP, TreeNode treeNode, string directory)
-        {
-            //classFTP.ChangeWorkingDirectory(directory);
-            //Console.WriteLine(classFTP.ChangeWorkingDirectory(""));
+        {;
             string[] dsubirectoryes = classFTP.ListDirectory2(directory);
             foreach (string subdirectory in dsubirectoryes)
             {
                 if (subdirectory.Contains("..")) continue;
                 
-                Console.WriteLine(subdirectory.Replace('\\', '/'));
                 TreeNode tn = new TreeNode
                 {
                     Name = subdirectory.Replace('\\', '/'),
@@ -343,8 +353,6 @@ namespace VitTree
                 addIcon(tn);
                 treeNode.Nodes.Add(tn);
             }
-            //classFTP.ChangeWorkingDirectory("..");
-            //Console.WriteLine(classFTP.ChangeWorkingDirectory(""));
         }
 
         public void rename(TreeView treeView)

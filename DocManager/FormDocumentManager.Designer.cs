@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDocumentManager));
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
             ""}, -1, System.Drawing.Color.Empty, System.Drawing.Color.Transparent, null);
             this.contextMenuStripTreeView = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ToolStripMenuItemAddFolder = new System.Windows.Forms.ToolStripMenuItem();
@@ -64,14 +64,6 @@
             this.timerSearcher = new System.Windows.Forms.Timer(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new VitControls.VitButton();
-            this.buttonExit = new VitControls.VitButton();
-            this.buttonAdminDataBaseSettings = new VitControls.VitButton();
-            this.buttonAdminSettingsDocumentCard = new VitControls.VitButton();
-            this.buttonAdminUsers = new VitControls.VitButton();
-            this.buttonAdminSettings = new VitControls.VitButton();
-            this.buttonScan = new VitControls.VitButton();
-            this.buttonAddBranch = new VitControls.VitButton();
             this.panelUserMenu = new System.Windows.Forms.Panel();
             this.flowLayoutPanelUserMenu = new System.Windows.Forms.FlowLayoutPanel();
             this.treeView1 = new System.Windows.Forms.TreeView();
@@ -85,8 +77,6 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panelStatusProgress = new System.Windows.Forms.Panel();
-            this.windowResizer1 = new VitControls.WindowResizer();
-            this.windowHeader1 = new VitControls.WindowHeader();
             this.textBoxUserName = new System.Windows.Forms.TextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.видToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -99,6 +89,17 @@
             this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.помощьToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.button1 = new VitControls.VitButton();
+            this.buttonExit = new VitControls.VitButton();
+            this.buttonAdminDataBaseSettings = new VitControls.VitButton();
+            this.buttonAdminSettingsDocumentCard = new VitControls.VitButton();
+            this.buttonAdminUsers = new VitControls.VitButton();
+            this.buttonAdminSettings = new VitControls.VitButton();
+            this.buttonScan = new VitControls.VitButton();
+            this.buttonAddBranch = new VitControls.VitButton();
+            this.vitButtonUpdateInfo = new VitControls.VitButton();
+            this.windowHeader1 = new VitControls.WindowHeader();
+            this.windowResizer1 = new VitControls.WindowResizer();
             this.contextMenuStripTreeView.SuspendLayout();
             this.panelUserMenu.SuspendLayout();
             this.flowLayoutPanelUserMenu.SuspendLayout();
@@ -404,6 +405,274 @@
             this.toolTip1.SetToolTip(this.textBox1, "Просто начните вводить текст и все найдется...");
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
+            // panelUserMenu
+            // 
+            this.panelUserMenu.BackColor = System.Drawing.Color.White;
+            this.panelUserMenu.Controls.Add(this.flowLayoutPanelUserMenu);
+            this.panelUserMenu.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelUserMenu.Location = new System.Drawing.Point(1, 67);
+            this.panelUserMenu.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.panelUserMenu.Name = "panelUserMenu";
+            this.panelUserMenu.Size = new System.Drawing.Size(798, 35);
+            this.panelUserMenu.TabIndex = 5;
+            // 
+            // flowLayoutPanelUserMenu
+            // 
+            this.flowLayoutPanelUserMenu.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.flowLayoutPanelUserMenu.Controls.Add(this.buttonAdminDataBaseSettings);
+            this.flowLayoutPanelUserMenu.Controls.Add(this.buttonAdminSettingsDocumentCard);
+            this.flowLayoutPanelUserMenu.Controls.Add(this.buttonAdminUsers);
+            this.flowLayoutPanelUserMenu.Controls.Add(this.buttonAdminSettings);
+            this.flowLayoutPanelUserMenu.Controls.Add(this.buttonScan);
+            this.flowLayoutPanelUserMenu.Controls.Add(this.buttonAddBranch);
+            this.flowLayoutPanelUserMenu.Controls.Add(this.vitButtonUpdateInfo);
+            this.flowLayoutPanelUserMenu.Location = new System.Drawing.Point(3, 2);
+            this.flowLayoutPanelUserMenu.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
+            this.flowLayoutPanelUserMenu.Name = "flowLayoutPanelUserMenu";
+            this.flowLayoutPanelUserMenu.Size = new System.Drawing.Size(280, 33);
+            this.flowLayoutPanelUserMenu.TabIndex = 10;
+            // 
+            // treeView1
+            // 
+            this.treeView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.treeView1.ContextMenuStrip = this.contextMenuStripTreeView;
+            this.treeView1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.treeView1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.treeView1.FullRowSelect = true;
+            this.treeView1.HideSelection = false;
+            this.treeView1.ImageIndex = 0;
+            this.treeView1.ImageList = this.imageList1;
+            this.treeView1.Location = new System.Drawing.Point(0, 0);
+            this.treeView1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.treeView1.Name = "treeView1";
+            this.treeView1.SelectedImageIndex = 0;
+            this.treeView1.ShowLines = false;
+            this.treeView1.Size = new System.Drawing.Size(396, 469);
+            this.treeView1.TabIndex = 5;
+            this.treeView1.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterExpand);
+            this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
+            this.treeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseClick_1);
+            this.treeView1.MouseHover += new System.EventHandler(this.treeView1_MouseHover);
+            // 
+            // listView1
+            // 
+            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.id,
+            this.name,
+            this.dateCreate,
+            this.dateChange,
+            this.path});
+            this.listView1.ContextMenuStrip = this.contextMenuStripTreeView;
+            this.listView1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem1});
+            this.listView1.Location = new System.Drawing.Point(401, 43);
+            this.listView1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 4);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(379, 422);
+            this.listView1.TabIndex = 6;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.DoubleClick += new System.EventHandler(this.listView1_DoubleClick);
+            this.listView1.MouseHover += new System.EventHandler(this.listView1_MouseHover);
+            // 
+            // id
+            // 
+            this.id.Text = "id";
+            this.id.Width = 32;
+            // 
+            // name
+            // 
+            this.name.Text = "Имя файла";
+            this.name.Width = 220;
+            // 
+            // dateCreate
+            // 
+            this.dateCreate.Text = "Дата создания";
+            this.dateCreate.Width = 127;
+            // 
+            // dateChange
+            // 
+            this.dateChange.Text = "Дата изменеия";
+            this.dateChange.Width = 102;
+            // 
+            // path
+            // 
+            this.path.Text = "Путь";
+            // 
+            // panelExplorer
+            // 
+            this.panelExplorer.BackColor = System.Drawing.Color.White;
+            this.panelExplorer.Controls.Add(this.pictureBox1);
+            this.panelExplorer.Controls.Add(this.textBox1);
+            this.panelExplorer.Controls.Add(this.listView1);
+            this.panelExplorer.Controls.Add(this.panel1);
+            this.panelExplorer.Controls.Add(this.treeView1);
+            this.panelExplorer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelExplorer.Location = new System.Drawing.Point(1, 102);
+            this.panelExplorer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.panelExplorer.Name = "panelExplorer";
+            this.panelExplorer.Size = new System.Drawing.Size(798, 469);
+            this.panelExplorer.TabIndex = 6;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.White;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.InitialImage = null;
+            this.pictureBox1.Location = new System.Drawing.Point(401, 8);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(22, 22);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 8;
+            this.pictureBox1.TabStop = false;
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Location = new System.Drawing.Point(402, 22);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(380, 10);
+            this.panel1.TabIndex = 9;
+            // 
+            // panelStatusProgress
+            // 
+            this.panelStatusProgress.BackColor = System.Drawing.Color.White;
+            this.panelStatusProgress.Controls.Add(this.windowResizer1);
+            this.panelStatusProgress.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelStatusProgress.Location = new System.Drawing.Point(1, 571);
+            this.panelStatusProgress.Name = "panelStatusProgress";
+            this.panelStatusProgress.Size = new System.Drawing.Size(798, 28);
+            this.panelStatusProgress.TabIndex = 9;
+            // 
+            // textBoxUserName
+            // 
+            this.textBoxUserName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxUserName.BackColor = System.Drawing.Color.White;
+            this.textBoxUserName.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxUserName.Location = new System.Drawing.Point(515, 40);
+            this.textBoxUserName.Name = "textBoxUserName";
+            this.textBoxUserName.ReadOnly = true;
+            this.textBoxUserName.Size = new System.Drawing.Size(268, 18);
+            this.textBoxUserName.TabIndex = 21;
+            this.textBoxUserName.Text = "User Name";
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.AutoSize = false;
+            this.menuStrip1.BackColor = System.Drawing.Color.White;
+            this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.видToolStripMenuItem,
+            this.администратированиеToolStripMenuItem,
+            this.справкаToolStripMenuItem});
+            this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
+            this.menuStrip1.Location = new System.Drawing.Point(1, 35);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(3, 3, 0, 3);
+            this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            this.menuStrip1.Size = new System.Drawing.Size(798, 32);
+            this.menuStrip1.TabIndex = 7;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // видToolStripMenuItem
+            // 
+            this.видToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ToolStripMenuItemShowUserMenu});
+            this.видToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
+            this.видToolStripMenuItem.Name = "видToolStripMenuItem";
+            this.видToolStripMenuItem.Size = new System.Drawing.Size(41, 26);
+            this.видToolStripMenuItem.Text = "Вид";
+            // 
+            // ToolStripMenuItemShowUserMenu
+            // 
+            this.ToolStripMenuItemShowUserMenu.Checked = true;
+            this.ToolStripMenuItemShowUserMenu.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ToolStripMenuItemShowUserMenu.Name = "ToolStripMenuItemShowUserMenu";
+            this.ToolStripMenuItemShowUserMenu.Size = new System.Drawing.Size(180, 22);
+            this.ToolStripMenuItemShowUserMenu.Text = "Вывод меню";
+            this.ToolStripMenuItemShowUserMenu.CheckedChanged += new System.EventHandler(this.ToolStripMenuItemUserMenu_CheckedChanged);
+            // 
+            // администратированиеToolStripMenuItem
+            // 
+            this.администратированиеToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.подключениеКБазеToolStripMenuItem,
+            this.пользователиToolStripMenuItem,
+            this.настройкиToolStripMenuItem,
+            this.настройкиКарточекToolStripMenuItem});
+            this.администратированиеToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
+            this.администратированиеToolStripMenuItem.Name = "администратированиеToolStripMenuItem";
+            this.администратированиеToolStripMenuItem.Size = new System.Drawing.Size(154, 26);
+            this.администратированиеToolStripMenuItem.Text = "Администратирование";
+            // 
+            // подключениеКБазеToolStripMenuItem
+            // 
+            this.подключениеКБазеToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("подключениеКБазеToolStripMenuItem.Image")));
+            this.подключениеКБазеToolStripMenuItem.Name = "подключениеКБазеToolStripMenuItem";
+            this.подключениеКБазеToolStripMenuItem.Size = new System.Drawing.Size(209, 30);
+            this.подключениеКБазеToolStripMenuItem.Text = "Подключение к базе";
+            this.подключениеКБазеToolStripMenuItem.Click += new System.EventHandler(this.buttonSettingsConnectToDB_Click);
+            // 
+            // пользователиToolStripMenuItem
+            // 
+            this.пользователиToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("пользователиToolStripMenuItem.Image")));
+            this.пользователиToolStripMenuItem.Name = "пользователиToolStripMenuItem";
+            this.пользователиToolStripMenuItem.Size = new System.Drawing.Size(209, 30);
+            this.пользователиToolStripMenuItem.Text = "Пользователи";
+            this.пользователиToolStripMenuItem.Click += new System.EventHandler(this.buttonUsers_Click);
+            // 
+            // настройкиToolStripMenuItem
+            // 
+            this.настройкиToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("настройкиToolStripMenuItem.Image")));
+            this.настройкиToolStripMenuItem.Name = "настройкиToolStripMenuItem";
+            this.настройкиToolStripMenuItem.Size = new System.Drawing.Size(209, 30);
+            this.настройкиToolStripMenuItem.Text = "Настройки";
+            this.настройкиToolStripMenuItem.Click += new System.EventHandler(this.buttonSettings_Click);
+            // 
+            // настройкиКарточекToolStripMenuItem
+            // 
+            this.настройкиКарточекToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("настройкиКарточекToolStripMenuItem.Image")));
+            this.настройкиКарточекToolStripMenuItem.Name = "настройкиКарточекToolStripMenuItem";
+            this.настройкиКарточекToolStripMenuItem.Size = new System.Drawing.Size(209, 30);
+            this.настройкиКарточекToolStripMenuItem.Text = "Настройки карточек";
+            this.настройкиКарточекToolStripMenuItem.Click += new System.EventHandler(this.buttonSettingsDocumentCard_Click);
+            // 
+            // справкаToolStripMenuItem
+            // 
+            this.справкаToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.оПрограммеToolStripMenuItem,
+            this.помощьToolStripMenuItem1});
+            this.справкаToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
+            this.справкаToolStripMenuItem.Name = "справкаToolStripMenuItem";
+            this.справкаToolStripMenuItem.Size = new System.Drawing.Size(70, 26);
+            this.справкаToolStripMenuItem.Text = "Справка";
+            // 
+            // оПрограммеToolStripMenuItem
+            // 
+            this.оПрограммеToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("оПрограммеToolStripMenuItem.Image")));
+            this.оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
+            this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(166, 30);
+            this.оПрограммеToolStripMenuItem.Text = "О программе";
+            this.оПрограммеToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItemAbout_Click);
+            // 
+            // помощьToolStripMenuItem1
+            // 
+            this.помощьToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("помощьToolStripMenuItem1.Image")));
+            this.помощьToolStripMenuItem1.Name = "помощьToolStripMenuItem1";
+            this.помощьToolStripMenuItem1.Size = new System.Drawing.Size(166, 30);
+            this.помощьToolStripMenuItem1.Text = "Помощь";
+            this.помощьToolStripMenuItem1.Click += new System.EventHandler(this.помощьToolStripMenuItem_Click);
+            // 
             // button1
             // 
             this.button1.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
@@ -527,166 +796,20 @@
             this.toolTip1.SetToolTip(this.buttonAddBranch, "Дабавить филиал");
             this.buttonAddBranch.Click += new System.EventHandler(this.buttonAddBranch_Click);
             // 
-            // panelUserMenu
+            // vitButtonUpdateInfo
             // 
-            this.panelUserMenu.BackColor = System.Drawing.Color.White;
-            this.panelUserMenu.Controls.Add(this.flowLayoutPanelUserMenu);
-            this.panelUserMenu.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelUserMenu.Location = new System.Drawing.Point(1, 67);
-            this.panelUserMenu.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.panelUserMenu.Name = "panelUserMenu";
-            this.panelUserMenu.Size = new System.Drawing.Size(798, 35);
-            this.panelUserMenu.TabIndex = 5;
-            // 
-            // flowLayoutPanelUserMenu
-            // 
-            this.flowLayoutPanelUserMenu.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.flowLayoutPanelUserMenu.Controls.Add(this.buttonAdminDataBaseSettings);
-            this.flowLayoutPanelUserMenu.Controls.Add(this.buttonAdminSettingsDocumentCard);
-            this.flowLayoutPanelUserMenu.Controls.Add(this.buttonAdminUsers);
-            this.flowLayoutPanelUserMenu.Controls.Add(this.buttonAdminSettings);
-            this.flowLayoutPanelUserMenu.Controls.Add(this.buttonScan);
-            this.flowLayoutPanelUserMenu.Controls.Add(this.buttonAddBranch);
-            this.flowLayoutPanelUserMenu.Location = new System.Drawing.Point(3, 2);
-            this.flowLayoutPanelUserMenu.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
-            this.flowLayoutPanelUserMenu.Name = "flowLayoutPanelUserMenu";
-            this.flowLayoutPanelUserMenu.Size = new System.Drawing.Size(231, 33);
-            this.flowLayoutPanelUserMenu.TabIndex = 10;
-            // 
-            // treeView1
-            // 
-            this.treeView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.treeView1.ContextMenuStrip = this.contextMenuStripTreeView;
-            this.treeView1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.treeView1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.treeView1.FullRowSelect = true;
-            this.treeView1.HideSelection = false;
-            this.treeView1.ImageIndex = 0;
-            this.treeView1.ImageList = this.imageList1;
-            this.treeView1.Location = new System.Drawing.Point(0, 0);
-            this.treeView1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.treeView1.Name = "treeView1";
-            this.treeView1.SelectedImageIndex = 0;
-            this.treeView1.ShowLines = false;
-            this.treeView1.ShowRootLines = false;
-            this.treeView1.Size = new System.Drawing.Size(396, 469);
-            this.treeView1.TabIndex = 5;
-            this.treeView1.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterExpand);
-            this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
-            this.treeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseClick_1);
-            this.treeView1.MouseHover += new System.EventHandler(this.treeView1_MouseHover);
-            // 
-            // listView1
-            // 
-            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.id,
-            this.name,
-            this.dateCreate,
-            this.dateChange,
-            this.path});
-            this.listView1.ContextMenuStrip = this.contextMenuStripTreeView;
-            this.listView1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem2});
-            this.listView1.Location = new System.Drawing.Point(401, 43);
-            this.listView1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 4);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(379, 422);
-            this.listView1.TabIndex = 6;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
-            this.listView1.DoubleClick += new System.EventHandler(this.listView1_DoubleClick);
-            this.listView1.MouseHover += new System.EventHandler(this.listView1_MouseHover);
-            // 
-            // id
-            // 
-            this.id.Text = "id";
-            this.id.Width = 32;
-            // 
-            // name
-            // 
-            this.name.Text = "Имя файла";
-            this.name.Width = 220;
-            // 
-            // dateCreate
-            // 
-            this.dateCreate.Text = "Дата создания";
-            this.dateCreate.Width = 127;
-            // 
-            // dateChange
-            // 
-            this.dateChange.Text = "Дата изменеия";
-            this.dateChange.Width = 102;
-            // 
-            // path
-            // 
-            this.path.Text = "Путь";
-            // 
-            // panelExplorer
-            // 
-            this.panelExplorer.BackColor = System.Drawing.Color.White;
-            this.panelExplorer.Controls.Add(this.pictureBox1);
-            this.panelExplorer.Controls.Add(this.textBox1);
-            this.panelExplorer.Controls.Add(this.listView1);
-            this.panelExplorer.Controls.Add(this.panel1);
-            this.panelExplorer.Controls.Add(this.treeView1);
-            this.panelExplorer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelExplorer.Location = new System.Drawing.Point(1, 102);
-            this.panelExplorer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.panelExplorer.Name = "panelExplorer";
-            this.panelExplorer.Size = new System.Drawing.Size(798, 469);
-            this.panelExplorer.TabIndex = 6;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.White;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.InitialImage = null;
-            this.pictureBox1.Location = new System.Drawing.Point(401, 8);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(22, 22);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 8;
-            this.pictureBox1.TabStop = false;
-            // 
-            // panel1
-            // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Location = new System.Drawing.Point(402, 22);
-            this.panel1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(380, 10);
-            this.panel1.TabIndex = 9;
-            // 
-            // panelStatusProgress
-            // 
-            this.panelStatusProgress.BackColor = System.Drawing.Color.White;
-            this.panelStatusProgress.Controls.Add(this.windowResizer1);
-            this.panelStatusProgress.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelStatusProgress.Location = new System.Drawing.Point(1, 571);
-            this.panelStatusProgress.Name = "panelStatusProgress";
-            this.panelStatusProgress.Size = new System.Drawing.Size(798, 28);
-            this.panelStatusProgress.TabIndex = 9;
-            // 
-            // windowResizer1
-            // 
-            this.windowResizer1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.windowResizer1.BackColor = System.Drawing.Color.Transparent;
-            this.windowResizer1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("windowResizer1.BackgroundImage")));
-            this.windowResizer1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.windowResizer1.Location = new System.Drawing.Point(770, 0);
-            this.windowResizer1.Margin = new System.Windows.Forms.Padding(0);
-            this.windowResizer1.Name = "windowResizer1";
-            this.windowResizer1.Size = new System.Drawing.Size(28, 28);
-            this.windowResizer1.TabIndex = 3;
+            this.vitButtonUpdateInfo.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
+            this.vitButtonUpdateInfo.AllowDrop = true;
+            this.vitButtonUpdateInfo.BackColor = System.Drawing.Color.White;
+            this.vitButtonUpdateInfo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("vitButtonUpdateInfo.BackgroundImage")));
+            this.vitButtonUpdateInfo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.vitButtonUpdateInfo.Location = new System.Drawing.Point(224, 1);
+            this.vitButtonUpdateInfo.Margin = new System.Windows.Forms.Padding(4, 1, 4, 1);
+            this.vitButtonUpdateInfo.Name = "vitButtonUpdateInfo";
+            this.vitButtonUpdateInfo.Size = new System.Drawing.Size(30, 30);
+            this.vitButtonUpdateInfo.TabIndex = 23;
+            this.toolTip1.SetToolTip(this.vitButtonUpdateInfo, "Обновить данные в окне программы");
+            this.vitButtonUpdateInfo.Click += new System.EventHandler(this.vitButtonUpdateInfo_Click);
             // 
             // windowHeader1
             // 
@@ -705,124 +828,17 @@
             this.windowHeader1.Size = new System.Drawing.Size(798, 34);
             this.windowHeader1.TabIndex = 10;
             // 
-            // textBoxUserName
+            // windowResizer1
             // 
-            this.textBoxUserName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxUserName.BackColor = System.Drawing.Color.White;
-            this.textBoxUserName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxUserName.Location = new System.Drawing.Point(515, 40);
-            this.textBoxUserName.Name = "textBoxUserName";
-            this.textBoxUserName.ReadOnly = true;
-            this.textBoxUserName.Size = new System.Drawing.Size(268, 18);
-            this.textBoxUserName.TabIndex = 21;
-            this.textBoxUserName.Text = "User Name";
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.AutoSize = false;
-            this.menuStrip1.BackColor = System.Drawing.Color.White;
-            this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.видToolStripMenuItem,
-            this.администратированиеToolStripMenuItem,
-            this.справкаToolStripMenuItem});
-            this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.menuStrip1.Location = new System.Drawing.Point(1, 35);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(3, 3, 0, 3);
-            this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.menuStrip1.Size = new System.Drawing.Size(798, 32);
-            this.menuStrip1.TabIndex = 7;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // видToolStripMenuItem
-            // 
-            this.видToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ToolStripMenuItemShowUserMenu});
-            this.видToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
-            this.видToolStripMenuItem.Name = "видToolStripMenuItem";
-            this.видToolStripMenuItem.Size = new System.Drawing.Size(41, 26);
-            this.видToolStripMenuItem.Text = "Вид";
-            // 
-            // ToolStripMenuItemShowUserMenu
-            // 
-            this.ToolStripMenuItemShowUserMenu.Checked = true;
-            this.ToolStripMenuItemShowUserMenu.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ToolStripMenuItemShowUserMenu.Name = "ToolStripMenuItemShowUserMenu";
-            this.ToolStripMenuItemShowUserMenu.Size = new System.Drawing.Size(180, 22);
-            this.ToolStripMenuItemShowUserMenu.Text = "Вывод меню";
-            this.ToolStripMenuItemShowUserMenu.CheckedChanged += new System.EventHandler(this.ToolStripMenuItemUserMenu_CheckedChanged);
-            // 
-            // администратированиеToolStripMenuItem
-            // 
-            this.администратированиеToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.подключениеКБазеToolStripMenuItem,
-            this.пользователиToolStripMenuItem,
-            this.настройкиToolStripMenuItem,
-            this.настройкиКарточекToolStripMenuItem});
-            this.администратированиеToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
-            this.администратированиеToolStripMenuItem.Name = "администратированиеToolStripMenuItem";
-            this.администратированиеToolStripMenuItem.Size = new System.Drawing.Size(154, 26);
-            this.администратированиеToolStripMenuItem.Text = "Администратирование";
-            // 
-            // подключениеКБазеToolStripMenuItem
-            // 
-            this.подключениеКБазеToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("подключениеКБазеToolStripMenuItem.Image")));
-            this.подключениеКБазеToolStripMenuItem.Name = "подключениеКБазеToolStripMenuItem";
-            this.подключениеКБазеToolStripMenuItem.Size = new System.Drawing.Size(209, 30);
-            this.подключениеКБазеToolStripMenuItem.Text = "Подключение к базе";
-            this.подключениеКБазеToolStripMenuItem.Click += new System.EventHandler(this.buttonSettingsConnectToDB_Click);
-            // 
-            // пользователиToolStripMenuItem
-            // 
-            this.пользователиToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("пользователиToolStripMenuItem.Image")));
-            this.пользователиToolStripMenuItem.Name = "пользователиToolStripMenuItem";
-            this.пользователиToolStripMenuItem.Size = new System.Drawing.Size(209, 30);
-            this.пользователиToolStripMenuItem.Text = "Пользователи";
-            this.пользователиToolStripMenuItem.Click += new System.EventHandler(this.buttonUsers_Click);
-            // 
-            // настройкиToolStripMenuItem
-            // 
-            this.настройкиToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("настройкиToolStripMenuItem.Image")));
-            this.настройкиToolStripMenuItem.Name = "настройкиToolStripMenuItem";
-            this.настройкиToolStripMenuItem.Size = new System.Drawing.Size(209, 30);
-            this.настройкиToolStripMenuItem.Text = "Настройки";
-            this.настройкиToolStripMenuItem.Click += new System.EventHandler(this.buttonSettings_Click);
-            // 
-            // настройкиКарточекToolStripMenuItem
-            // 
-            this.настройкиКарточекToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("настройкиКарточекToolStripMenuItem.Image")));
-            this.настройкиКарточекToolStripMenuItem.Name = "настройкиКарточекToolStripMenuItem";
-            this.настройкиКарточекToolStripMenuItem.Size = new System.Drawing.Size(209, 30);
-            this.настройкиКарточекToolStripMenuItem.Text = "Настройки карточек";
-            this.настройкиКарточекToolStripMenuItem.Click += new System.EventHandler(this.buttonSettingsDocumentCard_Click);
-            // 
-            // справкаToolStripMenuItem
-            // 
-            this.справкаToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.оПрограммеToolStripMenuItem,
-            this.помощьToolStripMenuItem1});
-            this.справкаToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
-            this.справкаToolStripMenuItem.Name = "справкаToolStripMenuItem";
-            this.справкаToolStripMenuItem.Size = new System.Drawing.Size(70, 26);
-            this.справкаToolStripMenuItem.Text = "Справка";
-            // 
-            // оПрограммеToolStripMenuItem
-            // 
-            this.оПрограммеToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("оПрограммеToolStripMenuItem.Image")));
-            this.оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
-            this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(166, 30);
-            this.оПрограммеToolStripMenuItem.Text = "О программе";
-            this.оПрограммеToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItemAbout_Click);
-            // 
-            // помощьToolStripMenuItem1
-            // 
-            this.помощьToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("помощьToolStripMenuItem1.Image")));
-            this.помощьToolStripMenuItem1.Name = "помощьToolStripMenuItem1";
-            this.помощьToolStripMenuItem1.Size = new System.Drawing.Size(166, 30);
-            this.помощьToolStripMenuItem1.Text = "Помощь";
-            this.помощьToolStripMenuItem1.Click += new System.EventHandler(this.помощьToolStripMenuItem_Click);
+            this.windowResizer1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.windowResizer1.BackColor = System.Drawing.Color.Transparent;
+            this.windowResizer1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("windowResizer1.BackgroundImage")));
+            this.windowResizer1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.windowResizer1.Location = new System.Drawing.Point(770, 0);
+            this.windowResizer1.Margin = new System.Windows.Forms.Padding(0);
+            this.windowResizer1.Name = "windowResizer1";
+            this.windowResizer1.Size = new System.Drawing.Size(28, 28);
+            this.windowResizer1.TabIndex = 3;
             // 
             // FormDocumentManager
             // 
@@ -940,6 +956,7 @@
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemSelectAll;
         private VitControls.VitButton buttonScan;
         private VitControls.VitButton buttonAddBranch;
+        private VitControls.VitButton vitButtonUpdateInfo;
     }
 }
 

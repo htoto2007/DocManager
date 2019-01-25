@@ -176,13 +176,11 @@ namespace VitUsers
             UserColection userColection = getThisUser();
             if (userColection.password.Equals(oldPass) == false)
             {
-                Console.WriteLine("newPass " + userColection.password + " " + newPass);
                 return false;
             }
 
             if (newPass.Equals(retryPass) == false)
             {
-                Console.WriteLine("retryPass " + newPass + " " + retryPass);
                 return false;
             }
 

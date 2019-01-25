@@ -44,9 +44,6 @@ namespace VitTree
                     Width = 200,
                     Location = new Point(x, y)
                 };
-                // textBox = new TextBox();
-
-                Console.WriteLine(typeCardProp.name + " prop id " + typeCardProp.id.ToString());
 
                 if (typeCardProp.typeValue == 0) // строуовые
                 {

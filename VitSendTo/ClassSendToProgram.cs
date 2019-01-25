@@ -79,8 +79,6 @@ namespace VitSendToProgram
             // идем по полуеным элементам полей карточки документа
             foreach (Control control in controlCollection)
             {
-                Console.Write(control.GetType().ToString() + " ");
-                Console.WriteLine(control.Name);
                 string[] arrNameControl;
                 int idCardProps = 0;
                 string value = "";

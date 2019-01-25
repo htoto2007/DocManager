@@ -80,7 +80,7 @@
             this.button10 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.listViewGroupsAllUsers = new System.Windows.Forms.ListView();
-            this.listViewGroupsUsersGroup = new System.Windows.Forms.ListView();
+            this.listViewGroupsUsersThisGroup = new System.Windows.Forms.ListView();
             this.tabPageGroupsAccess = new System.Windows.Forms.TabPage();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.checkBox5 = new System.Windows.Forms.CheckBox();
@@ -626,7 +626,7 @@
             this.tabPageroupsUsers.Controls.Add(this.button10);
             this.tabPageroupsUsers.Controls.Add(this.button9);
             this.tabPageroupsUsers.Controls.Add(this.listViewGroupsAllUsers);
-            this.tabPageroupsUsers.Controls.Add(this.listViewGroupsUsersGroup);
+            this.tabPageroupsUsers.Controls.Add(this.listViewGroupsUsersThisGroup);
             this.tabPageroupsUsers.Location = new System.Drawing.Point(4, 26);
             this.tabPageroupsUsers.Name = "tabPageroupsUsers";
             this.tabPageroupsUsers.Padding = new System.Windows.Forms.Padding(3);
@@ -691,11 +691,11 @@
             // 
             // listViewGroupsUsersGroup
             // 
-            this.listViewGroupsUsersGroup.Location = new System.Drawing.Point(3, 23);
-            this.listViewGroupsUsersGroup.Name = "listViewGroupsUsersGroup";
-            this.listViewGroupsUsersGroup.Size = new System.Drawing.Size(365, 141);
-            this.listViewGroupsUsersGroup.TabIndex = 0;
-            this.listViewGroupsUsersGroup.UseCompatibleStateImageBehavior = false;
+            this.listViewGroupsUsersThisGroup.Location = new System.Drawing.Point(3, 23);
+            this.listViewGroupsUsersThisGroup.Name = "listViewGroupsUsersGroup";
+            this.listViewGroupsUsersThisGroup.Size = new System.Drawing.Size(365, 141);
+            this.listViewGroupsUsersThisGroup.TabIndex = 0;
+            this.listViewGroupsUsersThisGroup.UseCompatibleStateImageBehavior = false;
             // 
             // tabPageGroupsAccess
             // 
@@ -902,7 +902,7 @@
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.TreeView treeView2;
-        private System.Windows.Forms.ListView listViewGroupsUsersGroup;
+        private System.Windows.Forms.ListView listViewGroupsUsersThisGroup;
         private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.ListView listViewGroupsAllUsers;

@@ -1,5 +1,8 @@
 ﻿using System;
+using System.IO;
 using System.Windows.Forms;
+using VitFTP;
+using VitUsers;
 
 namespace VitTree
 {
@@ -32,7 +35,15 @@ namespace VitTree
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
+            buttonOk.Enabled = false;
+            ClassUsers classUsers = new ClassUsers();
+            ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
+            int res = classFTP.getFileType(treeView1.SelectedNode.Name);
             if (treeView1.SelectedNode == null)
+            {
+                buttonOk.Enabled = false;
+            }
+            else if (res != 2)
             {
                 buttonOk.Enabled = false;
             }

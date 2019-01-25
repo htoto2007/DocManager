@@ -558,6 +558,26 @@ namespace VitFTP
             return PrintWorkingDirectory();
         }
 
+        /// <summary>
+        /// Определяет тип файла (файл или папка)
+        /// </summary>
+        /// <param name="remoteFilePath">Путь к файлу</param>
+        /// <returns>0 - информация отсутствует, 1 - является файлом, 2 - является папкой</returns>
+        public int getFileType(string remoteFilePath)
+        {
+            RemoteFileInfo remoteFileInfo = null;
+            using (Session session = new Session())
+            {
+                // Connect
+                session.Open(sessionOptions);
+                remoteFileInfo = session.GetFileInfo(remoteFilePath);
+                session.Close();
+            }
+            if (remoteFileInfo == null) return 0;
+            if (remoteFileInfo.IsDirectory) return 2;
+            return 1;
+        }
+
         public string ChangeWorkingDirectoryByFullPath(string path)
         {
             string[] arrNames = path.Split('\\');

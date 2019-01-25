@@ -67,9 +67,7 @@ namespace VitSearcher
             int[,] result = new int[arrStrId.Length, 2];
             for (int i = 0; i < arrStrId.Length; i++)
             {
-                Console.WriteLine("arrStrId [" + arrStrId[i] + "]");
                 result[i, 0] = Convert.ToInt32(arrStrId[i]);
-                Console.WriteLine("arrStrCount [" + arrStrCount[i] + "]");
                 result[i, 1] = Convert.ToInt32(arrStrCount[i]);
             }
 
