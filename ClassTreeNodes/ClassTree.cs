@@ -172,7 +172,7 @@ namespace VitTree
                 if(treeNodes.GetLength(0) > 0)
                 {
                     TreeNode treeNodeClone = (TreeNode)treeView.SelectedNode.Clone();
-                    treeNodeClone.Name = targetPath;
+                    treeNodeClone.Name = copyFilesOk[0];
                     treeNodeClone.Text = Path.GetFileName(copyFilesOk[0]);
                     treeNodes[0].Nodes.Add(treeNodeClone);
                     treeView.Sort();
@@ -278,8 +278,9 @@ namespace VitTree
                 string targetPath = formTree.treeView1.SelectedNode.FullPath.Replace("/", "\\");
                 string[] completeFiles = classFiles.MoveFile(new string[] { sourcePath }, targetPath);
                 if (completeFiles == null) return;
+
                 TreeNode treeNodeClone = (TreeNode)treeView.SelectedNode.Clone();
-                treeNodeClone.Name = targetPath + "\\" + Path.GetFileName(sourcePath);
+                treeNodeClone.Name = completeFiles[0];
                 treeView.SelectedNode.Remove();
                 TreeNode[] treeNodes = treeView.Nodes.Find(formTree.treeView1.SelectedNode.Name, true);
                 treeNodes[0].Nodes.Add(treeNodeClone);

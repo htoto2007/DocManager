@@ -515,7 +515,7 @@ namespace DocManager
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            
+            Console.WriteLine(treeView1.SelectedNode.Name);
             VitListView.ClassLisView classLisView = new VitListView.ClassLisView();
             classLisView.FromTreeVuew(treeView1, listView1);
         }

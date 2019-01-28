@@ -39,7 +39,7 @@ namespace VitFiles
                 string fileExtension = Path.GetExtension(sourceFile);
                 string newFilePath = targetPath + "/" + fileName + fileExtension;
                 if (!classFTP.FileExist(newFilePath))
-                    return newFilePath;
+                    return newFilePath.Replace("\\", "/");
 
                 if(i > 100000)
                 {
@@ -59,16 +59,17 @@ namespace VitFiles
             {
                 // Задаем новое имя для копии файла
                 targetPath = newFileNameGenerator(sourcePath, targetPath);
-                Console.WriteLine(sourcePath + " -> " + targetPath);
 
                 classFTP.copyAsync(sourcePath, targetPath.Replace("\\", "/"));
-                ClassNotifyMessage classNotifyMessage = new ClassNotifyMessage();
                 if (classFTP.FileExist(targetPath))
                 {
+                    ClassNotifyMessage classNotifyMessage = new ClassNotifyMessage();
                     classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.USER_ERROR, "Не получилось скопироватиь файл. " + targetPath);
                     continue;
                 }
-                filesOk.Add(targetPath);
+                ClassCardPropsValue classCardPropsValue = new ClassCardPropsValue();
+                classCardPropsValue.CopyByFilePath("/" + sourcePath, "/" + targetPath);
+                filesOk.Add("/" + targetPath);
             }
             return filesOk.ToArray();
         }
@@ -92,7 +93,6 @@ namespace VitFiles
             formProgressStatus = new FormProgressStatus(0, formFileCard.panelCardProps.Controls.Count);
             foreach (Control control in formFileCard.panelCardProps.Controls)
             {
-
                 if (control.Name.Split('_')[0] == "tb")
                 {
                     cardPropCollections[iterator].idProp = formFileCard.getValueByControl(control).idProp;
@@ -229,7 +229,11 @@ namespace VitFiles
                 if (!classFTP.FileExist(targetPath))
                     arrErrorPath.Add(sourcePath);
                 else
-                    arrCompleteFiles.Add(sourcePath);
+                {
+                    ClassCardPropsValue classCardPropsValue = new ClassCardPropsValue();
+                    classCardPropsValue.MoveByFilePath("/" + sourcePath, "/" + targetPath);
+                    arrCompleteFiles.Add("/" + sourcePath);
+                }
             }
 
             if(arrErrorPath.Count > 0)
@@ -238,6 +242,8 @@ namespace VitFiles
                 foreach (string str in arrErrorPath) errPath = str + "\n";
                 classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, "Следующие файлы не были загружены: \n" + errPath);
             }
+
+            
 
             return arrCompleteFiles.ToArray();
         }
