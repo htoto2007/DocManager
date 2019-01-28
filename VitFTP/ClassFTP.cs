@@ -590,6 +590,12 @@ namespace VitFTP
             return result;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sourcePath">sourceDirectory\fileName.ext</param>
+        /// <param name="targetPath">targetDirectory\fileName.ext</param>
+        /// <returns></returns>
         public async Task copyAsync(string sourcePath, string targetPath)
         {
             using (Session session = new Session())
@@ -597,16 +603,18 @@ namespace VitFTP
                 // Connect
                 session.Open(sessionOptions);
                 await Task.Run(() => EraseDirectory(VitSettings.Properties.FTPSettings.Default.pathTnp));
-                if (Path.GetExtension(sourcePath) == "")
+                Console.WriteLine("sourcePath: " + sourcePath);
+                Console.WriteLine("FTP file type " + getFileType(sourcePath.Replace("\\", "/")));
+                if (getFileType(sourcePath.Replace("\\", "/")) == 2)
                 {
                     await Task.Run(() => Directory.CreateDirectory(VitSettings.Properties.FTPSettings.Default.pathTnp + "\\" + Path.GetFileName(sourcePath)));
                     await Task.Run(() => session.GetFiles(sourcePath, VitSettings.Properties.FTPSettings.Default.pathTnp + "\\" + Path.GetFileName(sourcePath)));
-                    await Task.Run(() => session.PutFiles(VitSettings.Properties.FTPSettings.Default.pathTnp + "\\" + Path.GetFileName(sourcePath), targetPath + "/"));
+                    await Task.Run(() => session.PutFiles(VitSettings.Properties.FTPSettings.Default.pathTnp + "\\" + Path.GetFileName(sourcePath), targetPath + "\\"));
                 }
                 else
                 {
-                    await Task.Run(() => DownloadFile(sourcePath, VitSettings.Properties.FTPSettings.Default.pathTnp + "\\" + Path.GetFileName(sourcePath)));
-                    await Task.Run(() => session.PutFiles(VitSettings.Properties.FTPSettings.Default.pathTnp + "\\" + Path.GetFileName(sourcePath), targetPath));
+                    DownloadFile(sourcePath, VitSettings.Properties.FTPSettings.Default.pathTnp + "\\" + Path.GetFileName(sourcePath));
+                    session.PutFiles(VitSettings.Properties.FTPSettings.Default.pathTnp + "\\" + Path.GetFileName(sourcePath), targetPath);
                 }
                 await Task.Run(() => EraseDirectory(VitSettings.Properties.FTPSettings.Default.pathTnp));
                 session.Close();
@@ -662,6 +670,11 @@ namespace VitFTP
             }
         }
 
+        /// <summary>
+        /// Определяет наличие файла по указанному пути сервере. 
+        /// </summary>
+        /// <param name="path">"directoey/fileName.ext" Можнт принемать пути файлов USNIX и WINSOWS</param>
+        /// <returns></returns>
         public bool FileExist(string path)
         {
             bool res = false;

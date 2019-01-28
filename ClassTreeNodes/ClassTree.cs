@@ -159,14 +159,7 @@ namespace VitTree
             formTree.textBoxSelectedPath.Text = sourcePath;
             if (formTree.ShowDialog() == DialogResult.OK)
             {
-                // Задаем новое имя для копии файла
-                string newName = "";
-                if (Path.GetExtension(treeView.SelectedNode.FullPath) != "")
-                    newName = Path.GetFileNameWithoutExtension(treeView.SelectedNode.FullPath) + " - копия" + Path.GetExtension(treeView.SelectedNode.FullPath);
-                else
-                    newName = Path.GetFileNameWithoutExtension(treeView.SelectedNode.FullPath) + " - копия";
-
-                string targetPath = formTree.treeView1.SelectedNode.FullPath + "/" + newName;
+                string targetPath = formTree.treeView1.SelectedNode.FullPath;
                 string[] copyFilesOk = classFiles.Copy(new string[] { sourcePath }, targetPath);
                 if(copyFilesOk.GetLength(0) < 1)
                 {
@@ -174,12 +167,13 @@ namespace VitTree
                     classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.USER_ERROR, "Не получилось скопироватиь файл.");
                     return;
                 }
+
                 TreeNode[] treeNodes = treeView.Nodes.Find(formTree.treeView1.SelectedNode.Name, true);
                 if(treeNodes.GetLength(0) > 0)
                 {
                     TreeNode treeNodeClone = (TreeNode)treeView.SelectedNode.Clone();
                     treeNodeClone.Name = targetPath;
-                    treeNodeClone.Text = newName;
+                    treeNodeClone.Text = Path.GetFileName(copyFilesOk[0]);
                     treeNodes[0].Nodes.Add(treeNodeClone);
                     treeView.Sort();
                 }
@@ -281,14 +275,9 @@ namespace VitTree
             formTree.textBoxSelectedPath.Text = sourcePath;
             if (formTree.ShowDialog() == DialogResult.OK)
             {
-                string targetPath = formTree.treeView1.SelectedNode.FullPath;
-                bool res = classFiles.MoveFile(sourcePath, targetPath);
-                if(res == false)
-                {
-                    ClassNotifyMessage classNotifyMessage = new ClassNotifyMessage();
-                    classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, "Не удалось перемечстить файл!");
-                    return;
-                }
+                string targetPath = formTree.treeView1.SelectedNode.FullPath.Replace("/", "\\");
+                string[] completeFiles = classFiles.MoveFile(new string[] { sourcePath }, targetPath);
+                if (completeFiles == null) return;
                 TreeNode treeNodeClone = (TreeNode)treeView.SelectedNode.Clone();
                 treeNodeClone.Name = targetPath + "\\" + Path.GetFileName(sourcePath);
                 treeView.SelectedNode.Remove();

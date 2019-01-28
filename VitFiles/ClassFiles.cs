@@ -26,22 +26,42 @@ namespace VitFiles
         public ClassFiles()
         {
             
-            //Thread thread = new Thread(() => { formProgressStatus = new FormProgressStatus(); });
-            //thread.Start();
+        }
+
+        public string newFileNameGenerator(string sourceFile, string targetPath)
+        {
+            ClassUsers classUsers = new ClassUsers();
+            ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
+            int i = 0;
+            while (true)
+            {
+                string fileName = Path.GetFileNameWithoutExtension(sourceFile) + " - копия(" + i.ToString() + ")";
+                string fileExtension = Path.GetExtension(sourceFile);
+                string newFilePath = targetPath + "/" + fileName + fileExtension;
+                if (!classFTP.FileExist(newFilePath))
+                    return newFilePath;
+
+                if(i > 100000)
+                {
+                    classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.USER_ERROR, "Количество индексов копий привышает системное ограничение в 1000000");
+                    return "";
+                }
+                i++;
+            }
         }
 
         public string[] Copy(string[] arrPath, string targetPath)
         {
-            // делаем поиск дубликатов
-            if (DuplicateSearch(arrPath, targetPath) == false) return null;
-
             List<string> filesOk = new List<string>();
-
             ClassUsers classUsers = new ClassUsers();
             ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
             foreach (string sourcePath in arrPath)
             {
-                classFTP.copyAsync(sourcePath, targetPath);
+                // Задаем новое имя для копии файла
+                targetPath = newFileNameGenerator(sourcePath, targetPath);
+                Console.WriteLine(sourcePath + " -> " + targetPath);
+
+                classFTP.copyAsync(sourcePath, targetPath.Replace("\\", "/"));
                 ClassNotifyMessage classNotifyMessage = new ClassNotifyMessage();
                 if (classFTP.FileExist(targetPath))
                 {
@@ -113,6 +133,7 @@ namespace VitFiles
             return uploadRemoteFiles.ToArray();
         }
 
+
         /// <summary>
         /// Производит поиск дубликатов файлов из выбранного списка с файлами в выбранной директории на сервере
         /// </summary>
@@ -122,23 +143,26 @@ namespace VitFiles
         private bool DuplicateSearch(string[] arrPath, string remotePath)
         {
             formProgressStatus = new FormProgressStatus(0, arrPath.GetLength(0));
-            List<string> fileNames = new List<string>();
+            List<string> arrSourceFileNames = new List<string>();
+            List<string> arrTargetFileNames = new List<string>();
             int iterator = 0;
             foreach (string path in arrPath)
             {
                 iterator++;
                 formProgressStatus.Iterator(iterator, "Проверка дубликатов " + path);
-                if (CheckMatchPath("/" + remotePath + "/" + Path.GetFileName(path)) == true)
+                string targetFileName = "\\" + remotePath + "\\" + Path.GetFileName(path);
+                if (CheckMatchPath(targetFileName) == true)
                 {
-                    fileNames.Add(path);
+                    arrSourceFileNames.Add(path);
+                    arrTargetFileNames.Add(targetFileName);
                 }
             }
             formProgressStatus.Dispose();
 
             DialogResult dialogResult = DialogResult.None;
-            if (fileNames.Count > 0)
+            if (arrSourceFileNames.Count > 0)
             {
-                FormDuplicateFileList formDuplicateFileList = new FormDuplicateFileList(fileNames.ToArray());
+                FormDuplicateFileList formDuplicateFileList = new FormDuplicateFileList(arrSourceFileNames.ToArray(), arrTargetFileNames.ToArray());
                 dialogResult = formDuplicateFileList.ShowDialog();
             }
 
@@ -189,16 +213,33 @@ namespace VitFiles
             formProgressStatus.Dispose();
         }
 
-        public bool MoveFile(string sourcePath, string targetPath)
+        public string[] MoveFile(string[] sourceArrPath, string targetPath)
         {
+            Console.WriteLine(targetPath);
             // делаем поиск дубликатов
-            if (DuplicateSearch(new string[] { sourcePath }, Path.GetDirectoryName(targetPath)) == false) return false;
+            if (DuplicateSearch(sourceArrPath, targetPath) == false) return null;
 
             ClassUsers classUsers = new ClassUsers();
             ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
-            classFTP.moveAsync(sourcePath, targetPath);
-            if (!classFTP.FileExist(targetPath)) return false;
-            return true;
+            List<string> arrErrorPath = new List<string>();
+            List<string> arrCompleteFiles = new List<string>();
+            foreach (string sourcePath in sourceArrPath)
+            {
+                classFTP.moveAsync(sourcePath, targetPath);
+                if (!classFTP.FileExist(targetPath))
+                    arrErrorPath.Add(sourcePath);
+                else
+                    arrCompleteFiles.Add(sourcePath);
+            }
+
+            if(arrErrorPath.Count > 0)
+            {
+                string errPath = "";
+                foreach (string str in arrErrorPath) errPath = str + "\n";
+                classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, "Следующие файлы не были загружены: \n" + errPath);
+            }
+
+            return arrCompleteFiles.ToArray();
         }
 
         public bool CheckMatchPath(string remotePath)
