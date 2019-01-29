@@ -104,6 +104,10 @@
       <Project>{ca92b19d-73e7-4942-9777-723e83b6f444}</Project>
       <Name>vitProgressStatus</Name>
     </ProjectReference>
+    <ProjectReference Include="..\VitRelationsUsersToFiles\VitRelationsUsersToFiles.csproj">
+      <Project>{436c7218-6deb-4209-a7dc-831297ee7711}</Project>
+      <Name>VitRelationsUsersToFiles</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VitTextStringMask\VitTextStringMask.csproj">
       <Project>{acf4b011-efa2-41e6-8a17-24150f2e3530}</Project>
       <Name>VitTextStringMask</Name>

@@ -9,6 +9,7 @@ using VitFTP;
 using VitMysql;
 using VitNotifyMessage;
 using vitProgressStatus;
+using VitRelationsUsersToFiles;
 using VitTextStringMask;
 using VitTypeCard;
 using vitTypeCardProps;
@@ -74,6 +75,27 @@ namespace VitFiles
             return filesOk.ToArray();
         }
 
+        /// <summary>
+        /// Создает сущность файла в базе
+        /// </summary>
+        /// <param name="path">Удаленный путь к файлу "/directory/fileName.ext"</param>
+        private void create(string path)
+        {
+            int id = classMysql.Insert("" +
+                "INSERT INTO tb_files " +
+                "SET " +
+                "   path = '" + path + "'");
+            ClassUsers classUsers = new ClassUsers();
+            ClassRelationsUsersToFile classRelationsUsersToFile = new ClassRelationsUsersToFile();
+            classRelationsUsersToFile.add(classUsers.getThisUser().id, id, "Создание файла");
+        }
+
+        /// <summary>
+        /// Создает файл(ы) с карточкой
+        /// </summary>
+        /// <param name="arrPath">Массив локальных путей к фалам</param>
+        /// <param name="remotePath">Директория назначения "/directory/"</param>
+        /// <returns></returns>
         public string[] CreateFileWithCardAsync(string[] arrPath, string remotePath)
         {
             // делаем поиск дубликатов
@@ -188,6 +210,12 @@ namespace VitFiles
             return true;
         }
 
+        /// <summary>
+        /// Загружает файл на сервер не создавая его карточку
+        /// </summary>
+        /// <param name="arrPath">Массив локальных путей к фалам</param>
+        /// <param name="remotePath">Директория назначения "/directory/"</param>
+        /// <returns></returns>
         public async Task<string[]> createFileWithoutCardAsync(string[] arrPath, string remotePath)
         {
             // делаем поиск дубликатов
