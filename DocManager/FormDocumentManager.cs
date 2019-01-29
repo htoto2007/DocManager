@@ -505,7 +505,7 @@ namespace DocManager
         /// <param name="e"></param>
         private void ToolStripMenuItemWithoutCard_ClickAsync(object sender, EventArgs e)
         {
-            classTree.AddFileNodeWithoutCard(treeView1);
+            classTree.AddFileNodeWithoutCardAsync(treeView1);
         }
 
         private void treeView1_AfterExpand(object sender, TreeViewEventArgs e)

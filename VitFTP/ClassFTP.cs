@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Xml;
 using WinSCP;
 using VitNotifyMessage;
+using vitProgressStatus;
 
 namespace VitFTP
 {
@@ -40,6 +41,7 @@ namespace VitFTP
         ClassNotifyMessage classNotifyMessage = new ClassNotifyMessage();
         
         private string uri;
+        private FormProgressStatus formProgressStatus;
 
         /// <summary>
         /// Конструктор класса. Инициализирует подключение после объявления экземпляоа класса.
@@ -918,7 +920,56 @@ namespace VitFTP
             return getStatusDescription(request);
         }
 
-        
+        /// <summary>
+        /// Производит загрузку массива файлов. В качестве реультата выдает массив локальных путей успешно загруженых файлов.
+        /// </summary>
+        /// <param name="arrLocalPath">Массив загружаемых файлов string { "/localDirectory/fileName.ext" }</param>
+        /// <param name="remotePath">Genm yfpyfxtybz "/directory/"</param>
+        /// <param name="overwrite">Параметр перезаписи true/false</param>
+        /// <returns>"/localDirectory/fileName.ext"</returns>
+        public async Task<string[]> Upload2Async(string[] arrLocalPath, string remotePath, bool overwrite)
+        {
+            formProgressStatus = new FormProgressStatus(0, arrLocalPath.GetLength(0));
+            List<string> filesOk = new List<string>();
+            using (Session session = new Session())
+            {
+                // Connect
+                session.Open(sessionOptions);
+                int i = 0;
+                foreach (string localPath in arrLocalPath)
+                {
+                    if (formProgressStatus.IsDisposed == true)
+                    {
+                        Console.WriteLine("!!!!!!!!!!!!!!!!!!!!!!!!!Форма загрузки закрыта!!!!!!!!!!!!!!!!!!!");
+                        return filesOk.ToArray();
+                    }
+                    formProgressStatus.Iterator(
+                        i, 
+                        localPath, 
+                        remotePath, 
+                        i.ToString() + "/" + arrLocalPath.GetLength(0).ToString(),
+                        "Загрузка файлов на сервер");
+
+                    // пытаемся получить значек файла
+                    if (Path.GetExtension(localPath) != "") getIconFile(localPath);
+
+                    // определяем параметры загрузки файлов
+                    TransferOptions transferOptions = new TransferOptions();
+                    transferOptions.TransferMode = TransferMode.Automatic;
+                    if (overwrite == false) transferOptions.OverwriteMode = OverwriteMode.Resume;
+                    else transferOptions.OverwriteMode = OverwriteMode.Overwrite;
+
+                    // загружаем файлы на сервер
+                    bool res = await Task.Run<bool>(() => session.PutFiles(localPath, remotePath, false, transferOptions).IsSuccess);
+                    if(res == true) filesOk.Add(localPath);
+                    i++;
+                }
+                session.Close();
+            }
+            formProgressStatus.Close();
+            formProgressStatus.Dispose();
+            return filesOk.ToArray();
+        }
 
         public async Task<bool> Upload2Async(string localPath, string remotePath, bool overwrite)
         {
@@ -943,14 +994,12 @@ namespace VitFTP
                     }
                 }
 
-
                 TransferOptions transferOptions = new TransferOptions();
 
                 transferOptions.TransferMode = TransferMode.Automatic;
                 if(overwrite == false) transferOptions.OverwriteMode = OverwriteMode.Resume;
                 else transferOptions.OverwriteMode = OverwriteMode.Overwrite;
-
-
+                
                 res = await Task.Run<bool>(() => session.PutFiles(localPath, remotePath, false, transferOptions).IsSuccess);
                 session.Close();
             }
@@ -975,8 +1024,6 @@ namespace VitFTP
                     {
                         continue;
                     }
-
-                    
 
                     iterator++;
                     if (Path.GetExtension(localPath) != "")
@@ -1005,7 +1052,12 @@ namespace VitFTP
                     }
 
                     arrComplete.Add(remotePath + Path.GetFileName(localPath));
-                    formProgressStatus.Iterator(iterator, localPath);
+                    formProgressStatus.Iterator(
+                        iterator, 
+                        localPath, 
+                        remotePath, 
+                        iterator + "/" + localPaths.GetLength(0), 
+                        "Загрузка файлов на сервер");
                 }
                 session.Close();
                 formProgressStatus.Hide();

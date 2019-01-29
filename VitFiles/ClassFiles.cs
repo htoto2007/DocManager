@@ -84,11 +84,10 @@ namespace VitFiles
             DialogResult dialogResult = formFileCard.ShowDialog();
             // Если карточка не подтверждена
             if (dialogResult != DialogResult.OK) return null;
-
             
             FormFileCard.CardPropCollection[] cardPropCollections = new FormFileCard.CardPropCollection[formFileCard.panelCardProps.Controls.Count / 2];
-            //formProgressStatus = new FormProgressStatus(0, arrPath.GetLength(0));
 
+            // собирем значения полей формы в коллекуию карточки документа
             int iterator = 0;
             formProgressStatus = new FormProgressStatus(0, formFileCard.panelCardProps.Controls.Count);
             foreach (Control control in formFileCard.panelCardProps.Controls)
@@ -98,38 +97,45 @@ namespace VitFiles
                     cardPropCollections[iterator].idProp = formFileCard.getValueByControl(control).idProp;
                     cardPropCollections[iterator].text = formFileCard.getValueByControl(control).text;
                 }else{
-                    formProgressStatus.Iterator(iterator, "Собираем свойства карточки " + control.Text);
+                    formProgressStatus.Iterator(
+                        iterator, 
+                        control.Text, 
+                        "базу данных", 
+                        iterator + "/" + formFileCard.panelCardProps.Controls.Count.ToString(),
+                        "Сбор данных карточек");
                     continue;
                 }
                 iterator++;
             }
             formProgressStatus.Close();
 
+            // производим загрузку файлов
+            ClassUsers classUsers = new ClassUsers();
+            ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
+            classFTP.Upload2Async(arrPath, "/" + remotePath + "/", true);
 
+            // производим згрузку данных в базу
             formProgressStatus = new FormProgressStatus(0, arrPath.GetLength(0));
             List<string> uploadRemoteFiles = new List<string>();
             for (int i = 0; i < arrPath.GetLength(0); i++)
             {
-                formProgressStatus.Iterator(i, "Загрузка на сервер " + arrPath[i]);
+                formProgressStatus.Iterator(
+                    i, 
+                    arrPath[i], 
+                    "базу данных", 
+                    i.ToString() + "/" + arrPath.GetLength(0).ToString(), 
+                    "Загрузка файлов на сервер");
+                if (CheckMatchPath("/" + remotePath + "/" + Path.GetFileName(arrPath[i])))
+                    uploadRemoteFiles.Add("/" + remotePath + "/" + Path.GetFileName(arrPath[i]));
+
                 ClassCardPropsValue classCardPropsValue = new ClassCardPropsValue();
                 foreach (var cardPropCollection in cardPropCollections)
-                {
                     classCardPropsValue.createValue(cardPropCollection.idProp, cardPropCollection.text, "/" + remotePath + "/" + Path.GetFileName(arrPath[i]));
-                }
-                ClassUsers classUsers = new ClassUsers();
-                ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
-                classFTP.Upload2Async(arrPath[i], "/" + remotePath + "/" + Path.GetFileName(arrPath[i]), true);
-                if (!CheckMatchPath("/" + remotePath + "/" + Path.GetFileName(arrPath[i])))
-                {
-                    Console.WriteLine("Не удалось загрузить файл! " + remotePath + "\\" + Path.GetFileName(arrPath[i]));
-                }
-                else
-                {
-                    uploadRemoteFiles.Add("/" + remotePath + "/" + Path.GetFileName(arrPath[i]));
-                }
+                
+                
             }
             formProgressStatus.Close();
-            //formProgressStatus.Dispose();
+            formProgressStatus.Dispose();
             return uploadRemoteFiles.ToArray();
         }
 
@@ -145,17 +151,29 @@ namespace VitFiles
             formProgressStatus = new FormProgressStatus(0, arrPath.GetLength(0));
             List<string> arrSourceFileNames = new List<string>();
             List<string> arrTargetFileNames = new List<string>();
+            remotePath = remotePath.Replace("\\", "/");
+            ClassUsers classUsers = new ClassUsers();
+            ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
+            string[] directoryList = classFTP.ListDirectory2(remotePath);
+            
+            
             int iterator = 0;
             foreach (string path in arrPath)
             {
                 iterator++;
-                formProgressStatus.Iterator(iterator, "Проверка дубликатов " + path);
-                string targetFileName = "\\" + remotePath + "\\" + Path.GetFileName(path);
-                if (CheckMatchPath(targetFileName) == true)
-                {
-                    arrSourceFileNames.Add(path);
-                    arrTargetFileNames.Add(targetFileName);
-                }
+                formProgressStatus.Iterator(
+                    iterator, 
+                    path, 
+                    remotePath, 
+                    iterator.ToString() + "/" + arrPath.GetLength(0).ToString(),
+                    "Проверка на наличие дубликатов");
+                string targetFileName = "/" + remotePath + "/" + Path.GetFileName(path);
+                foreach (string dir in directoryList)
+                    if (dir.Equals(targetFileName))
+                    {
+                        arrSourceFileNames.Add(path);
+                        arrTargetFileNames.Add(targetFileName);
+                    }
             }
             formProgressStatus.Dispose();
 
@@ -170,33 +188,15 @@ namespace VitFiles
             return true;
         }
 
-        public string[] createFileWithoutCard(string[] arrPath, string remotePath)
+        public async Task<string[]> createFileWithoutCardAsync(string[] arrPath, string remotePath)
         {
             // делаем поиск дубликатов
             if (DuplicateSearch(arrPath, remotePath) == false) return null;
+            ClassUsers classUsers = new ClassUsers();
+            ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
+            string[] uploadRemoteFiles = await classFTP.Upload2Async(arrPath, "/" + remotePath + "/" , true);
 
-            // Инициализируем индикатор хода операции
-            formProgressStatus = new FormProgressStatus(0, arrPath.GetLength(0));
-            // В этот список будут записываться загруженные файлы. Файлы, которые не удалось загрузить в него не попадут
-            List<string> uploadRemoteFiles = new List<string>();
-
-            for (int i = 0; i < arrPath.GetLength(0); i++)
-            {
-                formProgressStatus.Iterator(i, "Загрузка на сервер " + arrPath[i]);
-                ClassUsers classUsers = new ClassUsers();
-                ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
-                classFTP.Upload2Async(arrPath[0], "/" + remotePath + "/" + Path.GetFileName(arrPath[i]), true);
-                if (!CheckMatchPath("/" + remotePath + "/" + Path.GetFileName(arrPath[i])))
-                {
-                    Console.WriteLine("Не удалось загрузить файл! " + arrPath[i] + " -> " + remotePath + "\\" + Path.GetFileName(arrPath[i]));
-                }
-                else
-                {
-                    uploadRemoteFiles.Add("/" + remotePath + "/" + Path.GetFileName(arrPath[i]));
-                }
-            }
-            formProgressStatus.Close();
-            return uploadRemoteFiles.ToArray();
+            return uploadRemoteFiles;
         }
 
         public void DeleteFiles(string[] remotePathes)
@@ -206,7 +206,11 @@ namespace VitFiles
             formProgressStatus = new FormProgressStatus(0, remotePathes.GetLength(0));
             for (int i = 0; i < remotePathes.GetLength(0); i++)
             {
-                formProgressStatus.Iterator(i, "Удаление " + remotePathes[i]);
+                formProgressStatus.Iterator(
+                    i, remotePathes[i], 
+                    "вечность",
+                    i.ToString() + "/" + remotePathes.GetLength(0).ToString(),
+                    "Удаление файлов");
                 classFTP.DeleteFile(remotePathes[i]);
             }
             formProgressStatus.Close();

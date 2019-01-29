@@ -43,6 +43,7 @@ namespace VitCardPropsValue
         {
             souecePathFile = souecePathFile.Replace("\\", "/");
             var valuesCard = getByFilePath(souecePathFile);
+            if (valuesCard == null) return;
             foreach (var valueCard in valuesCard)
                 createValue(valueCard.idCardProp, valueCard.value, targetPathFile);
         }
@@ -56,6 +57,7 @@ namespace VitCardPropsValue
         {
             souecePathFile = souecePathFile.Replace("\\", "/");
             var valuesCard = getByFilePath(souecePathFile);
+            if (valuesCard == null) return;
             foreach (var valueCard in valuesCard)
                 updateById(valueCard.idCardProp, valueCard.value, targetPathFile, valueCard.id);
         }

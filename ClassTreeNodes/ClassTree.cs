@@ -30,12 +30,12 @@ namespace VitTree
         private readonly VitIcons.FormCompanents formCompanents = new VitIcons.FormCompanents();
         //private readonly FormProgressStatus formProgressStatus = new FormProgressStatus();
 
-        public void AddFileNodeWithoutCard(TreeView treeView)
+        public async Task AddFileNodeWithoutCardAsync(TreeView treeView)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Multiselect = true;
             if (openFileDialog.ShowDialog() != DialogResult.OK) return;
-            var files = classFiles.createFileWithoutCard(openFileDialog.FileNames, treeView.SelectedNode.FullPath);
+            string[] files = await classFiles.createFileWithoutCardAsync(openFileDialog.FileNames, treeView.SelectedNode.FullPath);
             if (files == null) return;
 
             // Добавляем узлы дерева из загруженых документов
