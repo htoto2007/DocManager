@@ -61,6 +61,7 @@ namespace VitFiles
                 // Задаем новое имя для копии файла
                 targetPath = newFileNameGenerator(sourcePath, targetPath);
 
+                // производим копию самого файла на сервере
                 classFTP.copyAsync(sourcePath, targetPath.Replace("\\", "/"));
                 if (classFTP.FileExist(targetPath))
                 {
@@ -68,18 +69,19 @@ namespace VitFiles
                     classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.USER_ERROR, "Не получилось скопироватиь файл. " + targetPath);
                     continue;
                 }
+
                 ClassCardPropsValue classCardPropsValue = new ClassCardPropsValue();
-                classCardPropsValue.CopyByFilePath("/" + sourcePath, "/" + targetPath);
+                classCardPropsValue.CopyByIdFile("/" + sourcePath, "/" + targetPath);
                 filesOk.Add("/" + targetPath);
             }
             return filesOk.ToArray();
         }
 
         /// <summary>
-        /// Создает сущность файла в базе
+        /// Создает сущность файла в базе и по завершению выдает его id
         /// </summary>
         /// <param name="path">Удаленный путь к файлу "/directory/fileName.ext"</param>
-        private void create(string path)
+        private int create(string path)
         {
             int id = classMysql.Insert("" +
                 "INSERT INTO tb_files " +
@@ -88,6 +90,7 @@ namespace VitFiles
             ClassUsers classUsers = new ClassUsers();
             ClassRelationsUsersToFile classRelationsUsersToFile = new ClassRelationsUsersToFile();
             classRelationsUsersToFile.add(classUsers.getThisUser().id, id, "Создание файла");
+            return id;
         }
 
         /// <summary>
@@ -96,7 +99,7 @@ namespace VitFiles
         /// <param name="arrPath">Массив локальных путей к фалам</param>
         /// <param name="remotePath">Директория назначения "/directory/"</param>
         /// <returns></returns>
-        public string[] CreateFileWithCardAsync(string[] arrPath, string remotePath)
+        public async Task<string[]> CreateFileWithCardAsync(string[] arrPath, string remotePath)
         {
             // делаем поиск дубликатов
             if (DuplicateSearch(arrPath, remotePath) == false) return null;
@@ -134,25 +137,28 @@ namespace VitFiles
             // производим загрузку файлов
             ClassUsers classUsers = new ClassUsers();
             ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
-            classFTP.Upload2Async(arrPath, "/" + remotePath + "/", true);
+            string[] filesOk = await classFTP.Upload2Async(arrPath, "/" + remotePath + "/", true);
 
             // производим згрузку данных в базу
-            formProgressStatus = new FormProgressStatus(0, arrPath.GetLength(0));
+            formProgressStatus = new FormProgressStatus(0, filesOk.GetLength(0));
             List<string> uploadRemoteFiles = new List<string>();
-            for (int i = 0; i < arrPath.GetLength(0); i++)
+            for (int i = 0; i < filesOk.GetLength(0); i++)
             {
                 formProgressStatus.Iterator(
-                    i, 
-                    arrPath[i], 
+                    i,
+                    filesOk[i], 
                     "базу данных", 
-                    i.ToString() + "/" + arrPath.GetLength(0).ToString(), 
+                    i.ToString() + "/" + filesOk.GetLength(0).ToString(), 
                     "Загрузка файлов на сервер");
+                /*
                 if (CheckMatchPath("/" + remotePath + "/" + Path.GetFileName(arrPath[i])))
                     uploadRemoteFiles.Add("/" + remotePath + "/" + Path.GetFileName(arrPath[i]));
+                */
+                int idFile = create("/" + remotePath + "/" + Path.GetFileName(filesOk[i]);
 
                 ClassCardPropsValue classCardPropsValue = new ClassCardPropsValue();
                 foreach (var cardPropCollection in cardPropCollections)
-                    classCardPropsValue.createValue(cardPropCollection.idProp, cardPropCollection.text, "/" + remotePath + "/" + Path.GetFileName(arrPath[i]));
+                    classCardPropsValue.createValue(cardPropCollection.idProp, cardPropCollection.text, idFile);
                 
                 
             }
@@ -280,43 +286,46 @@ namespace VitFiles
             return arrCompleteFiles.ToArray();
         }
 
+        /// <summary>
+        /// Проверяет наличие файла на сервере
+        /// </summary>
+        /// <param name="remotePath">Удаленный путь к файлу "/directory/filename.ext"</param>
+        /// <returns></returns>
         public bool CheckMatchPath(string remotePath)
         {
             ClassUsers classUsers = new ClassUsers();
             ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
-            return classFTP.FileExist("/"+remotePath);
+            return classFTP.FileExist(remotePath);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="name">z://directory/fileName.ext</param>
-        public void getInfoByName(string name)
+        /// <param name="name">"/directory/fileName.ext"</param>
+        public FileCollection getInfoByFilePath(string filePath)
         {
-            
+            var rows = classMysql.getArrayByQuery("" +
+                "SELECT * " +
+                "FROM tb_files " +
+                "WHERE " +
+                "path = '" + filePath + "'");
+
+            FileCollection fileCollection = new FileCollection();
+            fileCollection.id = Convert.ToInt64( rows[0]["id"]);
+            fileCollection.path = rows[0]["path"];
+            ClassUsers classUsers = new ClassUsers();
+            ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
+            return fileCollection;
         }
 
         public struct FileCollection
         {
             public DateTime createDateTime;
-            public int hashCode;
-            public int id;
-            public int idTypeCard;
-
-            /// <summary>
-            /// fileName.ext
-            /// </summary>
-            public string name;
-
+            public Int64 id;
             /// <summary>
             /// disk://directory/fileName.ext
             /// </summary>
             public string path;
-
-            /// <summary>
-            /// disk://directory/
-            /// </summary>
-            public string pathWithoutFileName;
         }
     }
 }

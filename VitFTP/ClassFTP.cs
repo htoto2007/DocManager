@@ -902,6 +902,19 @@ namespace VitFTP
             return removalOperationResult.IsSuccess;
         }
 
+        public bool getFileInfo(string filePath)
+        {
+            RemovalOperationResult removalOperationResult;
+            using (Session session = new Session())
+            {
+                // Connect
+                session.Open(sessionOptions);
+                session.GetFileInfo(filePath);
+                session.Close();
+            }
+            return removalOperationResult.IsSuccess;
+        }
+
         public string RemoveDirectory(string directoryName)
         {
             FtpWebRequest request = createRequest(combine(uri, directoryName), WebRequestMethods.Ftp.RemoveDirectory);

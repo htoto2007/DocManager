@@ -14,23 +14,16 @@ namespace VitCardPropsValue
         /// </summary>
         /// <param name="idCardProps"></param>
         /// <param name="value"></param>
-        /// <param name="filePath">"/directory/fileName.ext"</param>
+        /// <param name="idFile">Номер файла, к которому привязываются свойства карточки</param>
         /// <returns></returns>
-        public int createValue(int idCardProps, string value, string filePath)
+        public int createValue(int idCardProps, string value, int idFile)
         {
-            int id = IsMatches(filePath, idCardProps);
-            if (id != 0)
-            {
-                updateById(idCardProps, value, filePath, id);
-                return id;
-            }
-
             int lastId = classMysql.Insert("" +
                 "INSERT tb_card_props_value " +
                 "SET " +
                 "id_card_prop = '" + idCardProps + "', " +
                 "value = '" + MySqlHelper.EscapeString(value) + "', " +
-                "file_path = '" + MySqlHelper.EscapeString(filePath) + "'");
+                "id_file = '" + idFile + "'");
             return lastId;
         }
 
@@ -39,10 +32,10 @@ namespace VitCardPropsValue
         /// </summary>
         /// <param name="souecePathFile">"/directory/fileName.ext"</param>
         /// <param name="targetPathFile">"/directory/fileName.ext"</param>
-        public void CopyByFilePath(string souecePathFile, string targetPathFile)
+        public void CopyByIdFile(string souecePathFile, string targetPathFile)
         {
             souecePathFile = souecePathFile.Replace("\\", "/");
-            var valuesCard = getByFilePath(souecePathFile);
+            var valuesCard = getByIdFile(souecePathFile);
             if (valuesCard == null) return;
             foreach (var valueCard in valuesCard)
                 createValue(valueCard.idCardProp, valueCard.value, targetPathFile);
@@ -56,7 +49,7 @@ namespace VitCardPropsValue
         public void MoveByFilePath(string souecePathFile, string targetPathFile)
         {
             souecePathFile = souecePathFile.Replace("\\", "/");
-            var valuesCard = getByFilePath(souecePathFile);
+            var valuesCard = getByIdFile(souecePathFile);
             if (valuesCard == null) return;
             foreach (var valueCard in valuesCard)
                 updateById(valueCard.idCardProp, valueCard.value, targetPathFile, valueCard.id);
@@ -65,15 +58,15 @@ namespace VitCardPropsValue
         /// <summary>
         /// Выдает все значения карточки по пути файла
         /// </summary>
-        /// <param name="filePath">"/directory/fileName.ext"</param>
+        /// <param name="idFile">"/directory/fileName.ext"</param>
         /// <returns></returns>
-        public CardPropsValueCollection[] getByFilePath(string filePath)
+        public CardPropsValueCollection[] getByIdFile(int idFile)
         {
             var rows = classMysql.getArrayByQuery("" +
                 "SELECT * " +
                 "FROM tb_card_props_value " +
                 "WHERE " +
-                "`file_path` = '" + filePath + "' ");
+                "`id_file` = '" + idFile + "' ");
             CardPropsValueCollection[] cardPropsValueCollections = null;
             if (rows.GetLength(0) < 1) return cardPropsValueCollections;
             cardPropsValueCollections = new CardPropsValueCollection[rows.GetLength(0)];
@@ -81,7 +74,7 @@ namespace VitCardPropsValue
             int iterator = 0;
             foreach (var row in rows)
             {
-                cardPropsValueCollections[iterator].filePath = row["file_path"];
+                cardPropsValueCollections[iterator].idFile = row["id_file"];
                 cardPropsValueCollections[iterator].value = row["value"];
                 cardPropsValueCollections[iterator].idCardProp = Convert.ToInt32(row["id_card_prop"]);
                 cardPropsValueCollections[iterator].id = Convert.ToInt32(row["id"]);
@@ -110,29 +103,11 @@ namespace VitCardPropsValue
             return;
         }
 
-        /// <summary>
-        /// Определяет по пути файла и по номеру свойства карточки наличие записи
-        /// </summary>
-        /// <param name="filePath"></param>
-        /// <param name="idCardProps"></param>
-        /// <returns>0 - если запись не найдена. Все что отлично от нуля, то запись есть.</returns>
-        public int IsMatches(string filePath, int idCardProps)
-        {
-            var rows = classMysql.getArrayByQuery("" +
-                "SELECT id " +
-                "FROM tb_card_props_value " +
-                "WHERE " +
-                "file_path = '" + filePath + "' AND " +
-                "id_card_prop = '" + idCardProps + "'");
-            if (rows.GetLength(0) > 0) return Convert.ToInt32(rows[0]["id"]);
-            return 0;
-        }
-
         public struct CardPropsValueCollection
         {
             public int idCardProp;
             public string value;
-            public string filePath;
+            public int idFile;
             public int id;
         }
 

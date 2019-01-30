@@ -73,7 +73,8 @@ namespace VitListView
             listView.Columns.Add("Значение");
             
             TreeNode treeNode = treeView.SelectedNode;
-            ClassCardPropsValue.CardPropsValueCollection[] cardPropsValueCollections = classCardPropsValue.getByFilePath(treeNode.Name);
+            classFiles.getInfoByFilePath(treeNode.Name);
+            ClassCardPropsValue.CardPropsValueCollection[] cardPropsValueCollections = classCardPropsValue.getByIdFile();
             
             // если неудалось найти карточку
             if (cardPropsValueCollections == null)
