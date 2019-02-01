@@ -32,27 +32,12 @@ namespace VitCardPropsValue
         /// </summary>
         /// <param name="souecePathFile">"/directory/fileName.ext"</param>
         /// <param name="targetPathFile">"/directory/fileName.ext"</param>
-        public void CopyByIdFile(string souecePathFile, string targetPathFile)
+        public void CopyByIdFile(int soueceIdFile, int targetIdFile)
         {
-            souecePathFile = souecePathFile.Replace("\\", "/");
-            var valuesCard = getByIdFile(souecePathFile);
+            var valuesCard = getByIdFile(soueceIdFile);
             if (valuesCard == null) return;
             foreach (var valueCard in valuesCard)
-                createValue(valueCard.idCardProp, valueCard.value, targetPathFile);
-        }
-
-        /// <summary>
-        /// Перемещает значения карточки файла по его пути
-        /// </summary>
-        /// <param name="souecePathFile">"/directory/fileName.ext"</param>
-        /// <param name="targetPathFile">"/directory/fileName.ext"</param>
-        public void MoveByFilePath(string souecePathFile, string targetPathFile)
-        {
-            souecePathFile = souecePathFile.Replace("\\", "/");
-            var valuesCard = getByIdFile(souecePathFile);
-            if (valuesCard == null) return;
-            foreach (var valueCard in valuesCard)
-                updateById(valueCard.idCardProp, valueCard.value, targetPathFile, valueCard.id);
+                createValue(valueCard.idCardProp, valueCard.value, targetIdFile);
         }
 
         /// <summary>
@@ -74,7 +59,7 @@ namespace VitCardPropsValue
             int iterator = 0;
             foreach (var row in rows)
             {
-                cardPropsValueCollections[iterator].idFile = row["id_file"];
+                cardPropsValueCollections[iterator].idFile = Convert.ToInt64(row["id_file"]);
                 cardPropsValueCollections[iterator].value = row["value"];
                 cardPropsValueCollections[iterator].idCardProp = Convert.ToInt32(row["id_card_prop"]);
                 cardPropsValueCollections[iterator].id = Convert.ToInt32(row["id"]);
@@ -90,14 +75,14 @@ namespace VitCardPropsValue
         /// <param name="value"></param>
         /// <param name="filePath">"/directory/fileName.ext"</param>
         /// <param name="id"></param>
-        public void updateById(int idCardProps, string value, string filePath, int id)
+        public void updateById(int idCardProps, string value, string idFile, int id)
         {
             int lastId = classMysql.Insert("" +
                 "UPDATE tb_card_props_value " +
                 "SET " +
                 "id_card_prop = '" + idCardProps + "', " +
                 "value = '" + MySqlHelper.EscapeString(value) + "', " +
-                "file_path = '" + MySqlHelper.EscapeString(filePath) + "' " +
+                "id_file = '" + idFile + "' " +
                 "WHERE " +
                 "id = '" + id + "'");
             return;
@@ -107,7 +92,7 @@ namespace VitCardPropsValue
         {
             public int idCardProp;
             public string value;
-            public int idFile;
+            public Int64 idFile;
             public int id;
         }
 

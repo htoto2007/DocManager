@@ -48,10 +48,6 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="VitColors, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\VitColors\bin\Debug\VitColors.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClassFiles.cs" />
@@ -79,6 +75,10 @@
     <ProjectReference Include="..\VitCardPropsValue\VitCardPropsValue.csproj">
       <Project>{36350F39-7577-4119-A3FE-7CB69DA65E5D}</Project>
       <Name>VitCardPropsValue</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VitColors\VitColors.csproj">
+      <Project>{7485de72-c9f6-4547-aa4a-395c32de0b88}</Project>
+      <Name>VitColors</Name>
     </ProjectReference>
     <ProjectReference Include="..\VitControls\VitControls.csproj">
       <Project>{0D2381AF-887D-4DE5-98FA-1E77AD098931}</Project>

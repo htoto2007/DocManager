@@ -63,7 +63,7 @@
             this.помощьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timerSearcher = new System.Windows.Forms.Timer(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBoxSearch = new System.Windows.Forms.TextBox();
             this.panelUserMenu = new System.Windows.Forms.Panel();
             this.flowLayoutPanelUserMenu = new System.Windows.Forms.FlowLayoutPanel();
             this.treeView1 = new System.Windows.Forms.TreeView();
@@ -392,18 +392,18 @@
             // 
             // textBox1
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.textBoxSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.BackColor = System.Drawing.Color.White;
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox1.Location = new System.Drawing.Point(423, 8);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(0, 4, 3, 0);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(357, 22);
-            this.textBox1.TabIndex = 7;
-            this.toolTip1.SetToolTip(this.textBox1, "Просто начните вводить текст и все найдется...");
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBoxSearch.BackColor = System.Drawing.Color.White;
+            this.textBoxSearch.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxSearch.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxSearch.Location = new System.Drawing.Point(423, 8);
+            this.textBoxSearch.Margin = new System.Windows.Forms.Padding(0, 4, 3, 0);
+            this.textBoxSearch.Name = "textBox1";
+            this.textBoxSearch.Size = new System.Drawing.Size(357, 22);
+            this.textBoxSearch.TabIndex = 7;
+            this.toolTip1.SetToolTip(this.textBoxSearch, "Просто начните вводить текст и все найдется...");
+            this.textBoxSearch.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // panelUserMenu
             // 
@@ -449,7 +449,7 @@
             this.treeView1.ShowLines = false;
             this.treeView1.Size = new System.Drawing.Size(396, 469);
             this.treeView1.TabIndex = 5;
-            this.treeView1.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterExpand);
+            this.treeView1.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterExpandAsync);
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             this.treeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseClick_1);
             this.treeView1.MouseHover += new System.EventHandler(this.treeView1_MouseHover);
@@ -508,7 +508,7 @@
             // 
             this.panelExplorer.BackColor = System.Drawing.Color.White;
             this.panelExplorer.Controls.Add(this.pictureBox1);
-            this.panelExplorer.Controls.Add(this.textBox1);
+            this.panelExplorer.Controls.Add(this.textBoxSearch);
             this.panelExplorer.Controls.Add(this.listView1);
             this.panelExplorer.Controls.Add(this.panel1);
             this.panelExplorer.Controls.Add(this.treeView1);
@@ -911,7 +911,7 @@
         private System.Windows.Forms.ColumnHeader dateCreate;
         private System.Windows.Forms.ColumnHeader dateChange;
         private System.Windows.Forms.ColumnHeader path;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxSearch;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panelExplorer;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemHelp;

@@ -30,7 +30,7 @@ namespace VitTree
         private void treeView1_AfterExpand(object sender, TreeViewEventArgs e)
         {
             VitTree.ClassTree classTree = new ClassTree();
-            classTree.preLoadNodes(e.Node);
+            classTree.preLoadNodesAsync(e.Node);
         }
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)

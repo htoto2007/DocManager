@@ -35,7 +35,7 @@ namespace VitTree
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Multiselect = true;
             if (openFileDialog.ShowDialog() != DialogResult.OK) return;
-            string[] files = await classFiles.createFileWithoutCardAsync(openFileDialog.FileNames, treeView.SelectedNode.FullPath);
+            string[] files = await classFiles.CreateFileWithoutCardAsync(openFileDialog.FileNames, treeView.SelectedNode.FullPath);
             if (files == null) return;
 
             // Добавляем узлы дерева из загруженых документов
@@ -96,14 +96,14 @@ namespace VitTree
             }
         }
 
-        public void AddFileNodeWithCard(TreeView treeView)
+        public async Task AddFileNodeWithCardAsync(TreeView treeView)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Multiselect = true;
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 VitFiles.ClassFiles classFiles = new VitFiles.ClassFiles();
-                string[] files = classFiles.CreateFileWithCardAsync(openFileDialog.FileNames, treeView.SelectedNode.FullPath.Replace('\\', '/'));
+                string[] files = await classFiles.CreateFileWithCardAsync(openFileDialog.FileNames, treeView.SelectedNode.FullPath.Replace('\\', '/'));
                 
                 if (files == null) return;
                 foreach (var file in files)
@@ -206,15 +206,11 @@ namespace VitTree
 
         public void getNextNodes(TreeNode treeNode)
         {
-            if (treeNode.Nodes.Count > 0)
-            {
-                return;
-            }
+            if (treeNode.Nodes.Count > 0) return;
 
             ClassUsers classUsers = new ClassUsers();
             ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
-            //classFTP.ChangeWorkingDirectory(treeNode.FullPath);
-            string[] files = classFTP.ListDirectory2("/" + treeNode.FullPath);
+            string[] files = classFTP.ListDirectory("/" + treeNode.FullPath);
             foreach (string file in files)
             {
                 if (file.Contains("..")) continue;
@@ -232,15 +228,12 @@ namespace VitTree
         {
             ClassUsers classUsers = new ClassUsers();
             ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
-            string[] directoryes = classFTP.ListDirectory2("/");
+            string[] directoryes = classFTP.ListDirectory("/");
 
             treeView.ImageList = ClassImageList.imageList;
-            //treeView.HideSelection = true;
-            //treeView.FullRowSelect = true;
-            treeView.Sort();
             treeView.Nodes.Clear();
-            await Task.Run(async () =>
-            {
+
+            
                 foreach (string direcory in directoryes)
                 {
                     if (direcory.Contains("..")) continue;
@@ -252,22 +245,21 @@ namespace VitTree
                     addIcon(treeNode);
 
                     if (Path.GetExtension(treeNode.Name) == "")
-                    {
-                        await getSubdirectoryes(classFTP, treeNode, Path.GetFileName(direcory));
-                    }
+                        if (classFTP.getFileType(treeNode.Name) == 2) 
+                            getSubdirectoryes(classFTP, treeNode, Path.GetFileName(direcory));
+
                     treeView.Invoke((Action)(() =>
                     {
                         treeView.Nodes.Add(treeNode);
                     }));
                 }
-            });
         }
 
         /// <summary>
         /// Обращается к функции перемещения файлов на сервере и отправляет ей данные.
         /// </summary>
         /// <param name="treeView">Дерево в котором находится нужный файл для перемещения</param>
-        public void Move(TreeView treeView)
+        public async Task MoveAsync(TreeView treeView)
         {
             string sourcePath = treeView.SelectedNode.FullPath;
             FormTree formTree = new FormTree();
@@ -276,7 +268,7 @@ namespace VitTree
             if (formTree.ShowDialog() == DialogResult.OK)
             {
                 string targetPath = formTree.treeView1.SelectedNode.FullPath.Replace("/", "\\");
-                string[] completeFiles = classFiles.MoveFile(new string[] { sourcePath }, targetPath);
+                string[] completeFiles = await classFiles.MoveFileAsync(new string[] { sourcePath }, targetPath);
                 if (completeFiles == null) return;
 
                 TreeNode treeNodeClone = (TreeNode)treeView.SelectedNode.Clone();
@@ -287,14 +279,21 @@ namespace VitTree
             }
         }
 
-        public void preLoadNodes(TreeNode treeNode)
+        public async Task preLoadNodesAsync(TreeNode treeNode)
         {
+            ClassUsers classUsers = new ClassUsers();
+            ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
             foreach (TreeNode tn in treeNode.Nodes)
             {
-                if ((tn.Nodes.Count == 0) && (Path.GetExtension(tn.FullPath) == ""))
-                {
+                // проверяем наличие поуздлв
+                //if (tn.Nodes.Count == 0) 
+                    //continue;
+                // проверяем есть ли расщирение в имени узлов
+                if (Path.GetExtension(tn.FullPath) != "")
+                    continue;
+                // точно определяем тип представления
+                if (await Task.Run(() => ( classFTP.getFileType("/" + tn.Name))) == 2)
                     getNextNodes(tn);
-                }
             }
         }
 
@@ -302,7 +301,7 @@ namespace VitTree
         {
             treeView.SelectedNode.Nodes.Clear();
             getNextNodes(treeView.SelectedNode);
-            preLoadNodes(treeView.SelectedNode);
+            preLoadNodesAsync(treeView.SelectedNode);
             treeView.SelectedNode.Expand();
         }
 
@@ -330,7 +329,7 @@ namespace VitTree
 
         private async Task getSubdirectoryes(ClassFTP classFTP, TreeNode treeNode, string directory)
         {;
-            string[] dsubirectoryes = classFTP.ListDirectory2(directory);
+            string[] dsubirectoryes = classFTP.ListDirectory(directory);
             foreach (string subdirectory in dsubirectoryes)
             {
                 if (subdirectory.Contains("..")) continue;

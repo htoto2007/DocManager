@@ -10,26 +10,37 @@ namespace VitSearcher
     public class ClassSearcher
     {
         private readonly ClassFiles classFiles = new ClassFiles();
-
         ClassMysql classMysql = new ClassMysql();
 
+        public fileIdCollection[] start(string frase)
+        {
+            string[] words = fraseToWords(frase);
+            int[] byCardPropsValueResult = ByCardPropsValue(words);
+            int[] byFileNameResult = ByFileName(words);
+            int[] allResults = new int[byCardPropsValueResult.Length + byFileNameResult.Length];
+            byCardPropsValueResult.CopyTo(allResults, 0);
+            byFileNameResult.CopyTo(allResults, byCardPropsValueResult.Length);
+            fileIdCollection[] fileIdCollection = getRankedResult(allResults);
+            return fileIdCollection = SortRankedResult(fileIdCollection);
+        }
+
+        /// <summary>
+        /// Разбивает фразу на слова
+        /// </summary>
+        /// <param name="frase">фраза</param>
+        /// <returns></returns>
         private string[] fraseToWords(string frase)
         {
             string[] words;
             while (true)
             {
                 if (frase.Contains("  ") == true)
-                {
                     frase = frase.Replace("  ", " ");
-                }
                 else
                 {
                     frase = frase.Trim(' ');
                     words = frase.Split(' ');
-                    if (words == null)
-                    {
-                        return null;
-                    }
+                    if (words == null) return null;
 
                     List<string> listWord = words.ToList();
                     listWord.RemoveAll(item => item == "");
@@ -40,127 +51,104 @@ namespace VitSearcher
             return words;
         }
 
-        private int[,] getRankedResult(int[] arrIdFiles)
+        /// <summary>
+        /// Выдает ранжированый массив слов
+        /// </summary>
+        /// <param name="arrIdFiles">Номера файлов, в которых найдены слова</param>
+        /// <returns></returns>
+        private fileIdCollection[] getRankedResult(int[] arrIdFiles)
         {
-            string strId = "", strCount = "";
             List<int> listIdFile = arrIdFiles.ToList();
-            List<int> findResult = null;
-
+            List<int> findResult = new List<int>();
+            List<int> listCountWords = new List<int>();
+            
+            // создаем списки с номерами файлов и количеством совпадений
             foreach (int id in arrIdFiles)
             {
-                findResult = listIdFile.FindAll(item => item == id);
-                strCount += " " + findResult.Count().ToString();
-                strId += " " + id;
+                listCountWords.Add(listIdFile.FindAll(item => item == id).Count);
                 listIdFile.RemoveAll(item => item == id);
-                arrIdFiles = listIdFile.ToArray();
-                if (arrIdFiles.Length == 0)
-                {
-                    break;
-                }
+                listIdFile.Add(id);
+                //if(listIdFile[listIdFile.Count - 1] == id) break;
+                Console.WriteLine("id file " + listIdFile.ToString());
+                Console.WriteLine("Размер списка количства id " + listCountWords.Count);
             }
-            strCount = strCount.TrimStart(' ');
-            strId = strId.TrimStart(' ');
-
-            string[] arrStrCount = strCount.Split(' ');
-            string[] arrStrId = strId.Split(' ');
-
-            int[,] result = new int[arrStrId.Length, 2];
-            for (int i = 0; i < arrStrId.Length; i++)
+            Console.WriteLine("---------------------------------------------------");
+            Console.WriteLine("Размер списка количства id " + listCountWords.Count);
+            // записываем информацию из списков в коллекцию
+            fileIdCollection[] fileIdCollections = new fileIdCollection[listIdFile.Count];
+            for (int i = 0; i < listIdFile.Count; i++)
             {
-                result[i, 0] = Convert.ToInt32(arrStrId[i]);
-                result[i, 1] = Convert.ToInt32(arrStrCount[i]);
+                fileIdCollections[i].id = listIdFile[i];
+                fileIdCollections[i].countMatchWords = listCountWords[i];
+                Console.WriteLine(fileIdCollections[i].id + " -> " + fileIdCollections[i].countMatchWords);
             }
 
-            return result;
+            return fileIdCollections;
         }
 
-        private int[] getResultByCardPropsValue(string[] words)
+        private int[] ByCardPropsValue(string[] words)
         {
-            int[] resultId;
-            string str = "";
+            List<int> listIdFiles = new List<int>();
             foreach (string word in words)
             {
+                
                 string query = "SELECT id_file " +
                     "FROM tb_card_props_value " +
                     "WHERE value LIKE '%" + word + "%'";
                 var rows = classMysql.getArrayByQuery(query);
-                
-                // создаем строку из id файлов
-                foreach(var row in rows)
-                {
-                    if (row["id_file"] != "")
-                    {
-                        str += " " + row["id_file"];
-                    }
-                }
+                if (rows.GetLength(0) < 1) continue;
+                foreach (var row in rows) listIdFiles.Add(Convert.ToInt32(row["id_file"]));
             }
-
-            if (str == "")
-            {
-                return null;
-            }
-
-            str = str.TrimStart(' ');
-            string[] arrStr = str.Split(' ');
-            resultId = new int[arrStr.Length];
-            for (int i = 0; i < arrStr.Length; i++)
-            {
-                resultId[i] = Convert.ToInt32(arrStr[i]);
-            }
-
-            return resultId;
+            return listIdFiles.ToArray();
         }
 
-        private int[] getResultByFileName(string[] words)
+        /// <summary>
+        /// Производит поиск слов в пути файлов
+        /// </summary>
+        /// <param name="words">массив искомых слов</param>
+        /// <returns></returns>
+        private int[] ByFileName(string[] words)
         {
-            int[] resultId;
-            string str = "";
+            List<int> listIdFiles = new List<int>();
             foreach (string word in words)
             {
                 string query = "SELECT id " +
                     "FROM tb_files " +
-                    "WHERE name LIKE '%" + word + "%'";
+                    "WHERE path LIKE '%" + word + "%'";
                 var rows = classMysql.getArrayByQuery(query);
-                foreach(var row in rows)
-                {
-                    if (row["id"] != "")
-                    {
-                        str += " " + row["id"];
-                    }
-                }
+                if (rows.GetLength(0) < 1) continue;
+                foreach (var row in rows) listIdFiles.Add(Convert.ToInt32(row["id"]));
             }
-
-            if (str == "")
-            {
-                return null;
-            }
-
-            str = str.TrimStart(' ');
-            string[] arrStr = str.Split(' ');
-            resultId = new int[arrStr.Length];
-            for (int i = 0; i < arrStr.Length; i++)
-            {
-                resultId[i] = Convert.ToInt32(arrStr[i]);
-            }
-
-            return resultId;
+            return listIdFiles.ToArray();
         }
 
-        private int[,] sortRankedResult(int[,] rankedResult)
+        /// <summary>
+        /// Сортирует результат поиска согласно рангу
+        /// </summary>
+        /// <param name="fileIdCollections"></param>
+        /// <returns></returns>
+        private fileIdCollection[] SortRankedResult(fileIdCollection[] fileIdCollections)
         {
-            for (int i = 0; i < rankedResult.GetLength(0); i++)
+            fileIdCollection fileIdCollectionBuf = new fileIdCollection();
+            for (int i = 0; i < fileIdCollections.GetLength(0); i++)
             {
-                for (int j = 0; j < rankedResult.GetLength(0); j++)
+                for (int j = 0; j < fileIdCollections.GetLength(0); j++)
                 {
-                    if (rankedResult[i, 1] > rankedResult[j, 1])
+                    if (fileIdCollections[i].countMatchWords > fileIdCollections[j].countMatchWords)
                     {
-                        rankedResult[i, 1] += rankedResult[j, 1];
-                        rankedResult[j, 1] = rankedResult[i, 1] - rankedResult[j, 1];
-                        rankedResult[i, 1] = rankedResult[i, 1] - rankedResult[j, 1];
+                        fileIdCollectionBuf = fileIdCollections[j];
+                        fileIdCollections[j] = fileIdCollections[i];
+                        fileIdCollections[i] = fileIdCollectionBuf;
                     }
                 }
             }
-            return rankedResult;
+            return fileIdCollections;
+        }
+
+        public struct fileIdCollection
+        {
+            public int id;
+            public int countMatchWords;
         }
     }
 }

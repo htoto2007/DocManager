@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using VitAccess;
 using VitAccessGroup;
@@ -15,7 +16,6 @@ using VitSettings;
 using VitTree;
 using VitTypeCard;
 using VitUsers;
-using VitVerifycationFiles;
 
 namespace DocManager
 {
@@ -32,7 +32,6 @@ namespace DocManager
         private bool enableScrean = true;
         private FormCreatTypeCard formCreatTypeCard = new FormCreatTypeCard();
         private FormDBConnect formDB = new FormDBConnect();
-        private FormVerifycationFiles formVerifycationFiles = new FormVerifycationFiles();
 
         private Control lastControl = null;
 
@@ -105,9 +104,7 @@ namespace DocManager
         private void buttonScan_Click(object sender, EventArgs e)
         {
             if (twain32.SelectSource())
-            {
                 twain32.Acquire();
-            }
         }
 
         private void buttonSettings_Click(object sender, EventArgs e)
@@ -363,7 +360,7 @@ namespace DocManager
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            if (textBox1.Text == "")
+            if (textBoxSearch.Text == "")
             {
                 listView1.Items.Clear();
             }
@@ -373,7 +370,18 @@ namespace DocManager
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            return;
+            var idFileCollections = classSearcher.start(textBoxSearch.Text);
+            VitFiles.ClassFiles classFiles = new VitFiles.ClassFiles();
+            VitFiles.ClassFiles.FileCollection[] fileCollections = new VitFiles.ClassFiles.FileCollection[idFileCollections.GetLength(0)];
+            for (int i = 0; i < idFileCollections.GetLength(0); i++)
+            {
+                Console.WriteLine(idFileCollections[i].id);
+                fileCollections[i] = classFiles.getInfoById(idFileCollections[i].id);
+            }
+            ClassLisView classLisView = new ClassLisView();
+            classLisView.FromSearch(fileCollections, listView1);
+
+            timerSearcher.Enabled = false;
         }
 
         private void ToolStripMenuItemAbout_Click(object sender, EventArgs e)
@@ -382,9 +390,9 @@ namespace DocManager
             aboutBox.ShowDialog();
         }
 
-        private void ToolStripMenuItemAddDocumentWithCard_Click(object sender, EventArgs e)
+        private async void ToolStripMenuItemAddDocumentWithCard_Click(object sender, EventArgs e)
         {
-            classTree.AddFileNodeWithCard(treeView1);
+            await classTree.AddFileNodeWithCardAsync(treeView1);
         }
 
         private void ToolStripMenuItemAddFolder_Click(object sender, EventArgs e)
@@ -424,9 +432,9 @@ namespace DocManager
             
         }
 
-        private void ToolStripMenuItemMove_Click(object sender, EventArgs e)
+        private async void ToolStripMenuItemMove_Click(object sender, EventArgs e)
         {
-            classTree.Move(treeView1);
+            await classTree.MoveAsync(treeView1);
         }
 
         private void ToolStripMenuItemRename_Click(object sender, EventArgs e)
@@ -503,14 +511,14 @@ namespace DocManager
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ToolStripMenuItemWithoutCard_ClickAsync(object sender, EventArgs e)
+        private async void ToolStripMenuItemWithoutCard_ClickAsync(object sender, EventArgs e)
         {
-            classTree.AddFileNodeWithoutCardAsync(treeView1);
+           await classTree.AddFileNodeWithoutCardAsync(treeView1);
         }
 
-        private void treeView1_AfterExpand(object sender, TreeViewEventArgs e)
+        private async void treeView1_AfterExpandAsync(object sender, TreeViewEventArgs e)
         {
-            classTree.preLoadNodes(e.Node);
+            await classTree.preLoadNodesAsync(e.Node);
         }
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
@@ -570,8 +578,9 @@ namespace DocManager
 
         private void vitButtonUpdateInfo_Click(object sender, EventArgs e)
         {
+            Enabled = false;
             classTree.Init(treeView1);
-            listView1.Clear();
+            Enabled = true;
         }
     }
 }

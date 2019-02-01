@@ -40,9 +40,9 @@ namespace VitListView
                     ImageKey = imageKey
                 };
 
-                listViewItem.SubItems.Add(fileCollection.name).Name = "name";
+                listViewItem.SubItems.Add(Path.GetFileName(fileCollection.path)).Name = "name";
                 listViewItem.SubItems.Add("file").Name = "type";
-                listViewItem.SubItems.Add(fileCollection.createDateTime.ToString()).Name = "path";
+                listViewItem.SubItems.Add(fileCollection.path).Name = "path";
                 listViewItem.SubItems.Add(fileCollection.createDateTime.ToString()).Name = "createDateTime";
                 listView.Items.Add(listViewItem);
             }
@@ -73,8 +73,8 @@ namespace VitListView
             listView.Columns.Add("Значение");
             
             TreeNode treeNode = treeView.SelectedNode;
-            classFiles.getInfoByFilePath(treeNode.Name);
-            ClassCardPropsValue.CardPropsValueCollection[] cardPropsValueCollections = classCardPropsValue.getByIdFile();
+            int idFile = classFiles.getInfoByFilePath(treeNode.Name).id;
+            ClassCardPropsValue.CardPropsValueCollection[] cardPropsValueCollections = classCardPropsValue.getByIdFile(idFile);
             
             // если неудалось найти карточку
             if (cardPropsValueCollections == null)

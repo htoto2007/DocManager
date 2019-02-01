@@ -235,10 +235,6 @@
       <Project>{DF071434-102D-4C05-A18E-F0F67D81DDED}</Project>
       <Name>VitUsers</Name>
     </ProjectReference>
-    <ProjectReference Include="..\VitVerifycationFiles\VitVerifycationFiles.csproj">
-      <Project>{97fab1ee-5880-45e7-9327-6e1d52344ebe}</Project>
-      <Name>VitVerifycationFiles</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\Debug\icons\color\icons8-about-48.png" />
