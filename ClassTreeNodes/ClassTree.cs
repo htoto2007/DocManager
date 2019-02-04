@@ -51,6 +51,17 @@ namespace VitTree
             }
         }
 
+        public void AddBranch()
+        {
+            string[] directories = Directory.GetDirectories(VitSettings.Properties.GeneralsSettings.Default.programPath + "\\originalDirectories\\Организация\\");
+            ClassUsers classUsers = new ClassUsers();
+            ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
+            int dirCount = classFTP.ListDirectory("/").GetLength(0);
+            string dirName = "Организация " + dirCount.ToString();
+            classFTP.CreateDirectory("/" + dirName);
+            classFTP.Upload2Async(directories[0], "/" + dirName + "/", false );
+        }
+
         public void sendToDesctop(TreeView treeView)
         {
             ClassUsers classUsers = new ClassUsers();

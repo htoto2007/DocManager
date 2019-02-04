@@ -89,11 +89,21 @@ namespace DocManager
             formUserProfile.ShowDialog();
         }
 
+        /// <summary>
+        /// Событие кнопки по созданию филиала
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonAddBranch_Click(object sender, EventArgs e)
         {
-            //classTree.AddBranch();
+            classTree.AddBranch();
         }
 
+        /// <summary>
+        /// Событие кнопки прекращения сеанса пользователя
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonExit_Click(object sender, EventArgs e)
         {
             ClassUsers classUsers = new ClassUsers();
@@ -101,6 +111,11 @@ namespace DocManager
             Application.Restart();
         }
 
+        /// <summary>
+        /// Событие кнопки сканирования документа
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonScan_Click(object sender, EventArgs e)
         {
             if (twain32.SelectSource())
@@ -140,7 +155,7 @@ namespace DocManager
         {
             if (contextMenuStripTreeView.SourceControl.GetType() == listView1.GetType())
             {
-                listView1ContextMenu();
+                listViewContextMenu();
             }
             if (contextMenuStripTreeView.SourceControl.GetType() == treeView1.GetType())
             {
@@ -150,6 +165,9 @@ namespace DocManager
             lastRequireContextMenu = contextMenuStripTreeView.SourceControl.GetType();
         }
 
+        /// <summary>
+        /// удаляет не актуальные скрины экрана
+        /// </summary>
         private void deleteScrean()
         {
             VitTelemetry.ClassScreenshot classScreenshot = new VitTelemetry.ClassScreenshot();
@@ -235,7 +253,7 @@ namespace DocManager
             }
         }
 
-        private void listView1ContextMenu()
+        private void listViewContextMenu()
         {
             if (listView1.SelectedItems.Count < 1)
             {

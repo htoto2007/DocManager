@@ -83,8 +83,8 @@ namespace VitUsers
                 "SET login = '" + login + "-" + id.ToString() + "' " +
                 "WHERE id = " + id);
 
-            ClassFTP classFTP = new ClassFTP(SystemUser.LOGIN, SystemUser.PASS);
-            ClassFTP.UserCollection userCollection = new ClassFTP.UserCollection();
+            ClassFTPUsers classFTPUsers = new ClassFTPUsers(SystemUser.LOGIN, SystemUser.PASS);
+            ClassFTPUsers.UserCollection userCollection = new ClassFTPUsers.UserCollection();
 
             userCollection.name = login + "-" + id.ToString();
             userCollection.pass = password;
@@ -101,7 +101,7 @@ namespace VitUsers
             userCollection.DirCollection.IsHome = true;
             userCollection.DirCollection.AutoCreate = true;
 
-            classFTP.AddUser(userCollection);
+            classFTPUsers.AddUser(userCollection);
         }
 
         /// <summary>
@@ -112,8 +112,8 @@ namespace VitUsers
         {
             var user = GetUserByid(id);
 
-            ClassFTP classFTP = new ClassFTP(SystemUser.LOGIN, SystemUser.PASS);
-            classFTP.deleteUserByLogin(user.login);
+            ClassFTPUsers classFTPUsers = new ClassFTPUsers(SystemUser.LOGIN, SystemUser.PASS);
+            classFTPUsers.deleteUserByLogin(user.login);
 
             classMysql.UpdateOrDelete("" +
                 "DELETE FROM tb_users " +
