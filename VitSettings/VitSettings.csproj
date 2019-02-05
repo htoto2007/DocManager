@@ -60,6 +60,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClassConnectToData.cs" />
     <Compile Include="ClassSettings.cs" />
     <Compile Include="FormSettings.cs">
       <SubType>Form</SubType>
@@ -93,6 +94,16 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>DevSettings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Properties\SettingsDataBase.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>SettingsDataBase.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\SettingsMail.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>SettingsMail.settings</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -111,6 +122,14 @@
     <None Include="Properties\DevSettings.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>DevSettings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Properties\SettingsDataBase.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>SettingsDataBase.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Properties\SettingsMail.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>SettingsMail.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>

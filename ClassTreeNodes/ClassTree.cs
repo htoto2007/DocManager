@@ -35,7 +35,7 @@ namespace VitTree
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Multiselect = true;
             if (openFileDialog.ShowDialog() != DialogResult.OK) return;
-            string[] files = await classFiles.CreateFileWithoutCardAsync(openFileDialog.FileNames, treeView.SelectedNode.FullPath);
+            string[] files = await classFiles.CreateFileWithoutCardAsync(openFileDialog.FileNames, treeView.SelectedNode.FullPath.Replace("\\", "/"));
             if (files == null) return;
 
             // Добавляем узлы дерева из загруженых документов
@@ -198,21 +198,10 @@ namespace VitTree
             DialogResult dialogResult = classNotifyMessage.showDialog(VitNotifyMessage.ClassNotifyMessage.TypeMessage.QUESTION, "Вы точно хотите удалить" + treeView.SelectedNode.FullPath + "?");
             if (dialogResult == DialogResult.No) return;
 
-            ClassUsers classUsers = new ClassUsers();
-            ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
-            classFTP.ChangeWorkingDirectory("");
-
-            string result = "";
-            result = classFTP.RemoveDirecroty2(treeView.SelectedNode.FullPath).ToString();
-
-            if ((result.Split(' ')[0] == "250") || (result.Equals("True")))
-            {
-                treeView.SelectedNode.Remove();
-            }
-            else
-            {
-                classNotifyMessage.showDialog(VitNotifyMessage.ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, "Ошибка, не получилось удалить объект!");
-            }
+            string[] filesok = classFiles.DeleteFiles(new string[] { treeView.SelectedNode.Name.Replace("\\", "/") });
+            
+            if (treeView.SelectedNode.Name == filesok[0]) treeView.SelectedNode.Remove();
+            else classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, "Есть не удаленные файлы! '" + filesok[0] + "'");
         }
 
         public void getNextNodes(TreeNode treeNode)

@@ -1,0 +1,21 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="VitSettings.Properties" GeneratedClassName="SettingsDataBase">
+  <Profiles />
+  <Settings>
+    <Setting Name="host" Type="System.String" Scope="User">
+      <Value Profile="(Default)">localhost</Value>
+    </Setting>
+    <Setting Name="dataName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">db_docmanager</Value>
+    </Setting>
+    <Setting Name="userLogin" Type="System.String" Scope="User">
+      <Value Profile="(Default)">root</Value>
+    </Setting>
+    <Setting Name="userPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="port" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">3306</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

@@ -100,6 +100,15 @@ namespace VitFiles
                 "   id = '" + id + "' ");
         }
 
+        private void DeleteDataByPath(string path)
+        {
+            classMysql.UpdateOrDelete("" +
+                "DELETE " +
+                "FROM tb_files " +
+                "WHERE " + 
+                "   path = '" + path + "' ");
+        }
+
         /// <summary>
         /// Создает файл(ы) с карточкой
         /// </summary>
@@ -243,22 +252,39 @@ namespace VitFiles
             return uploadRemoteFiles;
         }
 
-        public void DeleteFiles(string[] remotePathes)
+        public string[] DeleteFiles(string[] remotePathes)
         {
             ClassUsers classUsers = new ClassUsers();
             ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
             formProgressStatus = new FormProgressStatus(0, remotePathes.GetLength(0));
+            List<string> filesOk = new List<string>();
             for (int i = 0; i < remotePathes.GetLength(0); i++)
             {
+                Console.WriteLine("Удаляем " + remotePathes[i]);
                 formProgressStatus.Iterator(
                     i, remotePathes[i], 
                     "вечность",
                     i.ToString() + "/" + remotePathes.GetLength(0).ToString(),
                     "Удаление файлов");
-                classFTP.DeleteFile(remotePathes[i]);
+                if (classFTP.DeleteFile(remotePathes[i]) == "")
+                {
+                    Console.WriteLine("Не удалось удалить физическую копию " + remotePathes);
+                    continue;
+                }
+                Console.WriteLine("Удаляем из базы " + remotePathes[i]);
+                DeleteDataByPath(remotePathes[i]);
+                var fileInfo = getInfoByFilePath(remotePathes[i]);
+                if (fileInfo.path != "")
+                {
+                    Console.WriteLine("Не удалось удалить файл из базы " + fileInfo.path);
+                    continue;
+                }
+                Console.WriteLine(remotePathes[i] + " удален успешно.");
+                filesOk.Add(remotePathes[i]);
             }
             formProgressStatus.Close();
             formProgressStatus.Dispose();
+            return filesOk.ToArray();
         }
 
         public async Task<string[]> MoveFileAsync(string[] sourceArrPath, string targetPath)
@@ -307,11 +333,15 @@ namespace VitFiles
                 "FROM tb_files " +
                 "WHERE " +
                 "path = '" + filePath + "'");
-            
-            FileCollection fileCollection = new FileCollection();
+
+            FileCollection fileCollection = new FileCollection
+            {
+                path = "",
+                id = 0
+            };
             if (rows.GetLength(0) < 1) return fileCollection;
 
-             fileCollection.id = Convert.ToInt32( rows[0]["id"]);
+            fileCollection.id = Convert.ToInt32( rows[0]["id"]);
             fileCollection.path = rows[0]["path"];
             ClassUsers classUsers = new ClassUsers();
             ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
@@ -326,7 +356,11 @@ namespace VitFiles
                 "WHERE " +
                 "id = '" + idFile + "'");
 
-            FileCollection fileCollection = new FileCollection();
+            FileCollection fileCollection = new FileCollection
+            {
+                id = 0,
+                path = ""
+            };
             if (rows.GetLength(0) < 1) return fileCollection;
 
             fileCollection.id = Convert.ToInt32(rows[0]["id"]);

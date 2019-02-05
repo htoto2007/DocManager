@@ -8,28 +8,42 @@ namespace VitSettings
         public FormSettings()
         {
             InitializeComponent();
+            initConnactToData();
+            initConnectToFTP();
+            initConnectToMail();
         }
 
-        private void buttonOpenFolderDirectory_Click(object sender, EventArgs e)
+        private void initConnactToData()
         {
-            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
-            DialogResult dialogResult = folderBrowserDialog.ShowDialog();
-            if (dialogResult == DialogResult.OK)
-            {
-                VitSettings.Properties.GeneralsSettings.Default.repositiryPayh = folderBrowserDialog.SelectedPath;
-                VitSettings.Properties.GeneralsSettings.Default.Save();
-                init();
-            }
+            var settings = VitSettings.Properties.SettingsDataBase.Default;
+            textBoxConnectDataBaseHost.Text = settings.host;
+            textBoxConnectDataBaseDataBaseName.Text = settings.dataName;
+            textBoxConnectDataBaseLogin.Text = settings.userLogin;
+            textBoxConnectDataBasePassword.Text = settings.userPassword;
+            textBoxConnectDataBasePort.Text = settings.port.ToString();
         }
 
-        private void FormSettings_Load(object sender, EventArgs e)
+        private void initConnectToFTP()
         {
-            init();
+            var settings = VitSettings.Properties.FTPSettings.Default;
+            textBoxFTPHost.Text = settings.host;
+            textBoxFTPPort.Text = settings.port.ToString();
+            textBoxFTPPathForOpenFile.Text = settings.openFilePath;
+            textBoxFTPPathForTmp.Text = settings.pathTnp;
         }
 
-        private void init()
+        private void initConnectToMail()
         {
-            linkLabelRepositoryToDocuments.Text = VitSettings.Properties.GeneralsSettings.Default.repositiryPayh;
+            var settings = VitSettings.Properties.SettingsMail.Default;
+            textBoxMailServerInAdres.Text = settings.serverInAdres;
+            textBoxMailServerInPort.Text = settings.serverInPort.ToString();
+            textBoxMailServerOutAdres.Text = settings.serverOutAdres;
+            textBoxMailServerOutPort.Text = settings.serverOutPort.ToString();
+        }
+
+        private void buttonOk_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

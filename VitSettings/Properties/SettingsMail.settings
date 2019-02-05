@@ -1,0 +1,18 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="VitSettings.Properties" GeneratedClassName="SettingsMail">
+  <Profiles />
+  <Settings>
+    <Setting Name="serverInAdres" Type="System.String" Scope="User">
+      <Value Profile="(Default)">imap.yandex.ru</Value>
+    </Setting>
+    <Setting Name="serverOutAdres" Type="System.String" Scope="User">
+      <Value Profile="(Default)">smtp.yandex.ru;</Value>
+    </Setting>
+    <Setting Name="serverInPort" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">993</Value>
+    </Setting>
+    <Setting Name="serverOutPort" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">465</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

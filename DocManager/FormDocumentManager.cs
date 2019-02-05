@@ -201,7 +201,7 @@ namespace DocManager
             string middleName = userColection.middleName;
             textBoxUserName.Text =  lastName + " " + firstName + " " + middleName;
 
-            // работем с вывордом пользовательского меню.
+            // работаем с вывордом пользовательского меню.
             ClassAccessGroup classAccessGroup = new ClassAccessGroup();
             ClassAccessGroup.AccessGroupCollection accessGroupCollection = classAccessGroup.getInfoById(userColection.idAccessGroup);
             if (accessGroupCollection.rank != ClassAccessGroup.Ranks.ADMIN)
@@ -211,6 +211,9 @@ namespace DocManager
             }
         }
 
+        /// <summary>
+        /// Производим инициализацию параметров элементов главного окна
+        /// </summary>
         private void InitControlsStyle()
         {
             MaximumSize = Screen.PrimaryScreen.WorkingArea.Size;
@@ -219,23 +222,43 @@ namespace DocManager
         private void listView1_DoubleClick(object sender, EventArgs e)
         {
             ClassNotifyMessage classNotifyMessage = new ClassNotifyMessage();
+            // проверяем по какому колличеству элементов кликают
             if (listView1.SelectedItems.Count == 1)
             {
-                if (listView1.SelectedItems[0].SubItems["path"] == null) return;
+                // если у элемента нет пути то выходим из функции
+                if (listView1.SelectedItems[0].SubItems["path"] == null)
+                {
+                    Console.WriteLine("У элемента нет пути!");
+                    return;
+                }
+                // формируем путь для скачивания файла на открытие
                 string openFilePath = VitSettings.Properties.FTPSettings.Default.openFilePath + "\\" + Path.GetFileName(listView1.SelectedItems[0].SubItems["path"].Text);
+                // формируем путь к удаленному файлу на скачивание
                 string remoteFilePath = listView1.SelectedItems[0].SubItems["path"].Text;
-                ClassUsers classUsers = new ClassUsers();
 
+                
+                ClassUsers classUsers = new ClassUsers();
                 VitFTP.ClassFTP classFTP = new VitFTP.ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
-                if (classFTP.FileExist(remoteFilePath)) return;
-                if (Path.GetExtension(remoteFilePath) == "") return;
+                // проверяем наличие файла на удаленном сервере
+                if (!classFTP.FileExist(remoteFilePath))
+                {
+                    Console.WriteLine("Файл '" + remoteFilePath + "' не найден на сервере.");
+                    return;
+                }
+                if (classFTP.getFileType(remoteFilePath) != 1)
+                {
+                    Console.WriteLine("открываемый элемент не является файлом.");
+                    return;
+                }
                 classFTP.DownloadFile(remoteFilePath, openFilePath);
                 
+                // проверяем скачался ли файл
                 if (!File.Exists(openFilePath))
                 {
                     classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, "Не удалось получить файл с сервера!");
                     return;
                 }
+                // запускаем файл
                 Process.Start(VitSettings.Properties.FTPSettings.Default.openFilePath + "\\" + Path.GetFileName(remoteFilePath));
             }
         }

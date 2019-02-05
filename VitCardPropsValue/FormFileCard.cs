@@ -60,7 +60,7 @@ namespace VitCardPropsValue
                         counter += textBox.Height;
                         break;
                     case 1:
-                        maskedTextBox = new MaskedTextBox("0");
+                        maskedTextBox = new MaskedTextBox("0000000000");
                         maskedTextBox.Name = "tb_" + typeCardProp.id.ToString();
                         maskedTextBox.Size = new Size(300, Height);
                         maskedTextBox.Location = new Point(300, 5 + counter);

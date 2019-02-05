@@ -30,7 +30,7 @@ namespace VitListView
             listView.Columns.Add("");
             listView.Columns.Add("Имя");
             listView.Columns.Add("тип");
-            listView.Columns.Add("Дата создания");
+            listView.Columns.Add("Путь к файлу");
 
             foreach (ClassFiles.FileCollection fileCollection in fileCollections)
             {

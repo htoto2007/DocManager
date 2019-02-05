@@ -187,9 +187,11 @@ namespace VitFTP
             }
         }
 
+        
+
         public string DeleteFile(string fileName)
         {
-            FtpWebRequest request = createRequest(combine(uri, fileName), WebRequestMethods.Ftp.DeleteFile);
+            FtpWebRequest request = createRequest(combine(uri, fileName.TrimStart('/')), WebRequestMethods.Ftp.DeleteFile);
 
             return getStatusDescription(request);
         }
@@ -351,14 +353,15 @@ namespace VitFTP
             return getStatusDescription(request);
         }
 
-        public bool RemoveDirecroty2(string directoryName)
+        public bool RemoveDirecroty(string directoryName)
         {
             RemovalOperationResult removalOperationResult;
             using (Session session = new Session())
             {
                 // Connect
                 session.Open(sessionOptions);
-                removalOperationResult = session.RemoveFiles(directoryName.Replace("\\", "/"));
+                Console.WriteLine("RemoveDirecroty " + directoryName.Replace("\\", "/"));
+                removalOperationResult = session.RemoveFiles(directoryName);
                 if (removalOperationResult.IsSuccess == false)
                 {
                     SessionRemoteExceptionCollection sessionRemoteExceptions = removalOperationResult.Failures;
@@ -366,6 +369,7 @@ namespace VitFTP
                 }
                 session.Close();
             }
+            Console.WriteLine(removalOperationResult.IsSuccess.ToString());
             return removalOperationResult.IsSuccess;
         }
 
@@ -398,8 +402,6 @@ namespace VitFTP
             public DateTime LastWriteTime;
             public string fullName;
         }
-
-
 
         public string Rename(string remotePath, string newName)
         {
@@ -497,10 +499,6 @@ namespace VitFTP
             }
             return res;
         }
-
-      
-
-        
 
         private string combine(string path1, string path2)
         {
