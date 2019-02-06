@@ -51,7 +51,7 @@ namespace VitTree
             }
         }
 
-        public void AddBranch()
+        public void AddBranch(TreeView treeView)
         {
             string[] directories = Directory.GetDirectories(VitSettings.Properties.GeneralsSettings.Default.programPath + "\\originalDirectories\\Организация\\");
             ClassUsers classUsers = new ClassUsers();
@@ -60,6 +60,7 @@ namespace VitTree
             string dirName = "Организация " + dirCount.ToString();
             classFTP.CreateDirectory("/" + dirName);
             classFTP.Upload2Async(directories[0], "/" + dirName + "/", false );
+            Init(treeView);
         }
 
         public void sendToDesctop(TreeView treeView)
@@ -199,7 +200,13 @@ namespace VitTree
             if (dialogResult == DialogResult.No) return;
 
             string[] filesok = classFiles.DeleteFiles(new string[] { treeView.SelectedNode.Name.Replace("\\", "/") });
-            
+
+            if (filesok.GetLength(0) < 1)
+            {
+                classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, "Есть не удаленные файлы!");
+                return;
+            }
+
             if (treeView.SelectedNode.Name == filesok[0]) treeView.SelectedNode.Remove();
             else classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, "Есть не удаленные файлы! '" + filesok[0] + "'");
         }
@@ -233,26 +240,32 @@ namespace VitTree
             treeView.ImageList = ClassImageList.imageList;
             treeView.Nodes.Clear();
 
-            
-                foreach (string direcory in directoryes)
+
+            foreach (string direcory in directoryes)
+            {
+                if (direcory.Contains("..")) continue;
+                TreeNode treeNode = new TreeNode
                 {
-                    if (direcory.Contains("..")) continue;
-                    TreeNode treeNode = new TreeNode
-                    {
-                        Name = direcory,
-                        Text = direcory.Trim('/')
-                    };
-                    addIcon(treeNode);
+                    Name = direcory,
+                    Text = direcory.Trim('/')
+                };
+                addIcon(treeNode);
+                treeView.Invoke((Action)(() =>
+                {
+                    treeView.Nodes.Add(treeNode);
+                }));
+            }
 
-                    if (Path.GetExtension(treeNode.Name) == "")
-                        if (classFTP.getFileType(treeNode.Name) == 2) 
-                            getSubdirectoryes(classFTP, treeNode, Path.GetFileName(direcory));
+            
 
-                    treeView.Invoke((Action)(() =>
-                    {
-                        treeView.Nodes.Add(treeNode);
-                    }));
-                }
+            foreach (TreeNode treeNode in treeView.Nodes)
+            {
+                if (Path.GetExtension(treeNode.Name) == "")
+                    if (classFTP.getFileType(treeNode.Name) == 2)
+                        getSubdirectoryes(classFTP, treeNode, Path.GetFileName(treeNode.Name));
+            }
+
+            
         }
 
         /// <summary>

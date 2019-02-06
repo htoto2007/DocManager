@@ -124,7 +124,7 @@
       <LastGenOutput>DevSettings.Designer.cs</LastGenOutput>
     </None>
     <None Include="Properties\SettingsDataBase.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>SettingsDataBase.Designer.cs</LastGenOutput>
     </None>
     <None Include="Properties\SettingsMail.settings">
@@ -145,6 +145,10 @@
     <ProjectReference Include="..\VitControls\VitControls.csproj">
       <Project>{0D2381AF-887D-4DE5-98FA-1E77AD098931}</Project>
       <Name>VitControls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VitNotifyMessage\VitNotifyMessage.csproj">
+      <Project>{A8D9C15A-3F3C-423A-BE05-293DE5941BB7}</Project>
+      <Name>VitNotifyMessage</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

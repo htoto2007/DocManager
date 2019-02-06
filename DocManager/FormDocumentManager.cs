@@ -31,7 +31,7 @@ namespace DocManager
         private ClassTree classTree = new ClassTree();
         private bool enableScrean = true;
         private FormCreatTypeCard formCreatTypeCard = new FormCreatTypeCard();
-        private FormDBConnect formDB = new FormDBConnect();
+        
 
         private Control lastControl = null;
 
@@ -96,7 +96,9 @@ namespace DocManager
         /// <param name="e"></param>
         private void buttonAddBranch_Click(object sender, EventArgs e)
         {
-            classTree.AddBranch();
+            Enabled = false;
+            classTree.AddBranch(treeView1);
+            Enabled = true;
         }
 
         /// <summary>
@@ -116,10 +118,22 @@ namespace DocManager
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void buttonScan_Click(object sender, EventArgs e)
+        private void ButtonScan_Click(object sender, EventArgs e)
         {
-            if (twain32.SelectSource())
-                twain32.Acquire();
+            Enabled = false;
+            ClassNotifyMessage classNotifyMessage = new ClassNotifyMessage();
+            try
+            {
+                if (twain32.SelectSource())
+                    twain32.Acquire();
+                Enabled = true;
+            }
+            catch (VitTwain.TwainException)
+            {
+                classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.USER_ERROR, "Сканер не найден!");
+                Enabled = true;
+            }
+            
         }
 
         private void buttonSettings_Click(object sender, EventArgs e)
@@ -132,11 +146,6 @@ namespace DocManager
         {
             VitAccessGroup.FormAccessGroup formAccessGroup = new VitAccessGroup.FormAccessGroup();
             formAccessGroup.ShowDialog();
-        }
-
-        private void buttonSettingsConnectToDB_Click(object sender, EventArgs e)
-        {
-            formDB.Show();
         }
 
         private void buttonSettingsDocumentCard_Click(object sender, EventArgs e)
@@ -526,7 +535,8 @@ namespace DocManager
 
         private void ToolStripMenuItemSettingsConnectToDataBase_Click(object sender, EventArgs e)
         {
-            formDB.Show();
+            FormDBConnect formDB = new FormDBConnect();
+            formDB.ShowDialog();
         }
 
         private void ToolStripMenuItemSettingsDocumentCard_Click(object sender, EventArgs e)
@@ -554,12 +564,16 @@ namespace DocManager
         /// <param name="e"></param>
         private async void ToolStripMenuItemWithoutCard_ClickAsync(object sender, EventArgs e)
         {
-           await classTree.AddFileNodeWithoutCardAsync(treeView1);
+            Enabled = false;
+            await classTree.AddFileNodeWithoutCardAsync(treeView1);
+            Enabled = true;
         }
 
         private async void treeView1_AfterExpandAsync(object sender, TreeViewEventArgs e)
         {
+            Enabled = false;
             await classTree.preLoadNodesAsync(e.Node);
+            Enabled = true;
         }
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)

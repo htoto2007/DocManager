@@ -57,7 +57,7 @@
             this.windowHeader1.minimize = false;
             this.windowHeader1.Name = "windowHeader1";
             this.windowHeader1.showInTaskbar = false;
-            this.windowHeader1.Size = new System.Drawing.Size(569, 34);
+            this.windowHeader1.Size = new System.Drawing.Size(531, 34);
             this.windowHeader1.TabIndex = 12;
             // 
             // imageList1
@@ -76,7 +76,7 @@
             this.panel2.BackColor = System.Drawing.Color.White;
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.pictureBox1);
-            this.panel2.Location = new System.Drawing.Point(2, 34);
+            this.panel2.Location = new System.Drawing.Point(1, 35);
             this.panel2.Margin = new System.Windows.Forms.Padding(0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(529, 70);
@@ -111,10 +111,10 @@
             this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.buttonClose);
-            this.panel1.Location = new System.Drawing.Point(2, 104);
-            this.panel1.Margin = new System.Windows.Forms.Padding(0);
+            this.panel1.Location = new System.Drawing.Point(1, 105);
+            this.panel1.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(529, 52);
+            this.panel1.Size = new System.Drawing.Size(529, 47);
             this.panel1.TabIndex = 14;
             // 
             // buttonClose
@@ -139,7 +139,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(571, 156);
+            this.ClientSize = new System.Drawing.Size(533, 153);
             this.Controls.Add(this.windowHeader1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);

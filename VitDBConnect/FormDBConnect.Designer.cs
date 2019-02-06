@@ -31,15 +31,15 @@
             this.components = new System.ComponentModel.Container();
             this.windowHeader1 = new VitControls.WindowHeader();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBoxHost = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.buttonCancel = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textBoxPassword = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBoxLogin = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBoxNameData = new System.Windows.Forms.TextBox();
             this.buttonAply = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -70,12 +70,12 @@
             this.panel1.Size = new System.Drawing.Size(221, 188);
             this.panel1.TabIndex = 12;
             // 
-            // textBox1
+            // textBoxHost
             // 
-            this.textBox1.Location = new System.Drawing.Point(109, 38);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 14;
+            this.textBoxHost.Location = new System.Drawing.Point(109, 38);
+            this.textBoxHost.Name = "textBoxHost";
+            this.textBoxHost.Size = new System.Drawing.Size(100, 20);
+            this.textBoxHost.TabIndex = 14;
             // 
             // contextMenuStrip1
             // 
@@ -103,12 +103,12 @@
             this.label4.TabIndex = 22;
             this.label4.Text = "pass";
             // 
-            // textBox4
+            // textBoxPassword
             // 
-            this.textBox4.Location = new System.Drawing.Point(109, 116);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 20);
-            this.textBox4.TabIndex = 21;
+            this.textBoxPassword.Location = new System.Drawing.Point(109, 116);
+            this.textBoxPassword.Name = "textBoxPassword";
+            this.textBoxPassword.Size = new System.Drawing.Size(100, 20);
+            this.textBoxPassword.TabIndex = 21;
             // 
             // label3
             // 
@@ -120,12 +120,12 @@
             this.label3.TabIndex = 20;
             this.label3.Text = "login";
             // 
-            // textBox3
+            // textBoxLogin
             // 
-            this.textBox3.Location = new System.Drawing.Point(109, 90);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 19;
+            this.textBoxLogin.Location = new System.Drawing.Point(109, 90);
+            this.textBoxLogin.Name = "textBoxLogin";
+            this.textBoxLogin.Size = new System.Drawing.Size(100, 20);
+            this.textBoxLogin.TabIndex = 19;
             // 
             // label2
             // 
@@ -137,12 +137,12 @@
             this.label2.TabIndex = 18;
             this.label2.Text = "db name";
             // 
-            // textBox2
+            // textBoxNameData
             // 
-            this.textBox2.Location = new System.Drawing.Point(109, 64);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 17;
+            this.textBoxNameData.Location = new System.Drawing.Point(109, 64);
+            this.textBoxNameData.Name = "textBoxNameData";
+            this.textBoxNameData.Size = new System.Drawing.Size(100, 20);
+            this.textBoxNameData.TabIndex = 17;
             // 
             // buttonAply
             // 
@@ -173,14 +173,14 @@
             this.CancelButton = this.buttonCancel;
             this.ClientSize = new System.Drawing.Size(223, 223);
             this.ControlBox = false;
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textBoxHost);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.textBoxPassword);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.textBoxLogin);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.textBoxNameData);
             this.Controls.Add(this.buttonAply);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
@@ -189,7 +189,8 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormDBConnect";
             this.Padding = new System.Windows.Forms.Padding(1);
-            this.Text = "FormDBConnect";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Подключение к базе данный";
             this.Load += new System.EventHandler(this.FormDBConnect_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -199,15 +200,15 @@
         #endregion
         private VitControls.WindowHeader windowHeader1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxHost;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox textBoxPassword;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBoxLogin;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBoxNameData;
         private System.Windows.Forms.Button buttonAply;
         private System.Windows.Forms.Label label1;
     }

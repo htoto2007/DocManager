@@ -8,11 +8,12 @@ namespace VitDBConnect
 
         public ClassDBConnect()
         {
+            var settings =  VitSettings.Properties.SettingsDataBase.Default;
             string dbUser = "" +
-                "server=" + Properties.Settings1.Default.server + ";" +
-                "user=" + Properties.Settings1.Default.login + ";" +
-                "database=" + Properties.Settings1.Default.dbName + ";" +
-                "password=" + Properties.Settings1.Default.pass + ";" +
+                "server=" + settings.host + ";" +
+                "user=" + settings.userLogin + ";" +
+                "database=" + settings.dataName + ";" +
+                "password=" + settings.userPassword + ";" +
                 "SslMode=none;" +
                 "charset=utf8";
             dbLink = new MySqlConnection(dbUser);

@@ -57,7 +57,7 @@
             this.windowHeader1.minimize = false;
             this.windowHeader1.Name = "windowHeader1";
             this.windowHeader1.showInTaskbar = false;
-            this.windowHeader1.Size = new System.Drawing.Size(539, 34);
+            this.windowHeader1.Size = new System.Drawing.Size(529, 34);
             this.windowHeader1.TabIndex = 0;
             // 
             // panel2
@@ -111,7 +111,7 @@
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.buttonClose);
             this.panel1.Location = new System.Drawing.Point(1, 105);
-            this.panel1.Margin = new System.Windows.Forms.Padding(0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(529, 52);
             this.panel1.TabIndex = 3;
@@ -137,7 +137,7 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CancelButton = this.buttonClose;
-            this.ClientSize = new System.Drawing.Size(541, 159);
+            this.ClientSize = new System.Drawing.Size(531, 158);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.windowHeader1);

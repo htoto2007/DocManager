@@ -65,16 +65,22 @@ namespace VitFTP
             uri = "ftp://" + VitSettings.Properties.FTPSettings.Default.host + ":" + VitSettings.Properties.FTPSettings.Default.port + "/";
             this.userName = userName;
             this.password = password;
-            
 
-            sessionOptions = new SessionOptions
+            try
             {
-                Protocol = Protocol.Ftp,
-                HostName = VitSettings.Properties.FTPSettings.Default.host,
-                UserName = userName,
-                Password = password,
-                GiveUpSecurityAndAcceptAnySshHostKey = false,
-            };
+                sessionOptions = new SessionOptions
+                {
+                    Protocol = Protocol.Ftp,
+                    HostName = VitSettings.Properties.FTPSettings.Default.host,
+                    UserName = userName,
+                    Password = password,
+                    GiveUpSecurityAndAcceptAnySshHostKey = false,
+                };
+            }
+            catch (SessionRemoteException e)
+            {
+                classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, e.Message);
+            }
         }
 
         /// <summary>

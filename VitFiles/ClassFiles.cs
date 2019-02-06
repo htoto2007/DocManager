@@ -266,7 +266,7 @@ namespace VitFiles
                     "вечность",
                     i.ToString() + "/" + remotePathes.GetLength(0).ToString(),
                     "Удаление файлов");
-                if (classFTP.DeleteFile(remotePathes[i]) == "")
+                if (!classFTP.RemoveDirecroty(remotePathes[i]))
                 {
                     Console.WriteLine("Не удалось удалить физическую копию " + remotePathes);
                     continue;

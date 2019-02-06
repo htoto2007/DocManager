@@ -12,7 +12,7 @@ namespace VitSettings.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.8.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.9.0.0")]
     public sealed partial class GeneralsSettings : global::System.Configuration.ApplicationSettingsBase {
         
         private static GeneralsSettings defaultInstance = ((GeneralsSettings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new GeneralsSettings())));
@@ -38,48 +38,24 @@ namespace VitSettings.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string repositiryPayh {
-            get {
-                return ((string)(this["repositiryPayh"]));
-            }
-            set {
-                this["repositiryPayh"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("r")]
-        public string repositoryRootFolderName {
-            get {
-                return ((string)(this["repositoryRootFolderName"]));
-            }
-            set {
-                this["repositoryRootFolderName"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string tmpFTP {
-            get {
-                return ((string)(this["tmpFTP"]));
-            }
-            set {
-                this["tmpFTP"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string fileTypeIcons {
             get {
                 return ((string)(this["fileTypeIcons"]));
             }
             set {
                 this["fileTypeIcons"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string repositiryPayh {
+            get {
+                return ((string)(this["repositiryPayh"]));
+            }
+            set {
+                this["repositiryPayh"] = value;
             }
         }
     }

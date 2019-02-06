@@ -65,18 +65,9 @@
       <DependentUpon>FormDBConnect.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Settings1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>Settings1.settings</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Properties\Settings1.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings1.Designer.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FormDBConnect.resx">
@@ -87,6 +78,10 @@
     <ProjectReference Include="..\VitControls\VitControls.csproj">
       <Project>{0D2381AF-887D-4DE5-98FA-1E77AD098931}</Project>
       <Name>VitControls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VitSettings\VitSettings.csproj">
+      <Project>{8ba14954-8676-4a60-b58f-7e5d8f71eac8}</Project>
+      <Name>VitSettings</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

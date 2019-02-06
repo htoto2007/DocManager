@@ -34,7 +34,11 @@
             this.button2 = new VitControls.VitButton();
             this.button3 = new VitControls.VitButton();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.buttonClose = new System.Windows.Forms.Button();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.buttonOk = new System.Windows.Forms.Button();
             this.tabControlSettings = new System.Windows.Forms.TabControl();
+            this.tabPageSettingsGenerals = new System.Windows.Forms.TabPage();
             this.tabPageSettingsConnectToData = new System.Windows.Forms.TabPage();
             this.label7 = new System.Windows.Forms.Label();
             this.textBoxConnectDataBasePort = new System.Windows.Forms.TextBox();
@@ -46,8 +50,11 @@
             this.textBoxConnectDataBaseDataBaseName = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.textBoxConnectDataBaseHost = new System.Windows.Forms.TextBox();
-            this.tabPageSettingsGenerals = new System.Windows.Forms.TabPage();
             this.tabPageSettingsFTP = new System.Windows.Forms.TabPage();
+            this.buttonFTPChooseFolderForTmp = new System.Windows.Forms.Button();
+            this.buttonFTPChooseFolderForOpenFiles = new System.Windows.Forms.Button();
+            this.textBoxFTPPathForTmp = new System.Windows.Forms.TextBox();
+            this.textBoxFTPPathForOpenFile = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -55,24 +62,19 @@
             this.label8 = new System.Windows.Forms.Label();
             this.textBoxFTPHost = new System.Windows.Forms.TextBox();
             this.tabPageEmailEmail = new System.Windows.Forms.TabPage();
-            this.textBoxFTPPathForTmp = new System.Windows.Forms.TextBox();
-            this.textBoxFTPPathForOpenFile = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.button4 = new System.Windows.Forms.Button();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.buttonOk = new System.Windows.Forms.Button();
-            this.buttonClose = new System.Windows.Forms.Button();
-            this.label12 = new System.Windows.Forms.Label();
-            this.textBoxMailServerInAdres = new System.Windows.Forms.TextBox();
-            this.textBoxMailServerInPort = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.textBoxMailServerOutAdres = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
             this.textBoxMailServerOutPort = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
+            this.textBoxMailServerOutAdres = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.textBoxMailServerInPort = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.textBoxMailServerInAdres = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.buttonGeneralsDefault = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tabControlSettings.SuspendLayout();
+            this.tabPageSettingsGenerals.SuspendLayout();
             this.tabPageSettingsConnectToData.SuspendLayout();
             this.tabPageSettingsFTP.SuspendLayout();
             this.tabPageEmailEmail.SuspendLayout();
@@ -129,6 +131,45 @@
             this.panel1.Size = new System.Drawing.Size(638, 445);
             this.panel1.TabIndex = 4;
             // 
+            // buttonClose
+            // 
+            this.buttonClose.AutoSize = true;
+            this.buttonClose.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.buttonClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.buttonClose.ImageKey = "icons8-unavailable-480.png";
+            this.buttonClose.ImageList = this.imageList1;
+            this.buttonClose.Location = new System.Drawing.Point(548, 414);
+            this.buttonClose.Name = "buttonClose";
+            this.buttonClose.Size = new System.Drawing.Size(86, 27);
+            this.buttonClose.TabIndex = 3;
+            this.buttonClose.Text = "Закрыть";
+            this.buttonClose.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.buttonClose.UseVisualStyleBackColor = true;
+            this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "icons8-opened-folder-96.png");
+            this.imageList1.Images.SetKeyName(1, "icons8-ok-480.png");
+            this.imageList1.Images.SetKeyName(2, "icons8-unavailable-480.png");
+            this.imageList1.Images.SetKeyName(3, "icons8-restart-480.png");
+            // 
+            // buttonOk
+            // 
+            this.buttonOk.AutoSize = true;
+            this.buttonOk.ImageKey = "icons8-ok-480.png";
+            this.buttonOk.ImageList = this.imageList1;
+            this.buttonOk.Location = new System.Drawing.Point(4, 414);
+            this.buttonOk.Name = "buttonOk";
+            this.buttonOk.Size = new System.Drawing.Size(106, 27);
+            this.buttonOk.TabIndex = 2;
+            this.buttonOk.Text = "Приментьб";
+            this.buttonOk.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.buttonOk.UseVisualStyleBackColor = true;
+            this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
+            // 
             // tabControlSettings
             // 
             this.tabControlSettings.Controls.Add(this.tabPageSettingsGenerals);
@@ -143,6 +184,18 @@
             this.tabControlSettings.SelectedIndex = 0;
             this.tabControlSettings.Size = new System.Drawing.Size(638, 412);
             this.tabControlSettings.TabIndex = 1;
+            // 
+            // tabPageSettingsGenerals
+            // 
+            this.tabPageSettingsGenerals.Controls.Add(this.buttonGeneralsDefault);
+            this.tabPageSettingsGenerals.Location = new System.Drawing.Point(4, 26);
+            this.tabPageSettingsGenerals.Margin = new System.Windows.Forms.Padding(0);
+            this.tabPageSettingsGenerals.Name = "tabPageSettingsGenerals";
+            this.tabPageSettingsGenerals.Padding = new System.Windows.Forms.Padding(4);
+            this.tabPageSettingsGenerals.Size = new System.Drawing.Size(630, 382);
+            this.tabPageSettingsGenerals.TabIndex = 0;
+            this.tabPageSettingsGenerals.Text = "Общие";
+            this.tabPageSettingsGenerals.UseVisualStyleBackColor = true;
             // 
             // tabPageSettingsConnectToData
             // 
@@ -250,21 +303,10 @@
             this.textBoxConnectDataBaseHost.Size = new System.Drawing.Size(311, 25);
             this.textBoxConnectDataBaseHost.TabIndex = 10;
             // 
-            // tabPageSettingsGenerals
-            // 
-            this.tabPageSettingsGenerals.Location = new System.Drawing.Point(4, 26);
-            this.tabPageSettingsGenerals.Margin = new System.Windows.Forms.Padding(0);
-            this.tabPageSettingsGenerals.Name = "tabPageSettingsGenerals";
-            this.tabPageSettingsGenerals.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPageSettingsGenerals.Size = new System.Drawing.Size(630, 382);
-            this.tabPageSettingsGenerals.TabIndex = 0;
-            this.tabPageSettingsGenerals.Text = "Общие";
-            this.tabPageSettingsGenerals.UseVisualStyleBackColor = true;
-            // 
             // tabPageSettingsFTP
             // 
-            this.tabPageSettingsFTP.Controls.Add(this.button4);
-            this.tabPageSettingsFTP.Controls.Add(this.button1);
+            this.tabPageSettingsFTP.Controls.Add(this.buttonFTPChooseFolderForTmp);
+            this.tabPageSettingsFTP.Controls.Add(this.buttonFTPChooseFolderForOpenFiles);
             this.tabPageSettingsFTP.Controls.Add(this.textBoxFTPPathForTmp);
             this.tabPageSettingsFTP.Controls.Add(this.textBoxFTPPathForOpenFile);
             this.tabPageSettingsFTP.Controls.Add(this.label11);
@@ -281,6 +323,50 @@
             this.tabPageSettingsFTP.TabIndex = 2;
             this.tabPageSettingsFTP.Text = "Подключение к FTP";
             this.tabPageSettingsFTP.UseVisualStyleBackColor = true;
+            // 
+            // buttonFTPChooseFolderForTmp
+            // 
+            this.buttonFTPChooseFolderForTmp.AutoSize = true;
+            this.buttonFTPChooseFolderForTmp.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.buttonFTPChooseFolderForTmp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonFTPChooseFolderForTmp.ImageKey = "icons8-opened-folder-96.png";
+            this.buttonFTPChooseFolderForTmp.ImageList = this.imageList1;
+            this.buttonFTPChooseFolderForTmp.Location = new System.Drawing.Point(601, 101);
+            this.buttonFTPChooseFolderForTmp.Name = "buttonFTPChooseFolderForTmp";
+            this.buttonFTPChooseFolderForTmp.Size = new System.Drawing.Size(24, 24);
+            this.buttonFTPChooseFolderForTmp.TabIndex = 11;
+            this.toolTip1.SetToolTip(this.buttonFTPChooseFolderForTmp, "Выбрать папку");
+            this.buttonFTPChooseFolderForTmp.UseVisualStyleBackColor = true;
+            this.buttonFTPChooseFolderForTmp.Click += new System.EventHandler(this.buttonFTPChooseFolderForTmp_Click);
+            // 
+            // buttonFTPChooseFolderForOpenFiles
+            // 
+            this.buttonFTPChooseFolderForOpenFiles.AutoSize = true;
+            this.buttonFTPChooseFolderForOpenFiles.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.buttonFTPChooseFolderForOpenFiles.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonFTPChooseFolderForOpenFiles.ImageKey = "icons8-opened-folder-96.png";
+            this.buttonFTPChooseFolderForOpenFiles.ImageList = this.imageList1;
+            this.buttonFTPChooseFolderForOpenFiles.Location = new System.Drawing.Point(601, 71);
+            this.buttonFTPChooseFolderForOpenFiles.Name = "buttonFTPChooseFolderForOpenFiles";
+            this.buttonFTPChooseFolderForOpenFiles.Size = new System.Drawing.Size(24, 24);
+            this.buttonFTPChooseFolderForOpenFiles.TabIndex = 10;
+            this.toolTip1.SetToolTip(this.buttonFTPChooseFolderForOpenFiles, "Выбрать папку");
+            this.buttonFTPChooseFolderForOpenFiles.UseVisualStyleBackColor = true;
+            this.buttonFTPChooseFolderForOpenFiles.Click += new System.EventHandler(this.buttonFTPChooseFolderForOpenFiles_Click);
+            // 
+            // textBoxFTPPathForTmp
+            // 
+            this.textBoxFTPPathForTmp.Location = new System.Drawing.Point(312, 100);
+            this.textBoxFTPPathForTmp.Name = "textBoxFTPPathForTmp";
+            this.textBoxFTPPathForTmp.Size = new System.Drawing.Size(283, 25);
+            this.textBoxFTPPathForTmp.TabIndex = 9;
+            // 
+            // textBoxFTPPathForOpenFile
+            // 
+            this.textBoxFTPPathForOpenFile.Location = new System.Drawing.Point(312, 69);
+            this.textBoxFTPPathForOpenFile.Name = "textBoxFTPPathForOpenFile";
+            this.textBoxFTPPathForOpenFile.Size = new System.Drawing.Size(283, 25);
+            this.textBoxFTPPathForOpenFile.TabIndex = 8;
             // 
             // label11
             // 
@@ -350,120 +436,21 @@
             this.tabPageEmailEmail.Text = "Почта";
             this.tabPageEmailEmail.UseVisualStyleBackColor = true;
             // 
-            // textBoxFTPPathForTmp
+            // textBoxMailServerOutPort
             // 
-            this.textBoxFTPPathForTmp.Location = new System.Drawing.Point(312, 100);
-            this.textBoxFTPPathForTmp.Name = "textBoxFTPPathForTmp";
-            this.textBoxFTPPathForTmp.Size = new System.Drawing.Size(278, 25);
-            this.textBoxFTPPathForTmp.TabIndex = 9;
+            this.textBoxMailServerOutPort.Location = new System.Drawing.Point(313, 99);
+            this.textBoxMailServerOutPort.Name = "textBoxMailServerOutPort";
+            this.textBoxMailServerOutPort.Size = new System.Drawing.Size(311, 25);
+            this.textBoxMailServerOutPort.TabIndex = 7;
             // 
-            // textBoxFTPPathForOpenFile
+            // label15
             // 
-            this.textBoxFTPPathForOpenFile.Location = new System.Drawing.Point(312, 69);
-            this.textBoxFTPPathForOpenFile.Name = "textBoxFTPPathForOpenFile";
-            this.textBoxFTPPathForOpenFile.Size = new System.Drawing.Size(278, 25);
-            this.textBoxFTPPathForOpenFile.TabIndex = 8;
-            // 
-            // button1
-            // 
-            this.button1.AutoSize = true;
-            this.button1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.button1.ImageKey = "icons8-opened-folder-96.png";
-            this.button1.ImageList = this.imageList1;
-            this.button1.Location = new System.Drawing.Point(596, 79);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(22, 22);
-            this.button1.TabIndex = 10;
-            this.toolTip1.SetToolTip(this.button1, "Выбрать папку");
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // imageList1
-            // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "icons8-opened-folder-96.png");
-            this.imageList1.Images.SetKeyName(1, "icons8-ok-480.png");
-            this.imageList1.Images.SetKeyName(2, "icons8-unavailable-480.png");
-            // 
-            // button4
-            // 
-            this.button4.AutoSize = true;
-            this.button4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.button4.ImageKey = "icons8-opened-folder-96.png";
-            this.button4.ImageList = this.imageList1;
-            this.button4.Location = new System.Drawing.Point(596, 107);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(22, 22);
-            this.button4.TabIndex = 11;
-            this.toolTip1.SetToolTip(this.button4, "Выбрать папку");
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // toolTip1
-            // 
-            this.toolTip1.AutomaticDelay = 100;
-            this.toolTip1.IsBalloon = true;
-            this.toolTip1.UseAnimation = false;
-            this.toolTip1.UseFading = false;
-            // 
-            // buttonOk
-            // 
-            this.buttonOk.AutoSize = true;
-            this.buttonOk.ImageKey = "icons8-ok-480.png";
-            this.buttonOk.ImageList = this.imageList1;
-            this.buttonOk.Location = new System.Drawing.Point(4, 414);
-            this.buttonOk.Name = "buttonOk";
-            this.buttonOk.Size = new System.Drawing.Size(106, 27);
-            this.buttonOk.TabIndex = 2;
-            this.buttonOk.Text = "Приментьб";
-            this.buttonOk.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.buttonOk.UseVisualStyleBackColor = true;
-            this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
-            // 
-            // buttonClose
-            // 
-            this.buttonClose.AutoSize = true;
-            this.buttonClose.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.buttonClose.ImageKey = "icons8-unavailable-480.png";
-            this.buttonClose.ImageList = this.imageList1;
-            this.buttonClose.Location = new System.Drawing.Point(548, 414);
-            this.buttonClose.Name = "buttonClose";
-            this.buttonClose.Size = new System.Drawing.Size(86, 27);
-            this.buttonClose.TabIndex = 3;
-            this.buttonClose.Text = "Закрыть";
-            this.buttonClose.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.buttonClose.UseVisualStyleBackColor = true;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(6, 9);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(209, 17);
-            this.label12.TabIndex = 0;
-            this.label12.Text = "Сервенр входящей почты IMAP";
-            // 
-            // textBoxMailServerInAdres
-            // 
-            this.textBoxMailServerInAdres.Location = new System.Drawing.Point(313, 6);
-            this.textBoxMailServerInAdres.Name = "textBoxMailServerInAdres";
-            this.textBoxMailServerInAdres.Size = new System.Drawing.Size(311, 25);
-            this.textBoxMailServerInAdres.TabIndex = 1;
-            // 
-            // textBoxMailServerInPort
-            // 
-            this.textBoxMailServerInPort.Location = new System.Drawing.Point(313, 37);
-            this.textBoxMailServerInPort.Name = "textBoxMailServerInPort";
-            this.textBoxMailServerInPort.Size = new System.Drawing.Size(311, 25);
-            this.textBoxMailServerInPort.TabIndex = 3;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(6, 40);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(242, 17);
-            this.label13.TabIndex = 2;
-            this.label13.Text = "Порт сервера входящей почты IMAP";
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(6, 102);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(250, 17);
+            this.label15.TabIndex = 6;
+            this.label15.Text = "Порт сервера исходящей почты SMTP";
             // 
             // textBoxMailServerOutAdres
             // 
@@ -481,26 +468,65 @@
             this.label14.TabIndex = 4;
             this.label14.Text = "Сервенр исходящей почты SMTP";
             // 
-            // textBoxMailServerOutPort
+            // textBoxMailServerInPort
             // 
-            this.textBoxMailServerOutPort.Location = new System.Drawing.Point(313, 99);
-            this.textBoxMailServerOutPort.Name = "textBoxMailServerOutPort";
-            this.textBoxMailServerOutPort.Size = new System.Drawing.Size(311, 25);
-            this.textBoxMailServerOutPort.TabIndex = 7;
+            this.textBoxMailServerInPort.Location = new System.Drawing.Point(313, 37);
+            this.textBoxMailServerInPort.Name = "textBoxMailServerInPort";
+            this.textBoxMailServerInPort.Size = new System.Drawing.Size(311, 25);
+            this.textBoxMailServerInPort.TabIndex = 3;
             // 
-            // label15
+            // label13
             // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(6, 102);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(250, 17);
-            this.label15.TabIndex = 6;
-            this.label15.Text = "Порт сервера исходящей почты SMTP";
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(6, 40);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(242, 17);
+            this.label13.TabIndex = 2;
+            this.label13.Text = "Порт сервера входящей почты IMAP";
+            // 
+            // textBoxMailServerInAdres
+            // 
+            this.textBoxMailServerInAdres.Location = new System.Drawing.Point(313, 6);
+            this.textBoxMailServerInAdres.Name = "textBoxMailServerInAdres";
+            this.textBoxMailServerInAdres.Size = new System.Drawing.Size(311, 25);
+            this.textBoxMailServerInAdres.TabIndex = 1;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(6, 9);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(209, 17);
+            this.label12.TabIndex = 0;
+            this.label12.Text = "Сервенр входящей почты IMAP";
+            // 
+            // toolTip1
+            // 
+            this.toolTip1.AutomaticDelay = 100;
+            this.toolTip1.IsBalloon = true;
+            this.toolTip1.UseAnimation = false;
+            this.toolTip1.UseFading = false;
+            // 
+            // buttonGeneralsDefault
+            // 
+            this.buttonGeneralsDefault.AutoSize = true;
+            this.buttonGeneralsDefault.ImageKey = "icons8-restart-480.png";
+            this.buttonGeneralsDefault.ImageList = this.imageList1;
+            this.buttonGeneralsDefault.Location = new System.Drawing.Point(183, 146);
+            this.buttonGeneralsDefault.Name = "buttonGeneralsDefault";
+            this.buttonGeneralsDefault.Size = new System.Drawing.Size(196, 27);
+            this.buttonGeneralsDefault.TabIndex = 0;
+            this.buttonGeneralsDefault.Text = "Настройки поумолчанию";
+            this.buttonGeneralsDefault.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.buttonGeneralsDefault.UseVisualStyleBackColor = true;
+            this.buttonGeneralsDefault.Click += new System.EventHandler(this.buttonGeneralsDefault_Click);
             // 
             // FormSettings
             // 
+            this.AcceptButton = this.buttonOk;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.buttonClose;
             this.ClientSize = new System.Drawing.Size(640, 480);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.button3);
@@ -514,10 +540,13 @@
             this.Name = "FormSettings";
             this.Padding = new System.Windows.Forms.Padding(1);
             this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Настроки";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.tabControlSettings.ResumeLayout(false);
+            this.tabPageSettingsGenerals.ResumeLayout(false);
+            this.tabPageSettingsGenerals.PerformLayout();
             this.tabPageSettingsConnectToData.ResumeLayout(false);
             this.tabPageSettingsConnectToData.PerformLayout();
             this.tabPageSettingsFTP.ResumeLayout(false);
@@ -557,10 +586,10 @@
         private System.Windows.Forms.TextBox textBoxFTPHost;
         private System.Windows.Forms.TextBox textBoxFTPPathForTmp;
         private System.Windows.Forms.TextBox textBoxFTPPathForOpenFile;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button buttonFTPChooseFolderForTmp;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonFTPChooseFolderForOpenFiles;
         private System.Windows.Forms.Button buttonClose;
         private System.Windows.Forms.Button buttonOk;
         private System.Windows.Forms.TextBox textBoxMailServerOutPort;
@@ -571,5 +600,6 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox textBoxMailServerInAdres;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Button buttonGeneralsDefault;
     }
 }

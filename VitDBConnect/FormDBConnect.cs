@@ -5,6 +5,8 @@ namespace VitDBConnect
 {
     public partial class FormDBConnect : Form
     {
+        VitSettings.Properties.SettingsDataBase settings = VitSettings.Properties.SettingsDataBase.Default;
+
         public FormDBConnect()
         {
             InitializeComponent();
@@ -12,20 +14,20 @@ namespace VitDBConnect
 
         private void FormDBConnect_Load(object sender, EventArgs e)
         {
-            textBox1.Text = Properties.Settings1.Default.server;
-            textBox2.Text = Properties.Settings1.Default.dbName;
-            textBox3.Text = Properties.Settings1.Default.login;
-            textBox4.Text = Properties.Settings1.Default.pass;
+            textBoxHost.Text = settings.host;
+            textBoxNameData.Text = settings.dataName;
+            textBoxLogin.Text = settings.userLogin;
+            textBoxPassword.Text = settings.userPassword;
         }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            Properties.Settings1.Default.server = textBox1.Text;
-            Properties.Settings1.Default.dbName = textBox2.Text;
-            Properties.Settings1.Default.login = textBox3.Text;
-            Properties.Settings1.Default.pass = textBox4.Text;
-            Properties.Settings1.Default.Save();
-            Hide();
+            settings.host = textBoxHost.Text;
+            settings.dataName = textBoxNameData.Text;
+            settings.userLogin = textBoxLogin.Text;
+            settings.userPassword = textBoxPassword.Text;
+            settings.Save();
+            Close();
         }
 
         private void button2_Click_1(object sender, EventArgs e)

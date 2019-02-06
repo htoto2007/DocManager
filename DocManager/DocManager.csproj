@@ -215,6 +215,10 @@
       <Project>{a8d9c15a-3f3c-423a-be05-293de5941bb7}</Project>
       <Name>VitNotifyMessage</Name>
     </ProjectReference>
+    <ProjectReference Include="..\vitProgressStatus\vitProgressStatus.csproj">
+      <Project>{ca92b19d-73e7-4942-9777-723e83b6f444}</Project>
+      <Name>vitProgressStatus</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VitSendTo\VitSendToProgram.csproj">
       <Project>{2a45e400-06cf-4817-88d7-12ebd87ea9aa}</Project>
       <Name>VitSendToProgram</Name>
@@ -265,6 +269,31 @@
     <Content Include="bin\Debug\icons\color\icons8-search-48.png" />
     <Content Include="bin\Debug\icons\color\icons8-search-50.png" />
     <Content Include="bin\Debug\icons\color\icons8-services-48.png" />
+    <Content Include="bin\Debug\icons\newColor\advice_accept_ok_theaction_10829.png" />
+    <Content Include="bin\Debug\icons\newColor\bootloader_users_person_people_6080.png" />
+    <Content Include="bin\Debug\icons\newColor\box_complete_10825 %281%29.png" />
+    <Content Include="bin\Debug\icons\newColor\box_complete_10825.png" />
+    <Content Include="bin\Debug\icons\newColor\delete_removewaste_departure_action_delet_10837.png" />
+    <Content Include="bin\Debug\icons\newColor\Errorstopoutput_error_parada_10836.png" />
+    <Content Include="bin\Debug\icons\newColor\exit_closethesession_close_6317.png" />
+    <Content Include="bin\Debug\icons\newColor\flexible_10909 %281%29.png" />
+    <Content Include="bin\Debug\icons\newColor\flexible_10909.png" />
+    <Content Include="bin\Debug\icons\newColor\folder_black_10996 %281%29.png" />
+    <Content Include="bin\Debug\icons\newColor\folder_black_10996.png" />
+    <Content Include="bin\Debug\icons\newColor\folder_black_documents_11000.png" />
+    <Content Include="bin\Debug\icons\newColor\folder_blue_10981.png" />
+    <Content Include="bin\Debug\icons\newColor\folder_orange_10951.png" />
+    <Content Include="bin\Debug\icons\newColor\folder_red_10936.png" />
+    <Content Include="bin\Debug\icons\newColor\folder_yellow_10921.png" />
+    <Content Include="bin\Debug\icons\newColor\forbidden_stop_10832.png" />
+    <Content Include="bin\Debug\icons\newColor\info_6305.png" />
+    <Content Include="bin\Debug\icons\newColor\installation_application_software_10810.png" />
+    <Content Include="bin\Debug\icons\newColor\recyclingdrawer_empty_reciclaje_10798.png" />
+    <Content Include="bin\Debug\icons\newColor\recyclingdrawer_full_reciclaje_10797.png" />
+    <Content Include="bin\Debug\icons\newColor\safetywarning_seguridad_10783.png" />
+    <Content Include="bin\Debug\icons\newColor\scanner_10867.png" />
+    <Content Include="bin\Debug\icons\newColor\securitylockkey_seguridad_cerradur_10792.png" />
+    <Content Include="bin\Debug\icons\newColor\warning_10828.png" />
     <Content Include="icons8-_-96_001.ico" />
     <None Include="bin\Debug\icons\color\icons8-tags-96.png" />
     <Content Include="bin\Debug\icons\color\icons8-tree-structure-40.png" />
