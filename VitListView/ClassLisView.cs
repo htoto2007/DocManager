@@ -171,6 +171,11 @@ namespace VitListView
             });
         }
 
+        /// <summary>
+        /// Запуск удаления файла из ListView
+        /// </summary>
+        /// <param name="listView"></param>
+        /// <returns></returns>
         public ListViewItem[] deleteFiles(ListView listView)
         {
             ClassNotifyMessage classNotifyMessage = new ClassNotifyMessage();

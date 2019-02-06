@@ -337,6 +337,7 @@ namespace VitTree
             {
                 treeNode.ImageKey = "default_folder";
                 treeNode.SelectedImageKey = "default_folder";
+                treeNode.StateImageKey = "default_folder_no_empty";
             }
         }
 

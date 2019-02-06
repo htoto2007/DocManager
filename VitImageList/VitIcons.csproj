@@ -255,5 +255,146 @@
       <Name>VitSettings</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-add-new-161.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-conference-481.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-database-administrator-641.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-document-481.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-exit-481.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-folder-481.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-password-481.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-plus-481.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-question-mark-481.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-red-card-401.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-scanner-401.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-services-481.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-tree-structure-401.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\advice_accept_ok_theaction_10829.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bootloader_users_person_people_6080.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\box_complete_10825.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete_removewaste_departure_action_delet_10837.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\editionadded_theaction_6325.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Errorstopoutput_error_parada_10836.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\exit_closethesession_close_6317.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flexible_10909 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flexible_10909.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_black_10996.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_black_documents_11000.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_blue_10981.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_orange_10951.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_red_10936.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_yellow_10921.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\forbidden_stop_10832.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\info_6305.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\installation_application_software_10810.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\kmultiple_5898.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\recyclingdrawer_empty_reciclaje_10798.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\recyclingdrawer_full_reciclaje_10797.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh_arrow_6296.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reminders_pin_pin_6024.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\runconfig_plaz_6295.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\safetywarning_seguridad_10783.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\scanner_10867.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search_book_open_search_locate_6178.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\securitylockkey_seguridad_cerradur_10792.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_person_people_6100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\userkdmfemale_person_woman_5920.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\warning_10828.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\database_6234.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\help-file_40451.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_yellow_documents_10925.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

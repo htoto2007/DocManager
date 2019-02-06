@@ -470,6 +470,7 @@ namespace DocManager
                     Console.WriteLine("listViewItems " + listViewItems);
                     return;
                 }
+
                 foreach (ListViewItem listViewItem in listViewItems)
                 {
                     TreeNode[] treeNodes = treeView1.Nodes.Find("/" + listViewItem.SubItems["path"].Text, true);
@@ -636,6 +637,14 @@ namespace DocManager
             Enabled = false;
             classTree.Init(treeView1);
             Enabled = true;
+        }
+
+        private void listView1_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            foreach(ListViewItem listViewItem in listView1.SelectedItems)
+            {
+                Console.WriteLine(listViewItem.SubItems["path"].Text);
+            }
         }
     }
 }

@@ -16,9 +16,10 @@ namespace VitIcons
         {
             imageList.ImageSize = new Size(24, 24);
             imageList.ColorDepth = ColorDepth.Depth32Bit;
-            imageList.Images.Add("default_file", Properties.ResourceColorImage.icons8_document_48);
-            imageList.Images.Add("default_folder", Properties.ResourceColorImage.icons8_folder_48);
-            imageList.Images.Add("root", Properties.ResourceColorImage.icons8_tree_structure_40);
+            imageList.Images.Add("default_file", Properties.ResourceColorImage.unlnown_file);
+            imageList.Images.Add("default_folder", Properties.ResourceColorImage.default_folder);
+            imageList.Images.Add("default_folder_no_empty", Properties.ResourceColorImage.folder_black_documents_11000);
+            imageList.Images.Add("root", Properties.ResourceColorImage.unlnown_file);
 
             Console.WriteLine("Обновление базы значков... ");
             foreach (string path in Directory.GetFiles(VitSettings.Properties.GeneralsSettings.Default.fileTypeIcons))
