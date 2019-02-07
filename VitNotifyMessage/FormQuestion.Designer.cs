@@ -65,8 +65,8 @@
             // 
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "icons8-delete-48.png");
-            this.imageList1.Images.SetKeyName(1, "icons8-checkmark-48.png");
+            this.imageList1.Images.SetKeyName(0, "cancellationbutton_exitneartheaction_botondecancelacion_salida_6335.png");
+            this.imageList1.Images.SetKeyName(1, "solicit_accept_check_ok_theaction_6340.png");
             // 
             // panel2
             // 
@@ -100,9 +100,11 @@
             // 
             this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(15, 17);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(50, 50);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
@@ -122,11 +124,10 @@
             // button1
             // 
             this.button1.AutoSize = true;
-            this.button1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.button1.DialogResult = System.Windows.Forms.DialogResult.Yes;
-            this.button1.ImageKey = "icons8-checkmark-48.png";
+            this.button1.ImageKey = "solicit_accept_check_ok_theaction_6340.png";
             this.button1.ImageList = this.imageList1;
-            this.button1.Location = new System.Drawing.Point(267, 14);
+            this.button1.Location = new System.Drawing.Point(196, 19);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(56, 30);
             this.button1.TabIndex = 1;
@@ -137,11 +138,10 @@
             // buttonClose
             // 
             this.buttonClose.AutoSize = true;
-            this.buttonClose.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.buttonClose.DialogResult = System.Windows.Forms.DialogResult.No;
-            this.buttonClose.ImageKey = "icons8-delete-48.png";
+            this.buttonClose.ImageKey = "cancellationbutton_exitneartheaction_botondecancelacion_salida_6335.png";
             this.buttonClose.ImageList = this.imageList1;
-            this.buttonClose.Location = new System.Drawing.Point(176, 14);
+            this.buttonClose.Location = new System.Drawing.Point(271, 19);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(60, 30);
             this.buttonClose.TabIndex = 0;

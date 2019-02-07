@@ -186,7 +186,8 @@ namespace DocManager
         private void Form1_Shown(object sender, EventArgs e)
         {
             Enabled = false;
-            classTree.Init(treeView1);
+            ClassUsers classUsers = new ClassUsers();
+            classTree.Init(treeView1, classUsers.getThisUser().login, classUsers.getThisUser().password);
             Enabled = true;
         }
 
@@ -452,7 +453,8 @@ namespace DocManager
 
         private void ToolStripMenuItemCopy_Click(object sender, EventArgs e)
         {
-            classTree.copy(treeView1);
+            ClassUsers classUsers = new ClassUsers();
+            classTree.copy(treeView1, classUsers.getThisUser().login, classUsers.getThisUser().password);
         }
 
         private void ToolStripMenuItemDelete_Click(object sender, EventArgs e)
@@ -485,7 +487,8 @@ namespace DocManager
 
         private async void ToolStripMenuItemMove_Click(object sender, EventArgs e)
         {
-            await classTree.MoveAsync(treeView1);
+            ClassUsers classUsers = new ClassUsers();
+            await classTree.MoveAsync(treeView1, classUsers.getThisUser().login, classUsers.getThisUser().password);
         }
 
         private void ToolStripMenuItemRename_Click(object sender, EventArgs e)
@@ -635,16 +638,9 @@ namespace DocManager
         private void vitButtonUpdateInfo_Click(object sender, EventArgs e)
         {
             Enabled = false;
-            classTree.Init(treeView1);
+            ClassUsers classUsers = new ClassUsers();
+            classTree.Init(treeView1, classUsers.getThisUser().login, classUsers.getThisUser().password);
             Enabled = true;
-        }
-
-        private void listView1_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
-            foreach(ListViewItem listViewItem in listView1.SelectedItems)
-            {
-                Console.WriteLine(listViewItem.SubItems["path"].Text);
-            }
         }
     }
 }

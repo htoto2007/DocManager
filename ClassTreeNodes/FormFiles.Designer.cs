@@ -52,12 +52,14 @@
             this.windowHeader1.AutoSize = true;
             this.windowHeader1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.windowHeader1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(207)))), ((int)(((byte)(251)))));
+            this.windowHeader1.close = false;
             this.windowHeader1.Dock = System.Windows.Forms.DockStyle.Top;
             this.windowHeader1.Location = new System.Drawing.Point(1, 1);
             this.windowHeader1.Margin = new System.Windows.Forms.Padding(0);
             this.windowHeader1.maximize = false;
             this.windowHeader1.minimize = false;
             this.windowHeader1.Name = "windowHeader1";
+            this.windowHeader1.showInTaskbar = false;
             this.windowHeader1.Size = new System.Drawing.Size(561, 34);
             this.windowHeader1.TabIndex = 0;
             // 
@@ -82,13 +84,14 @@
             // 
             // buttonChangeLocation
             // 
+            this.buttonChangeLocation.AutoSize = true;
             this.buttonChangeLocation.BackColor = System.Drawing.Color.White;
             this.buttonChangeLocation.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonChangeLocation.ImageIndex = 0;
+            this.buttonChangeLocation.ImageKey = "folder_yellow_10921.png";
             this.buttonChangeLocation.ImageList = this.imageList1;
-            this.buttonChangeLocation.Location = new System.Drawing.Point(514, 84);
+            this.buttonChangeLocation.Location = new System.Drawing.Point(514, 63);
             this.buttonChangeLocation.Name = "buttonChangeLocation";
-            this.buttonChangeLocation.Size = new System.Drawing.Size(34, 24);
+            this.buttonChangeLocation.Size = new System.Drawing.Size(34, 30);
             this.buttonChangeLocation.TabIndex = 14;
             this.buttonChangeLocation.UseVisualStyleBackColor = false;
             this.buttonChangeLocation.Visible = false;
@@ -97,12 +100,14 @@
             // 
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "Flat-Folder-icon.png");
+            this.imageList1.Images.SetKeyName(0, "folder_yellow_10921.png");
+            this.imageList1.Images.SetKeyName(1, "eliminatetheaction_eliminar_6322.png");
+            this.imageList1.Images.SetKeyName(2, "solicit_accept_check_ok_theaction_6340.png");
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 72);
+            this.label2.Location = new System.Drawing.Point(10, 53);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(316, 13);
             this.label2.TabIndex = 13;
@@ -110,7 +115,7 @@
             // 
             // textBoxTreePath
             // 
-            this.textBoxTreePath.Location = new System.Drawing.Point(13, 88);
+            this.textBoxTreePath.Location = new System.Drawing.Point(10, 69);
             this.textBoxTreePath.MaxLength = 30000;
             this.textBoxTreePath.Name = "textBoxTreePath";
             this.textBoxTreePath.ReadOnly = true;
@@ -120,7 +125,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 33);
+            this.label1.Location = new System.Drawing.Point(10, 14);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(135, 13);
             this.label1.TabIndex = 11;
@@ -128,7 +133,7 @@
             // 
             // textBoxNameFile
             // 
-            this.textBoxNameFile.Location = new System.Drawing.Point(13, 49);
+            this.textBoxNameFile.Location = new System.Drawing.Point(10, 30);
             this.textBoxNameFile.MaxLength = 60;
             this.textBoxNameFile.Name = "textBoxNameFile";
             this.textBoxNameFile.Size = new System.Drawing.Size(535, 20);
@@ -137,7 +142,7 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(13, 135);
+            this.comboBox1.Location = new System.Drawing.Point(13, 111);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(535, 21);
             this.comboBox1.TabIndex = 19;
@@ -146,7 +151,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 119);
+            this.label3.Location = new System.Drawing.Point(10, 95);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(126, 13);
             this.label3.TabIndex = 17;
@@ -154,29 +159,37 @@
             // 
             // panel2
             // 
-            this.panel2.Location = new System.Drawing.Point(13, 162);
+            this.panel2.Location = new System.Drawing.Point(13, 138);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(535, 288);
+            this.panel2.Size = new System.Drawing.Size(535, 312);
             this.panel2.TabIndex = 18;
             // 
             // button3
             // 
+            this.button3.AutoSize = true;
             this.button3.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button3.Location = new System.Drawing.Point(473, 456);
+            this.button3.ImageKey = "eliminatetheaction_eliminar_6322.png";
+            this.button3.ImageList = this.imageList1;
+            this.button3.Location = new System.Drawing.Point(470, 456);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.Size = new System.Drawing.Size(78, 30);
             this.button3.TabIndex = 16;
             this.button3.Text = "отмена";
+            this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // buttonCreateFile
             // 
-            this.buttonCreateFile.Location = new System.Drawing.Point(392, 456);
+            this.buttonCreateFile.AutoSize = true;
+            this.buttonCreateFile.ImageKey = "solicit_accept_check_ok_theaction_6340.png";
+            this.buttonCreateFile.ImageList = this.imageList1;
+            this.buttonCreateFile.Location = new System.Drawing.Point(13, 456);
             this.buttonCreateFile.Name = "buttonCreateFile";
-            this.buttonCreateFile.Size = new System.Drawing.Size(75, 23);
+            this.buttonCreateFile.Size = new System.Drawing.Size(83, 30);
             this.buttonCreateFile.TabIndex = 15;
             this.buttonCreateFile.Text = "Создать";
+            this.buttonCreateFile.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.buttonCreateFile.UseVisualStyleBackColor = true;
             this.buttonCreateFile.Click += new System.EventHandler(this.buttonCreateFile_Click);
             // 
@@ -184,11 +197,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(204)))), ((int)(((byte)(0)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(12)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(563, 549);
             this.ControlBox = false;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.windowHeader1);
+            this.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormFiles";
             this.Padding = new System.Windows.Forms.Padding(1);

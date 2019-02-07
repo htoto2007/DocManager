@@ -8,11 +8,11 @@ namespace VitTree
 {
     public partial class FormTree : Form
     {
-        public FormTree()
+        public FormTree(string login, string password)
         {
             InitializeComponent();
-            VitTree.ClassTree classTree = new ClassTree();
-            classTree.Init(treeView1);
+            ClassTree classTree = new ClassTree();
+            classTree.Init(treeView1, login, password);
             buttonOk.Enabled = false;
         }
 

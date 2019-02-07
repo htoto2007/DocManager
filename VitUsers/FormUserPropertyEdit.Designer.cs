@@ -32,6 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormUserPropertyEdit));
             this.windowHeader1 = new VitControls.WindowHeader();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textBoxIdUser = new System.Windows.Forms.TextBox();
             this.buttonOk = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.comboBoxSubdivision = new System.Windows.Forms.ComboBox();
@@ -55,8 +57,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxLogin = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBoxIdUser = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -110,18 +110,37 @@
             this.panel1.Size = new System.Drawing.Size(371, 406);
             this.panel1.TabIndex = 1;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(4, 264);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(41, 13);
+            this.label4.TabIndex = 90;
+            this.label4.Text = "Номер";
+            // 
+            // textBoxIdUser
+            // 
+            this.textBoxIdUser.Location = new System.Drawing.Point(137, 261);
+            this.textBoxIdUser.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBoxIdUser.Name = "textBoxIdUser";
+            this.textBoxIdUser.ReadOnly = true;
+            this.textBoxIdUser.Size = new System.Drawing.Size(231, 20);
+            this.textBoxIdUser.TabIndex = 89;
+            // 
             // buttonOk
             // 
             this.buttonOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonOk.AutoSize = true;
             this.buttonOk.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.buttonOk.FlatAppearance.BorderSize = 0;
             this.buttonOk.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonOk.ImageKey = "icons8-checkmark-48.png";
+            this.buttonOk.ImageKey = "solicit_accept_check_ok_theaction_6340.png";
             this.buttonOk.ImageList = this.imageList1;
-            this.buttonOk.Location = new System.Drawing.Point(191, 375);
+            this.buttonOk.Location = new System.Drawing.Point(7, 372);
             this.buttonOk.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonOk.Name = "buttonOk";
-            this.buttonOk.Size = new System.Drawing.Size(156, 24);
+            this.buttonOk.Size = new System.Drawing.Size(156, 30);
             this.buttonOk.TabIndex = 70;
             this.buttonOk.Text = "Сохранить изменения";
             this.buttonOk.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -132,15 +151,15 @@
             // 
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "icons8-checkmark-48.png");
-            this.imageList1.Images.SetKeyName(1, "icons8-delete-48.png");
+            this.imageList1.Images.SetKeyName(0, "eliminatetheaction_eliminar_6322.png");
+            this.imageList1.Images.SetKeyName(1, "solicit_accept_check_ok_theaction_6340.png");
             // 
             // comboBoxSubdivision
             // 
             this.comboBoxSubdivision.FormattingEnabled = true;
             this.comboBoxSubdivision.Location = new System.Drawing.Point(137, 230);
             this.comboBoxSubdivision.Name = "comboBoxSubdivision";
-            this.comboBoxSubdivision.Size = new System.Drawing.Size(210, 21);
+            this.comboBoxSubdivision.Size = new System.Drawing.Size(231, 21);
             this.comboBoxSubdivision.TabIndex = 88;
             // 
             // label11
@@ -157,7 +176,7 @@
             this.comboBoxPosition.FormattingEnabled = true;
             this.comboBoxPosition.Location = new System.Drawing.Point(137, 199);
             this.comboBoxPosition.Name = "comboBoxPosition";
-            this.comboBoxPosition.Size = new System.Drawing.Size(210, 21);
+            this.comboBoxPosition.Size = new System.Drawing.Size(231, 21);
             this.comboBoxPosition.TabIndex = 86;
             // 
             // label10
@@ -174,7 +193,7 @@
             this.textBoxMailPass.Location = new System.Drawing.Point(137, 136);
             this.textBoxMailPass.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxMailPass.Name = "textBoxMailPass";
-            this.textBoxMailPass.Size = new System.Drawing.Size(210, 20);
+            this.textBoxMailPass.Size = new System.Drawing.Size(231, 20);
             this.textBoxMailPass.TabIndex = 84;
             // 
             // textBoxMail
@@ -182,7 +201,7 @@
             this.textBoxMail.Location = new System.Drawing.Point(137, 103);
             this.textBoxMail.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxMail.Name = "textBoxMail";
-            this.textBoxMail.Size = new System.Drawing.Size(210, 20);
+            this.textBoxMail.Size = new System.Drawing.Size(231, 20);
             this.textBoxMail.TabIndex = 83;
             // 
             // label8
@@ -208,7 +227,7 @@
             this.textBoxMiddleName.Location = new System.Drawing.Point(137, 70);
             this.textBoxMiddleName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxMiddleName.Name = "textBoxMiddleName";
-            this.textBoxMiddleName.Size = new System.Drawing.Size(210, 20);
+            this.textBoxMiddleName.Size = new System.Drawing.Size(231, 20);
             this.textBoxMiddleName.TabIndex = 80;
             // 
             // textBoxFirstName
@@ -216,7 +235,7 @@
             this.textBoxFirstName.Location = new System.Drawing.Point(137, 37);
             this.textBoxFirstName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxFirstName.Name = "textBoxFirstName";
-            this.textBoxFirstName.Size = new System.Drawing.Size(210, 20);
+            this.textBoxFirstName.Size = new System.Drawing.Size(231, 20);
             this.textBoxFirstName.TabIndex = 79;
             // 
             // textBoxLastName
@@ -224,7 +243,7 @@
             this.textBoxLastName.Location = new System.Drawing.Point(137, 4);
             this.textBoxLastName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxLastName.Name = "textBoxLastName";
-            this.textBoxLastName.Size = new System.Drawing.Size(210, 20);
+            this.textBoxLastName.Size = new System.Drawing.Size(231, 20);
             this.textBoxLastName.TabIndex = 78;
             // 
             // label7
@@ -259,7 +278,7 @@
             this.comboBoxAccessGroup.FormattingEnabled = true;
             this.comboBoxAccessGroup.Location = new System.Drawing.Point(137, 168);
             this.comboBoxAccessGroup.Name = "comboBoxAccessGroup";
-            this.comboBoxAccessGroup.Size = new System.Drawing.Size(210, 21);
+            this.comboBoxAccessGroup.Size = new System.Drawing.Size(231, 21);
             this.comboBoxAccessGroup.TabIndex = 74;
             // 
             // label3
@@ -276,7 +295,7 @@
             this.textBoxPassword.Location = new System.Drawing.Point(137, 293);
             this.textBoxPassword.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxPassword.Name = "textBoxPassword";
-            this.textBoxPassword.Size = new System.Drawing.Size(210, 20);
+            this.textBoxPassword.Size = new System.Drawing.Size(231, 20);
             this.textBoxPassword.TabIndex = 71;
             // 
             // label2
@@ -302,44 +321,27 @@
             this.textBoxLogin.Location = new System.Drawing.Point(137, 326);
             this.textBoxLogin.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxLogin.Name = "textBoxLogin";
-            this.textBoxLogin.Size = new System.Drawing.Size(210, 20);
+            this.textBoxLogin.Size = new System.Drawing.Size(231, 20);
             this.textBoxLogin.TabIndex = 67;
             // 
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.AutoSize = true;
             this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.ImageKey = "icons8-delete-48.png";
+            this.button1.ImageKey = "eliminatetheaction_eliminar_6322.png";
             this.button1.ImageList = this.imageList1;
-            this.button1.Location = new System.Drawing.Point(107, 375);
+            this.button1.Location = new System.Drawing.Point(290, 372);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(78, 24);
+            this.button1.Size = new System.Drawing.Size(78, 30);
             this.button1.TabIndex = 73;
             this.button1.Text = "Отмена";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button1.UseVisualStyleBackColor = true;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(4, 264);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(41, 13);
-            this.label4.TabIndex = 90;
-            this.label4.Text = "Номер";
-            // 
-            // textBoxIdUser
-            // 
-            this.textBoxIdUser.Location = new System.Drawing.Point(137, 261);
-            this.textBoxIdUser.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBoxIdUser.Name = "textBoxIdUser";
-            this.textBoxIdUser.ReadOnly = true;
-            this.textBoxIdUser.Size = new System.Drawing.Size(210, 20);
-            this.textBoxIdUser.TabIndex = 89;
             // 
             // FormUserPropertyEdit
             // 

@@ -87,7 +87,7 @@
             this.checkBox6 = new System.Windows.Forms.CheckBox();
             this.treeView3 = new System.Windows.Forms.TreeView();
             this.tabPageFolsers = new System.Windows.Forms.TabPage();
-            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.treeViewFoldersAccessFolders = new System.Windows.Forms.TreeView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.windowResizer1 = new VitControls.WindowResizer();
             this.windowHeader1 = new VitControls.WindowHeader();
@@ -123,6 +123,7 @@
             this.tabControl1.Controls.Add(this.tabPageGroups);
             this.tabControl1.Controls.Add(this.tabPageFolsers);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.ImageList = this.imageList1;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -136,10 +137,11 @@
             this.tabPageUsers.Controls.Add(this.button1);
             this.tabPageUsers.Controls.Add(this.listViewUsers);
             this.tabPageUsers.Controls.Add(this.tabControl2);
-            this.tabPageUsers.Location = new System.Drawing.Point(4, 26);
+            this.tabPageUsers.ImageKey = "user_person_people_6100.png";
+            this.tabPageUsers.Location = new System.Drawing.Point(4, 31);
             this.tabPageUsers.Name = "tabPageUsers";
             this.tabPageUsers.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageUsers.Size = new System.Drawing.Size(790, 504);
+            this.tabPageUsers.Size = new System.Drawing.Size(790, 499);
             this.tabPageUsers.TabIndex = 0;
             this.tabPageUsers.Text = "Пользователи";
             this.tabPageUsers.UseVisualStyleBackColor = true;
@@ -148,7 +150,7 @@
             // 
             this.buttonUsersDeleteUser.AutoSize = true;
             this.buttonUsersDeleteUser.Enabled = false;
-            this.buttonUsersDeleteUser.ImageKey = "icons8-delete-48.png";
+            this.buttonUsersDeleteUser.ImageKey = "cancellationbutton_exitneartheaction_botondecancelacion_salida_6335.png";
             this.buttonUsersDeleteUser.ImageList = this.imageList1;
             this.buttonUsersDeleteUser.Location = new System.Drawing.Point(581, 78);
             this.buttonUsersDeleteUser.Name = "buttonUsersDeleteUser";
@@ -163,54 +165,24 @@
             // 
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "icons8-about-48.png");
-            this.imageList1.Images.SetKeyName(1, "icons8-add-file-48.png");
-            this.imageList1.Images.SetKeyName(2, "icons8-add-folder-48.png");
-            this.imageList1.Images.SetKeyName(3, "icons8-add-new-16.png");
-            this.imageList1.Images.SetKeyName(4, "icons8-administrator-male-26.png");
-            this.imageList1.Images.SetKeyName(5, "icons8-administrator-male-208.png");
-            this.imageList1.Images.SetKeyName(6, "icons8-admin-menu-48.png");
-            this.imageList1.Images.SetKeyName(7, "icons8-book-shelf-16.png");
-            this.imageList1.Images.SetKeyName(8, "icons8-checkmark-48.png");
-            this.imageList1.Images.SetKeyName(9, "icons8-close-window-48.png");
-            this.imageList1.Images.SetKeyName(10, "icons8-conference-48.png");
-            this.imageList1.Images.SetKeyName(11, "icons8-copy-40.png");
-            this.imageList1.Images.SetKeyName(12, "icons8-crown-50.png");
-            this.imageList1.Images.SetKeyName(13, "icons8-cursor-32.png");
-            this.imageList1.Images.SetKeyName(14, "icons8-database-administrator-64.png");
-            this.imageList1.Images.SetKeyName(15, "icons8-delete-48.png");
-            this.imageList1.Images.SetKeyName(16, "icons8-document-48.png");
-            this.imageList1.Images.SetKeyName(17, "icons8-exit-48.png");
-            this.imageList1.Images.SetKeyName(18, "icons8-folder-48.png");
-            this.imageList1.Images.SetKeyName(19, "icons8-left-64.png");
-            this.imageList1.Images.SetKeyName(20, "icons8-maximize-window-48.png");
-            this.imageList1.Images.SetKeyName(21, "icons8-minimize-window-48.png");
-            this.imageList1.Images.SetKeyName(22, "icons8-open-48.png");
-            this.imageList1.Images.SetKeyName(23, "icons8-paper-plane-48.png");
-            this.imageList1.Images.SetKeyName(24, "icons8-password-48.png");
-            this.imageList1.Images.SetKeyName(25, "icons8-paste-48.png");
-            this.imageList1.Images.SetKeyName(26, "icons8-pencil-48.png");
-            this.imageList1.Images.SetKeyName(27, "icons8-plus-48.png");
-            this.imageList1.Images.SetKeyName(28, "icons8-question-mark-48.png");
-            this.imageList1.Images.SetKeyName(29, "icons8-questions-48.png");
-            this.imageList1.Images.SetKeyName(30, "icons8-red-card-40.png");
-            this.imageList1.Images.SetKeyName(31, "icons8-restore-window-48.png");
-            this.imageList1.Images.SetKeyName(32, "icons8-scanner-40.png");
-            this.imageList1.Images.SetKeyName(33, "icons8-search-48.png");
-            this.imageList1.Images.SetKeyName(34, "icons8-search-50.png");
-            this.imageList1.Images.SetKeyName(35, "icons8-services-48.png");
-            this.imageList1.Images.SetKeyName(36, "icons8-tree-structure-40.png");
-            this.imageList1.Images.SetKeyName(37, "icons8-user-avatar-48.png");
-            this.imageList1.Images.SetKeyName(38, "icons8-user-menu-male-48.png");
-            this.imageList1.Images.SetKeyName(39, "icons8-waste-filled-50.png");
-            this.imageList1.Images.SetKeyName(40, "icons8-back-arrow-64.png");
-            this.imageList1.Images.SetKeyName(41, "icons8-forward-button-64.png");
+            this.imageList1.Images.SetKeyName(0, "cancellationbutton_exitneartheaction_botondecancelacion_salida_6335.png");
+            this.imageList1.Images.SetKeyName(1, "edit_pencil_6320.png");
+            this.imageList1.Images.SetKeyName(2, "editionadded_theaction_6325.png");
+            this.imageList1.Images.SetKeyName(3, "eliminatetheaction_eliminar_6322.png");
+            this.imageList1.Images.SetKeyName(4, "solicit_accept_check_ok_theaction_6340.png");
+            this.imageList1.Images.SetKeyName(5, "folder_blue_10981.png");
+            this.imageList1.Images.SetKeyName(6, "folder_green_10966.png");
+            this.imageList1.Images.SetKeyName(7, "folder_red_10936.png");
+            this.imageList1.Images.SetKeyName(8, "bootloader_users_person_people_6080.png");
+            this.imageList1.Images.SetKeyName(9, "folder_red_locked_10941.png");
+            this.imageList1.Images.SetKeyName(10, "securitylockkey_seguridad_cerradur_10792.png");
+            this.imageList1.Images.SetKeyName(11, "user_person_people_6100.png");
             // 
             // buttonUsersUserEdit
             // 
             this.buttonUsersUserEdit.AutoSize = true;
             this.buttonUsersUserEdit.Enabled = false;
-            this.buttonUsersUserEdit.ImageKey = "icons8-pencil-48.png";
+            this.buttonUsersUserEdit.ImageKey = "edit_pencil_6320.png";
             this.buttonUsersUserEdit.ImageList = this.imageList1;
             this.buttonUsersUserEdit.Location = new System.Drawing.Point(581, 42);
             this.buttonUsersUserEdit.Name = "buttonUsersUserEdit";
@@ -224,7 +196,7 @@
             // button1
             // 
             this.button1.AutoSize = true;
-            this.button1.ImageKey = "icons8-plus-48.png";
+            this.button1.ImageKey = "editionadded_theaction_6325.png";
             this.button1.ImageList = this.imageList1;
             this.button1.Location = new System.Drawing.Point(581, 6);
             this.button1.Name = "button1";
@@ -244,7 +216,7 @@
             this.listViewUsers.Location = new System.Drawing.Point(3, 3);
             this.listViewUsers.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.listViewUsers.Name = "listViewUsers";
-            this.listViewUsers.Size = new System.Drawing.Size(572, 301);
+            this.listViewUsers.Size = new System.Drawing.Size(572, 296);
             this.listViewUsers.TabIndex = 22;
             this.listViewUsers.UseCompatibleStateImageBehavior = false;
             this.listViewUsers.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.listViewUsers_ItemSelectionChanged);
@@ -263,7 +235,7 @@
             this.tabControl2.Controls.Add(this.tabPageUserGroups);
             this.tabControl2.Controls.Add(this.tabPageUserAccess);
             this.tabControl2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tabControl2.Location = new System.Drawing.Point(3, 304);
+            this.tabControl2.Location = new System.Drawing.Point(3, 299);
             this.tabControl2.Margin = new System.Windows.Forms.Padding(0);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
@@ -391,11 +363,11 @@
             // buttonUsersGroupsDeleteGroup
             // 
             this.buttonUsersGroupsDeleteGroup.AutoSize = true;
-            this.buttonUsersGroupsDeleteGroup.ImageKey = "icons8-delete-48.png";
+            this.buttonUsersGroupsDeleteGroup.ImageKey = "cancellationbutton_exitneartheaction_botondecancelacion_salida_6335.png";
             this.buttonUsersGroupsDeleteGroup.ImageList = this.imageList1;
             this.buttonUsersGroupsDeleteGroup.Location = new System.Drawing.Point(574, 42);
             this.buttonUsersGroupsDeleteGroup.Name = "buttonUsersGroupsDeleteGroup";
-            this.buttonUsersGroupsDeleteGroup.Size = new System.Drawing.Size(206, 30);
+            this.buttonUsersGroupsDeleteGroup.Size = new System.Drawing.Size(196, 30);
             this.buttonUsersGroupsDeleteGroup.TabIndex = 33;
             this.buttonUsersGroupsDeleteGroup.Text = "Удалить группу";
             this.buttonUsersGroupsDeleteGroup.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -404,11 +376,11 @@
             // buttonUsersGroupsAddGroup
             // 
             this.buttonUsersGroupsAddGroup.AutoSize = true;
-            this.buttonUsersGroupsAddGroup.ImageKey = "icons8-plus-48.png";
+            this.buttonUsersGroupsAddGroup.ImageKey = "editionadded_theaction_6325.png";
             this.buttonUsersGroupsAddGroup.ImageList = this.imageList1;
             this.buttonUsersGroupsAddGroup.Location = new System.Drawing.Point(574, 6);
             this.buttonUsersGroupsAddGroup.Name = "buttonUsersGroupsAddGroup";
-            this.buttonUsersGroupsAddGroup.Size = new System.Drawing.Size(206, 30);
+            this.buttonUsersGroupsAddGroup.Size = new System.Drawing.Size(196, 30);
             this.buttonUsersGroupsAddGroup.TabIndex = 32;
             this.buttonUsersGroupsAddGroup.Text = "Добавить группу";
             this.buttonUsersGroupsAddGroup.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -439,31 +411,40 @@
             // checkBox3
             // 
             this.checkBox3.AutoSize = true;
+            this.checkBox3.ImageKey = "folder_red_10936.png";
+            this.checkBox3.ImageList = this.imageList1;
             this.checkBox3.Location = new System.Drawing.Point(574, 57);
             this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(101, 21);
+            this.checkBox3.Size = new System.Drawing.Size(125, 24);
             this.checkBox3.TabIndex = 3;
             this.checkBox3.Text = "Добавление";
+            this.checkBox3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.checkBox3.UseVisualStyleBackColor = true;
             // 
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
+            this.checkBox2.ImageKey = "folder_green_10966.png";
+            this.checkBox2.ImageList = this.imageList1;
             this.checkBox2.Location = new System.Drawing.Point(574, 30);
             this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(68, 21);
+            this.checkBox2.Size = new System.Drawing.Size(92, 24);
             this.checkBox2.TabIndex = 2;
             this.checkBox2.Text = "Запись";
+            this.checkBox2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.checkBox2.UseVisualStyleBackColor = true;
             // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
+            this.checkBox1.ImageKey = "folder_blue_10981.png";
+            this.checkBox1.ImageList = this.imageList1;
             this.checkBox1.Location = new System.Drawing.Point(574, 3);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(69, 21);
+            this.checkBox1.Size = new System.Drawing.Size(93, 24);
             this.checkBox1.TabIndex = 1;
             this.checkBox1.Text = "Чтение";
+            this.checkBox1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // treeView2
@@ -481,18 +462,19 @@
             this.tabPageGroups.Controls.Add(this.button6);
             this.tabPageGroups.Controls.Add(this.listViewGroups);
             this.tabPageGroups.Controls.Add(this.tabControl3);
-            this.tabPageGroups.Location = new System.Drawing.Point(4, 26);
+            this.tabPageGroups.ImageKey = "bootloader_users_person_people_6080.png";
+            this.tabPageGroups.Location = new System.Drawing.Point(4, 31);
             this.tabPageGroups.Name = "tabPageGroups";
             this.tabPageGroups.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageGroups.Size = new System.Drawing.Size(790, 504);
+            this.tabPageGroups.Size = new System.Drawing.Size(790, 499);
             this.tabPageGroups.TabIndex = 1;
-            this.tabPageGroups.Text = "Группы";
+            this.tabPageGroups.Text = "Группы доступа";
             this.tabPageGroups.UseVisualStyleBackColor = true;
             // 
             // button4
             // 
             this.button4.AutoSize = true;
-            this.button4.ImageKey = "icons8-delete-48.png";
+            this.button4.ImageIndex = 0;
             this.button4.ImageList = this.imageList1;
             this.button4.Location = new System.Drawing.Point(581, 78);
             this.button4.Name = "button4";
@@ -505,7 +487,7 @@
             // button5
             // 
             this.button5.AutoSize = true;
-            this.button5.ImageKey = "icons8-pencil-48.png";
+            this.button5.ImageIndex = 1;
             this.button5.ImageList = this.imageList1;
             this.button5.Location = new System.Drawing.Point(581, 42);
             this.button5.Name = "button5";
@@ -518,7 +500,7 @@
             // button6
             // 
             this.button6.AutoSize = true;
-            this.button6.ImageKey = "icons8-plus-48.png";
+            this.button6.ImageKey = "editionadded_theaction_6325.png";
             this.button6.ImageList = this.imageList1;
             this.button6.Location = new System.Drawing.Point(581, 6);
             this.button6.Name = "button6";
@@ -534,7 +516,7 @@
             this.listViewGroups.Location = new System.Drawing.Point(3, 3);
             this.listViewGroups.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.listViewGroups.Name = "listViewGroups";
-            this.listViewGroups.Size = new System.Drawing.Size(572, 301);
+            this.listViewGroups.Size = new System.Drawing.Size(572, 296);
             this.listViewGroups.TabIndex = 27;
             this.listViewGroups.UseCompatibleStateImageBehavior = false;
             this.listViewGroups.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.listViewGroups_ItemSelectionChanged);
@@ -545,7 +527,7 @@
             this.tabControl3.Controls.Add(this.tabPageroupsUsers);
             this.tabControl3.Controls.Add(this.tabPageGroupsAccess);
             this.tabControl3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tabControl3.Location = new System.Drawing.Point(3, 304);
+            this.tabControl3.Location = new System.Drawing.Point(3, 299);
             this.tabControl3.Margin = new System.Windows.Forms.Padding(0);
             this.tabControl3.Name = "tabControl3";
             this.tabControl3.SelectedIndex = 0;
@@ -663,7 +645,7 @@
             this.button10.Location = new System.Drawing.Point(375, 53);
             this.button10.Margin = new System.Windows.Forms.Padding(0);
             this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(30, 30);
+            this.button10.Size = new System.Drawing.Size(6, 6);
             this.button10.TabIndex = 3;
             this.button10.UseVisualStyleBackColor = true;
             // 
@@ -677,7 +659,7 @@
             this.button9.Location = new System.Drawing.Point(375, 23);
             this.button9.Margin = new System.Windows.Forms.Padding(0);
             this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(30, 30);
+            this.button9.Size = new System.Drawing.Size(6, 6);
             this.button9.TabIndex = 2;
             this.button9.UseVisualStyleBackColor = true;
             // 
@@ -689,10 +671,10 @@
             this.listViewGroupsAllUsers.TabIndex = 1;
             this.listViewGroupsAllUsers.UseCompatibleStateImageBehavior = false;
             // 
-            // listViewGroupsUsersGroup
+            // listViewGroupsUsersThisGroup
             // 
             this.listViewGroupsUsersThisGroup.Location = new System.Drawing.Point(3, 23);
-            this.listViewGroupsUsersThisGroup.Name = "listViewGroupsUsersGroup";
+            this.listViewGroupsUsersThisGroup.Name = "listViewGroupsUsersThisGroup";
             this.listViewGroupsUsersThisGroup.Size = new System.Drawing.Size(365, 141);
             this.listViewGroupsUsersThisGroup.TabIndex = 0;
             this.listViewGroupsUsersThisGroup.UseCompatibleStateImageBehavior = false;
@@ -713,31 +695,40 @@
             // checkBox4
             // 
             this.checkBox4.AutoSize = true;
+            this.checkBox4.ImageKey = "folder_red_10936.png";
+            this.checkBox4.ImageList = this.imageList1;
             this.checkBox4.Location = new System.Drawing.Point(574, 57);
             this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(101, 21);
+            this.checkBox4.Size = new System.Drawing.Size(125, 24);
             this.checkBox4.TabIndex = 7;
             this.checkBox4.Text = "Добавление";
+            this.checkBox4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.checkBox4.UseVisualStyleBackColor = true;
             // 
             // checkBox5
             // 
             this.checkBox5.AutoSize = true;
+            this.checkBox5.ImageKey = "folder_green_10966.png";
+            this.checkBox5.ImageList = this.imageList1;
             this.checkBox5.Location = new System.Drawing.Point(574, 30);
             this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(68, 21);
+            this.checkBox5.Size = new System.Drawing.Size(92, 24);
             this.checkBox5.TabIndex = 6;
             this.checkBox5.Text = "Запись";
+            this.checkBox5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.checkBox5.UseVisualStyleBackColor = true;
             // 
             // checkBox6
             // 
             this.checkBox6.AutoSize = true;
+            this.checkBox6.ImageKey = "folder_blue_10981.png";
+            this.checkBox6.ImageList = this.imageList1;
             this.checkBox6.Location = new System.Drawing.Point(574, 3);
             this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(69, 21);
+            this.checkBox6.Size = new System.Drawing.Size(93, 24);
             this.checkBox6.TabIndex = 5;
             this.checkBox6.Text = "Чтение";
+            this.checkBox6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.checkBox6.UseVisualStyleBackColor = true;
             // 
             // treeView3
@@ -750,22 +741,23 @@
             // 
             // tabPageFolsers
             // 
-            this.tabPageFolsers.Controls.Add(this.treeView1);
-            this.tabPageFolsers.Location = new System.Drawing.Point(4, 26);
+            this.tabPageFolsers.Controls.Add(this.treeViewFoldersAccessFolders);
+            this.tabPageFolsers.ImageKey = "folder_red_locked_10941.png";
+            this.tabPageFolsers.Location = new System.Drawing.Point(4, 31);
             this.tabPageFolsers.Name = "tabPageFolsers";
             this.tabPageFolsers.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageFolsers.Size = new System.Drawing.Size(790, 504);
+            this.tabPageFolsers.Size = new System.Drawing.Size(790, 499);
             this.tabPageFolsers.TabIndex = 2;
-            this.tabPageFolsers.Text = "Папки";
+            this.tabPageFolsers.Text = "Доступ к папкам";
             this.tabPageFolsers.UseVisualStyleBackColor = true;
             // 
-            // treeView1
+            // treeViewFoldersAccessFolders
             // 
-            this.treeView1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.treeView1.Location = new System.Drawing.Point(3, 3);
-            this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(784, 291);
-            this.treeView1.TabIndex = 0;
+            this.treeViewFoldersAccessFolders.Dock = System.Windows.Forms.DockStyle.Top;
+            this.treeViewFoldersAccessFolders.Location = new System.Drawing.Point(3, 3);
+            this.treeViewFoldersAccessFolders.Name = "treeViewFoldersAccessFolders";
+            this.treeViewFoldersAccessFolders.Size = new System.Drawing.Size(784, 291);
+            this.treeViewFoldersAccessFolders.TabIndex = 0;
             // 
             // panel2
             // 
@@ -903,17 +895,17 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.TreeView treeView2;
         private System.Windows.Forms.ListView listViewGroupsUsersThisGroup;
-        private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.TreeView treeViewFoldersAccessFolders;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.ListView listViewGroupsAllUsers;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.CheckBox checkBox4;
-        private System.Windows.Forms.CheckBox checkBox5;
-        private System.Windows.Forms.CheckBox checkBox6;
         private System.Windows.Forms.TreeView treeView3;
         private System.Windows.Forms.ColumnHeader id;
         private System.Windows.Forms.ColumnHeader login;
+        private System.Windows.Forms.CheckBox checkBox4;
+        private System.Windows.Forms.CheckBox checkBox5;
+        private System.Windows.Forms.CheckBox checkBox6;
     }
 }

@@ -23,11 +23,11 @@ namespace VitTree
 
         private readonly ClassFiles classFiles = new ClassFiles();
 
-        private readonly VitIcons.ClassImageList ClassImageList = new VitIcons.ClassImageList();
+        private readonly ClassImageList ClassImageList = new ClassImageList();
 
         private readonly ClassTypeCard classTypeCard = new ClassTypeCard();
 
-        private readonly VitIcons.FormCompanents formCompanents = new VitIcons.FormCompanents();
+        private readonly FormCompanents formCompanents = new FormCompanents();
         //private readonly FormProgressStatus formProgressStatus = new FormProgressStatus();
 
         public async Task AddFileNodeWithoutCardAsync(TreeView treeView)
@@ -60,7 +60,7 @@ namespace VitTree
             string dirName = "Организация " + dirCount.ToString();
             classFTP.CreateDirectory("/" + dirName);
             classFTP.Upload2Async(directories[0], "/" + dirName + "/", false );
-            Init(treeView);
+            Init(treeView, classUsers.getThisUser().login, classUsers.getThisUser().password);
         }
 
         public void sendToDesctop(TreeView treeView)
@@ -163,10 +163,10 @@ namespace VitTree
             }
         }
 
-        public void copy(TreeView treeView)
+        public void copy(TreeView treeView, string login, string password)
         {
             string sourcePath = treeView.SelectedNode.FullPath;
-            FormTree formTree = new FormTree();
+            FormTree formTree = new FormTree(login, password);
             formTree.Text = "Копирование";
             formTree.textBoxSelectedPath.Text = sourcePath;
             if (formTree.ShowDialog() == DialogResult.OK)
@@ -226,21 +226,21 @@ namespace VitTree
                     Name = file,
                     Text = Path.GetFileName(file)
                 };
-                addIcon(tn);
+                addIconAsync(tn);
                 treeNode.Nodes.Add(tn);
             }
         }
 
-        public async void Init(TreeView treeView)
+        public async void Init(TreeView treeView, string login, string password)
         {
-            ClassUsers classUsers = new ClassUsers();
-            ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
+            //ClassUsers classUsers = new ClassUsers();
+            ClassFTP classFTP = new ClassFTP(login, password);
             string[] directoryes = classFTP.ListDirectory("/");
-
+            
             treeView.ImageList = ClassImageList.imageList;
             treeView.Nodes.Clear();
 
-
+            if (directoryes == null) return;
             foreach (string direcory in directoryes)
             {
                 if (direcory.Contains("..")) continue;
@@ -249,33 +249,29 @@ namespace VitTree
                     Name = direcory,
                     Text = direcory.Trim('/')
                 };
-                addIcon(treeNode);
-                treeView.Invoke((Action)(() =>
-                {
+                addIconAsync(treeNode);
+                //treeView.Invoke((Action)(() =>
+                //{
                     treeView.Nodes.Add(treeNode);
-                }));
+                //}));
             }
-
             
-
             foreach (TreeNode treeNode in treeView.Nodes)
             {
                 if (Path.GetExtension(treeNode.Name) == "")
-                    if (classFTP.getFileType(treeNode.Name) == 2)
+                    if (await Task.Run(() => classFTP.getFileType(treeNode.Name) == 2)) 
                         getSubdirectoryes(classFTP, treeNode, Path.GetFileName(treeNode.Name));
             }
-
-            
         }
 
         /// <summary>
         /// Обращается к функции перемещения файлов на сервере и отправляет ей данные.
         /// </summary>
         /// <param name="treeView">Дерево в котором находится нужный файл для перемещения</param>
-        public async Task MoveAsync(TreeView treeView)
+        public async Task MoveAsync(TreeView treeView, string login, string password)
         {
             string sourcePath = treeView.SelectedNode.FullPath;
-            FormTree formTree = new FormTree();
+            FormTree formTree = new FormTree(login, password);
             formTree.Text = "Перемещение";
             formTree.textBoxSelectedPath.Text = sourcePath;
             if (formTree.ShowDialog() == DialogResult.OK)
@@ -318,11 +314,12 @@ namespace VitTree
             treeView.SelectedNode.Expand();
         }
 
-        private void addIcon(TreeNode treeNode)
+        private async void addIconAsync(TreeNode treeNode)
         {
             if (Path.GetExtension(treeNode.Name) != "")
             {
-                if (ClassImageList.imageList.Images.ContainsKey(Path.GetExtension(treeNode.Name).TrimStart('.')))
+                bool res = await Task.Run(() => ( ClassImageList.imageList.Images.ContainsKey(Path.GetExtension(treeNode.Name).TrimStart('.'))) );
+                if (res == true)
                 {
                     treeNode.ImageKey = Path.GetExtension(treeNode.Name).TrimStart('.');
                     treeNode.SelectedImageKey = Path.GetExtension(treeNode.Name).TrimStart('.');
@@ -342,7 +339,7 @@ namespace VitTree
         }
 
         private async Task getSubdirectoryes(ClassFTP classFTP, TreeNode treeNode, string directory)
-        {;
+        {
             string[] dsubirectoryes = classFTP.ListDirectory(directory);
             foreach (string subdirectory in dsubirectoryes)
             {
@@ -353,7 +350,7 @@ namespace VitTree
                     Name = subdirectory.Replace('\\', '/'),
                     Text = Path.GetFileName(subdirectory)
                 };
-                addIcon(tn);
+                addIconAsync(tn);
                 treeNode.Nodes.Add(tn);
             }
         }

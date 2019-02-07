@@ -28,9 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormTreeInput));
             this.windowHeader1 = new VitControls.WindowHeader();
             this.panel1 = new System.Windows.Forms.Panel();
             this.buttonCansel = new System.Windows.Forms.Button();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.buttonOk = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
@@ -67,23 +70,38 @@
             // 
             // buttonCansel
             // 
+            this.buttonCansel.AutoSize = true;
             this.buttonCansel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonCansel.Location = new System.Drawing.Point(318, 50);
+            this.buttonCansel.ImageKey = "cancellationbutton_exitneartheaction_botondecancelacion_salida_6335.png";
+            this.buttonCansel.ImageList = this.imageList1;
+            this.buttonCansel.Location = new System.Drawing.Point(329, 50);
             this.buttonCansel.Name = "buttonCansel";
-            this.buttonCansel.Size = new System.Drawing.Size(75, 23);
+            this.buttonCansel.Size = new System.Drawing.Size(80, 30);
             this.buttonCansel.TabIndex = 5;
             this.buttonCansel.Text = "Отмена";
+            this.buttonCansel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.buttonCansel.UseVisualStyleBackColor = true;
             this.buttonCansel.Click += new System.EventHandler(this.button2_Click);
             // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "cancellationbutton_exitneartheaction_botondecancelacion_salida_6335.png");
+            this.imageList1.Images.SetKeyName(1, "solicit_accept_check_ok_theaction_6340.png");
+            // 
             // buttonOk
             // 
+            this.buttonOk.AutoSize = true;
             this.buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.buttonOk.ImageKey = "solicit_accept_check_ok_theaction_6340.png";
+            this.buttonOk.ImageList = this.imageList1;
             this.buttonOk.Location = new System.Drawing.Point(3, 50);
             this.buttonOk.Name = "buttonOk";
-            this.buttonOk.Size = new System.Drawing.Size(75, 23);
+            this.buttonOk.Size = new System.Drawing.Size(85, 30);
             this.buttonOk.TabIndex = 4;
             this.buttonOk.Text = "buttonOk";
+            this.buttonOk.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.buttonOk.UseVisualStyleBackColor = true;
             this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
             // 
@@ -92,7 +110,7 @@
             this.textBox1.Location = new System.Drawing.Point(3, 17);
             this.textBox1.MaxLength = 60;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(390, 20);
+            this.textBox1.Size = new System.Drawing.Size(406, 20);
             this.textBox1.TabIndex = 3;
             // 
             // FormTreeInput
@@ -105,6 +123,7 @@
             this.ControlBox = false;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.windowHeader1);
+            this.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -131,5 +150,6 @@
         private System.Windows.Forms.Button buttonCansel;
         public System.Windows.Forms.Button buttonOk;
         public System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ImageList imageList1;
     }
 }

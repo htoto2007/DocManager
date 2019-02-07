@@ -77,7 +77,7 @@ namespace VitFTP
                     GiveUpSecurityAndAcceptAnySshHostKey = false,
                 };
             }
-            catch (SessionRemoteException e)
+            catch (Exception e)
             {
                 classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, e.Message);
             }
@@ -242,13 +242,20 @@ namespace VitFTP
         {
             bool res = false;
             path = path.Replace("\\", "/");
-            using (Session session = new Session())
+            Session session = new Session();
+
+            try
             {
-                // Connect
                 session.Open(sessionOptions);
-                res = session.FileExists(path);
-                session.Close();
             }
+            catch (Exception e)
+            {
+                classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, "Не подключиться к сераеру. " + e.Message);
+                return false;
+            }
+            res = session.FileExists(path);
+            session.Close();
+
             return res;
         }
 
@@ -269,38 +276,50 @@ namespace VitFTP
             return icon;
         }
 
-        
-
-        public string getFileFullName(string path)
-        {
-            string fileFullName = "";
-            using (Session session = new Session())
-            {
-                // Connect
-                session.Open(sessionOptions);
-                fileFullName = session.GetFileInfo(path).FullName;
-                session.Close();
-            }
-            return fileFullName;
-        }
-
-
         public string[] ListDirectory(string path)
         {
             List<string> fileList = new List<string>();
-            using (Session session = new Session())
+            Session session = new Session();
+            try
             {
-                // Connect
                 session.Open(sessionOptions);
-                RemoteFileInfoCollection files = session.ListDirectory(path).Files;
-                
-                foreach (RemoteFileInfo file in files)
-                    fileList.Add(file.FullName.Replace("\\", "/"));
-                session.Close();
+            }catch (Exception e)
+            {
+                classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, "Не подключиться к сераеру. " + e.Message);
+                return null;
             }
+            RemoteFileInfoCollection files = session.ListDirectory(path).Files;
+                
+            foreach (RemoteFileInfo file in files)
+                fileList.Add(file.FullName.Replace("\\", "/"));
+            session.Close();
+            
             return fileList.ToArray();
         }
-        
+
+        public string[] ListDirectoryWithotFiles(string path)
+        {
+            List<string> fileList = new List<string>();
+            Session session = new Session();
+            try
+            {
+                session.Open(sessionOptions);
+            }
+            catch (Exception e)
+            {
+                classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, "Не подключиться к сераеру. " + e.Message);
+                return null;
+            }
+            RemoteFileInfoCollection files = session.ListDirectory(path).Files;
+
+            foreach (RemoteFileInfo file in files)
+                if(file.IsDirectory)
+                    fileList.Add(file.FullName.Replace("\\", "/"));
+            session.Close();
+
+            return fileList.ToArray();
+        }
+
 
         public string MakeDirectory(string directoryName)
         {
@@ -414,9 +433,7 @@ namespace VitFTP
             ChangeWorkingDirectory(Path.GetDirectoryName(remotePath));
             string currentName = Path.GetFileName(remotePath);
             FtpWebRequest request = createRequest(combine(uri, currentName), WebRequestMethods.Ftp.Rename);
-
             request.RenameTo = newName;
-
             return getStatusDescription(request);
         }
 
@@ -431,10 +448,11 @@ namespace VitFTP
         {
             formProgressStatus = new FormProgressStatus(0, arrLocalPath.GetLength(0));
             List<string> filesOk = new List<string>();
-            using (Session session = new Session())
-            {
+            Session session = new Session();
+
                 // Connect
                 session.Open(sessionOptions);
+
                 int i = 0;
                 foreach (string localPath in arrLocalPath)
                 {
@@ -465,7 +483,7 @@ namespace VitFTP
                     i++;
                 }
                 session.Close();
-            }
+            
             formProgressStatus.Close();
             formProgressStatus.Dispose();
             return filesOk.ToArray();
@@ -473,25 +491,25 @@ namespace VitFTP
 
         public async Task<bool> Upload2Async(string localPath, string remotePath, bool overwrite)
         {
-            if (Path.GetExtension(localPath) != "")
-            {
-                getIconFile(localPath);
-            }
+            if (Path.GetExtension(localPath) != "") getIconFile(localPath);
 
             bool res = false;
             using (Session session = new Session())
             {
-                //session.FileTransferProgress += new FileTransferProgressEventHandler(session_FileTransferProgress);
-                // Connect
-                session.Open(sessionOptions);
-
+                try
+                {
+                    session.Open(sessionOptions);
+                }
+                catch (Exception e)
+                {
+                    classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, "Невозможно подключиться к серверу. " + e.Message);
+                    return false;
+                }
                 if (session.FileExists(remotePath + Path.GetFileName(localPath)))
                 {
-                    VitNotifyMessage.ClassNotifyMessage classNotifyMessage = new VitNotifyMessage.ClassNotifyMessage();
-                    if (classNotifyMessage.showDialog(VitNotifyMessage.ClassNotifyMessage.TypeMessage.QUESTION, remotePath + Path.GetFileName(localPath) + " уже существует. Заменить его?") != System.Windows.Forms.DialogResult.Yes)
-                    {
-                        return false;
-                    }
+                    ClassNotifyMessage classNotifyMessage = new VitNotifyMessage.ClassNotifyMessage();
+                    DialogResult dialogResult = classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.QUESTION, remotePath + Path.GetFileName(localPath) + " уже существует. Заменить его?");
+                    if (dialogResult != DialogResult.Yes)  return false;
                 }
 
                 TransferOptions transferOptions = new TransferOptions();

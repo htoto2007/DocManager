@@ -153,9 +153,9 @@ namespace VitIcons.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap flexible_10909 {
+        public static System.Drawing.Bitmap file_warning_40447 {
             get {
-                object obj = ResourceManager.GetObject("flexible_10909", resourceCulture);
+                object obj = ResourceManager.GetObject("file_warning_40447", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -163,9 +163,9 @@ namespace VitIcons.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap flexible_10909__1_ {
+        public static System.Drawing.Bitmap flexible_10909 {
             get {
-                object obj = ResourceManager.GetObject("flexible_10909__1_", resourceCulture);
+                object obj = ResourceManager.GetObject("flexible_10909", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

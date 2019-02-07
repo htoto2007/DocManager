@@ -101,7 +101,7 @@
             // button1
             // 
             this.button1.AutoSize = true;
-            this.button1.ImageIndex = 3;
+            this.button1.ImageKey = "editionadded_theaction_6325.png";
             this.button1.ImageList = this.imageList1;
             this.button1.Location = new System.Drawing.Point(3, 53);
             this.button1.Name = "button1";
@@ -116,10 +116,10 @@
             // 
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "w512h5121380984207add[3].png");
-            this.imageList1.Images.SetKeyName(1, "1s-udalenie[1].png");
-            this.imageList1.Images.SetKeyName(2, "rodentia-icons_ok[1].png");
-            this.imageList1.Images.SetKeyName(3, "icons8-plus-48.png");
+            this.imageList1.Images.SetKeyName(0, "editionadded_theaction_6325.png");
+            this.imageList1.Images.SetKeyName(1, "cancellationbutton_exitneartheaction_botondecancelacion_salida_6335.png");
+            this.imageList1.Images.SetKeyName(2, "eliminatetheaction_eliminar_6322.png");
+            this.imageList1.Images.SetKeyName(3, "solicit_accept_check_ok_theaction_6340.png");
             // 
             // panelProps
             // 
@@ -136,12 +136,12 @@
             // 
             this.buttonDeleteProp_0.AutoSize = true;
             this.buttonDeleteProp_0.Enabled = false;
-            this.buttonDeleteProp_0.ImageIndex = 1;
+            this.buttonDeleteProp_0.ImageKey = "cancellationbutton_exitneartheaction_botondecancelacion_salida_6335.png";
             this.buttonDeleteProp_0.ImageList = this.imageList1;
-            this.buttonDeleteProp_0.Location = new System.Drawing.Point(595, 9);
+            this.buttonDeleteProp_0.Location = new System.Drawing.Point(593, 6);
             this.buttonDeleteProp_0.Margin = new System.Windows.Forms.Padding(1);
             this.buttonDeleteProp_0.Name = "buttonDeleteProp_0";
-            this.buttonDeleteProp_0.Size = new System.Drawing.Size(26, 26);
+            this.buttonDeleteProp_0.Size = new System.Drawing.Size(30, 30);
             this.buttonDeleteProp_0.TabIndex = 7;
             this.buttonDeleteProp_0.UseVisualStyleBackColor = true;
             this.buttonDeleteProp_0.Click += new System.EventHandler(this.buttonDeleteProp_Click);
@@ -171,13 +171,12 @@
             // button3
             // 
             this.button3.AutoSize = true;
-            this.button3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.button3.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button3.ImageKey = "1s-udalenie[1].png";
+            this.button3.ImageKey = "eliminatetheaction_eliminar_6322.png";
             this.button3.ImageList = this.imageList1;
             this.button3.Location = new System.Drawing.Point(552, 409);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(76, 26);
+            this.button3.Size = new System.Drawing.Size(80, 30);
             this.button3.TabIndex = 19;
             this.button3.Text = "Отмена";
             this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -187,13 +186,12 @@
             // button2
             // 
             this.button2.AutoSize = true;
-            this.button2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.button2.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.button2.ImageIndex = 2;
+            this.button2.ImageKey = "solicit_accept_check_ok_theaction_6340.png";
             this.button2.ImageList = this.imageList1;
             this.button2.Location = new System.Drawing.Point(3, 409);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(99, 26);
+            this.button2.Size = new System.Drawing.Size(103, 30);
             this.button2.TabIndex = 18;
             this.button2.Text = "Создать тип";
             this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;

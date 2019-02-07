@@ -31,16 +31,16 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormTypeCard));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.listViewTypeCards = new System.Windows.Forms.ListView();
-            this.windowHeader1 = new VitControls.WindowHeader();
-            this.listViewCardProps = new System.Windows.Forms.ListView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.buttonClose = new System.Windows.Forms.Button();
             this.buttonDeleteType = new System.Windows.Forms.Button();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.buttonChangeType = new System.Windows.Forms.Button();
             this.buttonAddType = new System.Windows.Forms.Button();
+            this.buttonClose = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.listViewCardProps = new System.Windows.Forms.ListView();
+            this.listViewTypeCards = new System.Windows.Forms.ListView();
+            this.windowHeader1 = new VitControls.WindowHeader();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,14 +61,100 @@
             this.panel1.Size = new System.Drawing.Size(638, 444);
             this.panel1.TabIndex = 1;
             // 
+            // buttonDeleteType
+            // 
+            this.buttonDeleteType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonDeleteType.AutoSize = true;
+            this.buttonDeleteType.ImageKey = "cancellationbutton_exitneartheaction_botondecancelacion_salida_6335.png";
+            this.buttonDeleteType.ImageList = this.imageList1;
+            this.buttonDeleteType.Location = new System.Drawing.Point(524, 111);
+            this.buttonDeleteType.Name = "buttonDeleteType";
+            this.buttonDeleteType.Size = new System.Drawing.Size(111, 30);
+            this.buttonDeleteType.TabIndex = 10;
+            this.buttonDeleteType.Text = "Удалить тип";
+            this.buttonDeleteType.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.buttonDeleteType.UseVisualStyleBackColor = true;
+            this.buttonDeleteType.Click += new System.EventHandler(this.buttonDeleteType_Click);
+            // 
             // imageList1
             // 
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "icons8-edit-480.png");
-            this.imageList1.Images.SetKeyName(1, "icons8-plus-480.png");
-            this.imageList1.Images.SetKeyName(2, "icons8-trash-can-480 (1).png");
-            this.imageList1.Images.SetKeyName(3, "icons8-unavailable-480.png");
+            this.imageList1.Images.SetKeyName(0, "cancellationbutton_exitneartheaction_botondecancelacion_salida_6335.png");
+            this.imageList1.Images.SetKeyName(1, "editionadded_theaction_6325.png");
+            this.imageList1.Images.SetKeyName(2, "eliminatetheaction_eliminar_6322.png");
+            this.imageList1.Images.SetKeyName(3, "solicit_accept_check_ok_theaction_6340.png");
+            this.imageList1.Images.SetKeyName(4, "edit_pencil_6320.png");
+            // 
+            // buttonChangeType
+            // 
+            this.buttonChangeType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonChangeType.AutoSize = true;
+            this.buttonChangeType.ImageKey = "edit_pencil_6320.png";
+            this.buttonChangeType.ImageList = this.imageList1;
+            this.buttonChangeType.Location = new System.Drawing.Point(524, 75);
+            this.buttonChangeType.Name = "buttonChangeType";
+            this.buttonChangeType.Size = new System.Drawing.Size(112, 30);
+            this.buttonChangeType.TabIndex = 9;
+            this.buttonChangeType.Text = "Изменить тип";
+            this.buttonChangeType.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.buttonChangeType.UseVisualStyleBackColor = true;
+            // 
+            // buttonAddType
+            // 
+            this.buttonAddType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonAddType.AutoSize = true;
+            this.buttonAddType.ImageIndex = 1;
+            this.buttonAddType.ImageList = this.imageList1;
+            this.buttonAddType.Location = new System.Drawing.Point(524, 39);
+            this.buttonAddType.Name = "buttonAddType";
+            this.buttonAddType.Size = new System.Drawing.Size(111, 30);
+            this.buttonAddType.TabIndex = 8;
+            this.buttonAddType.Text = "Добавить тип";
+            this.buttonAddType.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.buttonAddType.UseVisualStyleBackColor = true;
+            this.buttonAddType.Click += new System.EventHandler(this.buttonAddType_Click);
+            // 
+            // buttonClose
+            // 
+            this.buttonClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonClose.AutoSize = true;
+            this.buttonClose.ImageKey = "eliminatetheaction_eliminar_6322.png";
+            this.buttonClose.ImageList = this.imageList1;
+            this.buttonClose.Location = new System.Drawing.Point(524, 411);
+            this.buttonClose.Name = "buttonClose";
+            this.buttonClose.Size = new System.Drawing.Size(111, 30);
+            this.buttonClose.TabIndex = 7;
+            this.buttonClose.Text = "Закрыть";
+            this.buttonClose.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.buttonClose.UseVisualStyleBackColor = true;
+            this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(243, 23);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(87, 13);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Свойства типов";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(3, 23);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(60, 13);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Типы карт";
+            // 
+            // listViewCardProps
+            // 
+            this.listViewCardProps.Location = new System.Drawing.Point(246, 39);
+            this.listViewCardProps.Name = "listViewCardProps";
+            this.listViewCardProps.Size = new System.Drawing.Size(272, 402);
+            this.listViewCardProps.TabIndex = 4;
+            this.listViewCardProps.UseCompatibleStateImageBehavior = false;
             // 
             // listViewTypeCards
             // 
@@ -95,91 +181,6 @@
             this.windowHeader1.showInTaskbar = false;
             this.windowHeader1.Size = new System.Drawing.Size(638, 34);
             this.windowHeader1.TabIndex = 2;
-            // 
-            // listViewCardProps
-            // 
-            this.listViewCardProps.Location = new System.Drawing.Point(246, 39);
-            this.listViewCardProps.Name = "listViewCardProps";
-            this.listViewCardProps.Size = new System.Drawing.Size(272, 402);
-            this.listViewCardProps.TabIndex = 4;
-            this.listViewCardProps.UseCompatibleStateImageBehavior = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 23);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(60, 13);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Типы карт";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(243, 23);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(87, 13);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Свойства типов";
-            // 
-            // buttonClose
-            // 
-            this.buttonClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonClose.AutoSize = true;
-            this.buttonClose.ImageIndex = 3;
-            this.buttonClose.ImageList = this.imageList1;
-            this.buttonClose.Location = new System.Drawing.Point(524, 411);
-            this.buttonClose.Name = "buttonClose";
-            this.buttonClose.Size = new System.Drawing.Size(111, 30);
-            this.buttonClose.TabIndex = 7;
-            this.buttonClose.Text = "Закрыть";
-            this.buttonClose.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.buttonClose.UseVisualStyleBackColor = true;
-            this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
-            // 
-            // buttonDeleteType
-            // 
-            this.buttonDeleteType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonDeleteType.AutoSize = true;
-            this.buttonDeleteType.ImageIndex = 2;
-            this.buttonDeleteType.ImageList = this.imageList1;
-            this.buttonDeleteType.Location = new System.Drawing.Point(524, 111);
-            this.buttonDeleteType.Name = "buttonDeleteType";
-            this.buttonDeleteType.Size = new System.Drawing.Size(111, 30);
-            this.buttonDeleteType.TabIndex = 10;
-            this.buttonDeleteType.Text = "Удалить тип";
-            this.buttonDeleteType.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.buttonDeleteType.UseVisualStyleBackColor = true;
-            this.buttonDeleteType.Click += new System.EventHandler(this.buttonDeleteType_Click);
-            // 
-            // buttonChangeType
-            // 
-            this.buttonChangeType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonChangeType.AutoSize = true;
-            this.buttonChangeType.ImageIndex = 0;
-            this.buttonChangeType.ImageList = this.imageList1;
-            this.buttonChangeType.Location = new System.Drawing.Point(524, 75);
-            this.buttonChangeType.Name = "buttonChangeType";
-            this.buttonChangeType.Size = new System.Drawing.Size(112, 30);
-            this.buttonChangeType.TabIndex = 9;
-            this.buttonChangeType.Text = "Изменить тип";
-            this.buttonChangeType.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.buttonChangeType.UseVisualStyleBackColor = true;
-            // 
-            // buttonAddType
-            // 
-            this.buttonAddType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonAddType.AutoSize = true;
-            this.buttonAddType.ImageIndex = 1;
-            this.buttonAddType.ImageList = this.imageList1;
-            this.buttonAddType.Location = new System.Drawing.Point(524, 39);
-            this.buttonAddType.Name = "buttonAddType";
-            this.buttonAddType.Size = new System.Drawing.Size(111, 30);
-            this.buttonAddType.TabIndex = 8;
-            this.buttonAddType.Text = "Добавить тип";
-            this.buttonAddType.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.buttonAddType.UseVisualStyleBackColor = true;
-            this.buttonAddType.Click += new System.EventHandler(this.buttonAddType_Click);
             // 
             // FormTypeCard
             // 

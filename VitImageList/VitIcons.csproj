@@ -69,11 +69,6 @@
       <DependentUpon>FormCompanents.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Resource1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resource1.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\ResourceColorImage.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -83,10 +78,6 @@
   <ItemGroup>
     <EmbeddedResource Include="FormCompanents.resx">
       <DependentUpon>FormCompanents.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resource1.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\ResourceColorImage.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -395,6 +386,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\folder_yellow_documents_10925.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file-warning_40447.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -11,6 +11,7 @@ namespace VitUsers
     {
         ClassTabPageUsers ClassTabPageUsers = new ClassTabPageUsers();
         ClassTabPageGroups ClassTabPageGroups = new ClassTabPageGroups();
+        ClassTabPageFolders ClassTabPageFolders = new ClassTabPageFolders();
 
         public FormUsers()
         {
@@ -24,6 +25,7 @@ namespace VitUsers
             ClassTabPageUsers.initUsers(listViewUsers);
             ClassTabPageGroups.initListViewGroups(listViewUsersGroups);
             ClassTabPageGroups.initListViewGroups(listViewGroups);
+            ClassTabPageFolders.initTreeView(treeViewFoldersAccessFolders);
         }
 
         private void ShowSelectUserProperties()

@@ -32,8 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDuplicateFileList));
             this.windowHeader1 = new VitControls.WindowHeader();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
             this.label1 = new System.Windows.Forms.Label();
@@ -72,11 +72,18 @@
             this.panel1.Size = new System.Drawing.Size(638, 204);
             this.panel1.TabIndex = 1;
             // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "advice_accept_ok_theaction_10829.png");
+            this.imageList1.Images.SetKeyName(1, "forbidden_stop_10832.png");
+            // 
             // button2
             // 
             this.button2.AutoSize = true;
             this.button2.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.button2.ImageKey = "icons8-ok-480.png";
+            this.button2.ImageKey = "advice_accept_ok_theaction_10829.png";
             this.button2.ImageList = this.imageList1;
             this.button2.Location = new System.Drawing.Point(3, 171);
             this.button2.Name = "button2";
@@ -86,21 +93,13 @@
             this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // imageList1
-            // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "icons8-ok-480.png");
-            this.imageList1.Images.SetKeyName(1, "icons8-unavailable-480.png");
-            this.imageList1.Images.SetKeyName(2, "info.png");
-            // 
             // button1
             // 
             this.button1.AutoSize = true;
             this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button1.ImageKey = "icons8-unavailable-480.png";
+            this.button1.ImageKey = "forbidden_stop_10832.png";
             this.button1.ImageList = this.imageList1;
-            this.button1.Location = new System.Drawing.Point(491, 171);
+            this.button1.Location = new System.Drawing.Point(482, 171);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(153, 30);
             this.button1.TabIndex = 1;
@@ -141,7 +140,6 @@
             this.buttonCreateIndex.Text = "Добавить индекс к названию";
             this.buttonCreateIndex.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.buttonCreateIndex.UseVisualStyleBackColor = true;
-            this.buttonCreateIndex.Click += new System.EventHandler(this.buttonCreateIndex_Click);
             // 
             // FormDuplicateFileList
             // 
