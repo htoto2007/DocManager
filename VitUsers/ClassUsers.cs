@@ -63,7 +63,7 @@ namespace VitUsers
             int idAccessGroup = classAccessGroup.getIdByName(accessGroup);
             int idUserPosition = classUserPositions.getInfoByName(position).id;
             int idDivision = classSubdivision.getInfoByName(subdivision).id;
-
+            
             var id = classMysql.Insert("" +
                 "INSERT INTO tb_users " +
                 "SET " +
@@ -90,7 +90,7 @@ namespace VitUsers
             userCollection.pass = password;
             userCollection.enable = true;
             userCollection.bypassServerUserlimit = false;
-            userCollection.DirCollection.dir = "D:\\";
+            //userCollection.DirCollection.dir = "D:\\";
             userCollection.DirCollection.DirCreate = true;
             userCollection.DirCollection.DirDelete = true;
             userCollection.DirCollection.DirList = true;
@@ -101,7 +101,12 @@ namespace VitUsers
             userCollection.DirCollection.IsHome = true;
             userCollection.DirCollection.AutoCreate = true;
 
-            classFTPUsers.AddUser(userCollection);
+            if(classFTPUsers.AddUser(userCollection) == false)
+            {
+                classMysql.UpdateOrDelete("" +
+                "DELETE FROM tb_users " +
+                "WHERE id = '" + id + "'");
+            }
         }
 
         /// <summary>

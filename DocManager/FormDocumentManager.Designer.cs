@@ -125,7 +125,7 @@
             this.toolStripMenuItemScanToThisFolder,
             this.ToolStripMenuItemSelectAll});
             this.contextMenuStripTreeView.Name = "contextMenuStrip1";
-            this.contextMenuStripTreeView.Size = new System.Drawing.Size(270, 304);
+            this.contextMenuStripTreeView.Size = new System.Drawing.Size(270, 326);
             this.contextMenuStripTreeView.Opened += new System.EventHandler(this.contextMenuStripTreeView_Opened);
             // 
             // ToolStripMenuItemAddFolder
@@ -239,8 +239,6 @@
             // 
             // ToolStripMenuItemMove
             // 
-            this.ToolStripMenuItemMove.Checked = true;
-            this.ToolStripMenuItemMove.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ToolStripMenuItemMove.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripMenuItemMove.Image")));
             this.ToolStripMenuItemMove.Name = "ToolStripMenuItemMove";
             this.ToolStripMenuItemMove.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));

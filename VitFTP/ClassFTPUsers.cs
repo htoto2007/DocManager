@@ -289,6 +289,25 @@ namespace VitFTP
             return true;
         }
 
+        private bool getRepository()
+        {
+            using (Session session = new Session())
+            {
+                // Connect
+                session.Open(sessionOptions);
+                TransferOperationResult transferOperationResult = session.GetFiles("currentDirectory.txt", VitSettings.Properties.FTPSettings.Default.openFilePath + "\\currentDirectory.txt", false, null);
+                session.Close();
+                if (!transferOperationResult.IsSuccess)
+                {
+                    ClassNotifyMessage classNotifyMessage = new ClassNotifyMessage();
+                    classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, "Не удалось получить файл конфигурации с сервера!");
+                    return false;
+                }
+                if (!File.Exists(VitSettings.Properties.FTPSettings.Default.openFilePath + "\\currentDirectory.txt")) return false;
+            }
+            return true;
+        }
+
         private bool sendFileConfig()
         {
             using (Session session = new Session())
@@ -344,9 +363,22 @@ namespace VitFTP
             if (sendFileConfig() == false) return;
         }
 
-        public void AddUser(UserCollection userCollection)
+        public bool AddUser(UserCollection userCollection)
         {
-            if (getFileConfig() == false) return;
+            ClassNotifyMessage classNotifyMessage = new ClassNotifyMessage();
+            if (getRepository() == false)
+            {
+                classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, "Не удалось получить файл путей сервера!");
+                return false;
+            }
+
+            string repeositoryPath = File.ReadAllText(VitSettings.Properties.FTPSettings.Default.openFilePath + "\\currentDirectory.txt") + "\\Repository\\";
+
+            if (getFileConfig() == false)
+            {
+                classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, "Не удалось получить файл настроек сервера!");
+                return false;
+            }
 
             string xmlFileName = VitSettings.Properties.FTPSettings.Default.openFilePath + "\\FileZilla Server.xml";
             XmlDocument xmlDoc = new XmlDocument();
@@ -426,7 +458,7 @@ namespace VitFTP
             xmlUser.AppendChild(xmlSpeedLimits);
 
             XmlElement xmlUserPermissions = createNode(xmlDoc, "Permissions", "", "", "");
-
+            userCollection.DirCollection.dir = repeositoryPath;
             XmlElement xmlUserPermission = createNode(xmlDoc, "Permission", "", "Dir", userCollection.DirCollection.dir);
 
             XmlElement xmlUserPermissionOption = createNode(xmlDoc, "Option", "1", "Name", "FileRead");
@@ -458,7 +490,8 @@ namespace VitFTP
 
             xmlDoc.Save(xmlFileName);
 
-            if (sendFileConfig() == false) return;
+            if (sendFileConfig() == false) return false;
+            return true;
         }
 
         private XmlElement createNode(XmlDocument xmlDocument,

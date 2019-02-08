@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using VitAccess;
 using VitAccessGroup;
 using VitDBConnect;
+using VitFTP;
 using VitListView;
 using VitNotifyMessage;
 using VitSearcher;
@@ -33,6 +34,9 @@ namespace DocManager
         private FormCreatTypeCard formCreatTypeCard = new FormCreatTypeCard();
         
 
+        /// <summary>
+        /// Хранит последний задействованый контрол
+        /// </summary>
         private Control lastControl = null;
 
         /// <summary>
@@ -160,6 +164,11 @@ namespace DocManager
             formUsers.ShowDialog();
         }
 
+        /// <summary>
+        /// Происходит при открытии контехтного меню в listview иди Treeview
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void contextMenuStripTreeView_Opened(object sender, EventArgs e)
         {
             if (contextMenuStripTreeView.SourceControl.GetType() == listView1.GetType())
@@ -168,7 +177,7 @@ namespace DocManager
             }
             if (contextMenuStripTreeView.SourceControl.GetType() == treeView1.GetType())
             {
-                
+                TreeViewContextMenu();
             }
             contextMenuStripTreeView.Update();
             lastRequireContextMenu = contextMenuStripTreeView.SourceControl.GetType();
@@ -201,6 +210,9 @@ namespace DocManager
             catch (System.NullReferenceException) { }
         }
 
+        /// <summary>
+        /// Определяем доступные элементы для данного пользователя
+        /// </summary>
         private void initAccessToForm()
         {
             // выводим имя пользователя в форму
@@ -216,8 +228,10 @@ namespace DocManager
             ClassAccessGroup.AccessGroupCollection accessGroupCollection = classAccessGroup.getInfoById(userColection.idAccessGroup);
             if (accessGroupCollection.rank != ClassAccessGroup.Ranks.ADMIN)
             {
-                flowLayoutPanelUserMenu.Visible = false;
-                ToolStripMenuItemAdministration.Visible = false;
+                ToolStripMenuItemAdministration.Enabled = false;
+                buttonAdminSettings.Enabled = false;
+                buttonAdminSettingsDocumentCard.Enabled = false;
+                buttonAdminUsers.Enabled = false;
             }
         }
 
@@ -286,24 +300,33 @@ namespace DocManager
             }
         }
 
+        /// <summary>
+        /// Определяет актуальные пункты в зависимости от выделенного объекта в ListView
+        /// </summary>
         private void listViewContextMenu()
         {
-            if (listView1.SelectedItems.Count < 1)
+            ClassUsers classUsers = new ClassUsers();
+            ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
+
+            if (listView1.SelectedItems.Count < 1) // если ничего не выделено
             {
                 ToolStripMenuItemRequestOriginal.Enabled = false;
-                ToolStripMenuItemAddFolder.Enabled = false;
+                ToolStripMenuItemAddFolder.Enabled = true;
                 ToolStripMenuItemAddDocument.Enabled = false;
                 ToolStripMenuItemSend.Enabled = false;
                 ToolStripMenuItemDelete.Enabled = false;
                 ToolStripMenuItemCopy.Enabled = false;
                 ToolStripMenuItemMove.Enabled = false;
                 ToolStripMenuItemRename.Enabled = false;
+                ToolStripMenuItemSendToPrint.Enabled = false;
+                toolStripMenuItemScanToThisFolder.Enabled = true;
             }
-            else if (listView1.SelectedItems.Count == 1)
+            else if (listView1.SelectedItems.Count == 1) // если выделен один объект
             {
-                if (listView1.SelectedItems[0].SubItems["type"].Text == ClassTree.TypeNodeCollection.FILE)
+                
+                if (classFTP.getFileType(listView1.SelectedItems[0].SubItems["path"].Text) == 1) // если файл
                 {
-                    ToolStripMenuItemRequestOriginal.Enabled = true;
+                    ToolStripMenuItemRequestOriginal.Enabled = true; 
                     ToolStripMenuItemAddFolder.Enabled = false;
                     ToolStripMenuItemAddDocument.Enabled = false;
                     ToolStripMenuItemSend.Enabled = true;
@@ -311,8 +334,10 @@ namespace DocManager
                     ToolStripMenuItemCopy.Enabled = true;
                     ToolStripMenuItemMove.Enabled = true;
                     ToolStripMenuItemRename.Enabled = true;
+                    ToolStripMenuItemSendToPrint.Enabled = true;
+                    toolStripMenuItemScanToThisFolder.Enabled = false;
                 }
-                else if (listView1.SelectedItems[0].SubItems["type"].Text == ClassTree.TypeNodeCollection.FOLDER)
+                else if (classFTP.getFileType(listView1.SelectedItems[0].SubItems["path"].Text) == 2) // если папка
                 {
                     ToolStripMenuItemRequestOriginal.Enabled = false;
                     ToolStripMenuItemAddFolder.Enabled = true;
@@ -322,6 +347,7 @@ namespace DocManager
                     ToolStripMenuItemCopy.Enabled = true;
                     ToolStripMenuItemMove.Enabled = true;
                     ToolStripMenuItemRename.Enabled = true;
+                    ToolStripMenuItemSendToPrint.Enabled = false;
                 }
             }
             else if (listView1.SelectedItems.Count > 1)
@@ -334,7 +360,61 @@ namespace DocManager
                 ToolStripMenuItemCopy.Enabled = true;
                 ToolStripMenuItemMove.Enabled = true;
                 ToolStripMenuItemRename.Enabled = false;
+                ToolStripMenuItemSendToPrint.Enabled = false;
             }
+        }
+
+        /// <summary>
+        /// Определяет актуальные пункты в зависимости от выделенного объекта в ListView
+        /// </summary>
+        private void TreeViewContextMenu()
+        {
+            ClassUsers classUsers = new ClassUsers();
+            ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
+
+            if (treeView1.SelectedNode != null) // если выделен один объект
+            {
+
+                if (classFTP.getFileType(treeView1.SelectedNode.Name) == 1) // если файл
+                {
+                    ToolStripMenuItemRequestOriginal.Enabled = true;
+                    ToolStripMenuItemAddFolder.Enabled = false;
+                    ToolStripMenuItemAddDocument.Enabled = false;
+                    ToolStripMenuItemSend.Enabled = true;
+                    ToolStripMenuItemDelete.Enabled = true;
+                    ToolStripMenuItemCopy.Enabled = true;
+                    ToolStripMenuItemMove.Enabled = true;
+                    ToolStripMenuItemRename.Enabled = true;
+                    ToolStripMenuItemSendToPrint.Enabled = true;
+                    toolStripMenuItemScanToThisFolder.Enabled = false;
+                }
+                else if (classFTP.getFileType(treeView1.SelectedNode.Name) == 2) // если папка
+                {
+                    ToolStripMenuItemRequestOriginal.Enabled = false;
+                    ToolStripMenuItemAddFolder.Enabled = true;
+                    ToolStripMenuItemAddDocument.Enabled = true;
+                    ToolStripMenuItemSend.Enabled = true;
+                    ToolStripMenuItemDelete.Enabled = true;
+                    ToolStripMenuItemCopy.Enabled = true;
+                    ToolStripMenuItemMove.Enabled = true;
+                    ToolStripMenuItemRename.Enabled = true;
+                    ToolStripMenuItemSendToPrint.Enabled = false;
+                }
+            }
+            else
+            {
+                ToolStripMenuItemRequestOriginal.Enabled = false;
+                ToolStripMenuItemAddFolder.Enabled = true;
+                ToolStripMenuItemAddDocument.Enabled = false;
+                ToolStripMenuItemSend.Enabled = false;
+                ToolStripMenuItemDelete.Enabled = false;
+                ToolStripMenuItemCopy.Enabled = false;
+                ToolStripMenuItemMove.Enabled = false;
+                ToolStripMenuItemRename.Enabled = false;
+                ToolStripMenuItemSendToPrint.Enabled = false;
+                toolStripMenuItemScanToThisFolder.Enabled = true;
+            }
+            
         }
 
         private void Login()

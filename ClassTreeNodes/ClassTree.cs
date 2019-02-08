@@ -194,9 +194,9 @@ namespace VitTree
 
         public void DeleteNode(TreeView treeView)
         {
-            VitNotifyMessage.ClassNotifyMessage classNotifyMessage = new VitNotifyMessage.ClassNotifyMessage();
+            ClassNotifyMessage classNotifyMessage = new ClassNotifyMessage();
 
-            DialogResult dialogResult = classNotifyMessage.showDialog(VitNotifyMessage.ClassNotifyMessage.TypeMessage.QUESTION, "Вы точно хотите удалить" + treeView.SelectedNode.FullPath + "?");
+            DialogResult dialogResult = classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.QUESTION, "Вы точно хотите удалить " + Path.GetFileName(treeView.SelectedNode.FullPath) + "?");
             if (dialogResult == DialogResult.No) return;
 
             string[] filesok = classFiles.DeleteFiles(new string[] { treeView.SelectedNode.Name.Replace("\\", "/") });
@@ -231,9 +231,14 @@ namespace VitTree
             }
         }
 
+        /// <summary>
+        /// Производит очистку TreeView и выводит все элементы репозитория на сервере
+        /// </summary>
+        /// <param name="treeView">TreeView в который нужно вывести файлы и папки</param>
+        /// <param name="login"></param>
+        /// <param name="password"></param>
         public async void Init(TreeView treeView, string login, string password)
         {
-            //ClassUsers classUsers = new ClassUsers();
             ClassFTP classFTP = new ClassFTP(login, password);
             string[] directoryes = classFTP.ListDirectory("/");
             
@@ -250,10 +255,7 @@ namespace VitTree
                     Text = direcory.Trim('/')
                 };
                 addIconAsync(treeNode);
-                //treeView.Invoke((Action)(() =>
-                //{
-                    treeView.Nodes.Add(treeNode);
-                //}));
+                treeView.Nodes.Add(treeNode);
             }
             
             foreach (TreeNode treeNode in treeView.Nodes)
