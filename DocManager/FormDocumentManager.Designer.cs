@@ -50,16 +50,12 @@
             this.toolStripMenuItemScanToThisFolder = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemSelectAll = new System.Windows.Forms.ToolStripMenuItem();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.ToolStripMenuItemView = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemUserMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemAdministration = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToolStripMenuItemSettingsConnectToDataBase = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToolStripMenuItemSettingsDocumentCard = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToolStripMenuItemSettingsAccessGroup = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItemConnectToData = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemUsers = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemSettings = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToolStripMenuItemHelp = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToolStripMenuItemAbout = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItemSettingsCard = new System.Windows.Forms.ToolStripMenuItem();
             this.помощьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timerSearcher = new System.Windows.Forms.Timer(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
@@ -88,16 +84,11 @@
             this.windowResizer1 = new VitControls.WindowResizer();
             this.textBoxUserName = new System.Windows.Forms.TextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.видToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItemView = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemShowUserMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.администратированиеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.подключениеКБазеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.пользователиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.настройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.настройкиКарточекToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.помощьToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItemAbout = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItemHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.windowHeader1 = new VitControls.WindowHeader();
             this.contextMenuStripTreeView.SuspendLayout();
             this.panelUserMenu.SuspendLayout();
@@ -125,7 +116,7 @@
             this.toolStripMenuItemScanToThisFolder,
             this.ToolStripMenuItemSelectAll});
             this.contextMenuStripTreeView.Name = "contextMenuStrip1";
-            this.contextMenuStripTreeView.Size = new System.Drawing.Size(270, 326);
+            this.contextMenuStripTreeView.Size = new System.Drawing.Size(270, 304);
             this.contextMenuStripTreeView.Opened += new System.EventHandler(this.contextMenuStripTreeView_Opened);
             // 
             // ToolStripMenuItemAddFolder
@@ -278,16 +269,6 @@
             this.imageList1.ImageSize = new System.Drawing.Size(24, 24);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
-            // ToolStripMenuItemView
-            // 
-            this.ToolStripMenuItemView.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ToolStripMenuItemUserMenu});
-            this.ToolStripMenuItemView.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ToolStripMenuItemView.ForeColor = System.Drawing.Color.Black;
-            this.ToolStripMenuItemView.Name = "ToolStripMenuItemView";
-            this.ToolStripMenuItemView.Size = new System.Drawing.Size(45, 26);
-            this.ToolStripMenuItemView.Text = "Вид";
-            // 
             // ToolStripMenuItemUserMenu
             // 
             this.ToolStripMenuItemUserMenu.CheckOnClick = true;
@@ -299,68 +280,47 @@
             // ToolStripMenuItemAdministration
             // 
             this.ToolStripMenuItemAdministration.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ToolStripMenuItemSettingsConnectToDataBase,
-            this.ToolStripMenuItemSettingsDocumentCard,
-            this.ToolStripMenuItemSettingsAccessGroup,
+            this.ToolStripMenuItemConnectToData,
             this.ToolStripMenuItemUsers,
-            this.ToolStripMenuItemSettings});
+            this.ToolStripMenuItemSettings,
+            this.ToolStripMenuItemSettingsCard});
             this.ToolStripMenuItemAdministration.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ToolStripMenuItemAdministration.ForeColor = System.Drawing.Color.Black;
             this.ToolStripMenuItemAdministration.Name = "ToolStripMenuItemAdministration";
             this.ToolStripMenuItemAdministration.Size = new System.Drawing.Size(166, 26);
             this.ToolStripMenuItemAdministration.Text = "Администратирование";
             // 
-            // ToolStripMenuItemSettingsConnectToDataBase
+            // ToolStripMenuItemConnectToData
             // 
-            this.ToolStripMenuItemSettingsConnectToDataBase.Name = "ToolStripMenuItemSettingsConnectToDataBase";
-            this.ToolStripMenuItemSettingsConnectToDataBase.Size = new System.Drawing.Size(278, 24);
-            this.ToolStripMenuItemSettingsConnectToDataBase.Text = "настройки подключения к базе";
-            this.ToolStripMenuItemSettingsConnectToDataBase.Click += new System.EventHandler(this.ToolStripMenuItemSettingsConnectToDataBase_Click);
-            // 
-            // ToolStripMenuItemSettingsDocumentCard
-            // 
-            this.ToolStripMenuItemSettingsDocumentCard.Name = "ToolStripMenuItemSettingsDocumentCard";
-            this.ToolStripMenuItemSettingsDocumentCard.Size = new System.Drawing.Size(278, 24);
-            this.ToolStripMenuItemSettingsDocumentCard.Text = "настройка карточек";
-            this.ToolStripMenuItemSettingsDocumentCard.Click += new System.EventHandler(this.ToolStripMenuItemSettingsDocumentCard_Click);
-            // 
-            // ToolStripMenuItemSettingsAccessGroup
-            // 
-            this.ToolStripMenuItemSettingsAccessGroup.Name = "ToolStripMenuItemSettingsAccessGroup";
-            this.ToolStripMenuItemSettingsAccessGroup.Size = new System.Drawing.Size(278, 24);
-            this.ToolStripMenuItemSettingsAccessGroup.Text = "Настройка прав доступа";
-            this.ToolStripMenuItemSettingsAccessGroup.Click += new System.EventHandler(this.ToolStripMenuItemSettingsAccessGroup_Click);
+            this.ToolStripMenuItemConnectToData.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripMenuItemConnectToData.Image")));
+            this.ToolStripMenuItemConnectToData.Name = "ToolStripMenuItemConnectToData";
+            this.ToolStripMenuItemConnectToData.Size = new System.Drawing.Size(218, 30);
+            this.ToolStripMenuItemConnectToData.Text = "Подключение к базе";
+            this.ToolStripMenuItemConnectToData.Click += new System.EventHandler(this.ToolStripMenuItemConnectToData_Click);
             // 
             // ToolStripMenuItemUsers
             // 
+            this.ToolStripMenuItemUsers.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripMenuItemUsers.Image")));
             this.ToolStripMenuItemUsers.Name = "ToolStripMenuItemUsers";
-            this.ToolStripMenuItemUsers.Size = new System.Drawing.Size(278, 24);
+            this.ToolStripMenuItemUsers.Size = new System.Drawing.Size(218, 30);
             this.ToolStripMenuItemUsers.Text = "Пользователи";
-            this.ToolStripMenuItemUsers.Click += new System.EventHandler(this.ToolStripMenuItemUsers_Click);
+            this.ToolStripMenuItemUsers.Click += new System.EventHandler(this.buttonUsers_Click);
             // 
             // ToolStripMenuItemSettings
             // 
+            this.ToolStripMenuItemSettings.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripMenuItemSettings.Image")));
             this.ToolStripMenuItemSettings.Name = "ToolStripMenuItemSettings";
-            this.ToolStripMenuItemSettings.Size = new System.Drawing.Size(278, 24);
-            this.ToolStripMenuItemSettings.Text = "настроки";
-            this.ToolStripMenuItemSettings.Click += new System.EventHandler(this.ToolStripMenuItemSettings_Click);
+            this.ToolStripMenuItemSettings.Size = new System.Drawing.Size(218, 30);
+            this.ToolStripMenuItemSettings.Text = "Настройки";
+            this.ToolStripMenuItemSettings.Click += new System.EventHandler(this.buttonSettings_Click);
             // 
-            // ToolStripMenuItemHelp
+            // ToolStripMenuItemSettingsCard
             // 
-            this.ToolStripMenuItemHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ToolStripMenuItemAbout,
-            this.помощьToolStripMenuItem});
-            this.ToolStripMenuItemHelp.ForeColor = System.Drawing.Color.Black;
-            this.ToolStripMenuItemHelp.Name = "ToolStripMenuItemHelp";
-            this.ToolStripMenuItemHelp.Size = new System.Drawing.Size(70, 26);
-            this.ToolStripMenuItemHelp.Text = "Справка";
-            // 
-            // ToolStripMenuItemAbout
-            // 
-            this.ToolStripMenuItemAbout.Name = "ToolStripMenuItemAbout";
-            this.ToolStripMenuItemAbout.Size = new System.Drawing.Size(149, 22);
-            this.ToolStripMenuItemAbout.Text = "О программе";
-            this.ToolStripMenuItemAbout.Click += new System.EventHandler(this.ToolStripMenuItemAbout_Click);
+            this.ToolStripMenuItemSettingsCard.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripMenuItemSettingsCard.Image")));
+            this.ToolStripMenuItemSettingsCard.Name = "ToolStripMenuItemSettingsCard";
+            this.ToolStripMenuItemSettingsCard.Size = new System.Drawing.Size(218, 30);
+            this.ToolStripMenuItemSettingsCard.Text = "Настройки карточек";
+            this.ToolStripMenuItemSettingsCard.Click += new System.EventHandler(this.buttonSettingsDocumentCard_Click);
             // 
             // помощьToolStripMenuItem
             // 
@@ -702,8 +662,8 @@
             this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.видToolStripMenuItem,
-            this.администратированиеToolStripMenuItem,
+            this.ToolStripMenuItemView,
+            this.ToolStripMenuItemAdministration,
             this.справкаToolStripMenuItem});
             this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.menuStrip1.Location = new System.Drawing.Point(1, 35);
@@ -714,92 +674,48 @@
             this.menuStrip1.TabIndex = 7;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // видToolStripMenuItem
+            // ToolStripMenuItemView
             // 
-            this.видToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ToolStripMenuItemView.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ToolStripMenuItemShowUserMenu});
-            this.видToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
-            this.видToolStripMenuItem.Name = "видToolStripMenuItem";
-            this.видToolStripMenuItem.Size = new System.Drawing.Size(41, 26);
-            this.видToolStripMenuItem.Text = "Вид";
+            this.ToolStripMenuItemView.ForeColor = System.Drawing.Color.Black;
+            this.ToolStripMenuItemView.Name = "ToolStripMenuItemView";
+            this.ToolStripMenuItemView.Size = new System.Drawing.Size(41, 26);
+            this.ToolStripMenuItemView.Text = "Вид";
             // 
             // ToolStripMenuItemShowUserMenu
             // 
-            this.ToolStripMenuItemShowUserMenu.Checked = true;
-            this.ToolStripMenuItemShowUserMenu.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ToolStripMenuItemShowUserMenu.CheckOnClick = true;
             this.ToolStripMenuItemShowUserMenu.Name = "ToolStripMenuItemShowUserMenu";
             this.ToolStripMenuItemShowUserMenu.Size = new System.Drawing.Size(152, 22);
             this.ToolStripMenuItemShowUserMenu.Text = "Вывод меню";
             this.ToolStripMenuItemShowUserMenu.CheckedChanged += new System.EventHandler(this.ToolStripMenuItemUserMenu_CheckedChanged);
             // 
-            // администратированиеToolStripMenuItem
-            // 
-            this.администратированиеToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.подключениеКБазеToolStripMenuItem,
-            this.пользователиToolStripMenuItem,
-            this.настройкиToolStripMenuItem,
-            this.настройкиКарточекToolStripMenuItem});
-            this.администратированиеToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
-            this.администратированиеToolStripMenuItem.Name = "администратированиеToolStripMenuItem";
-            this.администратированиеToolStripMenuItem.Size = new System.Drawing.Size(154, 26);
-            this.администратированиеToolStripMenuItem.Text = "Администратирование";
-            // 
-            // подключениеКБазеToolStripMenuItem
-            // 
-            this.подключениеКБазеToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("подключениеКБазеToolStripMenuItem.Image")));
-            this.подключениеКБазеToolStripMenuItem.Name = "подключениеКБазеToolStripMenuItem";
-            this.подключениеКБазеToolStripMenuItem.Size = new System.Drawing.Size(209, 30);
-            this.подключениеКБазеToolStripMenuItem.Text = "Подключение к базе";
-            // 
-            // пользователиToolStripMenuItem
-            // 
-            this.пользователиToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("пользователиToolStripMenuItem.Image")));
-            this.пользователиToolStripMenuItem.Name = "пользователиToolStripMenuItem";
-            this.пользователиToolStripMenuItem.Size = new System.Drawing.Size(209, 30);
-            this.пользователиToolStripMenuItem.Text = "Пользователи";
-            this.пользователиToolStripMenuItem.Click += new System.EventHandler(this.buttonUsers_Click);
-            // 
-            // настройкиToolStripMenuItem
-            // 
-            this.настройкиToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("настройкиToolStripMenuItem.Image")));
-            this.настройкиToolStripMenuItem.Name = "настройкиToolStripMenuItem";
-            this.настройкиToolStripMenuItem.Size = new System.Drawing.Size(209, 30);
-            this.настройкиToolStripMenuItem.Text = "Настройки";
-            this.настройкиToolStripMenuItem.Click += new System.EventHandler(this.buttonSettings_Click);
-            // 
-            // настройкиКарточекToolStripMenuItem
-            // 
-            this.настройкиКарточекToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("настройкиКарточекToolStripMenuItem.Image")));
-            this.настройкиКарточекToolStripMenuItem.Name = "настройкиКарточекToolStripMenuItem";
-            this.настройкиКарточекToolStripMenuItem.Size = new System.Drawing.Size(209, 30);
-            this.настройкиКарточекToolStripMenuItem.Text = "Настройки карточек";
-            this.настройкиКарточекToolStripMenuItem.Click += new System.EventHandler(this.buttonSettingsDocumentCard_Click);
-            // 
             // справкаToolStripMenuItem
             // 
             this.справкаToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.оПрограммеToolStripMenuItem,
-            this.помощьToolStripMenuItem1});
+            this.ToolStripMenuItemAbout,
+            this.ToolStripMenuItemHelp});
             this.справкаToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.справкаToolStripMenuItem.Name = "справкаToolStripMenuItem";
             this.справкаToolStripMenuItem.Size = new System.Drawing.Size(70, 26);
             this.справкаToolStripMenuItem.Text = "Справка";
             // 
-            // оПрограммеToolStripMenuItem
+            // ToolStripMenuItemAbout
             // 
-            this.оПрограммеToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("оПрограммеToolStripMenuItem.Image")));
-            this.оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
-            this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(166, 30);
-            this.оПрограммеToolStripMenuItem.Text = "О программе";
-            this.оПрограммеToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItemAbout_Click);
+            this.ToolStripMenuItemAbout.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripMenuItemAbout.Image")));
+            this.ToolStripMenuItemAbout.Name = "ToolStripMenuItemAbout";
+            this.ToolStripMenuItemAbout.Size = new System.Drawing.Size(166, 30);
+            this.ToolStripMenuItemAbout.Text = "О программе";
+            this.ToolStripMenuItemAbout.Click += new System.EventHandler(this.ToolStripMenuItemAbout_Click);
             // 
-            // помощьToolStripMenuItem1
+            // ToolStripMenuItemHelp
             // 
-            this.помощьToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("помощьToolStripMenuItem1.Image")));
-            this.помощьToolStripMenuItem1.Name = "помощьToolStripMenuItem1";
-            this.помощьToolStripMenuItem1.Size = new System.Drawing.Size(166, 30);
-            this.помощьToolStripMenuItem1.Text = "Помощь";
-            this.помощьToolStripMenuItem1.Click += new System.EventHandler(this.помощьToolStripMenuItem_Click);
+            this.ToolStripMenuItemHelp.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripMenuItemHelp.Image")));
+            this.ToolStripMenuItemHelp.Name = "ToolStripMenuItemHelp";
+            this.ToolStripMenuItemHelp.Size = new System.Drawing.Size(166, 30);
+            this.ToolStripMenuItemHelp.Text = "Помощь";
+            this.ToolStripMenuItemHelp.Click += new System.EventHandler(this.помощьToolStripMenuItem_Click);
             // 
             // windowHeader1
             // 
@@ -869,18 +785,11 @@
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemAddFolder;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemDelete;
         private System.Windows.Forms.Timer timerSearcher;
-        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemAdministration;
-        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemSettingsConnectToDataBase;
-        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemSettingsDocumentCard;
         /// <summary>
         /// содержит картинки для основного окна программы
         /// </summary>
         public System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemSettingsAccessGroup;
-        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemUsers;
-        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemSettings;
-        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemView;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemUserMenu;
         private System.Windows.Forms.Panel panelUserMenu;
         private System.Windows.Forms.TreeView treeView1;
@@ -891,8 +800,6 @@
         private System.Windows.Forms.ColumnHeader dateChange;
         private System.Windows.Forms.ColumnHeader path;
         private System.Windows.Forms.Panel panelExplorer;
-        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemHelp;
-        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemAbout;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelUserMenu;
         private VitControls.VitButton buttonAdminSettingsDocumentCard;
         private VitControls.VitButton buttonAdminUsers;
@@ -918,16 +825,16 @@
         private VitControls.WindowResizer windowResizer1;
         private System.Windows.Forms.TextBox textBoxUserName;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem видToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemView;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemShowUserMenu;
-        private System.Windows.Forms.ToolStripMenuItem администратированиеToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem подключениеКБазеToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem пользователиToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem настройкиToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem настройкиКарточекToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemAdministration;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemConnectToData;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemUsers;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemSettings;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemSettingsCard;
         private System.Windows.Forms.ToolStripMenuItem справкаToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem оПрограммеToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem помощьToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemAbout;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemHelp;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemSelectAll;
         private VitControls.VitButton buttonScan;
         private VitControls.VitButton buttonAddBranch;

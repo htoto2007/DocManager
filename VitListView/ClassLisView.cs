@@ -19,10 +19,8 @@ namespace VitListView
         private readonly ClassFiles classFiles = new ClassFiles();
         private readonly ClassTypeCard classTypeCard = new ClassTypeCard();
         private readonly ClassTypeCardProps classTypeCardProps = new ClassTypeCardProps();
-        private readonly Thread threedLoadInfo;
         private VitIcons.ClassImageList classImageList = new VitIcons.ClassImageList();
         private ClassFiles.FileCollection fileCollection = new ClassFiles.FileCollection();
-        private readonly Thread threedLoadIcons;
 
         public void FromSearch(ClassFiles.FileCollection[] fileCollections, ListView listView)
         {

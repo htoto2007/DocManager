@@ -226,12 +226,17 @@ namespace DocManager
             // работаем с вывордом пользовательского меню.
             ClassAccessGroup classAccessGroup = new ClassAccessGroup();
             ClassAccessGroup.AccessGroupCollection accessGroupCollection = classAccessGroup.getInfoById(userColection.idAccessGroup);
+            
             if (accessGroupCollection.rank != ClassAccessGroup.Ranks.ADMIN)
             {
                 ToolStripMenuItemAdministration.Enabled = false;
+                ToolStripMenuItemAdministration.Visible = false;
                 buttonAdminSettings.Enabled = false;
+                buttonAdminSettings.Visible = false;
                 buttonAdminSettingsDocumentCard.Enabled = false;
+                buttonAdminSettingsDocumentCard.Visible = false;
                 buttonAdminUsers.Enabled = false;
+                buttonAdminUsers.Visible = false;
             }
         }
 
@@ -477,7 +482,7 @@ namespace DocManager
 
         private void Settings()
         {
-            ToolStripMenuItemUserMenu.Checked = VitSettings.Properties.ControlsSettings.Default.flowLayoutPanelUserMenu;
+            ToolStripMenuItemShowUserMenu.Checked = VitSettings.Properties.ControlsSettings.Default.flowLayoutPanelUserMenu;
             panelUserMenu.Visible = VitSettings.Properties.ControlsSettings.Default.flowLayoutPanelUserMenu;
 
             string repositoryPath = VitSettings.Properties.GeneralsSettings.Default.repositiryPayh;
@@ -528,7 +533,14 @@ namespace DocManager
 
         private void ToolStripMenuItemAddFolder_Click(object sender, EventArgs e)
         {
-            classTree.addNodeFolder(treeView1);
+            if(lastControl.GetType() == typeof(TreeView))
+                classTree.addNodeFolder(treeView1);
+            else if (lastControl.GetType() == typeof(ListView))
+            {
+                ClassLisView classLisView = new ClassLisView();
+                //classLisView.
+                
+            }
         }
 
         private void ToolStripMenuItemCopy_Click(object sender, EventArgs e)
@@ -630,9 +642,10 @@ namespace DocManager
 
         private void ToolStripMenuItemUserMenu_CheckedChanged(object sender, EventArgs e)
         {
-            panelUserMenu.Visible = ToolStripMenuItemUserMenu.Checked;
-            VitSettings.Properties.ControlsSettings.Default.flowLayoutPanelUserMenu = ToolStripMenuItemUserMenu.Checked;
+            panelUserMenu.Visible = ToolStripMenuItemShowUserMenu.Checked;
+            VitSettings.Properties.ControlsSettings.Default.flowLayoutPanelUserMenu = ToolStripMenuItemShowUserMenu.Checked;
             VitSettings.Properties.ControlsSettings.Default.Save();
+            //flowLayoutPanelUserMenu.Visible = ToolStripMenuItemShowUserMenu.Checked;
         }
 
         private void ToolStripMenuItemUsers_Click(object sender, EventArgs e)
@@ -721,6 +734,12 @@ namespace DocManager
             ClassUsers classUsers = new ClassUsers();
             classTree.Init(treeView1, classUsers.getThisUser().login, classUsers.getThisUser().password);
             Enabled = true;
+        }
+
+        private void ToolStripMenuItemConnectToData_Click(object sender, EventArgs e)
+        {
+            FormDBConnect formDBConnect = new FormDBConnect();
+            formDBConnect.ShowDialog();
         }
     }
 }
