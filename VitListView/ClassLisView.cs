@@ -89,7 +89,8 @@ namespace VitListView
                 ListViewItem listViewItem = new ListViewItem
                 {
                     Text = classTypeCardProps.getInfoById(idCardProp).name,
-                    Name = "name"
+                    Name = "name",
+                    
                 };
                 listViewItem.SubItems.Add(cardValue.value).Name = "value";
                 listView.Items.Add(listViewItem);
