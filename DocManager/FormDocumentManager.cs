@@ -16,6 +16,7 @@ using VitSendToProgram;
 using VitSettings;
 using VitTree;
 using VitTypeCard;
+using VitUserPositions;
 using VitUsers;
 
 namespace DocManager
@@ -222,6 +223,8 @@ namespace DocManager
             string lastName = userColection.lastName;
             string middleName = userColection.middleName;
             textBoxUserName.Text =  lastName + " " + firstName + " " + middleName;
+            ClassUserPositions classUserPositions = new ClassUserPositions();
+            textBoxUserPosition.Text = classUserPositions.getInfoById(userColection.idPosition).name;
 
             // работаем с вывордом пользовательского меню.
             ClassAccessGroup classAccessGroup = new ClassAccessGroup();

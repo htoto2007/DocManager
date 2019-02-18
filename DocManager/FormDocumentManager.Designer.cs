@@ -90,6 +90,11 @@
             this.ToolStripMenuItemAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.windowHeader1 = new VitControls.WindowHeader();
+            this.textBoxUserPosition = new System.Windows.Forms.TextBox();
+            this.vitButton1 = new VitControls.VitButton();
+            this.vitButton2 = new VitControls.VitButton();
+            this.vitButton3 = new VitControls.VitButton();
+            this.vitButton4 = new VitControls.VitButton();
             this.contextMenuStripTreeView.SuspendLayout();
             this.panelUserMenu.SuspendLayout();
             this.flowLayoutPanelUserMenu.SuspendLayout();
@@ -294,7 +299,7 @@
             // 
             this.ToolStripMenuItemConnectToData.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripMenuItemConnectToData.Image")));
             this.ToolStripMenuItemConnectToData.Name = "ToolStripMenuItemConnectToData";
-            this.ToolStripMenuItemConnectToData.Size = new System.Drawing.Size(218, 30);
+            this.ToolStripMenuItemConnectToData.Size = new System.Drawing.Size(210, 24);
             this.ToolStripMenuItemConnectToData.Text = "Подключение к базе";
             this.ToolStripMenuItemConnectToData.Click += new System.EventHandler(this.ToolStripMenuItemConnectToData_Click);
             // 
@@ -302,7 +307,7 @@
             // 
             this.ToolStripMenuItemUsers.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripMenuItemUsers.Image")));
             this.ToolStripMenuItemUsers.Name = "ToolStripMenuItemUsers";
-            this.ToolStripMenuItemUsers.Size = new System.Drawing.Size(218, 30);
+            this.ToolStripMenuItemUsers.Size = new System.Drawing.Size(210, 24);
             this.ToolStripMenuItemUsers.Text = "Пользователи";
             this.ToolStripMenuItemUsers.Click += new System.EventHandler(this.buttonUsers_Click);
             // 
@@ -310,7 +315,7 @@
             // 
             this.ToolStripMenuItemSettings.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripMenuItemSettings.Image")));
             this.ToolStripMenuItemSettings.Name = "ToolStripMenuItemSettings";
-            this.ToolStripMenuItemSettings.Size = new System.Drawing.Size(218, 30);
+            this.ToolStripMenuItemSettings.Size = new System.Drawing.Size(210, 24);
             this.ToolStripMenuItemSettings.Text = "Настройки";
             this.ToolStripMenuItemSettings.Click += new System.EventHandler(this.buttonSettings_Click);
             // 
@@ -318,7 +323,7 @@
             // 
             this.ToolStripMenuItemSettingsCard.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripMenuItemSettingsCard.Image")));
             this.ToolStripMenuItemSettingsCard.Name = "ToolStripMenuItemSettingsCard";
-            this.ToolStripMenuItemSettingsCard.Size = new System.Drawing.Size(218, 30);
+            this.ToolStripMenuItemSettingsCard.Size = new System.Drawing.Size(210, 24);
             this.ToolStripMenuItemSettingsCard.Text = "Настройки карточек";
             this.ToolStripMenuItemSettingsCard.Click += new System.EventHandler(this.buttonSettingsDocumentCard_Click);
             // 
@@ -367,7 +372,7 @@
             this.button1.BackColor = System.Drawing.Color.White;
             this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
             this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button1.Location = new System.Drawing.Point(457, 36);
+            this.button1.Location = new System.Drawing.Point(457, 41);
             this.button1.Margin = new System.Windows.Forms.Padding(7, 1, 7, 1);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(36, 36);
@@ -383,7 +388,7 @@
             this.buttonExit.BackColor = System.Drawing.Color.White;
             this.buttonExit.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonExit.BackgroundImage")));
             this.buttonExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.buttonExit.Location = new System.Drawing.Point(402, 36);
+            this.buttonExit.Location = new System.Drawing.Point(410, 41);
             this.buttonExit.Margin = new System.Windows.Forms.Padding(4, 1, 4, 1);
             this.buttonExit.Name = "buttonExit";
             this.buttonExit.Size = new System.Drawing.Size(36, 36);
@@ -395,11 +400,11 @@
             // 
             this.buttonAdminSettingsDocumentCard.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
             this.buttonAdminSettingsDocumentCard.AllowDrop = true;
-            this.buttonAdminSettingsDocumentCard.BackColor = System.Drawing.Color.White;
+            this.buttonAdminSettingsDocumentCard.BackColor = System.Drawing.Color.Transparent;
             this.buttonAdminSettingsDocumentCard.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonAdminSettingsDocumentCard.BackgroundImage")));
             this.buttonAdminSettingsDocumentCard.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.buttonAdminSettingsDocumentCard.Location = new System.Drawing.Point(4, 4);
-            this.buttonAdminSettingsDocumentCard.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonAdminSettingsDocumentCard.Margin = new System.Windows.Forms.Padding(4);
             this.buttonAdminSettingsDocumentCard.Name = "buttonAdminSettingsDocumentCard";
             this.buttonAdminSettingsDocumentCard.Size = new System.Drawing.Size(36, 36);
             this.buttonAdminSettingsDocumentCard.TabIndex = 17;
@@ -410,11 +415,11 @@
             // 
             this.buttonAdminUsers.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
             this.buttonAdminUsers.AllowDrop = true;
-            this.buttonAdminUsers.BackColor = System.Drawing.Color.White;
+            this.buttonAdminUsers.BackColor = System.Drawing.Color.Transparent;
             this.buttonAdminUsers.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonAdminUsers.BackgroundImage")));
             this.buttonAdminUsers.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.buttonAdminUsers.Location = new System.Drawing.Point(48, 4);
-            this.buttonAdminUsers.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonAdminUsers.Margin = new System.Windows.Forms.Padding(4);
             this.buttonAdminUsers.Name = "buttonAdminUsers";
             this.buttonAdminUsers.Size = new System.Drawing.Size(36, 36);
             this.buttonAdminUsers.TabIndex = 19;
@@ -425,11 +430,11 @@
             // 
             this.buttonAdminSettings.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
             this.buttonAdminSettings.AllowDrop = true;
-            this.buttonAdminSettings.BackColor = System.Drawing.Color.White;
+            this.buttonAdminSettings.BackColor = System.Drawing.Color.Transparent;
             this.buttonAdminSettings.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonAdminSettings.BackgroundImage")));
             this.buttonAdminSettings.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.buttonAdminSettings.Location = new System.Drawing.Point(92, 4);
-            this.buttonAdminSettings.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonAdminSettings.Margin = new System.Windows.Forms.Padding(4);
             this.buttonAdminSettings.Name = "buttonAdminSettings";
             this.buttonAdminSettings.Size = new System.Drawing.Size(36, 36);
             this.buttonAdminSettings.TabIndex = 20;
@@ -440,12 +445,12 @@
             // 
             this.buttonScan.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
             this.buttonScan.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
-            this.buttonScan.BackColor = System.Drawing.Color.White;
+            this.buttonScan.BackColor = System.Drawing.Color.Transparent;
             this.buttonScan.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonScan.BackgroundImage")));
             this.buttonScan.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.buttonScan.CausesValidation = false;
             this.buttonScan.Location = new System.Drawing.Point(136, 4);
-            this.buttonScan.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonScan.Margin = new System.Windows.Forms.Padding(4);
             this.buttonScan.Name = "buttonScan";
             this.buttonScan.Size = new System.Drawing.Size(36, 36);
             this.buttonScan.TabIndex = 21;
@@ -456,11 +461,11 @@
             // 
             this.buttonAddBranch.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
             this.buttonAddBranch.AllowDrop = true;
-            this.buttonAddBranch.BackColor = System.Drawing.Color.White;
+            this.buttonAddBranch.BackColor = System.Drawing.Color.Transparent;
             this.buttonAddBranch.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonAddBranch.BackgroundImage")));
             this.buttonAddBranch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.buttonAddBranch.Location = new System.Drawing.Point(180, 4);
-            this.buttonAddBranch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonAddBranch.Margin = new System.Windows.Forms.Padding(4);
             this.buttonAddBranch.Name = "buttonAddBranch";
             this.buttonAddBranch.Size = new System.Drawing.Size(36, 36);
             this.buttonAddBranch.TabIndex = 22;
@@ -471,7 +476,7 @@
             // 
             this.vitButtonUpdateInfo.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
             this.vitButtonUpdateInfo.AllowDrop = true;
-            this.vitButtonUpdateInfo.BackColor = System.Drawing.Color.White;
+            this.vitButtonUpdateInfo.BackColor = System.Drawing.Color.Transparent;
             this.vitButtonUpdateInfo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("vitButtonUpdateInfo.BackgroundImage")));
             this.vitButtonUpdateInfo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.vitButtonUpdateInfo.Location = new System.Drawing.Point(224, 4);
@@ -496,15 +501,20 @@
             // flowLayoutPanelUserMenu
             // 
             this.flowLayoutPanelUserMenu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.flowLayoutPanelUserMenu.BackColor = System.Drawing.Color.White;
+            this.flowLayoutPanelUserMenu.BackColor = System.Drawing.Color.WhiteSmoke;
             this.flowLayoutPanelUserMenu.Controls.Add(this.buttonAdminSettingsDocumentCard);
             this.flowLayoutPanelUserMenu.Controls.Add(this.buttonAdminUsers);
             this.flowLayoutPanelUserMenu.Controls.Add(this.buttonAdminSettings);
             this.flowLayoutPanelUserMenu.Controls.Add(this.buttonScan);
             this.flowLayoutPanelUserMenu.Controls.Add(this.buttonAddBranch);
             this.flowLayoutPanelUserMenu.Controls.Add(this.vitButtonUpdateInfo);
+            this.flowLayoutPanelUserMenu.Controls.Add(this.vitButton1);
+            this.flowLayoutPanelUserMenu.Controls.Add(this.vitButton2);
+            this.flowLayoutPanelUserMenu.Controls.Add(this.vitButton3);
+            this.flowLayoutPanelUserMenu.Controls.Add(this.vitButton4);
+            this.flowLayoutPanelUserMenu.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.flowLayoutPanelUserMenu.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanelUserMenu.Margin = new System.Windows.Forms.Padding(0);
+            this.flowLayoutPanelUserMenu.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanelUserMenu.Name = "flowLayoutPanelUserMenu";
             this.flowLayoutPanelUserMenu.Size = new System.Drawing.Size(798, 47);
             this.flowLayoutPanelUserMenu.TabIndex = 10;
@@ -523,7 +533,6 @@
             this.treeView1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.treeView1.Name = "treeView1";
             this.treeView1.SelectedImageIndex = 0;
-            this.treeView1.ShowLines = false;
             this.treeView1.Size = new System.Drawing.Size(396, 440);
             this.treeView1.TabIndex = 5;
             this.treeView1.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterExpandAsync);
@@ -546,6 +555,7 @@
             this.listView1.ContextMenuStrip = this.contextMenuStripTreeView;
             this.listView1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.listView1.FullRowSelect = true;
+            this.listView1.GridLines = true;
             this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
             listViewItem1});
             this.listView1.Location = new System.Drawing.Point(401, 43);
@@ -637,6 +647,7 @@
             this.windowResizer1.BackColor = System.Drawing.Color.Transparent;
             this.windowResizer1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("windowResizer1.BackgroundImage")));
             this.windowResizer1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.windowResizer1.Cursor = System.Windows.Forms.Cursors.SizeAll;
             this.windowResizer1.Location = new System.Drawing.Point(770, 0);
             this.windowResizer1.Margin = new System.Windows.Forms.Padding(0);
             this.windowResizer1.Name = "windowResizer1";
@@ -648,7 +659,7 @@
             this.textBoxUserName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxUserName.BackColor = System.Drawing.Color.White;
             this.textBoxUserName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxUserName.Location = new System.Drawing.Point(503, 38);
+            this.textBoxUserName.Location = new System.Drawing.Point(503, 41);
             this.textBoxUserName.Name = "textBoxUserName";
             this.textBoxUserName.ReadOnly = true;
             this.textBoxUserName.Size = new System.Drawing.Size(271, 18);
@@ -687,7 +698,7 @@
             // 
             this.ToolStripMenuItemShowUserMenu.CheckOnClick = true;
             this.ToolStripMenuItemShowUserMenu.Name = "ToolStripMenuItemShowUserMenu";
-            this.ToolStripMenuItemShowUserMenu.Size = new System.Drawing.Size(180, 22);
+            this.ToolStripMenuItemShowUserMenu.Size = new System.Drawing.Size(152, 22);
             this.ToolStripMenuItemShowUserMenu.Text = "Вывод меню";
             this.ToolStripMenuItemShowUserMenu.CheckedChanged += new System.EventHandler(this.ToolStripMenuItemUserMenu_CheckedChanged);
             // 
@@ -705,7 +716,7 @@
             // 
             this.ToolStripMenuItemAbout.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripMenuItemAbout.Image")));
             this.ToolStripMenuItemAbout.Name = "ToolStripMenuItemAbout";
-            this.ToolStripMenuItemAbout.Size = new System.Drawing.Size(188, 30);
+            this.ToolStripMenuItemAbout.Size = new System.Drawing.Size(166, 30);
             this.ToolStripMenuItemAbout.Text = "О программе";
             this.ToolStripMenuItemAbout.Click += new System.EventHandler(this.ToolStripMenuItemAbout_Click);
             // 
@@ -713,7 +724,7 @@
             // 
             this.ToolStripMenuItemHelp.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripMenuItemHelp.Image")));
             this.ToolStripMenuItemHelp.Name = "ToolStripMenuItemHelp";
-            this.ToolStripMenuItemHelp.Size = new System.Drawing.Size(188, 30);
+            this.ToolStripMenuItemHelp.Size = new System.Drawing.Size(166, 30);
             this.ToolStripMenuItemHelp.Text = "Помощь";
             this.ToolStripMenuItemHelp.Click += new System.EventHandler(this.помощьToolStripMenuItem_Click);
             // 
@@ -734,6 +745,76 @@
             this.windowHeader1.Size = new System.Drawing.Size(798, 34);
             this.windowHeader1.TabIndex = 10;
             // 
+            // textBoxUserPosition
+            // 
+            this.textBoxUserPosition.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxUserPosition.BackColor = System.Drawing.Color.White;
+            this.textBoxUserPosition.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxUserPosition.Font = new System.Drawing.Font("Segoe UI Light", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxUserPosition.Location = new System.Drawing.Point(503, 59);
+            this.textBoxUserPosition.Name = "textBoxUserPosition";
+            this.textBoxUserPosition.ReadOnly = true;
+            this.textBoxUserPosition.Size = new System.Drawing.Size(271, 18);
+            this.textBoxUserPosition.TabIndex = 22;
+            this.textBoxUserPosition.Text = "User Position";
+            // 
+            // vitButton1
+            // 
+            this.vitButton1.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
+            this.vitButton1.AllowDrop = true;
+            this.vitButton1.BackColor = System.Drawing.Color.Transparent;
+            this.vitButton1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("vitButton1.BackgroundImage")));
+            this.vitButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.vitButton1.Location = new System.Drawing.Point(268, 4);
+            this.vitButton1.Margin = new System.Windows.Forms.Padding(4);
+            this.vitButton1.Name = "vitButton1";
+            this.vitButton1.Size = new System.Drawing.Size(36, 37);
+            this.vitButton1.TabIndex = 24;
+            this.toolTip1.SetToolTip(this.vitButton1, "Настройки");
+            // 
+            // vitButton2
+            // 
+            this.vitButton2.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
+            this.vitButton2.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
+            this.vitButton2.BackColor = System.Drawing.Color.Transparent;
+            this.vitButton2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("vitButton2.BackgroundImage")));
+            this.vitButton2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.vitButton2.CausesValidation = false;
+            this.vitButton2.Location = new System.Drawing.Point(312, 4);
+            this.vitButton2.Margin = new System.Windows.Forms.Padding(4);
+            this.vitButton2.Name = "vitButton2";
+            this.vitButton2.Size = new System.Drawing.Size(36, 37);
+            this.vitButton2.TabIndex = 25;
+            this.toolTip1.SetToolTip(this.vitButton2, "Сканировать");
+            // 
+            // vitButton3
+            // 
+            this.vitButton3.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
+            this.vitButton3.AllowDrop = true;
+            this.vitButton3.BackColor = System.Drawing.Color.Transparent;
+            this.vitButton3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("vitButton3.BackgroundImage")));
+            this.vitButton3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.vitButton3.Location = new System.Drawing.Point(356, 4);
+            this.vitButton3.Margin = new System.Windows.Forms.Padding(4);
+            this.vitButton3.Name = "vitButton3";
+            this.vitButton3.Size = new System.Drawing.Size(36, 37);
+            this.vitButton3.TabIndex = 26;
+            this.toolTip1.SetToolTip(this.vitButton3, "Дабавить филиал");
+            // 
+            // vitButton4
+            // 
+            this.vitButton4.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
+            this.vitButton4.AllowDrop = true;
+            this.vitButton4.BackColor = System.Drawing.Color.Transparent;
+            this.vitButton4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("vitButton4.BackgroundImage")));
+            this.vitButton4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.vitButton4.Location = new System.Drawing.Point(400, 4);
+            this.vitButton4.Margin = new System.Windows.Forms.Padding(4);
+            this.vitButton4.Name = "vitButton4";
+            this.vitButton4.Size = new System.Drawing.Size(36, 37);
+            this.vitButton4.TabIndex = 27;
+            this.toolTip1.SetToolTip(this.vitButton4, "Обновить данные в окне программы");
+            // 
             // FormDocumentManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -741,6 +822,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(12)))), ((int)(((byte)(255)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(800, 600);
+            this.Controls.Add(this.textBoxUserPosition);
             this.Controls.Add(this.textBoxUserName);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.buttonExit);
@@ -842,6 +924,11 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TextBox textBoxSearch;
+        private System.Windows.Forms.TextBox textBoxUserPosition;
+        private VitControls.VitButton vitButton1;
+        private VitControls.VitButton vitButton2;
+        private VitControls.VitButton vitButton3;
+        private VitControls.VitButton vitButton4;
     }
 }
 

@@ -244,6 +244,9 @@ namespace VitUsers
             userColection.idAccessGroup = Convert.ToInt32(rows[0]["id_access_group"]);
             userColection.mail = rows[0]["mail"];
             userColection.mailPass = rows[0]["mail_password"];
+            userColection.birthday = Convert.ToDateTime(rows[0]["birthday"]);
+            userColection.DateOfEmployment = Convert.ToDateTime( rows[0]["date_of_employment"]);
+            userColection.gender = Convert.ToBoolean(rows[0]["gender"]);
 
             return userColection;
         }
@@ -270,6 +273,9 @@ namespace VitUsers
                 userColection[i].idAccessGroup = Convert.ToInt32(rows[i]["id_access_group"]);
                 userColection[i].mail = rows[i]["mail"];
                 userColection[i].mailPass = rows[i]["mail_password"];
+                userColection[i].birthday = Convert.ToDateTime(rows[i]["birthday"]);
+                userColection[i].DateOfEmployment = Convert.ToDateTime(rows[i]["date_of_employment"]);
+                userColection[i].gender = Convert.ToBoolean(rows[i]["gender"]);
             }
 
             return userColection;
@@ -473,6 +479,9 @@ namespace VitUsers
             public string login;
             public string middleName;
             public string password;
+            public DateTime DateOfEmployment;
+            public DateTime birthday;
+            public bool gender;
         }
     }
 }

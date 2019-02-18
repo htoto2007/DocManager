@@ -38,6 +38,7 @@
             this.BackColor = System.Drawing.Color.Transparent;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.Cursor = System.Windows.Forms.Cursors.SizeAll;
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "WindowResizer";
             this.Size = new System.Drawing.Size(24, 24);

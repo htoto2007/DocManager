@@ -154,9 +154,9 @@
             this.buttonUsersDeleteUser.Enabled = false;
             this.buttonUsersDeleteUser.ImageKey = "cancellationbutton_exitneartheaction_botondecancelacion_salida_6335.png";
             this.buttonUsersDeleteUser.ImageList = this.imageList1;
-            this.buttonUsersDeleteUser.Location = new System.Drawing.Point(581, 78);
+            this.buttonUsersDeleteUser.Location = new System.Drawing.Point(581, 82);
             this.buttonUsersDeleteUser.Name = "buttonUsersDeleteUser";
-            this.buttonUsersDeleteUser.Size = new System.Drawing.Size(206, 30);
+            this.buttonUsersDeleteUser.Size = new System.Drawing.Size(206, 32);
             this.buttonUsersDeleteUser.TabIndex = 26;
             this.buttonUsersDeleteUser.Text = "Удалить пользователя";
             this.buttonUsersDeleteUser.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -228,11 +228,11 @@
             this.buttonUsersUserEdit.BackColor = System.Drawing.Color.WhiteSmoke;
             this.buttonUsersUserEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.buttonUsersUserEdit.Enabled = false;
-            this.buttonUsersUserEdit.Image = ((System.Drawing.Image)(resources.GetObject("buttonUsersUserEdit.Image")));
             this.buttonUsersUserEdit.ImageKey = "edit_pencil_6320.png";
-            this.buttonUsersUserEdit.Location = new System.Drawing.Point(581, 42);
+            this.buttonUsersUserEdit.ImageList = this.imageList1;
+            this.buttonUsersUserEdit.Location = new System.Drawing.Point(581, 44);
             this.buttonUsersUserEdit.Name = "buttonUsersUserEdit";
-            this.buttonUsersUserEdit.Size = new System.Drawing.Size(206, 30);
+            this.buttonUsersUserEdit.Size = new System.Drawing.Size(206, 32);
             this.buttonUsersUserEdit.TabIndex = 25;
             this.buttonUsersUserEdit.Text = "Изменить свойства";
             this.buttonUsersUserEdit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -244,11 +244,11 @@
             this.button1.AutoSize = true;
             this.button1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
             this.button1.ImageKey = "editionadded_theaction_6325.png";
+            this.button1.ImageList = this.imageList1;
             this.button1.Location = new System.Drawing.Point(581, 6);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(206, 30);
+            this.button1.Size = new System.Drawing.Size(206, 32);
             this.button1.TabIndex = 24;
             this.button1.Text = "Добавить пользователя";
             this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -414,9 +414,9 @@
             this.buttonUsersGroupsDeleteGroup.BackColor = System.Drawing.Color.WhiteSmoke;
             this.buttonUsersGroupsDeleteGroup.ImageKey = "cancellationbutton_exitneartheaction_botondecancelacion_salida_6335.png";
             this.buttonUsersGroupsDeleteGroup.ImageList = this.imageList1;
-            this.buttonUsersGroupsDeleteGroup.Location = new System.Drawing.Point(574, 42);
+            this.buttonUsersGroupsDeleteGroup.Location = new System.Drawing.Point(574, 44);
             this.buttonUsersGroupsDeleteGroup.Name = "buttonUsersGroupsDeleteGroup";
-            this.buttonUsersGroupsDeleteGroup.Size = new System.Drawing.Size(196, 30);
+            this.buttonUsersGroupsDeleteGroup.Size = new System.Drawing.Size(196, 32);
             this.buttonUsersGroupsDeleteGroup.TabIndex = 33;
             this.buttonUsersGroupsDeleteGroup.Text = "Удалить группу";
             this.buttonUsersGroupsDeleteGroup.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -430,7 +430,7 @@
             this.buttonUsersGroupsAddGroup.ImageList = this.imageList1;
             this.buttonUsersGroupsAddGroup.Location = new System.Drawing.Point(574, 6);
             this.buttonUsersGroupsAddGroup.Name = "buttonUsersGroupsAddGroup";
-            this.buttonUsersGroupsAddGroup.Size = new System.Drawing.Size(196, 30);
+            this.buttonUsersGroupsAddGroup.Size = new System.Drawing.Size(196, 32);
             this.buttonUsersGroupsAddGroup.TabIndex = 32;
             this.buttonUsersGroupsAddGroup.Text = "Добавить группу";
             this.buttonUsersGroupsAddGroup.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -460,12 +460,11 @@
             // 
             // checkBox3
             // 
-            this.checkBox3.AutoSize = true;
             this.checkBox3.ImageKey = "folder_red_10936.png";
             this.checkBox3.ImageList = this.imageList1;
-            this.checkBox3.Location = new System.Drawing.Point(574, 57);
+            this.checkBox3.Location = new System.Drawing.Point(574, 79);
             this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(125, 24);
+            this.checkBox3.Size = new System.Drawing.Size(125, 32);
             this.checkBox3.TabIndex = 3;
             this.checkBox3.Text = "Добавление";
             this.checkBox3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -473,12 +472,11 @@
             // 
             // checkBox2
             // 
-            this.checkBox2.AutoSize = true;
             this.checkBox2.ImageKey = "folder_green_10966.png";
             this.checkBox2.ImageList = this.imageList1;
-            this.checkBox2.Location = new System.Drawing.Point(574, 30);
+            this.checkBox2.Location = new System.Drawing.Point(574, 41);
             this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(92, 24);
+            this.checkBox2.Size = new System.Drawing.Size(103, 32);
             this.checkBox2.TabIndex = 2;
             this.checkBox2.Text = "Запись";
             this.checkBox2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -486,12 +484,11 @@
             // 
             // checkBox1
             // 
-            this.checkBox1.AutoSize = true;
             this.checkBox1.ImageKey = "folder_blue_10981.png";
             this.checkBox1.ImageList = this.imageList1;
             this.checkBox1.Location = new System.Drawing.Point(574, 3);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(93, 24);
+            this.checkBox1.Size = new System.Drawing.Size(93, 32);
             this.checkBox1.TabIndex = 1;
             this.checkBox1.Text = "Чтение";
             this.checkBox1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -525,11 +522,11 @@
             // 
             this.button4.AutoSize = true;
             this.button4.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.button4.ImageIndex = 0;
+            this.button4.ImageKey = "cancellationbutton_exitneartheaction_botondecancelacion_salida_6335.png";
             this.button4.ImageList = this.imageList1;
-            this.button4.Location = new System.Drawing.Point(581, 78);
+            this.button4.Location = new System.Drawing.Point(581, 82);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(206, 30);
+            this.button4.Size = new System.Drawing.Size(206, 32);
             this.button4.TabIndex = 31;
             this.button4.Text = "Удалить группу";
             this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -539,11 +536,11 @@
             // 
             this.button5.AutoSize = true;
             this.button5.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.button5.ImageIndex = 1;
+            this.button5.ImageKey = "edit_pencil_6320.png";
             this.button5.ImageList = this.imageList1;
-            this.button5.Location = new System.Drawing.Point(581, 42);
+            this.button5.Location = new System.Drawing.Point(581, 44);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(206, 30);
+            this.button5.Size = new System.Drawing.Size(206, 32);
             this.button5.TabIndex = 30;
             this.button5.Text = "Изменить свойства";
             this.button5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -557,7 +554,7 @@
             this.button6.ImageList = this.imageList1;
             this.button6.Location = new System.Drawing.Point(581, 6);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(206, 30);
+            this.button6.Size = new System.Drawing.Size(206, 32);
             this.button6.TabIndex = 29;
             this.button6.Text = "Добавить группу";
             this.button6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -747,12 +744,11 @@
             // 
             // checkBox4
             // 
-            this.checkBox4.AutoSize = true;
             this.checkBox4.ImageKey = "folder_red_10936.png";
             this.checkBox4.ImageList = this.imageList1;
-            this.checkBox4.Location = new System.Drawing.Point(574, 57);
+            this.checkBox4.Location = new System.Drawing.Point(574, 79);
             this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(125, 24);
+            this.checkBox4.Size = new System.Drawing.Size(125, 32);
             this.checkBox4.TabIndex = 7;
             this.checkBox4.Text = "Добавление";
             this.checkBox4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -760,12 +756,11 @@
             // 
             // checkBox5
             // 
-            this.checkBox5.AutoSize = true;
             this.checkBox5.ImageKey = "folder_green_10966.png";
             this.checkBox5.ImageList = this.imageList1;
-            this.checkBox5.Location = new System.Drawing.Point(574, 30);
+            this.checkBox5.Location = new System.Drawing.Point(574, 41);
             this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(92, 24);
+            this.checkBox5.Size = new System.Drawing.Size(92, 32);
             this.checkBox5.TabIndex = 6;
             this.checkBox5.Text = "Запись";
             this.checkBox5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -773,12 +768,11 @@
             // 
             // checkBox6
             // 
-            this.checkBox6.AutoSize = true;
             this.checkBox6.ImageKey = "folder_blue_10981.png";
             this.checkBox6.ImageList = this.imageList1;
             this.checkBox6.Location = new System.Drawing.Point(574, 3);
             this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(93, 24);
+            this.checkBox6.Size = new System.Drawing.Size(93, 32);
             this.checkBox6.TabIndex = 5;
             this.checkBox6.Text = "Чтение";
             this.checkBox6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -828,6 +822,7 @@
             this.windowResizer1.BackColor = System.Drawing.Color.Transparent;
             this.windowResizer1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("windowResizer1.BackgroundImage")));
             this.windowResizer1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.windowResizer1.Cursor = System.Windows.Forms.Cursors.SizeAll;
             this.windowResizer1.Dock = System.Windows.Forms.DockStyle.Right;
             this.windowResizer1.Location = new System.Drawing.Point(774, 3);
             this.windowResizer1.Margin = new System.Windows.Forms.Padding(0);
@@ -880,7 +875,6 @@
             this.tabPageUserGroups.ResumeLayout(false);
             this.tabPageUserGroups.PerformLayout();
             this.tabPageUserAccess.ResumeLayout(false);
-            this.tabPageUserAccess.PerformLayout();
             this.tabPageGroups.ResumeLayout(false);
             this.tabPageGroups.PerformLayout();
             this.tabControl3.ResumeLayout(false);
@@ -889,7 +883,6 @@
             this.tabPageroupsUsers.ResumeLayout(false);
             this.tabPageroupsUsers.PerformLayout();
             this.tabPageGroupsAccess.ResumeLayout(false);
-            this.tabPageGroupsAccess.PerformLayout();
             this.tabPageFolsers.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);

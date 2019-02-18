@@ -243,6 +243,10 @@
       <Project>{ce939e31-b292-47bb-92d3-085d95fb3f67}</Project>
       <Name>VitTypeCard</Name>
     </ProjectReference>
+    <ProjectReference Include="..\VitUserPosition\VitUserPositions.csproj">
+      <Project>{8450A04C-F52E-48A5-9B70-13B1BC281B76}</Project>
+      <Name>VitUserPositions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VitUsers\VitUsers.csproj">
       <Project>{DF071434-102D-4C05-A18E-F0F67D81DDED}</Project>
       <Name>VitUsers</Name>

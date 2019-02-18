@@ -41,7 +41,7 @@ namespace VitUsers
             }
             else
             {
-                pictureBox1.BackgroundImage = VitIcons.Properties.ResourceColorImage.icons8_user_male_208;
+                pictureBox1.BackgroundImage = VitIcons.Properties.ResourceColorImage.user_person_people_6100;
             }
             richTextBox1.Text = userColection.lastName + " " + userColection.firstName + " " + userColection.middleName;
 
@@ -50,6 +50,12 @@ namespace VitUsers
 
             ClassSubdivision classSubdivision = new ClassSubdivision();
             labelSubdivision.Text = classSubdivision.getInfoById(userColection.idSubdivision).name;
+
+            if (userColection.gender) richTextBoxGender.Text = "муж.";
+            else richTextBoxGender.Text = "жен.";
+
+            richTextBoxDBO.Text = userColection.birthday.ToString("d");
+            richTextBoxDataStartWork.Text = userColection.DateOfEmployment.ToString("d");
 
             labelLogin.Text = userColection.login;
         }

@@ -379,12 +379,6 @@
     <None Include="Resources\securitylockkey_seguridad_cerradur_10792.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\user_person_people_6100.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\userkdmfemale_person_woman_5920.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\warning_10828.png" />
   </ItemGroup>
   <ItemGroup>
@@ -407,6 +401,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\file-warning_40447-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_person_people_6100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\userkdmfemale_person_woman_5920.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
