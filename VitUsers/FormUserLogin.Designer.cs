@@ -99,9 +99,10 @@
             // buttonCancel
             // 
             this.buttonCancel.AutoSize = true;
+            this.buttonCancel.BackColor = System.Drawing.Color.WhiteSmoke;
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonCancel.ImageKey = "eliminatetheaction_eliminar_6322.png";
+            this.buttonCancel.ImageKey = "eliminatetheaction_eliminar_6322-24.png";
             this.buttonCancel.ImageList = this.imageList1;
             this.buttonCancel.Location = new System.Drawing.Point(322, 80);
             this.buttonCancel.Margin = new System.Windows.Forms.Padding(4);
@@ -110,21 +111,22 @@
             this.buttonCancel.TabIndex = 4;
             this.buttonCancel.Text = "Отмена";
             this.buttonCancel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.UseVisualStyleBackColor = false;
             // 
             // imageList1
             // 
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "eliminatetheaction_eliminar_6322.png");
-            this.imageList1.Images.SetKeyName(1, "solicit_accept_check_ok_theaction_6340.png");
+            this.imageList1.Images.SetKeyName(0, "solicit_accept_check_ok_theaction_6340-24.png");
+            this.imageList1.Images.SetKeyName(1, "eliminatetheaction_eliminar_6322-24.png");
             // 
             // buttonOk
             // 
             this.buttonOk.AutoSize = true;
+            this.buttonOk.BackColor = System.Drawing.Color.WhiteSmoke;
             this.buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.buttonOk.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonOk.ImageKey = "solicit_accept_check_ok_theaction_6340.png";
+            this.buttonOk.ImageKey = "solicit_accept_check_ok_theaction_6340-24.png";
             this.buttonOk.ImageList = this.imageList1;
             this.buttonOk.Location = new System.Drawing.Point(165, 80);
             this.buttonOk.Margin = new System.Windows.Forms.Padding(4);
@@ -133,7 +135,7 @@
             this.buttonOk.TabIndex = 3;
             this.buttonOk.Text = "Войти";
             this.buttonOk.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.buttonOk.UseVisualStyleBackColor = true;
+            this.buttonOk.UseVisualStyleBackColor = false;
             this.buttonOk.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
             // label2

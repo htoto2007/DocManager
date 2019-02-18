@@ -74,6 +74,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ResourceColorImage.resx</DependentUpon>
     </Compile>
+    <Compile Include="Properties\ResourceColorImage24.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResourceColorImage24.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FormCompanents.resx">
@@ -82,6 +87,10 @@
     <EmbeddedResource Include="Properties\ResourceColorImage.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ResourceColorImage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\ResourceColorImage24.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourceColorImage24.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -389,6 +398,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\file-warning_40447.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\warning_10828-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_yellow_10921-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file-warning_40447-24.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

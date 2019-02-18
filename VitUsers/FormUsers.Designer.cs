@@ -132,6 +132,7 @@
             // 
             // tabPageUsers
             // 
+            this.tabPageUsers.BackColor = System.Drawing.Color.White;
             this.tabPageUsers.Controls.Add(this.buttonUsersDeleteUser);
             this.tabPageUsers.Controls.Add(this.buttonUsersUserEdit);
             this.tabPageUsers.Controls.Add(this.button1);
@@ -144,11 +145,12 @@
             this.tabPageUsers.Size = new System.Drawing.Size(790, 499);
             this.tabPageUsers.TabIndex = 0;
             this.tabPageUsers.Text = "Пользователи";
-            this.tabPageUsers.UseVisualStyleBackColor = true;
             // 
             // buttonUsersDeleteUser
             // 
             this.buttonUsersDeleteUser.AutoSize = true;
+            this.buttonUsersDeleteUser.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.buttonUsersDeleteUser.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.buttonUsersDeleteUser.Enabled = false;
             this.buttonUsersDeleteUser.ImageKey = "cancellationbutton_exitneartheaction_botondecancelacion_salida_6335.png";
             this.buttonUsersDeleteUser.ImageList = this.imageList1;
@@ -158,53 +160,99 @@
             this.buttonUsersDeleteUser.TabIndex = 26;
             this.buttonUsersDeleteUser.Text = "Удалить пользователя";
             this.buttonUsersDeleteUser.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.buttonUsersDeleteUser.UseVisualStyleBackColor = true;
+            this.buttonUsersDeleteUser.UseVisualStyleBackColor = false;
             this.buttonUsersDeleteUser.Click += new System.EventHandler(this.buttonUsersDeleteUser_Click);
             // 
             // imageList1
             // 
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "cancellationbutton_exitneartheaction_botondecancelacion_salida_6335.png");
-            this.imageList1.Images.SetKeyName(1, "edit_pencil_6320.png");
-            this.imageList1.Images.SetKeyName(2, "editionadded_theaction_6325.png");
-            this.imageList1.Images.SetKeyName(3, "eliminatetheaction_eliminar_6322.png");
-            this.imageList1.Images.SetKeyName(4, "solicit_accept_check_ok_theaction_6340.png");
-            this.imageList1.Images.SetKeyName(5, "folder_blue_10981.png");
-            this.imageList1.Images.SetKeyName(6, "folder_green_10966.png");
-            this.imageList1.Images.SetKeyName(7, "folder_red_10936.png");
-            this.imageList1.Images.SetKeyName(8, "bootloader_users_person_people_6080.png");
-            this.imageList1.Images.SetKeyName(9, "folder_red_locked_10941.png");
-            this.imageList1.Images.SetKeyName(10, "securitylockkey_seguridad_cerradur_10792.png");
-            this.imageList1.Images.SetKeyName(11, "user_person_people_6100.png");
+            this.imageList1.Images.SetKeyName(0, "4directions_arrows_move_14517.png");
+            this.imageList1.Images.SetKeyName(1, "advice_accept_ok_theaction_10829.png");
+            this.imageList1.Images.SetKeyName(2, "aid_lifeguard_6158.png");
+            this.imageList1.Images.SetKeyName(3, "bindersbluedocuments_carpetas_azu_10985.png");
+            this.imageList1.Images.SetKeyName(4, "bootloader_users_person_people_6080.png");
+            this.imageList1.Images.SetKeyName(5, "box_complete_10825.png");
+            this.imageList1.Images.SetKeyName(6, "cancellationbutton_exitneartheaction_botondecancelacion_salida_6335.png");
+            this.imageList1.Images.SetKeyName(7, "communitysupport_users_people_6236.png");
+            this.imageList1.Images.SetKeyName(8, "database_6234.png");
+            this.imageList1.Images.SetKeyName(9, "edit_pencil_6320.png");
+            this.imageList1.Images.SetKeyName(10, "editionadded_theaction_6325.png");
+            this.imageList1.Images.SetKeyName(11, "eliminatetheaction_eliminar_6322.png");
+            this.imageList1.Images.SetKeyName(12, "Errorstopoutput_error_parada_10836.png");
+            this.imageList1.Images.SetKeyName(13, "exit_closethesession_close_6317.png");
+            this.imageList1.Images.SetKeyName(14, "file-warning_40447.png");
+            this.imageList1.Images.SetKeyName(15, "flexible_10909.png");
+            this.imageList1.Images.SetKeyName(16, "folder_black_10996.png");
+            this.imageList1.Images.SetKeyName(17, "folder_black_documents_11000.png");
+            this.imageList1.Images.SetKeyName(18, "folder_blue_10981.png");
+            this.imageList1.Images.SetKeyName(19, "folder_green_10966.png");
+            this.imageList1.Images.SetKeyName(20, "folder_orange_10951.png");
+            this.imageList1.Images.SetKeyName(21, "folder_red_10936.png");
+            this.imageList1.Images.SetKeyName(22, "folder_yellow_10921.png");
+            this.imageList1.Images.SetKeyName(23, "folder_yellow_scanner_camera_10919.png");
+            this.imageList1.Images.SetKeyName(24, "folder-add_icon-icons.com_52433.png");
+            this.imageList1.Images.SetKeyName(25, "folders_red_documents_10940.png");
+            this.imageList1.Images.SetKeyName(26, "foldersgreendocuments_carpetas_verd_10970.png");
+            this.imageList1.Images.SetKeyName(27, "help_question_10831.png");
+            this.imageList1.Images.SetKeyName(28, "help-file_40451.png");
+            this.imageList1.Images.SetKeyName(29, "info_6305.png");
+            this.imageList1.Images.SetKeyName(30, "info_10830.png");
+            this.imageList1.Images.SetKeyName(31, "installation_application_software_10810.png");
+            this.imageList1.Images.SetKeyName(32, "kdmconfigdanger_users_alerts_5921.png");
+            this.imageList1.Images.SetKeyName(33, "key_keys_10804.png");
+            this.imageList1.Images.SetKeyName(34, "kmultiple_5898.png");
+            this.imageList1.Images.SetKeyName(35, "new-file_40454.png");
+            this.imageList1.Images.SetKeyName(36, "painting_photography_photo_picture_6131.png");
+            this.imageList1.Images.SetKeyName(37, "paper-plane_40433.png");
+            this.imageList1.Images.SetKeyName(38, "passwords_keys_6032.png");
+            this.imageList1.Images.SetKeyName(39, "printer_text_10868.png");
+            this.imageList1.Images.SetKeyName(40, "recyclingdrawer_empty_reciclaje_10798.png");
+            this.imageList1.Images.SetKeyName(41, "recyclingdrawer_full_reciclaje_10797.png");
+            this.imageList1.Images.SetKeyName(42, "refresh_arrow_6296.png");
+            this.imageList1.Images.SetKeyName(43, "reminders_pin_pin_6024.png");
+            this.imageList1.Images.SetKeyName(44, "runconfig_plaz_6295.png");
+            this.imageList1.Images.SetKeyName(45, "safetywarning_seguridad_10783.png");
+            this.imageList1.Images.SetKeyName(46, "scanner_10867.png");
+            this.imageList1.Images.SetKeyName(47, "search_book_open_search_locate_6178.png");
+            this.imageList1.Images.SetKeyName(48, "securitylockkey_seguridad_cerradur_10792.png");
+            this.imageList1.Images.SetKeyName(49, "servicesconfig_servicios_6119.png");
+            this.imageList1.Images.SetKeyName(50, "solicit_accept_check_ok_theaction_6340.png");
+            this.imageList1.Images.SetKeyName(51, "user_person_people_6100.png");
+            this.imageList1.Images.SetKeyName(52, "userkdmfemale_person_woman_5920.png");
+            this.imageList1.Images.SetKeyName(53, "warning_10828.png");
             // 
             // buttonUsersUserEdit
             // 
             this.buttonUsersUserEdit.AutoSize = true;
+            this.buttonUsersUserEdit.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.buttonUsersUserEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.buttonUsersUserEdit.Enabled = false;
+            this.buttonUsersUserEdit.Image = ((System.Drawing.Image)(resources.GetObject("buttonUsersUserEdit.Image")));
             this.buttonUsersUserEdit.ImageKey = "edit_pencil_6320.png";
-            this.buttonUsersUserEdit.ImageList = this.imageList1;
             this.buttonUsersUserEdit.Location = new System.Drawing.Point(581, 42);
             this.buttonUsersUserEdit.Name = "buttonUsersUserEdit";
             this.buttonUsersUserEdit.Size = new System.Drawing.Size(206, 30);
             this.buttonUsersUserEdit.TabIndex = 25;
             this.buttonUsersUserEdit.Text = "Изменить свойства";
             this.buttonUsersUserEdit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.buttonUsersUserEdit.UseVisualStyleBackColor = true;
+            this.buttonUsersUserEdit.UseVisualStyleBackColor = false;
             this.buttonUsersUserEdit.Click += new System.EventHandler(this.buttonUsersUserEdit_Click);
             // 
             // button1
             // 
             this.button1.AutoSize = true;
+            this.button1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
             this.button1.ImageKey = "editionadded_theaction_6325.png";
-            this.button1.ImageList = this.imageList1;
             this.button1.Location = new System.Drawing.Point(581, 6);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(206, 30);
             this.button1.TabIndex = 24;
             this.button1.Text = "Добавить пользователя";
             this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.buttonUsersAddUser_Click);
             // 
             // listViewUsers
@@ -363,6 +411,7 @@
             // buttonUsersGroupsDeleteGroup
             // 
             this.buttonUsersGroupsDeleteGroup.AutoSize = true;
+            this.buttonUsersGroupsDeleteGroup.BackColor = System.Drawing.Color.WhiteSmoke;
             this.buttonUsersGroupsDeleteGroup.ImageKey = "cancellationbutton_exitneartheaction_botondecancelacion_salida_6335.png";
             this.buttonUsersGroupsDeleteGroup.ImageList = this.imageList1;
             this.buttonUsersGroupsDeleteGroup.Location = new System.Drawing.Point(574, 42);
@@ -371,11 +420,12 @@
             this.buttonUsersGroupsDeleteGroup.TabIndex = 33;
             this.buttonUsersGroupsDeleteGroup.Text = "Удалить группу";
             this.buttonUsersGroupsDeleteGroup.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.buttonUsersGroupsDeleteGroup.UseVisualStyleBackColor = true;
+            this.buttonUsersGroupsDeleteGroup.UseVisualStyleBackColor = false;
             // 
             // buttonUsersGroupsAddGroup
             // 
             this.buttonUsersGroupsAddGroup.AutoSize = true;
+            this.buttonUsersGroupsAddGroup.BackColor = System.Drawing.Color.WhiteSmoke;
             this.buttonUsersGroupsAddGroup.ImageKey = "editionadded_theaction_6325.png";
             this.buttonUsersGroupsAddGroup.ImageList = this.imageList1;
             this.buttonUsersGroupsAddGroup.Location = new System.Drawing.Point(574, 6);
@@ -384,7 +434,7 @@
             this.buttonUsersGroupsAddGroup.TabIndex = 32;
             this.buttonUsersGroupsAddGroup.Text = "Добавить группу";
             this.buttonUsersGroupsAddGroup.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.buttonUsersGroupsAddGroup.UseVisualStyleBackColor = true;
+            this.buttonUsersGroupsAddGroup.UseVisualStyleBackColor = false;
             // 
             // listViewUsersGroups
             // 
@@ -474,6 +524,7 @@
             // button4
             // 
             this.button4.AutoSize = true;
+            this.button4.BackColor = System.Drawing.Color.WhiteSmoke;
             this.button4.ImageIndex = 0;
             this.button4.ImageList = this.imageList1;
             this.button4.Location = new System.Drawing.Point(581, 78);
@@ -482,11 +533,12 @@
             this.button4.TabIndex = 31;
             this.button4.Text = "Удалить группу";
             this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button4.UseVisualStyleBackColor = true;
+            this.button4.UseVisualStyleBackColor = false;
             // 
             // button5
             // 
             this.button5.AutoSize = true;
+            this.button5.BackColor = System.Drawing.Color.WhiteSmoke;
             this.button5.ImageIndex = 1;
             this.button5.ImageList = this.imageList1;
             this.button5.Location = new System.Drawing.Point(581, 42);
@@ -495,11 +547,12 @@
             this.button5.TabIndex = 30;
             this.button5.Text = "Изменить свойства";
             this.button5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button5.UseVisualStyleBackColor = true;
+            this.button5.UseVisualStyleBackColor = false;
             // 
             // button6
             // 
             this.button6.AutoSize = true;
+            this.button6.BackColor = System.Drawing.Color.WhiteSmoke;
             this.button6.ImageKey = "editionadded_theaction_6325.png";
             this.button6.ImageList = this.imageList1;
             this.button6.Location = new System.Drawing.Point(581, 6);
@@ -508,7 +561,7 @@
             this.button6.TabIndex = 29;
             this.button6.Text = "Добавить группу";
             this.button6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button6.UseVisualStyleBackColor = true;
+            this.button6.UseVisualStyleBackColor = false;
             // 
             // listViewGroups
             // 
@@ -742,7 +795,7 @@
             // tabPageFolsers
             // 
             this.tabPageFolsers.Controls.Add(this.treeViewFoldersAccessFolders);
-            this.tabPageFolsers.ImageKey = "folder_red_locked_10941.png";
+            this.tabPageFolsers.ImageKey = "folders_red_documents_10940.png";
             this.tabPageFolsers.Location = new System.Drawing.Point(4, 31);
             this.tabPageFolsers.Name = "tabPageFolsers";
             this.tabPageFolsers.Padding = new System.Windows.Forms.Padding(3);

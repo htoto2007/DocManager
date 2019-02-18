@@ -37,6 +37,12 @@
             this.buttonDeletePhoto = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.richTextBoxDataStartWork = new System.Windows.Forms.RichTextBox();
+            this.richTextBoxDBO = new System.Windows.Forms.RichTextBox();
+            this.richTextBoxGender = new System.Windows.Forms.RichTextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.labelLogin = new System.Windows.Forms.Label();
             this.labelSubdivision = new System.Windows.Forms.Label();
@@ -48,12 +54,6 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.windowHeader1 = new VitControls.WindowHeader();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.label4 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.richTextBoxGender = new System.Windows.Forms.RichTextBox();
-            this.richTextBoxDBO = new System.Windows.Forms.RichTextBox();
-            this.richTextBoxDataStartWork = new System.Windows.Forms.RichTextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -80,7 +80,7 @@
             this.buttonCancel.AutoSize = true;
             this.buttonCancel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonCancel.ImageKey = "eliminatetheaction_eliminar_6322.png";
+            this.buttonCancel.ImageKey = "eliminatetheaction_eliminar_6322-24.png";
             this.buttonCancel.ImageList = this.imageList1;
             this.buttonCancel.Location = new System.Drawing.Point(479, 301);
             this.buttonCancel.Name = "buttonCancel";
@@ -95,16 +95,16 @@
             // 
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "cancellationbutton_exitneartheaction_botondecancelacion_salida_6335.png");
-            this.imageList1.Images.SetKeyName(1, "eliminatetheaction_eliminar_6322.png");
-            this.imageList1.Images.SetKeyName(2, "painting_photography_photo_picture_6131.png");
-            this.imageList1.Images.SetKeyName(3, "key_keys_10804.png");
+            this.imageList1.Images.SetKeyName(0, "key_keys_10804-24.png");
+            this.imageList1.Images.SetKeyName(1, "cancellationbutton_exitneartheaction_botondecancelacion_salida_6335-24.png");
+            this.imageList1.Images.SetKeyName(2, "painting_photography_photo_picture_6131-24.png");
+            this.imageList1.Images.SetKeyName(3, "eliminatetheaction_eliminar_6322-24.png");
             // 
             // buttonQueryPassword
             // 
             this.buttonQueryPassword.AutoSize = true;
             this.buttonQueryPassword.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.buttonQueryPassword.ImageKey = "key_keys_10804.png";
+            this.buttonQueryPassword.ImageKey = "key_keys_10804-24.png";
             this.buttonQueryPassword.ImageList = this.imageList1;
             this.buttonQueryPassword.Location = new System.Drawing.Point(267, 301);
             this.buttonQueryPassword.Name = "buttonQueryPassword";
@@ -118,7 +118,7 @@
             // buttonDeletePhoto
             // 
             this.buttonDeletePhoto.AutoSize = true;
-            this.buttonDeletePhoto.ImageKey = "cancellationbutton_exitneartheaction_botondecancelacion_salida_6335.png";
+            this.buttonDeletePhoto.ImageKey = "cancellationbutton_exitneartheaction_botondecancelacion_salida_6335-24.png";
             this.buttonDeletePhoto.ImageList = this.imageList1;
             this.buttonDeletePhoto.Location = new System.Drawing.Point(152, 302);
             this.buttonDeletePhoto.Name = "buttonDeletePhoto";
@@ -132,7 +132,7 @@
             // button1
             // 
             this.button1.AutoSize = true;
-            this.button1.ImageKey = "painting_photography_photo_picture_6131.png";
+            this.button1.ImageKey = "painting_photography_photo_picture_6131-24.png";
             this.button1.ImageList = this.imageList1;
             this.button1.Location = new System.Drawing.Point(11, 301);
             this.button1.Name = "button1";
@@ -164,6 +164,72 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(297, 249);
             this.panel2.TabIndex = 39;
+            // 
+            // richTextBoxDataStartWork
+            // 
+            this.richTextBoxDataStartWork.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.richTextBoxDataStartWork.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBoxDataStartWork.Location = new System.Drawing.Point(119, 95);
+            this.richTextBoxDataStartWork.Name = "richTextBoxDataStartWork";
+            this.richTextBoxDataStartWork.ReadOnly = true;
+            this.richTextBoxDataStartWork.Size = new System.Drawing.Size(178, 20);
+            this.richTextBoxDataStartWork.TabIndex = 47;
+            this.richTextBoxDataStartWork.Text = "Начало работы";
+            // 
+            // richTextBoxDBO
+            // 
+            this.richTextBoxDBO.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.richTextBoxDBO.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBoxDBO.Location = new System.Drawing.Point(118, 75);
+            this.richTextBoxDBO.Name = "richTextBoxDBO";
+            this.richTextBoxDBO.ReadOnly = true;
+            this.richTextBoxDBO.Size = new System.Drawing.Size(178, 20);
+            this.richTextBoxDBO.TabIndex = 46;
+            this.richTextBoxDBO.Text = "Дата рождения";
+            // 
+            // richTextBoxGender
+            // 
+            this.richTextBoxGender.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.richTextBoxGender.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBoxGender.Location = new System.Drawing.Point(118, 49);
+            this.richTextBoxGender.Name = "richTextBoxGender";
+            this.richTextBoxGender.ReadOnly = true;
+            this.richTextBoxGender.Size = new System.Drawing.Size(178, 20);
+            this.richTextBoxGender.TabIndex = 45;
+            this.richTextBoxGender.Text = "Пол";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label7.Location = new System.Drawing.Point(4, 92);
+            this.label7.Name = "label7";
+            this.label7.Padding = new System.Windows.Forms.Padding(5);
+            this.label7.Size = new System.Drawing.Size(107, 23);
+            this.label7.TabIndex = 44;
+            this.label7.Text = "Начало работы";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label6.Location = new System.Drawing.Point(3, 69);
+            this.label6.Name = "label6";
+            this.label6.Padding = new System.Windows.Forms.Padding(5);
+            this.label6.Size = new System.Drawing.Size(109, 23);
+            this.label6.TabIndex = 43;
+            this.label6.Text = "Дата рождения";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label4.Location = new System.Drawing.Point(3, 46);
+            this.label4.Name = "label4";
+            this.label4.Padding = new System.Windows.Forms.Padding(5);
+            this.label4.Size = new System.Drawing.Size(40, 23);
+            this.label4.TabIndex = 42;
+            this.label4.Text = "Пол";
             // 
             // richTextBox1
             // 
@@ -282,72 +348,6 @@
             this.toolTip1.IsBalloon = true;
             this.toolTip1.UseAnimation = false;
             this.toolTip1.UseFading = false;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(3, 46);
-            this.label4.Name = "label4";
-            this.label4.Padding = new System.Windows.Forms.Padding(5);
-            this.label4.Size = new System.Drawing.Size(40, 23);
-            this.label4.TabIndex = 42;
-            this.label4.Text = "Пол";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label6.Location = new System.Drawing.Point(3, 69);
-            this.label6.Name = "label6";
-            this.label6.Padding = new System.Windows.Forms.Padding(5);
-            this.label6.Size = new System.Drawing.Size(109, 23);
-            this.label6.TabIndex = 43;
-            this.label6.Text = "Дата рождения";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label7.Location = new System.Drawing.Point(4, 92);
-            this.label7.Name = "label7";
-            this.label7.Padding = new System.Windows.Forms.Padding(5);
-            this.label7.Size = new System.Drawing.Size(107, 23);
-            this.label7.TabIndex = 44;
-            this.label7.Text = "Начало работы";
-            // 
-            // richTextBoxGender
-            // 
-            this.richTextBoxGender.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.richTextBoxGender.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBoxGender.Location = new System.Drawing.Point(118, 49);
-            this.richTextBoxGender.Name = "richTextBoxGender";
-            this.richTextBoxGender.ReadOnly = true;
-            this.richTextBoxGender.Size = new System.Drawing.Size(178, 20);
-            this.richTextBoxGender.TabIndex = 45;
-            this.richTextBoxGender.Text = "Пол";
-            // 
-            // richTextBoxDBO
-            // 
-            this.richTextBoxDBO.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.richTextBoxDBO.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBoxDBO.Location = new System.Drawing.Point(118, 75);
-            this.richTextBoxDBO.Name = "richTextBoxDBO";
-            this.richTextBoxDBO.ReadOnly = true;
-            this.richTextBoxDBO.Size = new System.Drawing.Size(178, 20);
-            this.richTextBoxDBO.TabIndex = 46;
-            this.richTextBoxDBO.Text = "Дата рождения";
-            // 
-            // richTextBoxDataStartWork
-            // 
-            this.richTextBoxDataStartWork.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.richTextBoxDataStartWork.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBoxDataStartWork.Location = new System.Drawing.Point(119, 95);
-            this.richTextBoxDataStartWork.Name = "richTextBoxDataStartWork";
-            this.richTextBoxDataStartWork.ReadOnly = true;
-            this.richTextBoxDataStartWork.Size = new System.Drawing.Size(178, 20);
-            this.richTextBoxDataStartWork.TabIndex = 47;
-            this.richTextBoxDataStartWork.Text = "Начало работы";
             // 
             // FormUserProfile
             // 

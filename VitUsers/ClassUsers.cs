@@ -76,7 +76,8 @@ namespace VitUsers
                 "id_subdivision = '" + idDivision + "', " +
                 "id_position = '" + idUserPosition + "', " +
                 "id_access_group = '" + idAccessGroup + "', " +
-                "password = '" + password + "'");
+                "password = '" + password + "', " +
+                "image = ' '");
 
             classMysql.UpdateOrDelete("" +
                 "UPDATE tb_users " +

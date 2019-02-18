@@ -46,7 +46,7 @@ namespace VitUsers
 
         private async Task getSubdirectoryes(ClassFTP classFTP, TreeNode treeNode, string directory)
         {
-            string[] dsubirectoryes = classFTP.ListDirectory(directory);
+            string[] dsubirectoryes = classFTP.ListDirectoryWithotFiles(directory);
             foreach (string subdirectory in dsubirectoryes)
             {
                 if (subdirectory.Contains("..")) continue;

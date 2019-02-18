@@ -669,14 +669,14 @@ namespace DocManager
         private async void treeView1_AfterExpandAsync(object sender, TreeViewEventArgs e)
         {
             Enabled = false;
-            await classTree.preLoadNodesAsync(e.Node);
+            await classTree.PreLoadNodesAsync(e.Node);
             Enabled = true;
         }
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
             Console.WriteLine(treeView1.SelectedNode.Name);
-            VitListView.ClassLisView classLisView = new VitListView.ClassLisView();
+            ClassLisView classLisView = new ClassLisView();
             classLisView.FromTreeVuew(treeView1, listView1);
         }
 

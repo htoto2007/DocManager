@@ -132,10 +132,11 @@
             // 
             this.buttonOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonOk.AutoSize = true;
+            this.buttonOk.BackColor = System.Drawing.Color.WhiteSmoke;
             this.buttonOk.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.buttonOk.FlatAppearance.BorderSize = 0;
             this.buttonOk.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonOk.ImageKey = "solicit_accept_check_ok_theaction_6340.png";
+            this.buttonOk.ImageKey = "solicit_accept_check_ok_theaction_6340-24.png";
             this.buttonOk.ImageList = this.imageList1;
             this.buttonOk.Location = new System.Drawing.Point(7, 372);
             this.buttonOk.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -144,15 +145,15 @@
             this.buttonOk.TabIndex = 70;
             this.buttonOk.Text = "Сохранить изменения";
             this.buttonOk.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.buttonOk.UseVisualStyleBackColor = true;
+            this.buttonOk.UseVisualStyleBackColor = false;
             this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
             // 
             // imageList1
             // 
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "eliminatetheaction_eliminar_6322.png");
-            this.imageList1.Images.SetKeyName(1, "solicit_accept_check_ok_theaction_6340.png");
+            this.imageList1.Images.SetKeyName(0, "solicit_accept_check_ok_theaction_6340-24.png");
+            this.imageList1.Images.SetKeyName(1, "eliminatetheaction_eliminar_6322-24.png");
             // 
             // comboBoxSubdivision
             // 
@@ -328,11 +329,12 @@
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.AutoSize = true;
+            this.button1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.ImageKey = "eliminatetheaction_eliminar_6322.png";
+            this.button1.ImageKey = "eliminatetheaction_eliminar_6322-24.png";
             this.button1.ImageList = this.imageList1;
             this.button1.Location = new System.Drawing.Point(290, 372);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -341,7 +343,7 @@
             this.button1.TabIndex = 73;
             this.button1.Text = "Отмена";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             // 
             // FormUserPropertyEdit
             // 

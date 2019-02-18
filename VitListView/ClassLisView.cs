@@ -10,6 +10,7 @@ using VitNotifyMessage;
 using VitTree;
 using VitTypeCard;
 using vitTypeCardProps;
+using VitUsers;
 
 namespace VitListView
 {
@@ -73,7 +74,25 @@ namespace VitListView
             TreeNode treeNode = treeView.SelectedNode;
             int idFile = classFiles.getInfoByFilePath(treeNode.Name).id;
             ClassCardPropsValue.CardPropsValueCollection[] cardPropsValueCollections = classCardPropsValue.getByIdFile(idFile);
+
+
+            ClassUsers classUsers = new ClassUsers();
+            ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
+            var file = classFTP.getFileInfo(treeNode.Name);
+            ListViewItem listViewItem;
+            listViewItem = new ListViewItem();
+            listViewItem.Text = "Полный путь";
+            listViewItem.Name = "name";
+            listViewItem.SubItems.Add(file.fullName.ToString()).Name = "value";
+            listView.Items.Add(listViewItem);
+            listViewItem = new ListViewItem();
+            listViewItem.Text = "Дата последнего изменения";
+            listViewItem.Name = "name";
+            listViewItem.SubItems.Add(file.LastWriteTime.ToString()).Name = "value";
+            listView.Items.Add(listViewItem);
+
             
+
             // если неудалось найти карточку
             if (cardPropsValueCollections == null)
             {
@@ -83,10 +102,11 @@ namespace VitListView
                 return;
             }
 
+            
             foreach (ClassCardPropsValue.CardPropsValueCollection cardValue in cardPropsValueCollections)
             {
                 int idCardProp = cardValue.idCardProp;
-                ListViewItem listViewItem = new ListViewItem
+                listViewItem = new ListViewItem
                 {
                     Text = classTypeCardProps.getInfoById(idCardProp).name,
                     Name = "name",
@@ -95,6 +115,10 @@ namespace VitListView
                 listViewItem.SubItems.Add(cardValue.value).Name = "value";
                 listView.Items.Add(listViewItem);
             }
+            
+            
+
+
             listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             listView.EndUpdate();
             listView.Update();

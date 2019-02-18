@@ -182,8 +182,13 @@ namespace VitFTP
             }
         }
 
-        public void CreateDirectory(string path)
+        public bool CreateDirectory(string path)
         {
+            if (FileExist(path))
+            {
+                classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.USER_ERROR, "Папака " + Path.GetFileName(path) + " уже существует.");
+                return false;
+            }
             using (Session session = new Session())
             {
                 // Connect
@@ -191,6 +196,7 @@ namespace VitFTP
                 session.CreateDirectory(path);
                 session.Close();
             }
+            return FileExist(path);
         }
 
         
@@ -276,9 +282,16 @@ namespace VitFTP
             return icon;
         }
 
-        public string[] ListDirectory(string path)
+        public struct FileCollection
         {
-            List<string> fileList = new List<string>();
+            public string path;
+            public bool isDirectory;
+            public char fileType;
+            public bool IsParentDirectory;
+        }
+
+        public FileCollection[] ListDirectoryDetail(string path)
+        {
             Session session = new Session();
             try
             {
@@ -289,11 +302,36 @@ namespace VitFTP
                 return null;
             }
             RemoteFileInfoCollection files = session.ListDirectory(path).Files;
-                
-            foreach (RemoteFileInfo file in files)
-                fileList.Add(file.FullName.Replace("\\", "/"));
+
+            FileCollection[] fileCollection = new FileCollection[files.Count];
+            for (int i = 0; i < files.Count; i++)
+            {
+                fileCollection[i].path = files[i].FullName;
+                fileCollection[i].isDirectory = files[i].IsDirectory;
+                fileCollection[i].fileType = files[i].FileType;
+            }
             session.Close();
+            return fileCollection;
+        }
+
+        public string[] ListDirectory(string path)
+        {
+            Session session = new Session();
+            try
+            {
+                session.Open(sessionOptions);
+            }
+            catch (Exception e)
+            {
+                classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, "Не подключиться к сераеру. " + e.Message);
+                return null;
+            }
+            RemoteFileInfoCollection files = session.ListDirectory(path).Files;
+            List<string> fileList = new List<string>();
             
+            for (int i = 0; i < files.Count; i++)
+                fileList.Add(files[i].FullName);
+            session.Close();
             return fileList.ToArray();
         }
 
@@ -319,12 +357,10 @@ namespace VitFTP
 
             return fileList.ToArray();
         }
-
-
+        
         public string MakeDirectory(string directoryName)
         {
             FtpWebRequest request = createRequest(combine(uri, directoryName), WebRequestMethods.Ftp.MakeDirectory);
-
             return getStatusDescription(request);
         }
 
@@ -354,21 +390,35 @@ namespace VitFTP
                     }
                     else
                     {
-                        await Task.Run(() => DownloadFile(sourcePath, VitSettings.Properties.FTPSettings.Default.pathTnp + "\\" + Path.GetFileName(sourcePath)));
-                        await Task.Run(() => session.PutFiles(VitSettings.Properties.FTPSettings.Default.pathTnp + "\\" + Path.GetFileName(sourcePath), targetPath));
-                        await Task.Run(() => DeleteFile(sourcePath));
+                        session.GetFiles(sourcePath, VitSettings.Properties.FTPSettings.Default.pathTnp + "\\" + Path.GetFileName(sourcePath));
+                        session.PutFiles(VitSettings.Properties.FTPSettings.Default.pathTnp + "\\" + Path.GetFileName(sourcePath), targetPath);
                     }
                     await Task.Run(() => EraseDirectory(VitSettings.Properties.FTPSettings.Default.pathTnp));
 
-                    pathMove = targetPath + "/" + Path.GetFileName(sourcePath);
+                    pathMove = "/" + targetPath.Replace("\\", "/") + "/" + Path.GetFileName(sourcePath);
                     // проверяем результат переноса файла
                     if (FileExist(pathMove) == true)
+                    {
                         arrOkPathsMove.Add(sourcePath);
+                        await Task.Run(() => DeleteFile(sourcePath));
+                    }
                 }
                 session.Close();
             }
 
             return arrOkPathsMove.ToArray();
+        }
+
+        public bool DownloadFile2(string source, string destination)
+        {
+
+            Session session = new Session();
+
+            // Connect
+            session.Open(sessionOptions);
+            TransferOperationResult transferOperationResult = session.GetFiles(source, destination, false, null);
+            session.Close();
+            return transferOperationResult.IsSuccess;
         }
 
         public string PrintWorkingDirectory()
@@ -406,9 +456,9 @@ namespace VitFTP
                 // Connect
                 session.Open(sessionOptions);
                 RemoteFileInfo remoteFileInfo = session.GetFileInfo(filePath);
-                ftpFileInfo.isExecure = remoteFileInfo.FilePermissions.UserExecute;
-                ftpFileInfo.isRead = remoteFileInfo.FilePermissions.UserRead;
-                ftpFileInfo.isWrite = remoteFileInfo.FilePermissions.UserWrite;
+                //ftpFileInfo.isExecure = remoteFileInfo.FilePermissions.UserExecute;
+                //ftpFileInfo.isRead = remoteFileInfo.FilePermissions.UserRead;
+                //ftpFileInfo.isWrite = remoteFileInfo.FilePermissions.UserWrite;
                 ftpFileInfo.IsDirectory = remoteFileInfo.IsDirectory;
                 ftpFileInfo.LastWriteTime = remoteFileInfo.LastWriteTime;
                 ftpFileInfo.fullName = remoteFileInfo.FullName;

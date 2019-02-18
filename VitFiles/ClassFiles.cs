@@ -83,7 +83,7 @@ namespace VitFiles
             int id = classMysql.Insert("" +
                 "INSERT INTO tb_files " +
                 "SET " +
-                "   path = '" + path + "'");
+                "   path = '" + path + "' ");
             ClassUsers classUsers = new ClassUsers();
             ClassRelationsUsersToFile classRelationsUsersToFile = new ClassRelationsUsersToFile();
             classRelationsUsersToFile.add(classUsers.getThisUser().id, id, "Создание файла");
@@ -298,6 +298,12 @@ namespace VitFiles
             
             // переносим файлы на сервере
             string[] movedFilePathOk = await classFTP.moveAsync(sourceArrPath, targetPath);
+
+            if ((movedFilePathOk == null) || (movedFilePathOk.GetLength(0) < 1))
+            {
+                classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, "Не удалось переместить файл.");
+                return null;
+            }
 
             // обновляем информацию сущностей файлов в базе
             ClassFiles classFiles = new ClassFiles();

@@ -14,10 +14,10 @@ namespace VitIcons
 
         public ClassImageList()
         {
-            imageList.ImageSize = new Size(24, 24);
             imageList.ColorDepth = ColorDepth.Depth32Bit;
-            imageList.Images.Add("default_file", Properties.ResourceColorImage.file_warning_40447);
-            imageList.Images.Add("default_folder", Properties.ResourceColorImage.default_folder);
+            imageList.ImageSize = new Size(24, 24);
+            imageList.Images.Add("default_file", Properties.ResourceColorImage24.file_warning_40447_24);
+            imageList.Images.Add("default_folder", Properties.ResourceColorImage24.folder_yellow_10921_24);
             imageList.Images.Add("default_folder_no_empty", Properties.ResourceColorImage.folder_black_documents_11000);
             imageList.Images.Add("root", Properties.ResourceColorImage.unlnown_file);
 

@@ -287,7 +287,7 @@
             this.ToolStripMenuItemAdministration.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ToolStripMenuItemAdministration.ForeColor = System.Drawing.Color.Black;
             this.ToolStripMenuItemAdministration.Name = "ToolStripMenuItemAdministration";
-            this.ToolStripMenuItemAdministration.Size = new System.Drawing.Size(166, 26);
+            this.ToolStripMenuItemAdministration.Size = new System.Drawing.Size(166, 43);
             this.ToolStripMenuItemAdministration.Text = "Администратирование";
             // 
             // ToolStripMenuItemConnectToData
@@ -367,10 +367,10 @@
             this.button1.BackColor = System.Drawing.Color.White;
             this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
             this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button1.Location = new System.Drawing.Point(445, 35);
+            this.button1.Location = new System.Drawing.Point(457, 36);
             this.button1.Margin = new System.Windows.Forms.Padding(7, 1, 7, 1);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(32, 31);
+            this.button1.Size = new System.Drawing.Size(36, 36);
             this.button1.TabIndex = 20;
             this.toolTip1.SetToolTip(this.button1, "Профиль пользователя");
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -386,7 +386,7 @@
             this.buttonExit.Location = new System.Drawing.Point(402, 36);
             this.buttonExit.Margin = new System.Windows.Forms.Padding(4, 1, 4, 1);
             this.buttonExit.Name = "buttonExit";
-            this.buttonExit.Size = new System.Drawing.Size(32, 31);
+            this.buttonExit.Size = new System.Drawing.Size(36, 36);
             this.buttonExit.TabIndex = 18;
             this.toolTip1.SetToolTip(this.buttonExit, "Выход");
             this.buttonExit.Click += new System.EventHandler(this.buttonExit_Click);
@@ -399,9 +399,9 @@
             this.buttonAdminSettingsDocumentCard.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonAdminSettingsDocumentCard.BackgroundImage")));
             this.buttonAdminSettingsDocumentCard.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.buttonAdminSettingsDocumentCard.Location = new System.Drawing.Point(4, 4);
-            this.buttonAdminSettingsDocumentCard.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonAdminSettingsDocumentCard.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonAdminSettingsDocumentCard.Name = "buttonAdminSettingsDocumentCard";
-            this.buttonAdminSettingsDocumentCard.Size = new System.Drawing.Size(30, 30);
+            this.buttonAdminSettingsDocumentCard.Size = new System.Drawing.Size(36, 36);
             this.buttonAdminSettingsDocumentCard.TabIndex = 17;
             this.toolTip1.SetToolTip(this.buttonAdminSettingsDocumentCard, "Настройка карточек документов");
             this.buttonAdminSettingsDocumentCard.Click += new System.EventHandler(this.buttonSettingsDocumentCard_Click);
@@ -413,10 +413,10 @@
             this.buttonAdminUsers.BackColor = System.Drawing.Color.White;
             this.buttonAdminUsers.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonAdminUsers.BackgroundImage")));
             this.buttonAdminUsers.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.buttonAdminUsers.Location = new System.Drawing.Point(42, 4);
-            this.buttonAdminUsers.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonAdminUsers.Location = new System.Drawing.Point(48, 4);
+            this.buttonAdminUsers.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonAdminUsers.Name = "buttonAdminUsers";
-            this.buttonAdminUsers.Size = new System.Drawing.Size(30, 30);
+            this.buttonAdminUsers.Size = new System.Drawing.Size(36, 36);
             this.buttonAdminUsers.TabIndex = 19;
             this.toolTip1.SetToolTip(this.buttonAdminUsers, "Пользователи");
             this.buttonAdminUsers.Click += new System.EventHandler(this.buttonUsers_Click);
@@ -428,10 +428,10 @@
             this.buttonAdminSettings.BackColor = System.Drawing.Color.White;
             this.buttonAdminSettings.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonAdminSettings.BackgroundImage")));
             this.buttonAdminSettings.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.buttonAdminSettings.Location = new System.Drawing.Point(80, 4);
-            this.buttonAdminSettings.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonAdminSettings.Location = new System.Drawing.Point(92, 4);
+            this.buttonAdminSettings.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonAdminSettings.Name = "buttonAdminSettings";
-            this.buttonAdminSettings.Size = new System.Drawing.Size(30, 30);
+            this.buttonAdminSettings.Size = new System.Drawing.Size(36, 36);
             this.buttonAdminSettings.TabIndex = 20;
             this.toolTip1.SetToolTip(this.buttonAdminSettings, "Настройки");
             this.buttonAdminSettings.Click += new System.EventHandler(this.buttonSettings_Click);
@@ -444,10 +444,10 @@
             this.buttonScan.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonScan.BackgroundImage")));
             this.buttonScan.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.buttonScan.CausesValidation = false;
-            this.buttonScan.Location = new System.Drawing.Point(118, 4);
-            this.buttonScan.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonScan.Location = new System.Drawing.Point(136, 4);
+            this.buttonScan.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonScan.Name = "buttonScan";
-            this.buttonScan.Size = new System.Drawing.Size(30, 30);
+            this.buttonScan.Size = new System.Drawing.Size(36, 36);
             this.buttonScan.TabIndex = 21;
             this.toolTip1.SetToolTip(this.buttonScan, "Сканировать");
             this.buttonScan.Click += new System.EventHandler(this.ButtonScan_Click);
@@ -459,10 +459,10 @@
             this.buttonAddBranch.BackColor = System.Drawing.Color.White;
             this.buttonAddBranch.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonAddBranch.BackgroundImage")));
             this.buttonAddBranch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.buttonAddBranch.Location = new System.Drawing.Point(156, 4);
-            this.buttonAddBranch.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonAddBranch.Location = new System.Drawing.Point(180, 4);
+            this.buttonAddBranch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonAddBranch.Name = "buttonAddBranch";
-            this.buttonAddBranch.Size = new System.Drawing.Size(30, 30);
+            this.buttonAddBranch.Size = new System.Drawing.Size(36, 36);
             this.buttonAddBranch.TabIndex = 22;
             this.toolTip1.SetToolTip(this.buttonAddBranch, "Дабавить филиал");
             this.buttonAddBranch.Click += new System.EventHandler(this.buttonAddBranch_Click);
@@ -474,10 +474,10 @@
             this.vitButtonUpdateInfo.BackColor = System.Drawing.Color.White;
             this.vitButtonUpdateInfo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("vitButtonUpdateInfo.BackgroundImage")));
             this.vitButtonUpdateInfo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.vitButtonUpdateInfo.Location = new System.Drawing.Point(194, 4);
-            this.vitButtonUpdateInfo.Margin = new System.Windows.Forms.Padding(4);
+            this.vitButtonUpdateInfo.Location = new System.Drawing.Point(224, 4);
+            this.vitButtonUpdateInfo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.vitButtonUpdateInfo.Name = "vitButtonUpdateInfo";
-            this.vitButtonUpdateInfo.Size = new System.Drawing.Size(30, 30);
+            this.vitButtonUpdateInfo.Size = new System.Drawing.Size(36, 36);
             this.vitButtonUpdateInfo.TabIndex = 23;
             this.toolTip1.SetToolTip(this.vitButtonUpdateInfo, "Обновить данные в окне программы");
             this.vitButtonUpdateInfo.Click += new System.EventHandler(this.vitButtonUpdateInfo_Click);
@@ -487,10 +487,10 @@
             this.panelUserMenu.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panelUserMenu.Controls.Add(this.flowLayoutPanelUserMenu);
             this.panelUserMenu.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelUserMenu.Location = new System.Drawing.Point(1, 67);
+            this.panelUserMenu.Location = new System.Drawing.Point(1, 84);
             this.panelUserMenu.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panelUserMenu.Name = "panelUserMenu";
-            this.panelUserMenu.Size = new System.Drawing.Size(798, 40);
+            this.panelUserMenu.Size = new System.Drawing.Size(798, 47);
             this.panelUserMenu.TabIndex = 5;
             // 
             // flowLayoutPanelUserMenu
@@ -506,7 +506,7 @@
             this.flowLayoutPanelUserMenu.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanelUserMenu.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanelUserMenu.Name = "flowLayoutPanelUserMenu";
-            this.flowLayoutPanelUserMenu.Size = new System.Drawing.Size(798, 40);
+            this.flowLayoutPanelUserMenu.Size = new System.Drawing.Size(798, 47);
             this.flowLayoutPanelUserMenu.TabIndex = 10;
             // 
             // treeView1
@@ -524,7 +524,7 @@
             this.treeView1.Name = "treeView1";
             this.treeView1.SelectedImageIndex = 0;
             this.treeView1.ShowLines = false;
-            this.treeView1.Size = new System.Drawing.Size(396, 464);
+            this.treeView1.Size = new System.Drawing.Size(396, 440);
             this.treeView1.TabIndex = 5;
             this.treeView1.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterExpandAsync);
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
@@ -551,7 +551,7 @@
             this.listView1.Location = new System.Drawing.Point(401, 43);
             this.listView1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 4);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(394, 417);
+            this.listView1.Size = new System.Drawing.Size(394, 393);
             this.listView1.TabIndex = 6;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -589,10 +589,10 @@
             this.panelExplorer.Controls.Add(this.listView1);
             this.panelExplorer.Controls.Add(this.treeView1);
             this.panelExplorer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelExplorer.Location = new System.Drawing.Point(1, 107);
+            this.panelExplorer.Location = new System.Drawing.Point(1, 131);
             this.panelExplorer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panelExplorer.Name = "panelExplorer";
-            this.panelExplorer.Size = new System.Drawing.Size(798, 464);
+            this.panelExplorer.Size = new System.Drawing.Size(798, 440);
             this.panelExplorer.TabIndex = 6;
             // 
             // panel1
@@ -648,10 +648,10 @@
             this.textBoxUserName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxUserName.BackColor = System.Drawing.Color.White;
             this.textBoxUserName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxUserName.Location = new System.Drawing.Point(487, 42);
+            this.textBoxUserName.Location = new System.Drawing.Point(503, 38);
             this.textBoxUserName.Name = "textBoxUserName";
             this.textBoxUserName.ReadOnly = true;
-            this.textBoxUserName.Size = new System.Drawing.Size(306, 18);
+            this.textBoxUserName.Size = new System.Drawing.Size(271, 18);
             this.textBoxUserName.TabIndex = 21;
             this.textBoxUserName.Text = "User Name";
             // 
@@ -670,7 +670,7 @@
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.menuStrip1.Size = new System.Drawing.Size(798, 32);
+            this.menuStrip1.Size = new System.Drawing.Size(798, 49);
             this.menuStrip1.TabIndex = 7;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -680,14 +680,14 @@
             this.ToolStripMenuItemShowUserMenu});
             this.ToolStripMenuItemView.ForeColor = System.Drawing.Color.Black;
             this.ToolStripMenuItemView.Name = "ToolStripMenuItemView";
-            this.ToolStripMenuItemView.Size = new System.Drawing.Size(41, 26);
+            this.ToolStripMenuItemView.Size = new System.Drawing.Size(41, 43);
             this.ToolStripMenuItemView.Text = "Вид";
             // 
             // ToolStripMenuItemShowUserMenu
             // 
             this.ToolStripMenuItemShowUserMenu.CheckOnClick = true;
             this.ToolStripMenuItemShowUserMenu.Name = "ToolStripMenuItemShowUserMenu";
-            this.ToolStripMenuItemShowUserMenu.Size = new System.Drawing.Size(152, 22);
+            this.ToolStripMenuItemShowUserMenu.Size = new System.Drawing.Size(180, 22);
             this.ToolStripMenuItemShowUserMenu.Text = "Вывод меню";
             this.ToolStripMenuItemShowUserMenu.CheckedChanged += new System.EventHandler(this.ToolStripMenuItemUserMenu_CheckedChanged);
             // 
@@ -698,14 +698,14 @@
             this.ToolStripMenuItemHelp});
             this.справкаToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.справкаToolStripMenuItem.Name = "справкаToolStripMenuItem";
-            this.справкаToolStripMenuItem.Size = new System.Drawing.Size(70, 26);
+            this.справкаToolStripMenuItem.Size = new System.Drawing.Size(70, 43);
             this.справкаToolStripMenuItem.Text = "Справка";
             // 
             // ToolStripMenuItemAbout
             // 
             this.ToolStripMenuItemAbout.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripMenuItemAbout.Image")));
             this.ToolStripMenuItemAbout.Name = "ToolStripMenuItemAbout";
-            this.ToolStripMenuItemAbout.Size = new System.Drawing.Size(166, 30);
+            this.ToolStripMenuItemAbout.Size = new System.Drawing.Size(188, 30);
             this.ToolStripMenuItemAbout.Text = "О программе";
             this.ToolStripMenuItemAbout.Click += new System.EventHandler(this.ToolStripMenuItemAbout_Click);
             // 
@@ -713,7 +713,7 @@
             // 
             this.ToolStripMenuItemHelp.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripMenuItemHelp.Image")));
             this.ToolStripMenuItemHelp.Name = "ToolStripMenuItemHelp";
-            this.ToolStripMenuItemHelp.Size = new System.Drawing.Size(166, 30);
+            this.ToolStripMenuItemHelp.Size = new System.Drawing.Size(188, 30);
             this.ToolStripMenuItemHelp.Text = "Помощь";
             this.ToolStripMenuItemHelp.Click += new System.EventHandler(this.помощьToolStripMenuItem_Click);
             // 
