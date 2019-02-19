@@ -38,7 +38,9 @@ namespace VitTree
             buttonOk.Enabled = false;
             ClassUsers classUsers = new ClassUsers();
             ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
+            classFTP.SessionOpen();
             int res = classFTP.getFileType(treeView1.SelectedNode.Name);
+            classFTP.sessionClose();
             if (treeView1.SelectedNode == null)
             {
                 buttonOk.Enabled = false;

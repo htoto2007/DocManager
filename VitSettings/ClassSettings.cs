@@ -41,6 +41,10 @@ namespace VitSettings
                 {
 
                 }
+                catch (System.UnauthorizedAccessException)
+                {
+
+                }
                 Directory.CreateDirectory(Properties.FTPSettings.Default.pathTnp);
             }
 

@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDocumentManager));
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
             ""}, -1, System.Drawing.Color.Empty, System.Drawing.Color.Transparent, null);
             this.contextMenuStripTreeView = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ToolStripMenuItemAddFolder = new System.Windows.Forms.ToolStripMenuItem();
@@ -68,6 +68,10 @@
             this.buttonScan = new VitControls.VitButton();
             this.buttonAddBranch = new VitControls.VitButton();
             this.vitButtonUpdateInfo = new VitControls.VitButton();
+            this.vitButton1 = new VitControls.VitButton();
+            this.vitButton2 = new VitControls.VitButton();
+            this.vitButton3 = new VitControls.VitButton();
+            this.vitButton4 = new VitControls.VitButton();
             this.panelUserMenu = new System.Windows.Forms.Panel();
             this.flowLayoutPanelUserMenu = new System.Windows.Forms.FlowLayoutPanel();
             this.treeView1 = new System.Windows.Forms.TreeView();
@@ -89,12 +93,8 @@
             this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemHelp = new System.Windows.Forms.ToolStripMenuItem();
-            this.windowHeader1 = new VitControls.WindowHeader();
             this.textBoxUserPosition = new System.Windows.Forms.TextBox();
-            this.vitButton1 = new VitControls.VitButton();
-            this.vitButton2 = new VitControls.VitButton();
-            this.vitButton3 = new VitControls.VitButton();
-            this.vitButton4 = new VitControls.VitButton();
+            this.windowHeader1 = new VitControls.WindowHeader();
             this.contextMenuStripTreeView.SuspendLayout();
             this.panelUserMenu.SuspendLayout();
             this.flowLayoutPanelUserMenu.SuspendLayout();
@@ -337,7 +337,6 @@
             // timerSearcher
             // 
             this.timerSearcher.Interval = 1000;
-            this.timerSearcher.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // toolTip1
             // 
@@ -357,13 +356,13 @@
             this.textBoxSearch.BackColor = System.Drawing.Color.White;
             this.textBoxSearch.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxSearch.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxSearch.Location = new System.Drawing.Point(35, 3);
+            this.textBoxSearch.Location = new System.Drawing.Point(44, 7);
             this.textBoxSearch.Margin = new System.Windows.Forms.Padding(0, 4, 3, 0);
             this.textBoxSearch.Name = "textBoxSearch";
-            this.textBoxSearch.Size = new System.Drawing.Size(356, 26);
+            this.textBoxSearch.Size = new System.Drawing.Size(347, 26);
             this.textBoxSearch.TabIndex = 9;
-            this.toolTip1.SetToolTip(this.textBoxSearch, "Просто начните вводить текст и все найдется...");
-            this.textBoxSearch.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.toolTip1.SetToolTip(this.textBoxSearch, "Для поиска введите текст и нажмите Enter");
+            this.textBoxSearch.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBoxSearch_KeyUp);
             // 
             // button1
             // 
@@ -480,12 +479,69 @@
             this.vitButtonUpdateInfo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("vitButtonUpdateInfo.BackgroundImage")));
             this.vitButtonUpdateInfo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.vitButtonUpdateInfo.Location = new System.Drawing.Point(224, 4);
-            this.vitButtonUpdateInfo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.vitButtonUpdateInfo.Margin = new System.Windows.Forms.Padding(4);
             this.vitButtonUpdateInfo.Name = "vitButtonUpdateInfo";
             this.vitButtonUpdateInfo.Size = new System.Drawing.Size(36, 36);
             this.vitButtonUpdateInfo.TabIndex = 23;
             this.toolTip1.SetToolTip(this.vitButtonUpdateInfo, "Обновить данные в окне программы");
             this.vitButtonUpdateInfo.Click += new System.EventHandler(this.vitButtonUpdateInfo_Click);
+            // 
+            // vitButton1
+            // 
+            this.vitButton1.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
+            this.vitButton1.AllowDrop = true;
+            this.vitButton1.BackColor = System.Drawing.Color.Transparent;
+            this.vitButton1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("vitButton1.BackgroundImage")));
+            this.vitButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.vitButton1.Location = new System.Drawing.Point(268, 4);
+            this.vitButton1.Margin = new System.Windows.Forms.Padding(4);
+            this.vitButton1.Name = "vitButton1";
+            this.vitButton1.Size = new System.Drawing.Size(36, 37);
+            this.vitButton1.TabIndex = 24;
+            this.toolTip1.SetToolTip(this.vitButton1, "Настройки");
+            // 
+            // vitButton2
+            // 
+            this.vitButton2.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
+            this.vitButton2.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
+            this.vitButton2.BackColor = System.Drawing.Color.Transparent;
+            this.vitButton2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("vitButton2.BackgroundImage")));
+            this.vitButton2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.vitButton2.CausesValidation = false;
+            this.vitButton2.Location = new System.Drawing.Point(312, 4);
+            this.vitButton2.Margin = new System.Windows.Forms.Padding(4);
+            this.vitButton2.Name = "vitButton2";
+            this.vitButton2.Size = new System.Drawing.Size(36, 37);
+            this.vitButton2.TabIndex = 25;
+            this.toolTip1.SetToolTip(this.vitButton2, "Сканировать");
+            // 
+            // vitButton3
+            // 
+            this.vitButton3.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
+            this.vitButton3.AllowDrop = true;
+            this.vitButton3.BackColor = System.Drawing.Color.Transparent;
+            this.vitButton3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("vitButton3.BackgroundImage")));
+            this.vitButton3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.vitButton3.Location = new System.Drawing.Point(356, 4);
+            this.vitButton3.Margin = new System.Windows.Forms.Padding(4);
+            this.vitButton3.Name = "vitButton3";
+            this.vitButton3.Size = new System.Drawing.Size(36, 37);
+            this.vitButton3.TabIndex = 26;
+            this.toolTip1.SetToolTip(this.vitButton3, "Дабавить филиал");
+            // 
+            // vitButton4
+            // 
+            this.vitButton4.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
+            this.vitButton4.AllowDrop = true;
+            this.vitButton4.BackColor = System.Drawing.Color.Transparent;
+            this.vitButton4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("vitButton4.BackgroundImage")));
+            this.vitButton4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.vitButton4.Location = new System.Drawing.Point(400, 4);
+            this.vitButton4.Margin = new System.Windows.Forms.Padding(4);
+            this.vitButton4.Name = "vitButton4";
+            this.vitButton4.Size = new System.Drawing.Size(36, 37);
+            this.vitButton4.TabIndex = 27;
+            this.toolTip1.SetToolTip(this.vitButton4, "Обновить данные в окне программы");
             // 
             // panelUserMenu
             // 
@@ -545,7 +601,6 @@
             this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.id,
             this.name,
@@ -556,12 +611,13 @@
             this.listView1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
+            this.listView1.HideSelection = false;
             this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
-            this.listView1.Location = new System.Drawing.Point(401, 43);
+            listViewItem2});
+            this.listView1.Location = new System.Drawing.Point(401, 45);
             this.listView1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 4);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(394, 393);
+            this.listView1.Size = new System.Drawing.Size(394, 391);
             this.listView1.TabIndex = 6;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -571,7 +627,7 @@
             // id
             // 
             this.id.Text = "id";
-            this.id.Width = 32;
+            this.id.Width = 33;
             // 
             // name
             // 
@@ -613,8 +669,9 @@
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.textBoxSearch);
             this.panel1.Location = new System.Drawing.Point(401, 5);
+            this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(394, 32);
+            this.panel1.Size = new System.Drawing.Size(394, 40);
             this.panel1.TabIndex = 7;
             // 
             // pictureBox1
@@ -626,7 +683,7 @@
             this.pictureBox1.Location = new System.Drawing.Point(0, 3);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(26, 26);
+            this.pictureBox1.Size = new System.Drawing.Size(35, 36);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 10;
             this.pictureBox1.TabStop = false;
@@ -728,6 +785,19 @@
             this.ToolStripMenuItemHelp.Text = "Помощь";
             this.ToolStripMenuItemHelp.Click += new System.EventHandler(this.помощьToolStripMenuItem_Click);
             // 
+            // textBoxUserPosition
+            // 
+            this.textBoxUserPosition.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxUserPosition.BackColor = System.Drawing.Color.White;
+            this.textBoxUserPosition.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxUserPosition.Font = new System.Drawing.Font("Segoe UI Light", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxUserPosition.Location = new System.Drawing.Point(503, 59);
+            this.textBoxUserPosition.Name = "textBoxUserPosition";
+            this.textBoxUserPosition.ReadOnly = true;
+            this.textBoxUserPosition.Size = new System.Drawing.Size(271, 18);
+            this.textBoxUserPosition.TabIndex = 22;
+            this.textBoxUserPosition.Text = "User Position";
+            // 
             // windowHeader1
             // 
             this.windowHeader1.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
@@ -744,76 +814,6 @@
             this.windowHeader1.showInTaskbar = true;
             this.windowHeader1.Size = new System.Drawing.Size(798, 34);
             this.windowHeader1.TabIndex = 10;
-            // 
-            // textBoxUserPosition
-            // 
-            this.textBoxUserPosition.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxUserPosition.BackColor = System.Drawing.Color.White;
-            this.textBoxUserPosition.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxUserPosition.Font = new System.Drawing.Font("Segoe UI Light", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxUserPosition.Location = new System.Drawing.Point(503, 59);
-            this.textBoxUserPosition.Name = "textBoxUserPosition";
-            this.textBoxUserPosition.ReadOnly = true;
-            this.textBoxUserPosition.Size = new System.Drawing.Size(271, 18);
-            this.textBoxUserPosition.TabIndex = 22;
-            this.textBoxUserPosition.Text = "User Position";
-            // 
-            // vitButton1
-            // 
-            this.vitButton1.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
-            this.vitButton1.AllowDrop = true;
-            this.vitButton1.BackColor = System.Drawing.Color.Transparent;
-            this.vitButton1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("vitButton1.BackgroundImage")));
-            this.vitButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.vitButton1.Location = new System.Drawing.Point(268, 4);
-            this.vitButton1.Margin = new System.Windows.Forms.Padding(4);
-            this.vitButton1.Name = "vitButton1";
-            this.vitButton1.Size = new System.Drawing.Size(36, 37);
-            this.vitButton1.TabIndex = 24;
-            this.toolTip1.SetToolTip(this.vitButton1, "Настройки");
-            // 
-            // vitButton2
-            // 
-            this.vitButton2.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
-            this.vitButton2.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
-            this.vitButton2.BackColor = System.Drawing.Color.Transparent;
-            this.vitButton2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("vitButton2.BackgroundImage")));
-            this.vitButton2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.vitButton2.CausesValidation = false;
-            this.vitButton2.Location = new System.Drawing.Point(312, 4);
-            this.vitButton2.Margin = new System.Windows.Forms.Padding(4);
-            this.vitButton2.Name = "vitButton2";
-            this.vitButton2.Size = new System.Drawing.Size(36, 37);
-            this.vitButton2.TabIndex = 25;
-            this.toolTip1.SetToolTip(this.vitButton2, "Сканировать");
-            // 
-            // vitButton3
-            // 
-            this.vitButton3.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
-            this.vitButton3.AllowDrop = true;
-            this.vitButton3.BackColor = System.Drawing.Color.Transparent;
-            this.vitButton3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("vitButton3.BackgroundImage")));
-            this.vitButton3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.vitButton3.Location = new System.Drawing.Point(356, 4);
-            this.vitButton3.Margin = new System.Windows.Forms.Padding(4);
-            this.vitButton3.Name = "vitButton3";
-            this.vitButton3.Size = new System.Drawing.Size(36, 37);
-            this.vitButton3.TabIndex = 26;
-            this.toolTip1.SetToolTip(this.vitButton3, "Дабавить филиал");
-            // 
-            // vitButton4
-            // 
-            this.vitButton4.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
-            this.vitButton4.AllowDrop = true;
-            this.vitButton4.BackColor = System.Drawing.Color.Transparent;
-            this.vitButton4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("vitButton4.BackgroundImage")));
-            this.vitButton4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.vitButton4.Location = new System.Drawing.Point(400, 4);
-            this.vitButton4.Margin = new System.Windows.Forms.Padding(4);
-            this.vitButton4.Name = "vitButton4";
-            this.vitButton4.Size = new System.Drawing.Size(36, 37);
-            this.vitButton4.TabIndex = 27;
-            this.toolTip1.SetToolTip(this.vitButton4, "Обновить данные в окне программы");
             // 
             // FormDocumentManager
             // 
@@ -846,7 +846,7 @@
             this.Text = "z";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormDocumentManager_FormClosing);
-            this.Shown += new System.EventHandler(this.Form1_Shown);
+            this.Load += new System.EventHandler(this.FormDocumentManager_Load);
             this.contextMenuStripTreeView.ResumeLayout(false);
             this.panelUserMenu.ResumeLayout(false);
             this.flowLayoutPanelUserMenu.ResumeLayout(false);

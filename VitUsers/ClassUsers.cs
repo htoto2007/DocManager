@@ -339,11 +339,6 @@ namespace VitUsers
         {
             File.Delete(cashLoginFile);
         }
-
-        public void SendToEdit()
-        {
-        }
-
         
 
         public void updateImage(int id)

@@ -101,9 +101,9 @@ namespace DocManager
         /// <param name="e"></param>
         private void buttonAddBranch_Click(object sender, EventArgs e)
         {
-            Enabled = false;
+            treeView1.BeginUpdate();
             classTree.AddBranch(treeView1);
-            Enabled = true;
+            treeView1.EndUpdate();
         }
 
         /// <summary>
@@ -191,14 +191,6 @@ namespace DocManager
         {
             VitTelemetry.ClassScreenshot classScreenshot = new VitTelemetry.ClassScreenshot();
             classScreenshot.deleteScrean();
-        }
-
-        private void Form1_Shown(object sender, EventArgs e)
-        {
-            Enabled = false;
-            ClassUsers classUsers = new ClassUsers();
-            classTree.Init(treeView1, classUsers.getThisUser().login, classUsers.getThisUser().password);
-            Enabled = true;
         }
 
         private void FormDocumentManager_FormClosing(object sender, FormClosingEventArgs e)
@@ -379,7 +371,7 @@ namespace DocManager
         {
             ClassUsers classUsers = new ClassUsers();
             ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
-
+            classFTP.SessionOpen();
             if (treeView1.SelectedNode != null) // если выделен один объект
             {
 
@@ -422,7 +414,7 @@ namespace DocManager
                 ToolStripMenuItemSendToPrint.Enabled = false;
                 toolStripMenuItemScanToThisFolder.Enabled = true;
             }
-            
+            classFTP.sessionClose();
         }
 
         private void Login()
@@ -497,32 +489,6 @@ namespace DocManager
             enableScrean = VitSettings.Properties.DevSettings.Default.screanShotsEnable;
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            if (textBoxSearch.Text == "")
-            {
-                listView1.Items.Clear();
-            }
-
-            timerSearcher.Enabled = true;
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            var idFileCollections = classSearcher.start(textBoxSearch.Text);
-            VitFiles.ClassFiles classFiles = new VitFiles.ClassFiles();
-            VitFiles.ClassFiles.FileCollection[] fileCollections = new VitFiles.ClassFiles.FileCollection[idFileCollections.GetLength(0)];
-            for (int i = 0; i < idFileCollections.GetLength(0); i++)
-            {
-                Console.WriteLine(idFileCollections[i].id);
-                fileCollections[i] = classFiles.getInfoById(idFileCollections[i].id);
-            }
-            ClassLisView classLisView = new ClassLisView();
-            classLisView.FromSearch(fileCollections, listView1);
-
-            timerSearcher.Enabled = false;
-        }
-
         private void ToolStripMenuItemAbout_Click(object sender, EventArgs e)
         {
             AboutBox aboutBox = new AboutBox();
@@ -570,20 +536,18 @@ namespace DocManager
 
                 foreach (ListViewItem listViewItem in listViewItems)
                 {
-                    TreeNode[] treeNodes = treeView1.Nodes.Find("/" + listViewItem.SubItems["path"].Text, true);
+                    TreeNode[] treeNodes = treeView1.Nodes.Find(listViewItem.SubItems["path"].Text, true);
                     if (treeNodes.GetLength(0) > 0)
-                    {
                         treeNodes[0].Remove();
-                    }
                 }
             }
             
         }
 
-        private async void ToolStripMenuItemMove_Click(object sender, EventArgs e)
+        private void ToolStripMenuItemMove_Click(object sender, EventArgs e)
         {
             ClassUsers classUsers = new ClassUsers();
-            await classTree.MoveAsync(treeView1, classUsers.getThisUser().login, classUsers.getThisUser().password);
+            classTree.Move(treeView1, classUsers.getThisUser().login, classUsers.getThisUser().password);
         }
 
         private void ToolStripMenuItemRename_Click(object sender, EventArgs e)
@@ -671,9 +635,11 @@ namespace DocManager
 
         private async void treeView1_AfterExpandAsync(object sender, TreeViewEventArgs e)
         {
-            Enabled = false;
-            await classTree.PreLoadNodesAsync(e.Node);
-            Enabled = true;
+            //Enabled = false;
+            treeView1.BeginUpdate();
+            classTree.PreLoadNodesAsync(e.Node);
+            treeView1.EndUpdate();
+            //Enabled = true;
         }
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
@@ -743,6 +709,32 @@ namespace DocManager
         {
             FormDBConnect formDBConnect = new FormDBConnect();
             formDBConnect.ShowDialog();
+        }
+
+        private void FormDocumentManager_Load(object sender, EventArgs e)
+        {
+            ClassUsers classUsers = new ClassUsers();
+            treeView1.BeginUpdate();
+            classTree.Init(treeView1, classUsers.getThisUser().login, classUsers.getThisUser().password);
+            treeView1.EndUpdate();
+            treeView1.Update();
+        }
+
+        private void textBoxSearch_KeyUp(object sender, KeyEventArgs e)
+        {
+            if(e.KeyData == Keys.Enter)
+            {
+                var idFileCollections = classSearcher.start(textBoxSearch.Text);
+                VitFiles.ClassFiles classFiles = new VitFiles.ClassFiles();
+                VitFiles.ClassFiles.FileCollection[] fileCollections = new VitFiles.ClassFiles.FileCollection[idFileCollections.GetLength(0)];
+                for (int i = 0; i < idFileCollections.GetLength(0); i++)
+                {
+                    Console.WriteLine(idFileCollections[i].id);
+                    fileCollections[i] = classFiles.getInfoById(idFileCollections[i].id);
+                }
+                ClassLisView classLisView = new ClassLisView();
+                classLisView.FromSearch(fileCollections, listView1);
+            }
         }
     }
 }

@@ -50,6 +50,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -70,6 +71,10 @@
     <ProjectReference Include="..\VitCardPropsValue\VitCardPropsValue.csproj">
       <Project>{36350f39-7577-4119-a3fe-7cb69da65e5d}</Project>
       <Name>VitCardPropsValue</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VitColors\VitColors.csproj">
+      <Project>{7485DE72-C9F6-4547-AA4A-395C32DE0B88}</Project>
+      <Name>VitColors</Name>
     </ProjectReference>
     <ProjectReference Include="..\VitFiles\VitFiles.csproj">
       <Project>{66017a02-c3d9-4809-b788-6b91df08be99}</Project>

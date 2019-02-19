@@ -12,7 +12,7 @@ namespace VitSettings.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.8.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.9.0.0")]
     public sealed partial class ControlsSettings : global::System.Configuration.ApplicationSettingsBase {
         
         private static ControlsSettings defaultInstance = ((ControlsSettings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new ControlsSettings())));
@@ -32,18 +32,6 @@ namespace VitSettings.Properties {
             }
             set {
                 this["flowLayoutPanelUserMenu"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool flowLayoutPanelAdminMenu {
-            get {
-                return ((bool)(this["flowLayoutPanelAdminMenu"]));
-            }
-            set {
-                this["flowLayoutPanelAdminMenu"] = value;
             }
         }
     }

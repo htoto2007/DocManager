@@ -4,6 +4,7 @@ using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 using VitCardPropsValue;
+using VitColors;
 using VitFiles;
 using VitFTP;
 using VitNotifyMessage;
@@ -22,6 +23,7 @@ namespace VitListView
         private readonly ClassTypeCardProps classTypeCardProps = new ClassTypeCardProps();
         private VitIcons.ClassImageList classImageList = new VitIcons.ClassImageList();
         private ClassFiles.FileCollection fileCollection = new ClassFiles.FileCollection();
+        private readonly ClassColors classColors = new ClassColors();
 
         public void FromSearch(ClassFiles.FileCollection[] fileCollections, ListView listView)
         {
@@ -30,7 +32,7 @@ namespace VitListView
             listView.Columns.Add("Имя");
             listView.Columns.Add("тип");
             listView.Columns.Add("Путь к файлу");
-
+            
             foreach (ClassFiles.FileCollection fileCollection in fileCollections)
             {
                 string imageKey = classImageList.addIconFile(fileCollection.path);
@@ -43,7 +45,8 @@ namespace VitListView
                 listViewItem.SubItems.Add("file").Name = "type";
                 listViewItem.SubItems.Add(fileCollection.path).Name = "path";
                 listViewItem.SubItems.Add(fileCollection.createDateTime.ToString()).Name = "createDateTime";
-                listView.Items.Add(listViewItem);
+                var item = listView.Items.Add(listViewItem);
+                if (item.Index % 2 == 0) item.BackColor = System.Drawing.Color.WhiteSmoke;
             }
             listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             listView.EndUpdate();
@@ -68,30 +71,31 @@ namespace VitListView
 
         private void FromTreeVuewFile(TreeView treeView, ListView listView)
         {
-            listView.Columns.Add("Название");
-            listView.Columns.Add("Значение");
-            
             TreeNode treeNode = treeView.SelectedNode;
             int idFile = classFiles.getInfoByFilePath(treeNode.Name).id;
             ClassCardPropsValue.CardPropsValueCollection[] cardPropsValueCollections = classCardPropsValue.getByIdFile(idFile);
-
-
+            
             ClassUsers classUsers = new ClassUsers();
             ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
+            classFTP.SessionOpen();
             var file = classFTP.getFileInfo(treeNode.Name);
+            classFTP.sessionClose();
+            listView.Columns.Add("Название");
+            listView.Columns.Add("Значение");
             ListViewItem listViewItem;
             listViewItem = new ListViewItem();
             listViewItem.Text = "Полный путь";
             listViewItem.Name = "name";
             listViewItem.SubItems.Add(file.fullName.ToString()).Name = "value";
-            listView.Items.Add(listViewItem);
+            var item = listView.Items.Add(listViewItem);
+            if (item.Index % 2 == 0) item.BackColor = System.Drawing.Color.WhiteSmoke;
+
             listViewItem = new ListViewItem();
             listViewItem.Text = "Дата последнего изменения";
             listViewItem.Name = "name";
             listViewItem.SubItems.Add(file.LastWriteTime.ToString()).Name = "value";
-            listView.Items.Add(listViewItem);
-
-            
+            item = listView.Items.Add(listViewItem);
+            if (item.Index % 2 == 0) item.BackColor = System.Drawing.Color.WhiteSmoke;
 
             // если неудалось найти карточку
             if (cardPropsValueCollections == null)
@@ -101,7 +105,6 @@ namespace VitListView
                 listView.Update();
                 return;
             }
-
             
             foreach (ClassCardPropsValue.CardPropsValueCollection cardValue in cardPropsValueCollections)
             {
@@ -113,43 +116,42 @@ namespace VitListView
                     
                 };
                 listViewItem.SubItems.Add(cardValue.value).Name = "value";
-                listView.Items.Add(listViewItem);
+
+                item = listView.Items.Add(listViewItem);
+                if (item.Index % 2 == 0) item.BackColor = System.Drawing.Color.WhiteSmoke;
             }
             
-            
-
-
             listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             listView.EndUpdate();
-            listView.Update();
+            //listView.Update();
         }
 
         private void FromTreeVuewFolder(TreeView treeView, ListView listView)
         {
-            listView.Columns.Add("");
-            listView.Columns.Add("Имя");
-            listView.Columns.Add("тип");
-            listView.Columns.Add("Путь");
+            listView.Columns.Add("Имя").Width = 500;
+            listView.Columns.Add("Тиа").Width = 50;
+            listView.Columns.Add("Путь").Width = 400;
             
             TreeNode treeNode = treeView.SelectedNode;
             foreach (TreeNode tn in treeNode.Nodes)
             {
                 ListViewItem listViewItem = new ListViewItem
                 {
-                    ImageKey = tn.ImageKey
+                    Text = tn.Text,
+                    ImageKey = tn.ImageKey,
+                    Name = "name"
                 };
-
-                listViewItem.SubItems.Add(tn.Text).Name = "name";
                 if (Path.GetExtension(tn.Text) != "")
-                    listViewItem.SubItems.Add("file").Name = "type";
+                    listViewItem.SubItems.Add("файл").Name = "type";
                 else
-                    listViewItem.SubItems.Add("folder").Name = "type";
-                listViewItem.SubItems.Add(tn.FullPath.Replace('\\', '/')).Name = "path";
-                listView.Items.Add(listViewItem);
+                    listViewItem.SubItems.Add("папка").Name = "type";
+                listViewItem.SubItems.Add(tn.Name.Replace('\\', '/')).Name = "path";
+                var item = listView.Items.Add(listViewItem);
+                if (item.Index % 2 == 0) item.BackColor = System.Drawing.Color.WhiteSmoke;
             }
-            listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            //listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             listView.EndUpdate();
-            listView.Update();
+            //listView.Update();
         }
 
         /// <summary>

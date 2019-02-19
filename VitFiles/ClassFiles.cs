@@ -24,10 +24,9 @@ namespace VitFiles
         private FormProgressStatus formProgressStatus = null;
         ClassRelationsUsersToFile classRelationsUsersToFile = new ClassRelationsUsersToFile();
 
-        public string newFileNameGenerator(string sourceFile, string targetPath)
+        public string newFileNameGenerator(string sourceFile, string targetPath, ClassFTP classFTP)
         {
-            ClassUsers classUsers = new ClassUsers();
-            ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
+            
             int i = 0;
             while (true)
             {
@@ -35,15 +34,19 @@ namespace VitFiles
                 string fileExtension = Path.GetExtension(sourceFile);
                 string newFilePath = targetPath + "/" + fileName + fileExtension;
                 if (!classFTP.FileExist(newFilePath))
+                {
+                    classFTP.sessionClose();
                     return newFilePath.Replace("\\", "/");
+                }
 
                 if(i > 100000)
                 {
                     classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.USER_ERROR, "Количество индексов копий привышает системное ограничение в 1000000");
-                    return "";
+                    break;
                 }
                 i++;
             }
+            return "";
         }
 
         public string[] Copy(string[] arrPath, string targetPath)
@@ -51,13 +54,15 @@ namespace VitFiles
             List<string> filesOk = new List<string>();
             ClassUsers classUsers = new ClassUsers();
             ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
+            classFTP.SessionOpen();
             foreach (string sourcePath in arrPath)
             {
                 // Задаем новое имя для копии файла
-                targetPath = newFileNameGenerator(sourcePath, targetPath);
+                targetPath = newFileNameGenerator(sourcePath, targetPath, classFTP);
 
                 // производим копию самого файла на сервере
                 classFTP.copyAsync(sourcePath, targetPath.Replace("\\", "/"));
+                classFTP.SessionOpen();
                 if (classFTP.FileExist(targetPath))
                 {
                     ClassNotifyMessage classNotifyMessage = new ClassNotifyMessage();
@@ -71,6 +76,7 @@ namespace VitFiles
                 classCardPropsValue.CopyByIdFile(sourceIdFile, targetIdFile);
                 filesOk.Add("/" + targetPath);
             }
+            classFTP.sessionClose();
             return filesOk.ToArray();
         }
 
@@ -153,7 +159,9 @@ namespace VitFiles
             // производим загрузку файлов
             ClassUsers classUsers = new ClassUsers();
             ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
+            classFTP.SessionOpen();
             string[] filesOk = await classFTP.Upload2Async(arrPath, "/" + remotePath + "/", true);
+            classFTP.sessionClose();
 
             // производим згрузку данных в базу
             formProgressStatus = new FormProgressStatus(0, filesOk.GetLength(0));
@@ -195,7 +203,9 @@ namespace VitFiles
             remotePath = remotePath.Replace("\\", "/");
             ClassUsers classUsers = new ClassUsers();
             ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
+            classFTP.SessionOpen();
             string[] directoryList = classFTP.ListDirectory(remotePath);
+            classFTP.sessionClose();
             
             
             int iterator = 0;
@@ -241,12 +251,13 @@ namespace VitFiles
             if (await Task.Run(() => ( DuplicateSearch(arrPath, remotePath) )) == false) return null;
             ClassUsers classUsers = new ClassUsers();
             ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
+            classFTP.SessionOpen();
             string[] uploadRemoteFiles = await classFTP.Upload2Async(arrPath, "/" + remotePath + "/" , true);
-
+            classFTP.sessionClose();
             
             foreach (string localPath in uploadRemoteFiles)
             {
-                int idFile = createData("/" + remotePath + "/" + Path.GetFileName(localPath));
+                int idFile = createData(remotePath + "/" + Path.GetFileName(localPath));
                 classRelationsUsersToFile.add(classUsers.getThisUser().id, idFile, "Создан файл без карточки");
             }
             return uploadRemoteFiles;
@@ -256,11 +267,12 @@ namespace VitFiles
         {
             ClassUsers classUsers = new ClassUsers();
             ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
+            classFTP.SessionOpen();
+
             formProgressStatus = new FormProgressStatus(0, remotePathes.GetLength(0));
             List<string> filesOk = new List<string>();
             for (int i = 0; i < remotePathes.GetLength(0); i++)
             {
-                Console.WriteLine("Удаляем " + remotePathes[i]);
                 formProgressStatus.Iterator(
                     i, remotePathes[i], 
                     "вечность",
@@ -271,7 +283,6 @@ namespace VitFiles
                     Console.WriteLine("Не удалось удалить физическую копию " + remotePathes);
                     continue;
                 }
-                Console.WriteLine("Удаляем из базы " + remotePathes[i]);
                 DeleteDataByPath(remotePathes[i]);
                 var fileInfo = getInfoByFilePath(remotePathes[i]);
                 if (fileInfo.path != "")
@@ -279,31 +290,30 @@ namespace VitFiles
                     Console.WriteLine("Не удалось удалить файл из базы " + fileInfo.path);
                     continue;
                 }
-                Console.WriteLine(remotePathes[i] + " удален успешно.");
                 filesOk.Add(remotePathes[i]);
             }
+            classFTP.sessionClose();
             formProgressStatus.Close();
             formProgressStatus.Dispose();
             return filesOk.ToArray();
         }
 
-        public async Task<string[]> MoveFileAsync(string[] sourceArrPath, string targetPath)
+        public string[] MoveFile(string[] sourceArrPath, string targetPath)
         {
-            Console.WriteLine(targetPath);
+            
             // делаем поиск дубликатов
-            if (await Task.Run(() => ( DuplicateSearch(sourceArrPath, targetPath) )) == false) return null;
+            if (DuplicateSearch(sourceArrPath, targetPath) == false) return null;
 
             ClassUsers classUsers = new ClassUsers();
             ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
-            
+            classFTP.SessionOpen();
             // переносим файлы на сервере
-            string[] movedFilePathOk = await classFTP.moveAsync(sourceArrPath, targetPath);
-
-            if ((movedFilePathOk == null) || (movedFilePathOk.GetLength(0) < 1))
-            {
-                classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, "Не удалось переместить файл.");
-                return null;
-            }
+            string[] movedFilePathOk = classFTP.move(sourceArrPath, targetPath);
+            classFTP.sessionClose();
+            
+            // проверяем результат
+            if (movedFilePathOk.GetLength(0) != sourceArrPath.GetLength(0))
+                classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, "Не удалось переместить часть файлов.");
 
             // обновляем информацию сущностей файлов в базе
             ClassFiles classFiles = new ClassFiles();
@@ -314,18 +324,6 @@ namespace VitFiles
             }
             
             return movedFilePathOk;
-        }
-
-        /// <summary>
-        /// Проверяет наличие файла на сервере
-        /// </summary>
-        /// <param name="remotePath">Удаленный путь к файлу "/directory/filename.ext"</param>
-        /// <returns></returns>
-        public bool CheckMatchPath(string remotePath)
-        {
-            ClassUsers classUsers = new ClassUsers();
-            ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
-            return classFTP.FileExist(remotePath);
         }
 
         /// <summary>

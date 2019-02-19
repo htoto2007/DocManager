@@ -4,6 +4,7 @@ namespace VitColors
 {
     public class ClassColors
     {
+
         public ColorsCollection getCollection()
         {
             ColorsCollection colorsCollection = new ColorsCollection
