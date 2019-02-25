@@ -18,6 +18,7 @@ namespace VitUsers
         {
             ClassUsers classUsers = new ClassUsers();
             ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
+            classFTP.SessionOpen();
             string[] directoryes = classFTP.ListDirectoryWithotFiles("/");
 
             treeView.ImageList = ClassImageList.imageList;
@@ -41,7 +42,7 @@ namespace VitUsers
             {
                 getSubdirectoryes(classFTP, treeNode, Path.GetFileName(treeNode.Name));
             }
-
+            classFTP.sessionClose();
         }
 
         private async Task getSubdirectoryes(ClassFTP classFTP, TreeNode treeNode, string directory)

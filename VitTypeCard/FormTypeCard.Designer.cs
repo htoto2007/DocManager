@@ -99,6 +99,7 @@
             this.buttonChangeType.Text = "Изменить тип";
             this.buttonChangeType.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.buttonChangeType.UseVisualStyleBackColor = true;
+            this.buttonChangeType.Click += new System.EventHandler(this.buttonChangeType_Click);
             // 
             // buttonAddType
             // 

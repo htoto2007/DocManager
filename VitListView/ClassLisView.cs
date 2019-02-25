@@ -53,8 +53,6 @@ namespace VitListView
             listView.Update();
         }
 
-        
-
         public void FromTreeVuew(TreeView treeView, ListView listView)
         {
             Init(listView);
@@ -80,6 +78,7 @@ namespace VitListView
             classFTP.SessionOpen();
             var file = classFTP.getFileInfo(treeNode.Name);
             classFTP.sessionClose();
+            listView.CheckBoxes = false;
             listView.Columns.Add("Название");
             listView.Columns.Add("Значение");
             ListViewItem listViewItem;
@@ -128,8 +127,9 @@ namespace VitListView
 
         private void FromTreeVuewFolder(TreeView treeView, ListView listView)
         {
+            listView.Columns.Add("(все)");
             listView.Columns.Add("Имя").Width = 500;
-            listView.Columns.Add("Тиа").Width = 50;
+            listView.Columns.Add("Тип").Width = 50;
             listView.Columns.Add("Путь").Width = 400;
             
             TreeNode treeNode = treeView.SelectedNode;
@@ -137,10 +137,10 @@ namespace VitListView
             {
                 ListViewItem listViewItem = new ListViewItem
                 {
-                    Text = tn.Text,
                     ImageKey = tn.ImageKey,
-                    Name = "name"
+                    
                 };
+                listViewItem.SubItems.Add(tn.Text).Name = "name";
                 if (Path.GetExtension(tn.Text) != "")
                     listViewItem.SubItems.Add("файл").Name = "type";
                 else
@@ -164,7 +164,7 @@ namespace VitListView
             listView.Items.Clear();
             listView.LargeImageList = classImageList.imageList;
             listView.SmallImageList = classImageList.imageList;
-            listView.StateImageList = classImageList.imageList;
+            //listView.StateImageList = classImageList.imageList;
             listView.View = View.Details;
             listView.MultiSelect = true;
             listView.FullRowSelect = true;
@@ -222,6 +222,27 @@ namespace VitListView
                 classFiles.DeleteFiles(fileList.ToArray());
             }
             return listViewItems;
+        }
+
+        public ListViewItem Copy(ListView listView)
+        {
+            ClassUsers classUsers = new ClassUsers();
+            FormTree formTree = new FormTree(classUsers.getThisUser().login, classUsers.getThisUser().password);
+            ListViewItem listViewItem = new ListViewItem();
+            string[] fileListOk;
+            if (listView.SelectedItems.Count == 1)
+            {
+                formTree.Text = "Куда скопировать файлы?";
+                if (formTree.ShowDialog() != DialogResult.OK) return listViewItem;
+                string targetPath = formTree.treeView1.SelectedNode.Name;
+                fileListOk = classFiles.Copy(new string[] { listView.SelectedItems[0].SubItems["path"].Text }, targetPath);
+                
+            }else if (listView.SelectedItems.Count > 1)
+            {
+
+            }
+            //fileListOk.
+            return listViewItem;
         }
     }
 

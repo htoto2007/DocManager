@@ -21,7 +21,7 @@ namespace VitTypeCard
             }
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+        private void buttonAddProp_Click(object sender, EventArgs e)
         {
             int lastElementNumber = int.Parse(panelProps.Controls[panelProps.Controls.Count - 1].Name.Split('_')[1]);
             textBoxNameAdd(lastElementNumber);
@@ -33,8 +33,8 @@ namespace VitTypeCard
         {
             TextBox textBox = new TextBox();
             int x = panelProps.Controls["textBoxName_" + (lastElementNumber).ToString()].Location.X;
-            int y = 5 + panelProps.Controls["textBoxName_" + (lastElementNumber).ToString()].Location.Y;
-            textBox.Location = new Point(x, y + 20);
+            int y = panelProps.Controls["textBoxName_" + (lastElementNumber).ToString()].Location.Y + buttonDeleteProp_0.Height;
+            textBox.Location = new Point(x, y);
             textBox.Width = panelProps.Controls["textBoxName_" + (lastElementNumber).ToString()].Width;
             textBox.Height = panelProps.Controls["textBoxName_" + (lastElementNumber).ToString()].Height;
             textBox.Name = "textBoxName_" + (lastElementNumber + 1).ToString();
@@ -46,8 +46,8 @@ namespace VitTypeCard
         {
             ComboBox comboBoxType = new ComboBox();
             int x = panelProps.Controls["comboBoxType_" + (lastElementNumber).ToString()].Location.X;
-            int y = 5 + panelProps.Controls["comboBoxType_" + (lastElementNumber).ToString()].Location.Y;
-            comboBoxType.Location = new Point(x, y + 20);
+            int y = panelProps.Controls["comboBoxType_" + (lastElementNumber).ToString()].Location.Y + buttonDeleteProp_0.Height;
+            comboBoxType.Location = new Point(x, y);
             comboBoxType.Width = panelProps.Controls["comboBoxType_" + (lastElementNumber).ToString()].Width;
             comboBoxType.Height = panelProps.Controls["comboBoxType_" + (lastElementNumber).ToString()].Height;
             comboBoxType.Name = "comboBoxType_" + (lastElementNumber + 1).ToString();
@@ -66,8 +66,8 @@ namespace VitTypeCard
         {
             Button buttonDeleteProp = new Button();
             int x = panelProps.Controls["buttonDeleteProp_" + (lastElementNumber).ToString()].Location.X;
-            int y = 5 + panelProps.Controls["buttonDeleteProp_" + (lastElementNumber).ToString()].Location.Y;
-            buttonDeleteProp.Location = new Point(x, y + 20);
+            int y = panelProps.Controls["buttonDeleteProp_" + (lastElementNumber).ToString()].Location.Y + buttonDeleteProp_0.Height;
+            buttonDeleteProp.Location = new Point(x, y);
             buttonDeleteProp.ImageList = imageList1;
             buttonDeleteProp.ImageIndex = 1;
             buttonDeleteProp.Width = panelProps.Controls["buttonDeleteProp_" + (lastElementNumber).ToString()].Width;
@@ -98,7 +98,7 @@ namespace VitTypeCard
                 if (buf != control.Name.Split('_')[1])
                 {
                     buf = control.Name.Split('_')[1];
-                    positionIterator += 20;
+                    positionIterator += buttonDeleteProp_0.Height;
                     control.Location = new Point(control.Location.X, positionIterator);
                 }
                 else

@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDocumentManager));
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
             ""}, -1, System.Drawing.Color.Empty, System.Drawing.Color.Transparent, null);
             this.contextMenuStripTreeView = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ToolStripMenuItemAddFolder = new System.Windows.Forms.ToolStripMenuItem();
@@ -72,9 +72,9 @@
             this.vitButton2 = new VitControls.VitButton();
             this.vitButton3 = new VitControls.VitButton();
             this.vitButton4 = new VitControls.VitButton();
+            this.vitButtonTreeSort = new VitControls.VitButton();
             this.panelUserMenu = new System.Windows.Forms.Panel();
             this.flowLayoutPanelUserMenu = new System.Windows.Forms.FlowLayoutPanel();
-            this.treeView1 = new System.Windows.Forms.TreeView();
             this.listView1 = new System.Windows.Forms.ListView();
             this.id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -84,6 +84,7 @@
             this.panelExplorer = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.treeView1 = new System.Windows.Forms.TreeView();
             this.panelStatusProgress = new System.Windows.Forms.Panel();
             this.windowResizer1 = new VitControls.WindowResizer();
             this.textBoxUserName = new System.Windows.Forms.TextBox();
@@ -95,6 +96,7 @@
             this.ToolStripMenuItemHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.textBoxUserPosition = new System.Windows.Forms.TextBox();
             this.windowHeader1 = new VitControls.WindowHeader();
+            this.карточкаДокументаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStripTreeView.SuspendLayout();
             this.panelUserMenu.SuspendLayout();
             this.flowLayoutPanelUserMenu.SuspendLayout();
@@ -112,6 +114,7 @@
             this.contextMenuStripTreeView.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ToolStripMenuItemAddFolder,
             this.ToolStripMenuItemRequestOriginal,
+            this.карточкаДокументаToolStripMenuItem,
             this.ToolStripMenuItemAddDocument,
             this.ToolStripMenuItemSend,
             this.ToolStripMenuItemDelete,
@@ -121,7 +124,7 @@
             this.toolStripMenuItemScanToThisFolder,
             this.ToolStripMenuItemSelectAll});
             this.contextMenuStripTreeView.Name = "contextMenuStrip1";
-            this.contextMenuStripTreeView.Size = new System.Drawing.Size(270, 304);
+            this.contextMenuStripTreeView.Size = new System.Drawing.Size(270, 356);
             this.contextMenuStripTreeView.Opened += new System.EventHandler(this.contextMenuStripTreeView_Opened);
             // 
             // ToolStripMenuItemAddFolder
@@ -258,6 +261,7 @@
             this.toolStripMenuItemScanToThisFolder.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.S)));
             this.toolStripMenuItemScanToThisFolder.Size = new System.Drawing.Size(269, 30);
             this.toolStripMenuItemScanToThisFolder.Text = "Сканировать в эту папку";
+            this.toolStripMenuItemScanToThisFolder.Click += new System.EventHandler(this.toolStripMenuItemScanToThisFolder_Click);
             // 
             // ToolStripMenuItemSelectAll
             // 
@@ -299,7 +303,7 @@
             // 
             this.ToolStripMenuItemConnectToData.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripMenuItemConnectToData.Image")));
             this.ToolStripMenuItemConnectToData.Name = "ToolStripMenuItemConnectToData";
-            this.ToolStripMenuItemConnectToData.Size = new System.Drawing.Size(210, 24);
+            this.ToolStripMenuItemConnectToData.Size = new System.Drawing.Size(218, 30);
             this.ToolStripMenuItemConnectToData.Text = "Подключение к базе";
             this.ToolStripMenuItemConnectToData.Click += new System.EventHandler(this.ToolStripMenuItemConnectToData_Click);
             // 
@@ -307,7 +311,7 @@
             // 
             this.ToolStripMenuItemUsers.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripMenuItemUsers.Image")));
             this.ToolStripMenuItemUsers.Name = "ToolStripMenuItemUsers";
-            this.ToolStripMenuItemUsers.Size = new System.Drawing.Size(210, 24);
+            this.ToolStripMenuItemUsers.Size = new System.Drawing.Size(218, 30);
             this.ToolStripMenuItemUsers.Text = "Пользователи";
             this.ToolStripMenuItemUsers.Click += new System.EventHandler(this.buttonUsers_Click);
             // 
@@ -315,7 +319,7 @@
             // 
             this.ToolStripMenuItemSettings.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripMenuItemSettings.Image")));
             this.ToolStripMenuItemSettings.Name = "ToolStripMenuItemSettings";
-            this.ToolStripMenuItemSettings.Size = new System.Drawing.Size(210, 24);
+            this.ToolStripMenuItemSettings.Size = new System.Drawing.Size(218, 30);
             this.ToolStripMenuItemSettings.Text = "Настройки";
             this.ToolStripMenuItemSettings.Click += new System.EventHandler(this.buttonSettings_Click);
             // 
@@ -323,7 +327,7 @@
             // 
             this.ToolStripMenuItemSettingsCard.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripMenuItemSettingsCard.Image")));
             this.ToolStripMenuItemSettingsCard.Name = "ToolStripMenuItemSettingsCard";
-            this.ToolStripMenuItemSettingsCard.Size = new System.Drawing.Size(210, 24);
+            this.ToolStripMenuItemSettingsCard.Size = new System.Drawing.Size(218, 30);
             this.ToolStripMenuItemSettingsCard.Text = "Настройки карточек";
             this.ToolStripMenuItemSettingsCard.Click += new System.EventHandler(this.buttonSettingsDocumentCard_Click);
             // 
@@ -359,10 +363,10 @@
             this.textBoxSearch.Location = new System.Drawing.Point(44, 7);
             this.textBoxSearch.Margin = new System.Windows.Forms.Padding(0, 4, 3, 0);
             this.textBoxSearch.Name = "textBoxSearch";
-            this.textBoxSearch.Size = new System.Drawing.Size(347, 26);
+            this.textBoxSearch.Size = new System.Drawing.Size(349, 26);
             this.textBoxSearch.TabIndex = 9;
             this.toolTip1.SetToolTip(this.textBoxSearch, "Для поиска введите текст и нажмите Enter");
-            this.textBoxSearch.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBoxSearch_KeyUp);
+            this.textBoxSearch.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBoxSearch_KeyUpAsync);
             // 
             // button1
             // 
@@ -374,7 +378,7 @@
             this.button1.Location = new System.Drawing.Point(457, 41);
             this.button1.Margin = new System.Windows.Forms.Padding(7, 1, 7, 1);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(36, 36);
+            this.button1.Size = new System.Drawing.Size(36, 37);
             this.button1.TabIndex = 20;
             this.toolTip1.SetToolTip(this.button1, "Профиль пользователя");
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -387,10 +391,10 @@
             this.buttonExit.BackColor = System.Drawing.Color.White;
             this.buttonExit.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonExit.BackgroundImage")));
             this.buttonExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.buttonExit.Location = new System.Drawing.Point(410, 41);
+            this.buttonExit.Location = new System.Drawing.Point(411, 41);
             this.buttonExit.Margin = new System.Windows.Forms.Padding(4, 1, 4, 1);
             this.buttonExit.Name = "buttonExit";
-            this.buttonExit.Size = new System.Drawing.Size(36, 36);
+            this.buttonExit.Size = new System.Drawing.Size(36, 37);
             this.buttonExit.TabIndex = 18;
             this.toolTip1.SetToolTip(this.buttonExit, "Выход");
             this.buttonExit.Click += new System.EventHandler(this.buttonExit_Click);
@@ -483,7 +487,7 @@
             this.vitButtonUpdateInfo.Name = "vitButtonUpdateInfo";
             this.vitButtonUpdateInfo.Size = new System.Drawing.Size(36, 36);
             this.vitButtonUpdateInfo.TabIndex = 23;
-            this.toolTip1.SetToolTip(this.vitButtonUpdateInfo, "Обновить данные в окне программы");
+            this.toolTip1.SetToolTip(this.vitButtonUpdateInfo, "Обновить данные в окне программы (F5)");
             this.vitButtonUpdateInfo.Click += new System.EventHandler(this.vitButtonUpdateInfo_Click);
             // 
             // vitButton1
@@ -493,12 +497,12 @@
             this.vitButton1.BackColor = System.Drawing.Color.Transparent;
             this.vitButton1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("vitButton1.BackgroundImage")));
             this.vitButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.vitButton1.Location = new System.Drawing.Point(268, 4);
+            this.vitButton1.Location = new System.Drawing.Point(312, 4);
             this.vitButton1.Margin = new System.Windows.Forms.Padding(4);
             this.vitButton1.Name = "vitButton1";
             this.vitButton1.Size = new System.Drawing.Size(36, 37);
             this.vitButton1.TabIndex = 24;
-            this.toolTip1.SetToolTip(this.vitButton1, "Настройки");
+            this.toolTip1.SetToolTip(this.vitButton1, "Назад");
             // 
             // vitButton2
             // 
@@ -508,12 +512,12 @@
             this.vitButton2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("vitButton2.BackgroundImage")));
             this.vitButton2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.vitButton2.CausesValidation = false;
-            this.vitButton2.Location = new System.Drawing.Point(312, 4);
+            this.vitButton2.Location = new System.Drawing.Point(356, 4);
             this.vitButton2.Margin = new System.Windows.Forms.Padding(4);
             this.vitButton2.Name = "vitButton2";
             this.vitButton2.Size = new System.Drawing.Size(36, 37);
             this.vitButton2.TabIndex = 25;
-            this.toolTip1.SetToolTip(this.vitButton2, "Сканировать");
+            this.toolTip1.SetToolTip(this.vitButton2, "Вперед");
             // 
             // vitButton3
             // 
@@ -522,12 +526,12 @@
             this.vitButton3.BackColor = System.Drawing.Color.Transparent;
             this.vitButton3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("vitButton3.BackgroundImage")));
             this.vitButton3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.vitButton3.Location = new System.Drawing.Point(356, 4);
+            this.vitButton3.Location = new System.Drawing.Point(400, 4);
             this.vitButton3.Margin = new System.Windows.Forms.Padding(4);
             this.vitButton3.Name = "vitButton3";
             this.vitButton3.Size = new System.Drawing.Size(36, 37);
             this.vitButton3.TabIndex = 26;
-            this.toolTip1.SetToolTip(this.vitButton3, "Дабавить филиал");
+            this.toolTip1.SetToolTip(this.vitButton3, "Увеличить");
             // 
             // vitButton4
             // 
@@ -536,12 +540,27 @@
             this.vitButton4.BackColor = System.Drawing.Color.Transparent;
             this.vitButton4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("vitButton4.BackgroundImage")));
             this.vitButton4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.vitButton4.Location = new System.Drawing.Point(400, 4);
+            this.vitButton4.Location = new System.Drawing.Point(444, 4);
             this.vitButton4.Margin = new System.Windows.Forms.Padding(4);
             this.vitButton4.Name = "vitButton4";
             this.vitButton4.Size = new System.Drawing.Size(36, 37);
             this.vitButton4.TabIndex = 27;
-            this.toolTip1.SetToolTip(this.vitButton4, "Обновить данные в окне программы");
+            this.toolTip1.SetToolTip(this.vitButton4, "Уменьшить");
+            // 
+            // vitButtonTreeSort
+            // 
+            this.vitButtonTreeSort.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
+            this.vitButtonTreeSort.AllowDrop = true;
+            this.vitButtonTreeSort.BackColor = System.Drawing.Color.Transparent;
+            this.vitButtonTreeSort.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("vitButtonTreeSort.BackgroundImage")));
+            this.vitButtonTreeSort.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.vitButtonTreeSort.Location = new System.Drawing.Point(268, 4);
+            this.vitButtonTreeSort.Margin = new System.Windows.Forms.Padding(4);
+            this.vitButtonTreeSort.Name = "vitButtonTreeSort";
+            this.vitButtonTreeSort.Size = new System.Drawing.Size(36, 37);
+            this.vitButtonTreeSort.TabIndex = 28;
+            this.toolTip1.SetToolTip(this.vitButtonTreeSort, "Сортировать все файлы (Shift + s)");
+            this.vitButtonTreeSort.Click += new System.EventHandler(this.vitButtonTreeSort_Click);
             // 
             // panelUserMenu
             // 
@@ -564,6 +583,7 @@
             this.flowLayoutPanelUserMenu.Controls.Add(this.buttonScan);
             this.flowLayoutPanelUserMenu.Controls.Add(this.buttonAddBranch);
             this.flowLayoutPanelUserMenu.Controls.Add(this.vitButtonUpdateInfo);
+            this.flowLayoutPanelUserMenu.Controls.Add(this.vitButtonTreeSort);
             this.flowLayoutPanelUserMenu.Controls.Add(this.vitButton1);
             this.flowLayoutPanelUserMenu.Controls.Add(this.vitButton2);
             this.flowLayoutPanelUserMenu.Controls.Add(this.vitButton3);
@@ -575,32 +595,13 @@
             this.flowLayoutPanelUserMenu.Size = new System.Drawing.Size(798, 47);
             this.flowLayoutPanelUserMenu.TabIndex = 10;
             // 
-            // treeView1
-            // 
-            this.treeView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.treeView1.ContextMenuStrip = this.contextMenuStripTreeView;
-            this.treeView1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.treeView1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.treeView1.FullRowSelect = true;
-            this.treeView1.HideSelection = false;
-            this.treeView1.ImageIndex = 0;
-            this.treeView1.ImageList = this.imageList1;
-            this.treeView1.Location = new System.Drawing.Point(0, 0);
-            this.treeView1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.treeView1.Name = "treeView1";
-            this.treeView1.SelectedImageIndex = 0;
-            this.treeView1.Size = new System.Drawing.Size(396, 440);
-            this.treeView1.TabIndex = 5;
-            this.treeView1.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterExpandAsync);
-            this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
-            this.treeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseClick_1);
-            this.treeView1.MouseHover += new System.EventHandler(this.treeView1_MouseHover);
-            // 
             // listView1
             // 
             this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listView1.CheckBoxes = true;
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.id,
             this.name,
@@ -612,16 +613,20 @@
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
+            listViewItem1.StateImageIndex = 0;
             this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem2});
-            this.listView1.Location = new System.Drawing.Point(401, 45);
-            this.listView1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 4);
+            listViewItem1});
+            this.listView1.Location = new System.Drawing.Point(400, 47);
+            this.listView1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 4);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(394, 391);
+            this.listView1.Size = new System.Drawing.Size(395, 389);
             this.listView1.TabIndex = 6;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listView1_ColumnClick);
             this.listView1.DoubleClick += new System.EventHandler(this.listView1_DoubleClick);
+            this.listView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormDocumentManager_KeyDown);
+            this.listView1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.FormDocumentManager_KeyUp);
             this.listView1.MouseHover += new System.EventHandler(this.listView1_MouseHover);
             // 
             // id
@@ -668,10 +673,10 @@
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.textBoxSearch);
-            this.panel1.Location = new System.Drawing.Point(401, 5);
-            this.panel1.Margin = new System.Windows.Forms.Padding(0);
+            this.panel1.Location = new System.Drawing.Point(400, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(394, 40);
+            this.panel1.Size = new System.Drawing.Size(396, 40);
             this.panel1.TabIndex = 7;
             // 
             // pictureBox1
@@ -687,6 +692,31 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 10;
             this.pictureBox1.TabStop = false;
+            // 
+            // treeView1
+            // 
+            this.treeView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.treeView1.BackColor = System.Drawing.Color.White;
+            this.treeView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.treeView1.ContextMenuStrip = this.contextMenuStripTreeView;
+            this.treeView1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.treeView1.FullRowSelect = true;
+            this.treeView1.HideSelection = false;
+            this.treeView1.ImageIndex = 0;
+            this.treeView1.ImageList = this.imageList1;
+            this.treeView1.Location = new System.Drawing.Point(5, 4);
+            this.treeView1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 4);
+            this.treeView1.Name = "treeView1";
+            this.treeView1.SelectedImageIndex = 0;
+            this.treeView1.Size = new System.Drawing.Size(392, 429);
+            this.treeView1.TabIndex = 5;
+            this.treeView1.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterExpandAsync);
+            this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
+            this.treeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseClick_1);
+            this.treeView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormDocumentManager_KeyDown);
+            this.treeView1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.FormDocumentManager_KeyUp);
+            this.treeView1.MouseHover += new System.EventHandler(this.treeView1_MouseHover);
             // 
             // panelStatusProgress
             // 
@@ -727,6 +757,7 @@
             // 
             this.menuStrip1.AutoSize = false;
             this.menuStrip1.BackColor = System.Drawing.Color.White;
+            this.menuStrip1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -735,6 +766,7 @@
             this.справкаToolStripMenuItem});
             this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.menuStrip1.Location = new System.Drawing.Point(1, 35);
+            this.menuStrip1.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
@@ -744,6 +776,8 @@
             // 
             // ToolStripMenuItemView
             // 
+            this.ToolStripMenuItemView.Checked = true;
+            this.ToolStripMenuItemView.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ToolStripMenuItemView.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ToolStripMenuItemShowUserMenu});
             this.ToolStripMenuItemView.ForeColor = System.Drawing.Color.Black;
@@ -753,9 +787,15 @@
             // 
             // ToolStripMenuItemShowUserMenu
             // 
+            this.ToolStripMenuItemShowUserMenu.Checked = true;
             this.ToolStripMenuItemShowUserMenu.CheckOnClick = true;
+            this.ToolStripMenuItemShowUserMenu.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ToolStripMenuItemShowUserMenu.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ToolStripMenuItemShowUserMenu.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.ToolStripMenuItemShowUserMenu.MergeAction = System.Windows.Forms.MergeAction.Remove;
             this.ToolStripMenuItemShowUserMenu.Name = "ToolStripMenuItemShowUserMenu";
-            this.ToolStripMenuItemShowUserMenu.Size = new System.Drawing.Size(152, 22);
+            this.ToolStripMenuItemShowUserMenu.ShowShortcutKeys = false;
+            this.ToolStripMenuItemShowUserMenu.Size = new System.Drawing.Size(180, 24);
             this.ToolStripMenuItemShowUserMenu.Text = "Вывод меню";
             this.ToolStripMenuItemShowUserMenu.CheckedChanged += new System.EventHandler(this.ToolStripMenuItemUserMenu_CheckedChanged);
             // 
@@ -815,6 +855,14 @@
             this.windowHeader1.Size = new System.Drawing.Size(798, 34);
             this.windowHeader1.TabIndex = 10;
             // 
+            // карточкаДокументаToolStripMenuItem
+            // 
+            this.карточкаДокументаToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("карточкаДокументаToolStripMenuItem.Image")));
+            this.карточкаДокументаToolStripMenuItem.Name = "карточкаДокументаToolStripMenuItem";
+            this.карточкаДокументаToolStripMenuItem.Size = new System.Drawing.Size(269, 30);
+            this.карточкаДокументаToolStripMenuItem.Text = "Карточка документа";
+            this.карточкаДокументаToolStripMenuItem.Click += new System.EventHandler(this.карточкаДокументаToolStripMenuItem_Click);
+            // 
             // FormDocumentManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -847,6 +895,8 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormDocumentManager_FormClosing);
             this.Load += new System.EventHandler(this.FormDocumentManager_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormDocumentManager_KeyDown);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.FormDocumentManager_KeyUp);
             this.contextMenuStripTreeView.ResumeLayout(false);
             this.panelUserMenu.ResumeLayout(false);
             this.flowLayoutPanelUserMenu.ResumeLayout(false);
@@ -874,7 +924,6 @@
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemUserMenu;
         private System.Windows.Forms.Panel panelUserMenu;
-        private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ColumnHeader id;
         private System.Windows.Forms.ColumnHeader name;
@@ -929,6 +978,9 @@
         private VitControls.VitButton vitButton2;
         private VitControls.VitButton vitButton3;
         private VitControls.VitButton vitButton4;
+        private VitControls.VitButton vitButtonTreeSort;
+        private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.ToolStripMenuItem карточкаДокументаToolStripMenuItem;
     }
 }
 

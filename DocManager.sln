@@ -57,6 +57,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vitProgressStatus", "vitPro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VitRelationsUsersToFiles", "VitRelationsUsersToFiles\VitRelationsUsersToFiles.csproj", "{436C7218-6DEB-4209-A7DC-831297EE7711}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VitFileCard", "VitFileCard\VitFileCard.csproj", "{6B8D849B-7847-4359-A140-1FEEF254717A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObjectListView2012", "ObjectListView\ObjectListView2012.csproj", "{18FEDA0C-D147-4286-B39A-01204808106A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -391,6 +395,30 @@ Global
 		{436C7218-6DEB-4209-A7DC-831297EE7711}.Release|x64.Build.0 = Release|Any CPU
 		{436C7218-6DEB-4209-A7DC-831297EE7711}.Release|x86.ActiveCfg = Release|Any CPU
 		{436C7218-6DEB-4209-A7DC-831297EE7711}.Release|x86.Build.0 = Release|Any CPU
+		{6B8D849B-7847-4359-A140-1FEEF254717A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B8D849B-7847-4359-A140-1FEEF254717A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B8D849B-7847-4359-A140-1FEEF254717A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6B8D849B-7847-4359-A140-1FEEF254717A}.Debug|x64.Build.0 = Debug|Any CPU
+		{6B8D849B-7847-4359-A140-1FEEF254717A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6B8D849B-7847-4359-A140-1FEEF254717A}.Debug|x86.Build.0 = Debug|Any CPU
+		{6B8D849B-7847-4359-A140-1FEEF254717A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B8D849B-7847-4359-A140-1FEEF254717A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B8D849B-7847-4359-A140-1FEEF254717A}.Release|x64.ActiveCfg = Release|Any CPU
+		{6B8D849B-7847-4359-A140-1FEEF254717A}.Release|x64.Build.0 = Release|Any CPU
+		{6B8D849B-7847-4359-A140-1FEEF254717A}.Release|x86.ActiveCfg = Release|Any CPU
+		{6B8D849B-7847-4359-A140-1FEEF254717A}.Release|x86.Build.0 = Release|Any CPU
+		{18FEDA0C-D147-4286-B39A-01204808106A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18FEDA0C-D147-4286-B39A-01204808106A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18FEDA0C-D147-4286-B39A-01204808106A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{18FEDA0C-D147-4286-B39A-01204808106A}.Debug|x64.Build.0 = Debug|Any CPU
+		{18FEDA0C-D147-4286-B39A-01204808106A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{18FEDA0C-D147-4286-B39A-01204808106A}.Debug|x86.Build.0 = Debug|Any CPU
+		{18FEDA0C-D147-4286-B39A-01204808106A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18FEDA0C-D147-4286-B39A-01204808106A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18FEDA0C-D147-4286-B39A-01204808106A}.Release|x64.ActiveCfg = Release|Any CPU
+		{18FEDA0C-D147-4286-B39A-01204808106A}.Release|x64.Build.0 = Release|Any CPU
+		{18FEDA0C-D147-4286-B39A-01204808106A}.Release|x86.ActiveCfg = Release|Any CPU
+		{18FEDA0C-D147-4286-B39A-01204808106A}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

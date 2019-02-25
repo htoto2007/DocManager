@@ -77,7 +77,9 @@ namespace VitUsers
 
         private void buttonQueryPassword_Click(object sender, EventArgs e)
         {
-            classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, "Не могу запросить смену пароля!");
+            //ClassNotifyMessage classNotifyMessage = new ClassNotifyMessage();
+            classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.INFORMATION, "В демо версии эта функция недоступна.");
+            //classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, "Не могу запросить смену пароля!");
         }
     }
 }

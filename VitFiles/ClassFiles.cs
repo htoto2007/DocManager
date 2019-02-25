@@ -35,7 +35,7 @@ namespace VitFiles
                 string newFilePath = targetPath + "/" + fileName + fileExtension;
                 if (!classFTP.FileExist(newFilePath))
                 {
-                    classFTP.sessionClose();
+                    //classFTP.sessionClose();
                     return newFilePath.Replace("\\", "/");
                 }
 
@@ -61,12 +61,11 @@ namespace VitFiles
                 targetPath = newFileNameGenerator(sourcePath, targetPath, classFTP);
 
                 // производим копию самого файла на сервере
-                classFTP.copyAsync(sourcePath, targetPath.Replace("\\", "/"));
-                classFTP.SessionOpen();
-                if (classFTP.FileExist(targetPath))
+                int res = classFTP.copy(sourcePath, targetPath.Replace("\\", "/"));
+                if (res != 0)
                 {
-                    ClassNotifyMessage classNotifyMessage = new ClassNotifyMessage();
-                    classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.USER_ERROR, "Не получилось скопироватиь файл. " + targetPath);
+                    Console.WriteLine("Ошибка копирования: " + res);
+                    Console.WriteLine(sourcePath);
                     continue;
                 }
 
@@ -207,7 +206,6 @@ namespace VitFiles
             string[] directoryList = classFTP.ListDirectory(remotePath);
             classFTP.sessionClose();
             
-            
             int iterator = 0;
             foreach (string path in arrPath)
             {
@@ -218,13 +216,17 @@ namespace VitFiles
                     remotePath, 
                     iterator.ToString() + "/" + arrPath.GetLength(0).ToString(),
                     "Проверка на наличие дубликатов");
-                string targetFileName = "/" + remotePath + "/" + Path.GetFileName(path);
+                string targetFileName = remotePath + "/" + Path.GetFileName(path);
                 foreach (string dir in directoryList)
+                {
                     if (dir.Equals(targetFileName))
                     {
                         arrSourceFileNames.Add(path);
                         arrTargetFileNames.Add(targetFileName);
+                        continue;
                     }
+                }
+                
             }
             formProgressStatus.Dispose();
 

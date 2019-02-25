@@ -136,8 +136,10 @@
             // 
             // FormFileCard
             // 
+            this.AcceptButton = this.button1;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.buttonCansel;
             this.ClientSize = new System.Drawing.Size(640, 480);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.windowHeader1);

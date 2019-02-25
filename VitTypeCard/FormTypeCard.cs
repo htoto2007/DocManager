@@ -138,5 +138,10 @@ namespace VitTypeCard
                 initListViewCardProps();
             }
         }
+
+        private void buttonChangeType_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

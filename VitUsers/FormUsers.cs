@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using VitAccessGroup;
+using VitNotifyMessage;
 using VitSubdivision;
 using VitUserPositions;
 using static VitUsers.ClassUsers;
@@ -124,6 +125,36 @@ namespace VitUsers
                 ClassTabPageGroups.listViewGroupUserNoThisGroup(usersInGroup, classUsers.GetAllUsers(), listViewGroupsAllUsers);
                 ClassTabPageGroups.listViewGroupUserThisGroup(usersInGroup, classUsers.GetAllUsers(), listViewGroupsUsersThisGroup);
             }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            ClassNotifyMessage classNotifyMessage = new ClassNotifyMessage();
+            classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.INFORMATION, "В демо версии эта функция недоступна.");
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            ClassNotifyMessage classNotifyMessage = new ClassNotifyMessage();
+            classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.INFORMATION, "В демо версии эта функция недоступна.");
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            ClassNotifyMessage classNotifyMessage = new ClassNotifyMessage();
+            classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.INFORMATION, "В демо версии эта функция недоступна.");
+        }
+
+        private void buttonUsersGroupsAddGroup_Click(object sender, EventArgs e)
+        {
+            ClassNotifyMessage classNotifyMessage = new ClassNotifyMessage();
+            classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.INFORMATION, "В демо версии эта функция недоступна.");
+        }
+
+        private void buttonUsersGroupsDeleteGroup_Click(object sender, EventArgs e)
+        {
+            ClassNotifyMessage classNotifyMessage = new ClassNotifyMessage();
+            classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.INFORMATION, "В демо версии эта функция недоступна.");
         }
     }
 }

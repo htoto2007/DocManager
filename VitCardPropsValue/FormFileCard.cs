@@ -40,9 +40,14 @@ namespace VitCardPropsValue
             int counter = 0;
             foreach (var typeCardProp in typeCardProps)
             {
-                Label label = new Label();
+                TextBox label = new TextBox();
                 label.Text = typeCardProp.name;
-                label.Location = new Point(5, 5 + counter);
+                label.Location = new Point(10, 10 + counter);
+                label.ReadOnly = true;
+                label.BackColor = Color.White;
+                label.BorderStyle = BorderStyle.None;
+                label.Width = 250;
+
                 panelCardProps.Controls.Add(label);
 
                 MaskedTextBox maskedTextBox;
@@ -55,49 +60,49 @@ namespace VitCardPropsValue
                         textBox = new TextBox();
                         textBox.Name = "tb_" + typeCardProp.id.ToString();
                         textBox.Size = new Size(300, Height);
-                        textBox.Location = new Point(300, 5 + counter);
+                        textBox.Location = new Point(300, 10 + counter);
                         panelCardProps.Controls.Add(textBox);
-                        counter += textBox.Height;
+                        counter += textBox.Height + 10;
                         break;
                     case 1:
                         maskedTextBox = new MaskedTextBox("0000000000");
                         maskedTextBox.Name = "tb_" + typeCardProp.id.ToString();
                         maskedTextBox.Size = new Size(300, Height);
-                        maskedTextBox.Location = new Point(300, 5 + counter);
+                        maskedTextBox.Location = new Point(300, 10 + counter);
                         panelCardProps.Controls.Add(maskedTextBox);
-                        counter += maskedTextBox.Height;
+                        counter += maskedTextBox.Height + 10;
                         break;
                     case 2:
                         maskedTextBox = new MaskedTextBox("00/00/0000");
                         maskedTextBox.Name = "tb_" + typeCardProp.id.ToString();
                         maskedTextBox.Size = new Size(300, Height);
-                        maskedTextBox.Location = new Point(300, 5 + counter);
+                        maskedTextBox.Location = new Point(300, 10 + counter);
                         panelCardProps.Controls.Add(maskedTextBox);
-                        counter += maskedTextBox.Height;
+                        counter += maskedTextBox.Height + 10;
                         break;
                     case 3:
                         maskedTextBox = new MaskedTextBox("00/00/0000 90:00");
                         maskedTextBox.Name = "tb_" + typeCardProp.id.ToString();
                         maskedTextBox.Size = new Size(300, Height);
-                        maskedTextBox.Location = new Point(300, 5 + counter);
+                        maskedTextBox.Location = new Point(300, 10 + counter);
                         panelCardProps.Controls.Add(maskedTextBox);
-                        counter += maskedTextBox.Height;
+                        counter += maskedTextBox.Height + 10;
                         break;
                     case 4:
                         checkBox = new CheckBox();
                         checkBox.Name = "tb_" + typeCardProp.id.ToString();
-                        checkBox.Location = new Point(300, 5 + counter);
+                        checkBox.Location = new Point(300, 10 + counter);
                         panelCardProps.Controls.Add(checkBox);
-                        counter += checkBox.Height;
+                        counter += checkBox.Height + 10;
                         break;
                     case 5:
                         richTextBox = new RichTextBox();
                         richTextBox.Name = "tb_" + typeCardProp.id.ToString();
                         richTextBox.Size = new Size(300, 200);
                         richTextBox.Multiline = true;
-                        richTextBox.Location = new Point(300, 5 + counter);
+                        richTextBox.Location = new Point(300, 10 + counter);
                         panelCardProps.Controls.Add(richTextBox);
-                        counter += richTextBox.Height;
+                        counter += richTextBox.Height + 10;
                         break;
                     default:
                         ClassNotifyMessage classNotifyMessage = new ClassNotifyMessage();

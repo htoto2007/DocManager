@@ -17,11 +17,21 @@ namespace VitFileCard
     {
         public FormFileCard()
         {
+            init();
+        }
+
+        public FormFileCard(string filePath)
+        {
+            
+        }
+
+        private void init()
+        {
             InitializeComponent();
             ClassTypeCard classTypeCard = new ClassTypeCard();
             ClassTypeCard.TypeCardCollection[] typeCardCollections = classTypeCard.getAllInfo();
             comboBoxTypeCard.Items.Clear();
-            foreach(var typeCardCollection in typeCardCollections)
+            foreach (var typeCardCollection in typeCardCollections)
             {
                 comboBoxTypeCard.Items.Add(typeCardCollection.namne);
             }

@@ -32,9 +32,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormFileCard));
             this.windowHeader1 = new VitControls.WindowHeader();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
+            this.buttonOk = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonCancel = new System.Windows.Forms.Button();
             this.panelCardProps = new System.Windows.Forms.Panel();
             this.comboBoxTypeCard = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -61,8 +61,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.button2);
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.buttonOk);
+            this.panel1.Controls.Add(this.buttonCancel);
             this.panel1.Controls.Add(this.panelCardProps);
             this.panel1.Controls.Add(this.comboBoxTypeCard);
             this.panel1.Controls.Add(this.label1);
@@ -72,20 +72,20 @@
             this.panel1.Size = new System.Drawing.Size(638, 444);
             this.panel1.TabIndex = 1;
             // 
-            // button2
+            // buttonOk
             // 
-            this.button2.AutoSize = true;
-            this.button2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.button2.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.button2.ImageKey = "icons8-ok-480.png";
-            this.button2.ImageList = this.imageList1;
-            this.button2.Location = new System.Drawing.Point(3, 411);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(94, 30);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Сохранить";
-            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button2.UseVisualStyleBackColor = true;
+            this.buttonOk.AutoSize = true;
+            this.buttonOk.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.buttonOk.ImageKey = "icons8-ok-480.png";
+            this.buttonOk.ImageList = this.imageList1;
+            this.buttonOk.Location = new System.Drawing.Point(3, 411);
+            this.buttonOk.Name = "buttonOk";
+            this.buttonOk.Size = new System.Drawing.Size(94, 30);
+            this.buttonOk.TabIndex = 4;
+            this.buttonOk.Text = "Сохранить";
+            this.buttonOk.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.buttonOk.UseVisualStyleBackColor = true;
             // 
             // imageList1
             // 
@@ -94,20 +94,20 @@
             this.imageList1.Images.SetKeyName(0, "icons8-ok-480.png");
             this.imageList1.Images.SetKeyName(1, "icons8-unavailable-480.png");
             // 
-            // button1
+            // buttonCancel
             // 
-            this.button1.AutoSize = true;
-            this.button1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button1.ImageKey = "icons8-unavailable-480.png";
-            this.button1.ImageList = this.imageList1;
-            this.button1.Location = new System.Drawing.Point(555, 411);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(80, 30);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Отмена";
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button1.UseVisualStyleBackColor = true;
+            this.buttonCancel.AutoSize = true;
+            this.buttonCancel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.buttonCancel.ImageKey = "icons8-unavailable-480.png";
+            this.buttonCancel.ImageList = this.imageList1;
+            this.buttonCancel.Location = new System.Drawing.Point(555, 411);
+            this.buttonCancel.Name = "buttonCancel";
+            this.buttonCancel.Size = new System.Drawing.Size(80, 30);
+            this.buttonCancel.TabIndex = 3;
+            this.buttonCancel.Text = "Отмена";
+            this.buttonCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.buttonCancel.UseVisualStyleBackColor = true;
             // 
             // panelCardProps
             // 
@@ -141,6 +141,8 @@
             // 
             // FormFileCard
             // 
+            this.AcceptButton = this.buttonOk;
+            this.CancelButton = this.buttonCancel;
             this.ClientSize = new System.Drawing.Size(640, 480);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.windowHeader1);
@@ -161,9 +163,9 @@
 
         private VitControls.WindowHeader windowHeader1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button buttonOk;
         private System.Windows.Forms.ImageList imageList1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.Panel panelCardProps;
         public System.Windows.Forms.ComboBox comboBoxTypeCard;

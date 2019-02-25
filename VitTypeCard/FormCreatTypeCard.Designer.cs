@@ -34,7 +34,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonAddProp = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.panelProps = new System.Windows.Forms.Panel();
             this.buttonDeleteProp_0 = new System.Windows.Forms.Button();
@@ -70,7 +70,7 @@
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.textBox1);
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.buttonAddProp);
             this.panel1.Controls.Add(this.panelProps);
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.button2);
@@ -98,19 +98,19 @@
             this.textBox1.Size = new System.Drawing.Size(621, 20);
             this.textBox1.TabIndex = 11;
             // 
-            // button1
+            // buttonAddProp
             // 
-            this.button1.AutoSize = true;
-            this.button1.ImageKey = "editionadded_theaction_6325.png";
-            this.button1.ImageList = this.imageList1;
-            this.button1.Location = new System.Drawing.Point(3, 53);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(118, 30);
-            this.button1.TabIndex = 15;
-            this.button1.Text = "Добавить поле";
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.buttonAddProp.AutoSize = true;
+            this.buttonAddProp.ImageKey = "editionadded_theaction_6325.png";
+            this.buttonAddProp.ImageList = this.imageList1;
+            this.buttonAddProp.Location = new System.Drawing.Point(3, 53);
+            this.buttonAddProp.Name = "buttonAddProp";
+            this.buttonAddProp.Size = new System.Drawing.Size(118, 30);
+            this.buttonAddProp.TabIndex = 15;
+            this.buttonAddProp.Text = "Добавить поле";
+            this.buttonAddProp.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.buttonAddProp.UseVisualStyleBackColor = true;
+            this.buttonAddProp.Click += new System.EventHandler(this.buttonAddProp_Click);
             // 
             // imageList1
             // 
@@ -138,7 +138,7 @@
             this.buttonDeleteProp_0.Enabled = false;
             this.buttonDeleteProp_0.ImageKey = "cancellationbutton_exitneartheaction_botondecancelacion_salida_6335.png";
             this.buttonDeleteProp_0.ImageList = this.imageList1;
-            this.buttonDeleteProp_0.Location = new System.Drawing.Point(593, 6);
+            this.buttonDeleteProp_0.Location = new System.Drawing.Point(564, 7);
             this.buttonDeleteProp_0.Margin = new System.Windows.Forms.Padding(1);
             this.buttonDeleteProp_0.Name = "buttonDeleteProp_0";
             this.buttonDeleteProp_0.Size = new System.Drawing.Size(30, 30);
@@ -158,7 +158,7 @@
             "Текстовой"});
             this.comboBoxType_0.Location = new System.Drawing.Point(309, 12);
             this.comboBoxType_0.Name = "comboBoxType_0";
-            this.comboBoxType_0.Size = new System.Drawing.Size(280, 21);
+            this.comboBoxType_0.Size = new System.Drawing.Size(251, 21);
             this.comboBoxType_0.TabIndex = 6;
             // 
             // textBoxName_0
@@ -245,7 +245,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonAddProp;
         private System.Windows.Forms.Panel panelProps;
         private System.Windows.Forms.Button buttonDeleteProp_0;
         private System.Windows.Forms.ComboBox comboBoxType_0;

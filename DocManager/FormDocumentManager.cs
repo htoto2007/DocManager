@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
@@ -11,6 +12,7 @@ using VitDBConnect;
 using VitFTP;
 using VitListView;
 using VitNotifyMessage;
+using vitProgressStatus;
 using VitSearcher;
 using VitSendToProgram;
 using VitSettings;
@@ -101,9 +103,9 @@ namespace DocManager
         /// <param name="e"></param>
         private void buttonAddBranch_Click(object sender, EventArgs e)
         {
-            treeView1.BeginUpdate();
+            //treeView1.BeginUpdate();
             classTree.AddBranch(treeView1);
-            treeView1.EndUpdate();
+            //treeView1.EndUpdate();
         }
 
         /// <summary>
@@ -262,7 +264,8 @@ namespace DocManager
 
                 
                 ClassUsers classUsers = new ClassUsers();
-                VitFTP.ClassFTP classFTP = new VitFTP.ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
+                ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
+                classFTP.SessionOpen();
                 // проверяем наличие файла на удаленном сервере
                 if (!classFTP.FileExist(remoteFilePath))
                 {
@@ -274,8 +277,15 @@ namespace DocManager
                     Console.WriteLine("открываемый элемент не является файлом.");
                     return;
                 }
-                classFTP.DownloadFile(remoteFilePath, openFilePath);
-                
+                var res = classFTP.DownloadFile2(remoteFilePath, openFilePath);
+
+                if(!res)
+                {
+                    classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, "Не удалось получить файл с сервера! \n " + remoteFilePath);
+                    return;
+                }
+
+                classFTP.sessionClose();
                 // проверяем скачался ли файл
                 if (!File.Exists(openFilePath))
                 {
@@ -307,7 +317,7 @@ namespace DocManager
         {
             ClassUsers classUsers = new ClassUsers();
             ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
-
+            classFTP.SessionOpen();
             if (listView1.SelectedItems.Count < 1) // если ничего не выделено
             {
                 ToolStripMenuItemRequestOriginal.Enabled = false;
@@ -323,7 +333,6 @@ namespace DocManager
             }
             else if (listView1.SelectedItems.Count == 1) // если выделен один объект
             {
-                
                 if (classFTP.getFileType(listView1.SelectedItems[0].SubItems["path"].Text) == 1) // если файл
                 {
                     ToolStripMenuItemRequestOriginal.Enabled = true; 
@@ -362,6 +371,7 @@ namespace DocManager
                 ToolStripMenuItemRename.Enabled = false;
                 ToolStripMenuItemSendToPrint.Enabled = false;
             }
+            classFTP.sessionClose();
         }
 
         /// <summary>
@@ -507,15 +517,20 @@ namespace DocManager
             else if (lastControl.GetType() == typeof(ListView))
             {
                 ClassLisView classLisView = new ClassLisView();
-                //classLisView.
-                
             }
         }
 
         private void ToolStripMenuItemCopy_Click(object sender, EventArgs e)
         {
-            ClassUsers classUsers = new ClassUsers();
-            classTree.copy(treeView1, classUsers.getThisUser().login, classUsers.getThisUser().password);
+            if (lastControl.GetType() == typeof(TreeView))
+            {
+                ClassUsers classUsers = new ClassUsers();
+                classTree.copy(treeView1, classUsers.getThisUser().login, classUsers.getThisUser().password);
+            }else if (lastControl.GetType() == typeof(ListView))
+            {
+                ClassLisView classLisView = new ClassLisView();
+                
+            }
         }
 
         private void ToolStripMenuItemDelete_Click(object sender, EventArgs e)
@@ -565,6 +580,8 @@ namespace DocManager
 
         private void ToolStripMenuItemSendToEmail_Click(object sender, EventArgs e)
         {
+            ClassNotifyMessage classNotifyMessage = new ClassNotifyMessage();
+            classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.INFORMATION, "В демо версии эта функция недоступна.");
         }
 
         private void ToolStripMenuItemSendToFolder_Click(object sender, EventArgs e)
@@ -580,6 +597,11 @@ namespace DocManager
             if (lastControl.GetType() == typeof(TreeView))
             {
                 classTree.sendToPrint(treeView1);
+            }
+            if (lastControl.GetType() == typeof(ListView))
+            {
+                ClassNotifyMessage classNotifyMessage = new ClassNotifyMessage();
+                classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, "Отправка файла из списка на печать недоступна.");
             }
         }
 
@@ -636,9 +658,9 @@ namespace DocManager
         private async void treeView1_AfterExpandAsync(object sender, TreeViewEventArgs e)
         {
             //Enabled = false;
-            treeView1.BeginUpdate();
+            //treeView1.BeginUpdate();
             classTree.PreLoadNodesAsync(e.Node);
-            treeView1.EndUpdate();
+            //treeView1.EndUpdate();
             //Enabled = true;
         }
 
@@ -681,7 +703,8 @@ namespace DocManager
 
         private void ToolStripMenuItemSelectAll_Click(object sender, EventArgs e)
         {
-            foreach(ListViewItem listViewItem in listView1.Items)
+            listView1.Focus();
+            foreach (ListViewItem listViewItem in listView1.Items)
             {
                 listViewItem.Selected = true;
             }
@@ -699,10 +722,10 @@ namespace DocManager
 
         private void vitButtonUpdateInfo_Click(object sender, EventArgs e)
         {
-            Enabled = false;
+            //Enabled = false;
             ClassUsers classUsers = new ClassUsers();
             classTree.Init(treeView1, classUsers.getThisUser().login, classUsers.getThisUser().password);
-            Enabled = true;
+            //Enabled = true;
         }
 
         private void ToolStripMenuItemConnectToData_Click(object sender, EventArgs e)
@@ -714,17 +737,18 @@ namespace DocManager
         private void FormDocumentManager_Load(object sender, EventArgs e)
         {
             ClassUsers classUsers = new ClassUsers();
-            treeView1.BeginUpdate();
+            //treeView1.BeginUpdate();
             classTree.Init(treeView1, classUsers.getThisUser().login, classUsers.getThisUser().password);
-            treeView1.EndUpdate();
-            treeView1.Update();
+            //treeView1.EndUpdate();
+            //treeView1.Update();
         }
 
-        private void textBoxSearch_KeyUp(object sender, KeyEventArgs e)
+        private async void textBoxSearch_KeyUpAsync(object sender, KeyEventArgs e)
         {
-            if(e.KeyData == Keys.Enter)
+            if (e.KeyData == Keys.Enter)
             {
-                var idFileCollections = classSearcher.start(textBoxSearch.Text);
+                ClassSearcher.fileIdCollection[] idFileCollections = null;
+                idFileCollections = classSearcher.Start(textBoxSearch.Text);
                 VitFiles.ClassFiles classFiles = new VitFiles.ClassFiles();
                 VitFiles.ClassFiles.FileCollection[] fileCollections = new VitFiles.ClassFiles.FileCollection[idFileCollections.GetLength(0)];
                 for (int i = 0; i < idFileCollections.GetLength(0); i++)
@@ -735,6 +759,76 @@ namespace DocManager
                 ClassLisView classLisView = new ClassLisView();
                 classLisView.FromSearch(fileCollections, listView1);
             }
+        }
+
+        private void FormDocumentManager_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Control && e.KeyCode == Keys.F) textBoxSearch.Focus();
+            if (e.Shift && e.KeyCode == Keys.S) treeView1.Sort();
+        }
+
+        private void FormDocumentManager_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.F5)
+            {
+                ClassUsers classUsers = new ClassUsers();
+                classTree.Init(treeView1, classUsers.getThisUser().login, classUsers.getThisUser().password);
+            }
+        }
+
+        private void vitButtonTreeSort_Click(object sender, EventArgs e)
+        {
+            treeView1.Sort();
+        }
+
+        private void listView1_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            //listView1.Columns[e.Column];
+            //listView1.ListViewItemSorter = new ListViewItemComparer(e.Column);
+            for (int i = 0; i < listView1.Columns.Count; i++) {
+                listView1.Columns[i].Text = listView1.Columns[i].Text.Trim(char.ConvertFromUtf32(0x2193).ToCharArray(0, 1));
+                listView1.Columns[i].Text = listView1.Columns[i].Text.Trim(char.ConvertFromUtf32(0x2191).ToCharArray(0, 1));
+            }
+            if (listView1.Sorting != SortOrder.Ascending)
+            {
+                listView1.Sorting = SortOrder.Ascending;
+                listView1.Columns[e.Column].Text = listView1.Columns[e.Column].Text + char.ConvertFromUtf32(0x2193);
+            }
+            else
+            {
+                listView1.Sorting = SortOrder.Descending;
+                listView1.Columns[e.Column].Text = listView1.Columns[e.Column].Text + char.ConvertFromUtf32(0x2191);
+            }
+            listView1.Sort();
+        }
+
+        // Implements the manual sorting of items by columns.
+        class ListViewItemComparer : IComparer
+        {
+            private int col;
+            public ListViewItemComparer()
+            {
+                col = 0;
+            }
+            public ListViewItemComparer(int column)
+            {
+                col = column;
+            }
+            public int Compare(object x, object y)
+            {
+                return String.Compare(((ListViewItem)x).SubItems[col].Text, ((ListViewItem)y).SubItems[col].Text);
+            }
+        }
+
+        private void toolStripMenuItemScanToThisFolder_Click(object sender, EventArgs e)
+        {
+            ClassNotifyMessage classNotifyMessage = new ClassNotifyMessage();
+            classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.INFORMATION, "В демо версии эта функция недоступна.");
+        }
+
+        private void карточкаДокументаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

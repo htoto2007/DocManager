@@ -12,7 +12,7 @@ namespace VitSearcher
         private readonly ClassFiles classFiles = new ClassFiles();
         ClassMysql classMysql = new ClassMysql();
 
-        public fileIdCollection[] start(string frase)
+        public fileIdCollection[] Start(string frase)
         {
             string[] words = fraseToWords(frase);
             int[] byCardPropsValueResult = ByCardPropsValue(words);
@@ -68,19 +68,15 @@ namespace VitSearcher
                 listCountWords.Add(listIdFile.FindAll(item => item == id).Count);
                 listIdFile.RemoveAll(item => item == id);
                 listIdFile.Add(id);
-                //if(listIdFile[listIdFile.Count - 1] == id) break;
-                Console.WriteLine("id file " + listIdFile.ToString());
-                Console.WriteLine("Размер списка количства id " + listCountWords.Count);
+                //Console.WriteLine("id file " + listIdFile.ToString());
+                //Console.WriteLine("Размер списка количства id " + listCountWords.Count);
             }
-            Console.WriteLine("---------------------------------------------------");
-            Console.WriteLine("Размер списка количства id " + listCountWords.Count);
             // записываем информацию из списков в коллекцию
             fileIdCollection[] fileIdCollections = new fileIdCollection[listIdFile.Count];
             for (int i = 0; i < listIdFile.Count; i++)
             {
                 fileIdCollections[i].id = listIdFile[i];
                 fileIdCollections[i].countMatchWords = listCountWords[i];
-                Console.WriteLine(fileIdCollections[i].id + " -> " + fileIdCollections[i].countMatchWords);
             }
 
             return fileIdCollections;
@@ -91,7 +87,6 @@ namespace VitSearcher
             List<int> listIdFiles = new List<int>();
             foreach (string word in words)
             {
-                
                 string query = "SELECT id_file " +
                     "FROM tb_card_props_value " +
                     "WHERE value LIKE '%" + word + "%'";

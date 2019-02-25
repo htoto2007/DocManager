@@ -30,9 +30,9 @@
         {
             this.windowHeader1 = new VitControls.WindowHeader();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.labelInfo = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.labelInfo = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,6 +64,15 @@
             this.panel1.Size = new System.Drawing.Size(558, 114);
             this.panel1.TabIndex = 1;
             // 
+            // labelInfo
+            // 
+            this.labelInfo.AutoSize = true;
+            this.labelInfo.Location = new System.Drawing.Point(71, 26);
+            this.labelInfo.Name = "labelInfo";
+            this.labelInfo.Size = new System.Drawing.Size(16, 13);
+            this.labelInfo.TabIndex = 3;
+            this.labelInfo.Text = "...";
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -80,17 +89,8 @@
             this.progressBar1.Location = new System.Drawing.Point(3, 64);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(552, 16);
-            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.progressBar1.TabIndex = 0;
-            // 
-            // labelInfo
-            // 
-            this.labelInfo.AutoSize = true;
-            this.labelInfo.Location = new System.Drawing.Point(71, 26);
-            this.labelInfo.Name = "labelInfo";
-            this.labelInfo.Size = new System.Drawing.Size(16, 13);
-            this.labelInfo.TabIndex = 3;
-            this.labelInfo.Text = "...";
             // 
             // FormProgressStatusEasy
             // 

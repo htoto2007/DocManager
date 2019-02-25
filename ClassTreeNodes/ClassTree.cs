@@ -130,8 +130,9 @@ namespace VitTree
                     treeNodeFile.Text = Path.GetFileName(file);
                     treeNodeFile.ImageKey = Path.GetExtension(file).Trim('.');
                     treeView.SelectedNode.Nodes.Add(treeNodeFile);
+                    treeView.SelectedNode = treeNodeFile;
                 }
-                treeView.Sort();
+                //treeView.Sort();
             }
         }
 
@@ -171,19 +172,20 @@ namespace VitTree
             };
 
             treeView.SelectedNode.Nodes.Add(treeNode);
+            treeView.SelectedNode = treeNode;
             //treeView.Sort();
         }
 
         public void copy(TreeView treeView, string login, string password)
         {
-            string sourcePath = treeView.SelectedNode.FullPath;
+            string sourcePath = treeView.SelectedNode.Name;
             // выводим окно выбора местан директории назначения 
             FormTree formTree = new FormTree(login, password);
             formTree.Text = "Копирование";
             formTree.textBoxSelectedPath.Text = sourcePath;
             if (formTree.ShowDialog() != DialogResult.OK) return;
 
-            string targetPath = formTree.treeView1.SelectedNode.FullPath;
+            string targetPath = formTree.treeView1.SelectedNode.Name;
             string[] copyFilesOk = classFiles.Copy(new string[] { sourcePath }, targetPath);
             if (copyFilesOk.GetLength(0) < 1)
             {
@@ -199,8 +201,7 @@ namespace VitTree
                 treeNodeClone.Name = copyFilesOk[0];
                 treeNodeClone.Text = Path.GetFileName(copyFilesOk[0]);
                 treeNodes[0].Nodes.Add(treeNodeClone);
-                
-                //treeView.Sort();
+                treeView.SelectedNode = treeNodeClone;
             }
         }
 
@@ -278,6 +279,8 @@ namespace VitTree
                 if ((direcory.isDirectory) && (!direcory.path.Contains("..")))
                     getSubdirectoryes(classFTP, treeNode, Path.GetFileName(treeNode.Name));
             }
+
+            if (treeView.Nodes.Count > 0) treeView.SelectedNode = treeView.Nodes[0];
             
             /*
             foreach (TreeNode treeNode in treeView.Nodes)
@@ -302,18 +305,20 @@ namespace VitTree
             formTree.Text = "Перемещение";
             formTree.textBoxSelectedPath.Text = sourcePath;
             if (formTree.ShowDialog() != DialogResult.OK) return;
-
             string targetPath = formTree.treeView1.SelectedNode.Name.Replace("/", "\\");
+
+            // производим перемещение
             string[] completeFiles = classFiles.MoveFile(new string[] { sourcePath }, targetPath);
             if (completeFiles == null) return;
             if (completeFiles.GetLength(0) < 1) return;
 
+            // выводим в дерево
             TreeNode treeNodeClone = (TreeNode)treeView.SelectedNode.Clone();
-            treeNodeClone.Name = completeFiles[0];
+            treeNodeClone.Name = targetPath.Replace("\\", "/") + "/" + Path.GetFileName(completeFiles[0]);
             treeView.SelectedNode.Remove();
             TreeNode[] treeNodes = treeView.Nodes.Find(formTree.treeView1.SelectedNode.Name, true);
             treeNodes[0].Nodes.Add(treeNodeClone);
-
+            treeView.SelectedNode = treeNodeClone;
         }
 
         /// <summary>
@@ -406,13 +411,14 @@ namespace VitTree
             {
                 treeView.SelectedNode.Text = formTreeInput.textBox1.Text;
                 treeView.SelectedNode.Name = "/" + treeView.SelectedNode.FullPath.Replace("\\", "/");
+                
             }
             else
             {
                 ClassNotifyMessage classNotifyMessage = new ClassNotifyMessage();
                 classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, "Не удалось переименовать!");
             }
-            treeView.Sort();
+            //treeView.Sort();
         }
 
         public struct TypeNodeCollection

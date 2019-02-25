@@ -151,26 +151,32 @@ namespace VitFTP
         }
 
         /// <summary>
-        /// 
+        /// Копирует файлы через клиента. 0 - успех, 1 - ошибка скачивания папки, 2 - ошибка закачивания папки, 3 - ошибка скачивания файла, 4 - ошибка закачивания файла
         /// </summary>
         /// <param name="sourcePath">sourceDirectory\fileName.ext</param>
         /// <param name="targetPath">targetDirectory\fileName.ext</param>
         /// <returns></returns>
-        public async Task copyAsync(string sourcePath, string targetPath)
+        public int copy(string sourcePath, string targetPath)
         {
-            await Task.Run(() => EraseDirectory(VitSettings.Properties.FTPSettings.Default.pathTnp));
+            TransferOperationResult transferOperationResult;
+            EraseDirectory(VitSettings.Properties.FTPSettings.Default.pathTnp);
             if (getFileType(sourcePath.Replace("\\", "/")) == 2)
             {
-                await Task.Run(() => Directory.CreateDirectory(VitSettings.Properties.FTPSettings.Default.pathTnp + "\\" + Path.GetFileName(sourcePath)));
-                await Task.Run(() => session.GetFiles(sourcePath, VitSettings.Properties.FTPSettings.Default.pathTnp + "\\" + Path.GetFileName(sourcePath)));
-                await Task.Run(() => session.PutFiles(VitSettings.Properties.FTPSettings.Default.pathTnp + "\\" + Path.GetFileName(sourcePath), targetPath + "\\"));
+                Directory.CreateDirectory(VitSettings.Properties.FTPSettings.Default.pathTnp + "\\" + Path.GetFileName(sourcePath));
+                transferOperationResult = session.GetFiles(sourcePath, VitSettings.Properties.FTPSettings.Default.pathTnp + "\\" + Path.GetFileName(sourcePath));
+                if (!transferOperationResult.IsSuccess) return 1;
+                transferOperationResult = session.PutFiles(VitSettings.Properties.FTPSettings.Default.pathTnp + "\\" + Path.GetFileName(sourcePath), targetPath + "\\");
+                if (!transferOperationResult.IsSuccess) return 2;
             }
             else
             {
-                DownloadFile(sourcePath, VitSettings.Properties.FTPSettings.Default.pathTnp + "\\" + Path.GetFileName(sourcePath));
-                session.PutFiles(VitSettings.Properties.FTPSettings.Default.pathTnp + "\\" + Path.GetFileName(sourcePath), targetPath);
+                transferOperationResult = session.GetFiles(sourcePath, VitSettings.Properties.FTPSettings.Default.pathTnp + "\\" + Path.GetFileName(sourcePath));
+                if (!transferOperationResult.IsSuccess) return 3;
+                transferOperationResult = session.PutFiles(VitSettings.Properties.FTPSettings.Default.pathTnp + "\\" + Path.GetFileName(sourcePath), targetPath);
+                if (!transferOperationResult.IsSuccess) return 4;
             }
-            await Task.Run(() => EraseDirectory(VitSettings.Properties.FTPSettings.Default.pathTnp));
+            EraseDirectory(VitSettings.Properties.FTPSettings.Default.pathTnp);
+            return 0;
         }
 
         public bool CreateDirectory(string path)
@@ -183,9 +189,7 @@ namespace VitFTP
             session.CreateDirectory(path);
             return FileExist(path);
         }
-
         
-
         public string DeleteFile(string fileName)
         {
             FtpWebRequest request = createRequest(combine(uri, fileName.TrimStart('/')), WebRequestMethods.Ftp.DeleteFile);
@@ -314,24 +318,55 @@ namespace VitFTP
         {
             string pathMove = "";
             List<string> arrOkPathsMove = new List<string>();
-
+            TransferOperationResult transferOperationResult;
             foreach (string sourcePath in sourceArrPath)
             {
                 EraseDirectory(VitSettings.Properties.FTPSettings.Default.pathTnp);
+
                 if (Path.GetExtension(sourcePath) == "")
                 {
-                    Directory.CreateDirectory(VitSettings.Properties.FTPSettings.Default.pathTnp + "\\" + Path.GetFileName(sourcePath));
-                    session.GetFiles(sourcePath.Replace("/", "\\"), VitSettings.Properties.FTPSettings.Default.pathTnp + "\\" + Path.GetFileName(sourcePath));
-                    session.PutFiles(VitSettings.Properties.FTPSettings.Default.pathTnp + "\\" + Path.GetFileName(sourcePath), targetPath);
+
+                    string tmp = VitSettings.Properties.FTPSettings.Default.pathTnp + "\\";
+                    string pathToClient = tmp + Path.GetFileName(sourcePath);
+                    Directory.CreateDirectory(pathToClient);
+                    Console.WriteLine("Попытка выгрузки с сервера" + sourcePath.Replace("\\", "/") + " => " + tmp);
+                    transferOperationResult = session.GetFiles(sourcePath.Replace("\\", "/"), tmp, false);
+                    if (!transferOperationResult.IsSuccess)
+                    {
+                        Console.WriteLine("ошибка перемещения 1");
+                        Console.WriteLine(sourcePath.Replace("\\", "/") + " => " + tmp);
+                    }
+                    Console.WriteLine("Попытка загрузки на сервер: " + pathToClient + " => " + targetPath);
+                    TransferOptions transferOptions = new TransferOptions();
+                    transferOptions.OverwriteMode = OverwriteMode.Resume;
+
+                    transferOperationResult = session.PutFiles(pathToClient, targetPath + "/", false, transferOptions);
+                    if (!transferOperationResult.IsSuccess)
+                    {
+                        Console.WriteLine("ошибка перемещения 2");
+                        Console.WriteLine(pathToClient + " => " + targetPath);
+                    }
                 }
                 else
                 {
-                    session.GetFiles(sourcePath, VitSettings.Properties.FTPSettings.Default.pathTnp + "\\" + Path.GetFileName(sourcePath));
-                    session.PutFiles(VitSettings.Properties.FTPSettings.Default.pathTnp + "\\" + Path.GetFileName(sourcePath), targetPath);
+                    string pathToClient = VitSettings.Properties.FTPSettings.Default.pathTnp + "\\" + Path.GetFileName(sourcePath);
+                    transferOperationResult = session.GetFiles(sourcePath, pathToClient);
+                    if (!transferOperationResult.IsSuccess)
+                    {
+                        Console.WriteLine("ошибка перемещения 3");
+                        Console.WriteLine(sourcePath + " => " + pathToClient);
+                    }
+                    transferOperationResult = session.PutFiles(pathToClient, targetPath + "/");
+                    if (!transferOperationResult.IsSuccess)
+                    {
+                        Console.WriteLine("ошибка перемещения 4");
+                        Console.WriteLine(pathToClient + " => " + targetPath);
+                    }
                 }
                 //EraseDirectory(VitSettings.Properties.FTPSettings.Default.pathTnp);
 
-                pathMove = "/" + targetPath.Replace("\\", "/") + "/" + Path.GetFileName(sourcePath);
+                pathMove = targetPath.Replace("\\", "/") + "/" + Path.GetFileName(sourcePath);
+                Console.WriteLine("Проверяем на существование " + pathMove);
                 // проверяем результат переноса файла
                 if (FileExist(pathMove) == true)
                 {

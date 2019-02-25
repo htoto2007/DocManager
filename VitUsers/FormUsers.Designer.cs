@@ -421,6 +421,7 @@
             this.buttonUsersGroupsDeleteGroup.Text = "Удалить группу";
             this.buttonUsersGroupsDeleteGroup.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.buttonUsersGroupsDeleteGroup.UseVisualStyleBackColor = false;
+            this.buttonUsersGroupsDeleteGroup.Click += new System.EventHandler(this.buttonUsersGroupsDeleteGroup_Click);
             // 
             // buttonUsersGroupsAddGroup
             // 
@@ -435,6 +436,7 @@
             this.buttonUsersGroupsAddGroup.Text = "Добавить группу";
             this.buttonUsersGroupsAddGroup.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.buttonUsersGroupsAddGroup.UseVisualStyleBackColor = false;
+            this.buttonUsersGroupsAddGroup.Click += new System.EventHandler(this.buttonUsersGroupsAddGroup_Click);
             // 
             // listViewUsersGroups
             // 
@@ -531,6 +533,7 @@
             this.button4.Text = "Удалить группу";
             this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button5
             // 
@@ -545,6 +548,7 @@
             this.button5.Text = "Изменить свойства";
             this.button5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button6
             // 
@@ -559,6 +563,7 @@
             this.button6.Text = "Добавить группу";
             this.button6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button6.UseVisualStyleBackColor = false;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // listViewGroups
             // 

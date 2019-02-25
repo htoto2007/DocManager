@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using VitCardPropsValue;
 using VitTypeCard;
+using static VitCardPropsValue.ClassCardPropsValue;
 
 namespace VitFileCard
 {
@@ -14,7 +15,7 @@ namespace VitFileCard
         public struct CardCollection
         {
             public string typeCardName;
-            public CardPeopsValueCollection[] cardPeopsValueCollections;
+            public CardPropsValueCollection[] cardPeopsValueCollections;
         }
 
         
@@ -27,7 +28,7 @@ namespace VitFileCard
             ClassTypeCard classTypeCard = new ClassTypeCard();
             classTypeCard.add(cardCollection.typeCardName);
             ClassCardPropsValue classCardPropsValue = new ClassCardPropsValue();
-            foreach (CardPeopsValueCollection cardPeopsValueCollection in cardCollection.cardPeopsValueCollections) {
+            foreach (CardPropsValueCollection cardPeopsValueCollection in cardCollection.cardPeopsValueCollections) {
                 classCardPropsValue.createValue(cardPeopsValueCollection.idCardProps, cardPeopsValueCollection.value, cardPeopsValueCollection.filePath);
             }
         }
