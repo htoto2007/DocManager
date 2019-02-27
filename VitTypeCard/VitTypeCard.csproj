@@ -80,6 +80,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\VitCardPropsValue\VitCardPropsValue.csproj">
+      <Project>{36350f39-7577-4119-a3fe-7cb69da65e5d}</Project>
+      <Name>VitCardPropsValue</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VitControls\VitControls.csproj">
       <Project>{0D2381AF-887D-4DE5-98FA-1E77AD098931}</Project>
       <Name>VitControls</Name>

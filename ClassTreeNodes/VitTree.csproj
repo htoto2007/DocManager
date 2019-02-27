@@ -122,6 +122,10 @@
       <Project>{f92548b9-5df7-4c56-acbd-e0d091a47d2b}</Project>
       <Name>VitDBConnect</Name>
     </ProjectReference>
+    <ProjectReference Include="..\VitFileCard\VitFileCard.csproj">
+      <Project>{6B8D849B-7847-4359-A140-1FEEF254717A}</Project>
+      <Name>VitFileCard</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VitFiles\VitFiles.csproj">
       <Project>{66017a02-c3d9-4809-b788-6b91df08be99}</Project>
       <Name>VitFiles</Name>

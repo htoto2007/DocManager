@@ -1,0 +1,2235 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="GENERATOR" content="VSdocman - documentation generator; http://www.helixoft.com" />
+	<title>SimpleDropSink Class</title>
+
+	<link rel="stylesheet" type="text/css" href="msdn2017/msdn2017.css"></link>
+	<script src="msdn2017/msdn2017.js" type="text/javascript"></script>
+	<script src="SyntaxHighlighter/scripts/shCore_helixoft.js" type="text/javascript"></script>
+	<script src="SyntaxHighlighter/scripts/shBrushVb.js" type="text/javascript"></script>
+	<script src="SyntaxHighlighter/scripts/shBrushCSharp.js" type="text/javascript"></script>
+	<script src="SyntaxHighlighter/scripts/shBrushFSharp.js" type="text/javascript"></script>
+	<script src="SyntaxHighlighter/scripts/shBrushCpp.js" type="text/javascript"></script>
+	<script src="SyntaxHighlighter/scripts/shBrushJScript.js" type="text/javascript"></script>
+	<link href="SyntaxHighlighter/styles/shCore.css" rel="stylesheet" type="text/css" />
+	<link href="SyntaxHighlighter/styles/shThemeMsdnLW.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript">
+		SyntaxHighlighter.all();
+	</script>				
+
+	<script type="text/javascript">
+<!--
+if (self.name != "vbdocright") {
+	if (location.search != "?toc=no") {
+		var filename = location.pathname.replace(/\\/g, "/");
+		filename = filename.substring(filename.lastIndexOf('/')+1);
+		location.replace("index.html#" + filename);
+	} 
+}
+
+function replaceTitleAndUrl(win, title, url) {
+	if(history.replaceState) {
+		win.history.replaceState(null, title, url);
+	} else {
+		win.document.title = document.title;
+		win.location.replace(url);
+	}
+}
+//-->
+	</script>	
+</head>
+
+<body style="direction: ltr;">
+	<script type="text/javascript">
+		try {
+			if (location.search != "?toc=no") {
+				parent.document.title = document.title;
+				var filename = location.pathname.replace(/\\/g, "/");
+				filename = filename.substring(filename.lastIndexOf('/')+1);
+				if (window.parent.location.search == null || window.parent.location.search != "?" + filename) {
+					if (window.parent.location.hash == null || window.parent.location.hash != "#" + filename) {
+						replaceTitleAndUrl(window.parent, document.title, "index.html#" + filename);
+					}
+				}
+			}
+		} catch (ex) {}
+	</script>
+	<div id="topic">
+<!--HEADER START-->
+  <div id="header">
+  	<div id="runningHeaderText">SOLUTION-WIDE PROPERTIES Reference</div>
+  	<h1 class="title">SimpleDropSink Class</h1>
+  	<div id="headerLinks">
+
+	<a href="#seeAlsoSection">See Also</a>
+
+		</div>
+		<hr />
+	</div>
+<!--HEADER END-->
+    
+		<div id="mainSection">
+      <div id="mainBody">
+        <p />
+       
+        This class represents a simple implementation of a drop sink.
+
+
+        <p /><strong>Namespace:</strong>
+<a href="topic_00000000000001E7.html">BrightIdeasSoftware</a>
+
+
+
+
+        <br /><strong>Assembly:</strong> ObjectListView (in ObjectListView.dll)
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="section_container">
+	<div class="section_heading">
+		<span><a href="javascript:void(0)" title="Collapse" onclick="toggleSection(this);">Syntax</a></span>
+		<div><hr /></div>
+	</div>
+
+	<div id="syntaxSection" class="section">	
+	
+	
+	<div id="syntaxCodeBlocks">
+		<div class="codeSnippetContainer">		
+			<div class="codeSnippetTabs">
+				<div class="codeSnippetTabLeftCornerActive">
+				</div>
+				<div class="codeSnippetTab csFirstTab csActiveTab codeVB">
+					<a>VB</a>
+				</div>
+				<div class="codeSnippetTab csNaTab codeCsharp">
+					<a href="javascript: CodeSnippet_SetLanguage('Csharp');">C#</a>
+				</div>
+				<div class="codeSnippetTab csNaTab codeFsharp">
+					<a href="javascript: CodeSnippet_SetLanguage('Fsharp');">F#</a>
+				</div>
+				<div class="codeSnippetTab csNaTab codeCpp">
+					<a href="javascript: CodeSnippet_SetLanguage('Cpp');">C++</a>
+				</div>
+				<div class="codeSnippetTab csLastTab csNaTab codeJScript">
+					<a href="javascript: CodeSnippet_SetLanguage('JScript');">JScript</a>
+				</div>
+				<div class="codeSnippetTabRightCorner">
+				</div>
+				<div style="clear:both;">
+				</div>
+			</div>
+	
+			<div class="codeSnippetCodeCollection">
+				<div class="codeSnippetToolbar">
+					<a title="Copy to clipboard." href="javascript:void(0)" onclick="CopyCode(this);">Copy</a>
+				</div>
+				
+				<div class="codeSnippetCode codeVB">
+					<pre xml:space="preserve" class="brush: vb">Public Class SimpleDropSink&nbsp;<br />    Inherits <a target="_top" href="topic_000000000000025E.html" onclick="this.target='';return true;">AbstractDropSink</a></pre>			
+				</div>
+				<div class="codeSnippetCode codeNA">
+					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
+				</div>
+			</div>
+		</div>
+		
+		<div class="codeSnippetContainer">
+			<div class="codeSnippetTabs">
+				<div class="codeSnippetTabLeftCorner">
+				</div>
+				<div class="codeSnippetTab csFirstTab csNaTab codeVB">
+					<a>VB</a>
+				</div>
+				<div class="codeSnippetTab csActiveTab codeCsharp">
+					<a href="javascript: CodeSnippet_SetLanguage('Csharp');">C#</a>
+				</div>
+				<div class="codeSnippetTab csNaTab codeFsharp">
+					<a href="javascript: CodeSnippet_SetLanguage('Fsharp');">F#</a>
+				</div>
+				<div class="codeSnippetTab csNaTab codeCpp">
+					<a href="javascript: CodeSnippet_SetLanguage('Cpp');">C++</a>
+				</div>
+				<div class="codeSnippetTab csLastTab csNaTab codeJScript">
+					<a href="javascript: CodeSnippet_SetLanguage('JScript');">JScript</a>
+				</div>
+				<div class="codeSnippetTabRightCorner">
+				</div>
+				<div style="clear:both;">
+				</div>
+			</div>
+	
+			<div class="codeSnippetCodeCollection">
+				<div class="codeSnippetToolbar">
+					<a title="Copy to clipboard." href="javascript:void(0)" onclick="CopyCode(this);">Copy</a>
+				</div>
+				
+				<div class="codeSnippetCode codeCsharp">
+					<pre xml:space="preserve" class="brush: csharp">public class SimpleDropSink : <a target="_top" href="topic_000000000000025E.html" onclick="this.target='';return true;">AbstractDropSink</a></pre>			
+				</div>
+				<div class="codeSnippetCode codeNA">
+					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
+				</div>
+			</div>
+		</div>
+
+
+		<div class="codeSnippetContainer">
+			<div class="codeSnippetTabs">
+				<div class="codeSnippetTabLeftCorner">
+				</div>
+				<div class="codeSnippetTab csFirstTab csNaTab codeVB">
+					<a>VB</a>
+				</div>
+				<div class="codeSnippetTab csNaTab codeCsharp">
+					<a href="javascript: CodeSnippet_SetLanguage('Csharp');">C#</a>
+				</div>
+				<div class="codeSnippetTab csNaTab codeFsharp">
+					<a href="javascript: CodeSnippet_SetLanguage('Fsharp');">F#</a>
+				</div>
+				<div class="codeSnippetTab csActiveTab codeCpp">
+					<a href="javascript: CodeSnippet_SetLanguage('Cpp');">C++</a>
+				</div>
+				<div class="codeSnippetTab csLastTab csNaTab codeJScript">
+					<a href="javascript: CodeSnippet_SetLanguage('JScript');">JScript</a>
+				</div>
+				<div class="codeSnippetTabRightCorner">
+				</div>
+				<div style="clear:both;">
+				</div>
+			</div>
+	
+			<div class="codeSnippetCodeCollection">
+				<div class="codeSnippetToolbar">
+					<a title="Copy to clipboard." href="javascript:void(0)" onclick="CopyCode(this);">Copy</a>
+				</div>
+				
+				<div class="codeSnippetCode codeCpp">
+					<pre xml:space="preserve" class="brush: cpp">public ref class SimpleDropSink : public <a target="_top" href="topic_000000000000025E.html" onclick="this.target='';return true;">AbstractDropSink</a>^</pre>			
+				</div>
+				<div class="codeSnippetCode codeNA">
+					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
+				</div>
+			</div>
+		</div>
+		
+		<div class="codeSnippetContainer">
+			<div class="codeSnippetTabs">
+				<div class="codeSnippetTabLeftCorner">
+				</div>
+				<div class="codeSnippetTab csFirstTab csNaTab codeVB">
+					<a>VB</a>
+				</div>
+				<div class="codeSnippetTab csNaTab codeCsharp">
+					<a href="javascript: CodeSnippet_SetLanguage('Csharp');">C#</a>
+				</div>
+				<div class="codeSnippetTab csNaTab codeFsharp">
+					<a href="javascript: CodeSnippet_SetLanguage('Fsharp');">F#</a>
+				</div>
+				<div class="codeSnippetTab csNaTab codeCpp">
+					<a href="javascript: CodeSnippet_SetLanguage('Cpp');">C++</a>
+				</div>
+				<div class="codeSnippetTab csActiveTab csLastTab codeJScript">
+					<a href="javascript: CodeSnippet_SetLanguage('JScript');">JScript</a>
+				</div>
+				<div class="codeSnippetTabRightCornerActive">
+				</div>
+				<div style="clear:both;">
+				</div>
+			</div>
+	
+			<div class="codeSnippetCodeCollection">
+				<div class="codeSnippetToolbar">
+					<a title="Copy to clipboard." href="javascript:void(0)" onclick="CopyCode(this);">Copy</a>
+				</div>
+				
+				<div class="codeSnippetCode codeJScript">
+					<pre xml:space="preserve" class="brush: js">public class SimpleDropSink&nbsp;<br />   extends <a target="_top" href="topic_000000000000025E.html" onclick="this.target='';return true;">AbstractDropSink</a></pre>			
+				</div>
+				<div class="codeSnippetCode codeNA">
+					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
+				</div>
+			</div>
+		</div>
+		
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</div>
+</div>
+
+
+
+<div class="section_container">
+	<div class="section_heading">
+		<span><a href="javascript:void(0)" title="Collapse" onclick="toggleSection(this);">Constructors</a></span>
+		<div><hr /></div>
+	</div>
+
+	<div id="ConstructorsSection" class="section">	
+  <table class="memberListTable">
+    <tr>
+      <th></th>
+      <th>
+        Name
+      </th>
+      <th>
+        Description
+      </th>
+    </tr>
+
+
+	
+			<tr class="
+	
+	
+	">
+	  <td>
+    <img alt="Public constructor" title="Public constructor" src="msdn2017/pubmethod.png"></img>
+
+	
+	    
+	  </td>
+	  <td>
+	    <a href="topic_0000000000000273.html">SimpleDropSink()</a>
+
+	  </td>
+	  <td>
+	
+	Make a new drop sink
+	
+		</td>
+	</tr>
+	
+
+
+  </table>
+
+  <a href="#mainBody">
+    Top
+  </a>
+
+	</div>					
+</div>
+
+<div class="section_container">
+	<div class="section_heading">
+		<span><a href="javascript:void(0)" title="Collapse" onclick="toggleSection(this);">Properties</a></span>
+		<div><hr /></div>
+	</div>
+
+	<div id="PropertiesSection" class="section">	
+  <table class="memberListTable">
+    <tr>
+      <th></th>
+      <th>
+        Name
+      </th>
+      <th>
+        Description
+      </th>
+    </tr>
+
+
+	
+		<tr class="
+
+
+">
+	<td>
+<img alt="Public property" title="Public property" src="msdn2017/pubproperty.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000275.html">AcceptExternal</a>
+
+	</td>
+	<td>
+
+Gets or sets whether this sink allows model objects to be dragged from other lists. Defaults to true.
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+
+
+">
+	<td>
+<img alt="Public property" title="Public property" src="msdn2017/pubproperty.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000274.html">AcceptableLocations</a>
+
+	</td>
+	<td>
+
+Get or set the locations where a drop is allowed to occur (OR-ed together)
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+
+
+">
+	<td>
+<img alt="Public property" title="Public property" src="msdn2017/pubproperty.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000276.html">AutoScroll</a>
+
+	</td>
+	<td>
+
+Gets or sets whether the ObjectListView should scroll when the user drags
+something near to the top or bottom rows. Defaults to true.
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+
+
+">
+	<td>
+<img alt="Public property" title="Public property" src="msdn2017/pubproperty.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000277.html">Billboard</a>
+
+	</td>
+	<td>
+
+Gets the billboard overlay that will be used to display feedback
+messages during a drag operation.
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+
+
+">
+	<td>
+<img alt="Public property" title="Public property" src="msdn2017/pubproperty.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000278.html">CanDropBetween</a>
+
+	</td>
+	<td>
+
+Get or set whether a drop can occur between items of the list
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+
+
+">
+	<td>
+<img alt="Public property" title="Public property" src="msdn2017/pubproperty.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000279.html">CanDropOnBackground</a>
+
+	</td>
+	<td>
+
+Get or set whether a drop can occur on the listview itself
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+
+
+">
+	<td>
+<img alt="Public property" title="Public property" src="msdn2017/pubproperty.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_000000000000027A.html">CanDropOnItem</a>
+
+	</td>
+	<td>
+
+Get or set whether a drop can occur on items in the list
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+
+
+">
+	<td>
+<img alt="Public property" title="Public property" src="msdn2017/pubproperty.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_000000000000027B.html">CanDropOnSubItem</a>
+
+	</td>
+	<td>
+
+Get or set whether a drop can occur on a subitem in the list
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+
+
+">
+	<td>
+<img alt="Public property" title="Public property" src="msdn2017/pubproperty.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_000000000000027D.html">DropTargetIndex</a>
+
+	</td>
+	<td>
+
+Get or set the index of the item that is the target of the drop
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+
+
+">
+	<td>
+<img alt="Public property" title="Public property" src="msdn2017/pubproperty.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_000000000000027E.html">DropTargetItem</a>
+
+	</td>
+	<td>
+
+Get the item that is the target of the drop
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+
+
+">
+	<td>
+<img alt="Public property" title="Public property" src="msdn2017/pubproperty.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_000000000000027F.html">DropTargetLocation</a>
+
+	</td>
+	<td>
+
+Get or set the location of the target of the drop
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+
+
+">
+	<td>
+<img alt="Public property" title="Public property" src="msdn2017/pubproperty.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000280.html">DropTargetSubItemIndex</a>
+
+	</td>
+	<td>
+
+Get or set the index of the subitem that is the target of the drop
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+
+
+">
+	<td>
+<img alt="Public property" title="Public property" src="msdn2017/pubproperty.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_000000000000027C.html">EnableFeedback</a>
+
+	</td>
+	<td>
+
+Gets or sets whether the drop sink should draw feedback onto the given list
+during the drag operation. Defaults to true.
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+
+
+">
+	<td>
+<img alt="Public property" title="Public property" src="msdn2017/pubproperty.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000281.html">FeedbackColor</a>
+
+	</td>
+	<td>
+
+Get or set the color that will be used to provide drop feedback
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+
+
+">
+	<td>
+<img alt="Public property" title="Public property" src="msdn2017/pubproperty.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000282.html">IsAltDown</a>
+
+	</td>
+	<td>
+
+Get whether the alt key was down during this drop event
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+
+
+">
+	<td>
+<img alt="Public property" title="Public property" src="msdn2017/pubproperty.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000283.html">IsAnyModifierDown</a>
+
+	</td>
+	<td>
+
+Get whether any modifier key was down during this drop event
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+
+
+">
+	<td>
+<img alt="Public property" title="Public property" src="msdn2017/pubproperty.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000284.html">IsControlDown</a>
+
+	</td>
+	<td>
+
+Get whether the control key was down during this drop event
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+
+
+">
+	<td>
+<img alt="Public property" title="Public property" src="msdn2017/pubproperty.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000285.html">IsLeftMouseButtonDown</a>
+
+	</td>
+	<td>
+
+Get whether the left mouse button was down during this drop event
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+
+
+">
+	<td>
+<img alt="Public property" title="Public property" src="msdn2017/pubproperty.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000286.html">IsMiddleMouseButtonDown</a>
+
+	</td>
+	<td>
+
+Get whether the right mouse button was down during this drop event
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+
+
+">
+	<td>
+<img alt="Public property" title="Public property" src="msdn2017/pubproperty.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000287.html">IsRightMouseButtonDown</a>
+
+	</td>
+	<td>
+
+Get whether the right mouse button was down during this drop event
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+
+
+">
+	<td>
+<img alt="Public property" title="Public property" src="msdn2017/pubproperty.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000288.html">IsShiftDown</a>
+
+	</td>
+	<td>
+
+Get whether the shift key was down during this drop event
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+
+
+">
+	<td>
+<img alt="Public property" title="Public property" src="msdn2017/pubproperty.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000289.html">KeyState</a>
+
+	</td>
+	<td>
+
+Get or set the state of the keys during this drop event
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+inheritedMember 
+
+
+">
+	<td>
+<img alt="Public property" title="Public property" src="msdn2017/pubproperty.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_000000000000025F.html">ListView</a>
+
+	</td>
+	<td>
+
+Gets or sets the ObjectListView that is the drop sink
+(inherited from <a target="_top" href="topic_000000000000025E.html" onclick="this.target='';return true;">AbstractDropSink</a>).
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+
+
+">
+	<td>
+<img alt="Public property" title="Public property" src="msdn2017/pubproperty.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_000000000000028A.html">UseDefaultCursors</a>
+
+	</td>
+	<td>
+
+Gets or sets whether the drop sink will automatically use cursors
+based on the drop effect. By default, this is true. If this is
+set to false, you must set the Cursor yourself.
+
+	</td>
+</tr>
+	
+
+
+  </table>
+
+  <a href="#mainBody">
+    Top
+  </a>
+
+	</div>					
+</div>
+
+
+
+
+
+
+<div class="section_container">
+	<div class="section_heading">
+		<span><a href="javascript:void(0)" title="Collapse" onclick="toggleSection(this);">Methods</a></span>
+		<div><hr /></div>
+	</div>
+
+	<div id="MethodsSection" class="section">	
+  <table class="memberListTable">
+    <tr>
+      <th></th>
+      <th>
+        Name
+      </th>
+      <th>
+        Description
+      </th>
+    </tr>
+
+
+
+
+	<tr class="
+
+
+">
+	<td>
+<img alt="Public method" title="Public method" src="msdn2017/pubmethod.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_000000000000029C.html">CalculateDropAction(DragEventArgs, Point)</a>
+
+	</td>
+	<td>
+
+What sort of action is possible when the mouse is at the given point?
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_000000000000029B.html">CalculateDropTarget(OlvDropEventArgs, Point)</a>
+
+	</td>
+	<td>
+
+When the mouse is at the given point, what should the target of the drop be?
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_00000000000002A5.html">CalculateDropTargetRectangle(OLVListItem, int)</a>
+
+	</td>
+	<td>
+
+Calculate the target rectangle when the given item (and possible subitem)
+is the target of the drop.
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+
+
+">
+	<td>
+<img alt="Public method" title="Public method" src="msdn2017/pubmethod.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_000000000000029D.html">CalculateStandardDropActionFromKeys()</a>
+
+	</td>
+	<td>
+
+Based solely on the state of the modifier keys, what drop operation should
+be used?
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_000000000000029E.html">CheckScrolling(Point)</a>
+
+	</td>
+	<td>
+
+Should the listview be made to scroll when the mouse is at the given point?
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_000000000000028F.html">Cleanup()</a>
+
+	</td>
+	<td>
+
+Cleanup the drop sink when the mouse has left the control or
+the drag has finished.
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_00000000000002A6.html">DrawBetweenLine(Graphics, int, int, int, int)</a>
+
+	</td>
+	<td>
+
+Draw a &quot;between items&quot; line at the given co-ordinates
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+
+
+">
+	<td>
+<img alt="Public method" title="Public method" src="msdn2017/pubmethod.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000290.html">DrawFeedback(Graphics, Rectangle)</a>
+
+	</td>
+	<td>
+
+Draw any feedback that is appropriate to the current drop state.
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_00000000000002A2.html">DrawFeedbackAboveItemTarget(Graphics, Rectangle)</a>
+
+	</td>
+	<td>
+
+Draw the feedback that shows the drop will occur before target
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_00000000000002A0.html">DrawFeedbackBackgroundTarget(Graphics, Rectangle)</a>
+
+	</td>
+	<td>
+
+Draw the feedback that shows that the background is the target
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_00000000000002A3.html">DrawFeedbackBelowItemTarget(Graphics, Rectangle)</a>
+
+	</td>
+	<td>
+
+Draw the feedback that shows the drop will occur after target
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_00000000000002A1.html">DrawFeedbackItemTarget(Graphics, Rectangle)</a>
+
+	</td>
+	<td>
+
+Draw the feedback that shows that an item (or a subitem) is the target
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+
+
+">
+	<td>
+<img alt="Public method" title="Public method" src="msdn2017/pubmethod.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000291.html">Drop(DragEventArgs)</a>
+
+	</td>
+	<td>
+
+The user has released the drop over this control
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+
+
+">
+	<td>
+<img alt="Public method" title="Public method" src="msdn2017/pubmethod.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000292.html">Enter(DragEventArgs)</a>
+
+	</td>
+	<td>
+
+A drag has entered this control.
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+<img alt="Public method" title="Public method" src="msdn2017/pubmethod.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a target="_top" href="http://msdn2.microsoft.com/en-us/library/bsc2ak47.aspx">Equals(Object)</a>
+
+	</td>
+	<td>
+
+
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.object.aspx">Object</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.object.finalize.aspx">Finalize</a>
+
+	</td>
+	<td>
+
+
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.object.aspx">Object</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+<img alt="Public method" title="Public method" src="msdn2017/pubmethod.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.object.gethashcode.aspx">GetHashCode</a>
+
+	</td>
+	<td>
+
+
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.object.aspx">Object</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_00000000000002A4.html">GetRoundedRect(Rectangle, float)</a>
+
+	</td>
+	<td>
+
+Return a GraphicPath that is round corner rectangle.
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+<img alt="Public method" title="Public method" src="msdn2017/pubmethod.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.object.gettype.aspx">GetType</a>
+
+	</td>
+	<td>
+
+
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.object.aspx">Object</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+
+
+">
+	<td>
+<img alt="Public method" title="Public method" src="msdn2017/pubmethod.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000293.html">GiveFeedback(GiveFeedbackEventArgs)</a>
+
+	</td>
+	<td>
+
+Change the cursor to reflect the current drag operation.
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_000000000000029A.html">HandleTimerTick()</a>
+
+	</td>
+	<td>
+
+Handle the timer tick event, which is sent when the listview should
+scroll
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+<img alt="Public method" title="Public method" src="msdn2017/pubmethod.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000263.html">Leave()</a>
+
+	</td>
+	<td>
+
+The drag has left the bounds of this control
+(inherited from <a target="_top" href="topic_000000000000025E.html" onclick="this.target='';return true;">AbstractDropSink</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.object.memberwiseclone.aspx">MemberwiseClone</a>
+
+	</td>
+	<td>
+
+
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.object.aspx">Object</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000296.html">OnCanDrop(OlvDropEventArgs)</a>
+
+	</td>
+	<td>
+
+Trigger CanDrop
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000297.html">OnDropped(OlvDropEventArgs)</a>
+
+	</td>
+	<td>
+
+Trigger Dropped
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000298.html">OnModelCanDrop(ModelDropEventArgs)</a>
+
+	</td>
+	<td>
+
+Trigger ModelCanDrop
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000299.html">OnModelDropped(ModelDropEventArgs)</a>
+
+	</td>
+	<td>
+
+Trigger ModelDropped
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+
+
+">
+	<td>
+<img alt="Public method" title="Public method" src="msdn2017/pubmethod.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000294.html">Over(DragEventArgs)</a>
+
+	</td>
+	<td>
+
+The drag is moving over this control.
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+<img alt="Public method" title="Public method" src="msdn2017/pubmethod.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000266.html">QueryContinue(QueryContinueDragEventArgs)</a>
+
+	</td>
+	<td>
+
+Should the drag be allowed to continue?
+(inherited from <a target="_top" href="topic_000000000000025E.html" onclick="this.target='';return true;">AbstractDropSink</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+<img alt="Public method" title="Public method" src="msdn2017/pubmethod.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.object.tostring.aspx">ToString</a>
+
+	</td>
+	<td>
+
+
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.object.aspx">Object</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000295.html">TriggerDroppedEvent(DragEventArgs)</a>
+
+	</td>
+	<td>
+
+Trigger the Dropped events
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_000000000000029F.html">UpdateAfterCanDropEvent(OlvDropEventArgs)</a>
+
+	</td>
+	<td>
+
+Update the state of our sink to reflect the information that
+may have been written into the drop event args.
+
+	</td>
+</tr>
+
+
+
+
+
+
+  </table>
+
+  <a href="#mainBody">
+    Top
+  </a>
+
+	</div>					
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="section_container">
+	<div class="section_heading">
+		<span><a href="javascript:void(0)" title="Collapse" onclick="toggleSection(this);">Events</a></span>
+		<div><hr /></div>
+	</div>
+
+	<div id="EventsSection" class="section">	
+  <table class="memberListTable">
+    <tr>
+      <th></th>
+      <th>
+        Name
+      </th>
+      <th>
+        Description
+      </th>
+    </tr>
+
+	<tr class="
+	
+	
+	">
+	  <td>
+    <img alt="Public event" title="Public event" src="msdn2017/pubevent.png"></img>
+
+	
+	    
+	  </td>
+	  <td>
+	    <a href="topic_000000000000028B.html">CanDrop</a>
+
+	  </td>
+	  <td>
+	
+	Triggered when the sink needs to know if a drop can occur.
+	
+		</td>
+	</tr>
+	<tr class="
+	
+	
+	">
+	  <td>
+    <img alt="Public event" title="Public event" src="msdn2017/pubevent.png"></img>
+
+	
+	    
+	  </td>
+	  <td>
+	    <a href="topic_000000000000028C.html">Dropped</a>
+
+	  </td>
+	  <td>
+	
+	Triggered when the drop is made.
+	
+		</td>
+	</tr>
+	<tr class="
+	
+	
+	">
+	  <td>
+    <img alt="Public event" title="Public event" src="msdn2017/pubevent.png"></img>
+
+	
+	    
+	  </td>
+	  <td>
+	    <a href="topic_000000000000028D.html">ModelCanDrop</a>
+
+	  </td>
+	  <td>
+	
+	Triggered when the sink needs to know if a drop can occur
+AND the source is an ObjectListView
+	
+		</td>
+	</tr>
+	<tr class="
+	
+	
+	">
+	  <td>
+    <img alt="Public event" title="Public event" src="msdn2017/pubevent.png"></img>
+
+	
+	    
+	  </td>
+	  <td>
+	    <a href="topic_000000000000028E.html">ModelDropped</a>
+
+	  </td>
+	  <td>
+	
+	Triggered when the drop is made.
+AND the source is an ObjectListView
+	
+		</td>
+	</tr>
+
+  </table>
+
+  <a href="#mainBody">
+    Top
+  </a>
+
+	</div>					
+</div>
+
+  
+
+<!-- Classes -->
+
+<!-- Classes End -->
+
+<!-- Standard Modules -->
+
+<!-- Standard Modules End -->
+
+  
+
+
+
+
+
+
+
+
+<div class="section_container">
+	<div class="section_heading">
+		<span><a href="javascript:void(0)" title="Collapse" onclick="toggleSection(this);">Remarks</a></span>
+		<div><hr /></div>
+	</div>
+
+	<div id="remarksSection" class="section">	
+			Actually, it should be called CleverDropSink -- it's far from simple and can do quite a lot in its own right.
+	</div>					
+</div>
+
+
+
+
+<div class="section_container">
+	<div class="section_heading">
+		<span><a href="javascript:void(0)" title="Collapse" onclick="toggleSection(this);">Inheritance Hierarchy</a></span>
+		<div><hr /></div>
+	</div>
+
+<div id="inheritanceHierarchySection" class="section">
+
+<div style="padding-left:0em;"><a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.object.aspx">System.Object</a>
+</div>
+
+<div style="padding-left:1em;"><a href="topic_000000000000025E.html">BrightIdeasSoftware.AbstractDropSink</a>
+</div>
+
+
+
+<div style="padding-left:2em;">BrightIdeasSoftware.SimpleDropSink</div>
+
+<div style="padding-left:3em;"><a href="topic_00000000000002A7.html">BrightIdeasSoftware.RearrangingDropSink</a>
+</div>
+
+
+				
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+
+<div class="section_container">
+	<div class="section_heading">
+		<span><a href="javascript:void(0)" title="Collapse" onclick="toggleSection(this);">Applies to</a></span>
+		<div><hr /></div>
+	</div>
+
+	<div id="frameworksSection" class="section">	
+  <h4 class="subHeading">.NET Framework</h4>Supported in: 4.5, 4.5.1, 4.5.2, 4.6, 4.6.1, 4.6.2, 4.7, 4.7.1<br />
+
+
+
+
+
+
+
+
+
+
+	
+	
+	</div>					
+</div>
+
+
+<div class="section_container">
+	<div class="section_heading">
+		<span><a href="javascript:void(0)" title="Collapse" onclick="toggleSection(this);">See Also</a></span>
+		<div><hr /></div>
+	</div>
+
+	<div id="seeAlsoSection" class="section">	
+		<div>
+	<a href="topic_00000000000001E7.html">BrightIdeasSoftware Namespace</a><br />
+
+
+	
+
+		</div>
+	</div>					
+</div>
+			</div>
+			</div>
+      <div id="footer">
+      	<p><span style="color: #FF0000;">Generated with unregistered version of <a target="_top" href="http://www.helixoft.com/vsdocman/overview.html">VSdocman</a></span>&nbsp;<br />Your own footer text will only be shown in registered version.</p>
+      </div>
+    </div>
+  	<script type="text/javascript">
+<!--
+	try {
+		parent.frames["vbdocswitch"].expandLinkInToc(location.href);
+	} catch (ex) {}
+//-->
+		</script>	
+  </body>
+</html>
+

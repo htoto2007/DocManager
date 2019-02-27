@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Threading;
 using System.Windows.Forms;
 using VitCardPropsValue;
 using VitColors;
@@ -10,17 +9,17 @@ using VitFTP;
 using VitNotifyMessage;
 using VitTree;
 using VitTypeCard;
-using vitTypeCardProps;
+using vitCardProps;
 using VitUsers;
 
 namespace VitListView
 {
     public class ClassLisView
     {
-        private readonly ClassCardPropsValue classCardPropsValue = new ClassCardPropsValue();
+        private readonly ClassCardPropValue classCardPropsValue = new ClassCardPropValue();
         private readonly ClassFiles classFiles = new ClassFiles();
         private readonly ClassTypeCard classTypeCard = new ClassTypeCard();
-        private readonly ClassTypeCardProps classTypeCardProps = new ClassTypeCardProps();
+        private readonly ClassCardProps classTypeCardProps = new ClassCardProps();
         private VitIcons.ClassImageList classImageList = new VitIcons.ClassImageList();
         private ClassFiles.FileCollection fileCollection = new ClassFiles.FileCollection();
         private readonly ClassColors classColors = new ClassColors();
@@ -71,7 +70,7 @@ namespace VitListView
         {
             TreeNode treeNode = treeView.SelectedNode;
             int idFile = classFiles.getInfoByFilePath(treeNode.Name).id;
-            ClassCardPropsValue.CardPropsValueCollection[] cardPropsValueCollections = classCardPropsValue.getByIdFile(idFile);
+            ClassCardPropValue.CardPropsValueCollection[] cardPropsValueCollections = classCardPropsValue.getByIdFile(idFile);
             
             ClassUsers classUsers = new ClassUsers();
             ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
@@ -105,7 +104,7 @@ namespace VitListView
                 return;
             }
             
-            foreach (ClassCardPropsValue.CardPropsValueCollection cardValue in cardPropsValueCollections)
+            foreach (ClassCardPropValue.CardPropsValueCollection cardValue in cardPropsValueCollections)
             {
                 int idCardProp = cardValue.idCardProp;
                 listViewItem = new ListViewItem

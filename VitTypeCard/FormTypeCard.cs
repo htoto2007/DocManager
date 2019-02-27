@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using VitNotifyMessage;
-using vitTypeCardProps;
+using vitCardProps;
+using VitCardPropsValue;
 
 namespace VitTypeCard
 {
@@ -77,8 +71,8 @@ namespace VitTypeCard
             if(listViewTypeCards.SelectedItems.Count == 1)
             {
                 int idTypeCardProp = Convert.ToInt32(listViewTypeCards.SelectedItems[0].SubItems["id"].Text);
-                ClassTypeCardProps classTypeCardProps = new ClassTypeCardProps();
-                ClassTypeCardProps.TypeCardProps[] typeCardProps = classTypeCardProps.getInfoByIdType(idTypeCardProp);
+                ClassCardProps classCardProps = new ClassCardProps();
+                ClassCardProps.CardPropsCollection[] cardProps = classCardProps.getInfoByIdTypeCard(idTypeCardProp);
 
                 listViewCardProps.BeginUpdate();
                 listViewCardProps.Clear();
@@ -91,14 +85,14 @@ namespace VitTypeCard
                 listViewCardProps.Columns.Add("#");
                 listViewCardProps.Columns.Add("Название");
                 listViewCardProps.Columns.Add("Тип");
-                foreach (var typeCardProp in typeCardProps)
+                foreach (var typeCardProp in cardProps)
                 {
                     ListViewItem listViewItem = new ListViewItem();
-                listViewItem.SubItems.Add(typeCardProp.id.ToString()).Name = "id";
+                    listViewItem.SubItems.Add(typeCardProp.id.ToString()).Name = "id";
                     listViewItem.SubItems.Add(typeCardProp.name).Name = "name";
-                    ClassTypeCard classTypeCard = new ClassTypeCard();
-                string typeValueName = classTypeCard.getNamePropById(typeCardProp.typeValue);
-                listViewItem.SubItems.Add(typeValueName);
+                    ClassCardPropValue classCardPropValue = new ClassCardPropValue();
+                    string typeValueName = classCardPropValue.getNameTypeValueByIdTypeValue(typeCardProp.typeValue);
+                    listViewItem.SubItems.Add(typeValueName);
                     listViewCardProps.Items.Add(listViewItem);
                 }
                 listViewCardProps.EndUpdate();

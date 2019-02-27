@@ -4,15 +4,11 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using VitCardPropsValue;
 using VitFTP;
 using VitMysql;
 using VitNotifyMessage;
 using vitProgressStatus;
 using VitRelationsUsersToFiles;
-using VitTextStringMask;
-using VitTypeCard;
-using vitTypeCardProps;
 using VitUsers;
 
 namespace VitFiles
@@ -24,9 +20,15 @@ namespace VitFiles
         private FormProgressStatus formProgressStatus = null;
         ClassRelationsUsersToFile classRelationsUsersToFile = new ClassRelationsUsersToFile();
 
+        /// <summary>
+        /// Генерирует новое имя файла не похожее на другие
+        /// </summary>
+        /// <param name="sourceFile">Путь к файлу</param>
+        /// <param name="targetPath">путь назначения</param>
+        /// <param name="classFTP">Экземпляр класс FTP</param>
+        /// <returns></returns>
         public string newFileNameGenerator(string sourceFile, string targetPath, ClassFTP classFTP)
         {
-            
             int i = 0;
             while (true)
             {
@@ -71,8 +73,8 @@ namespace VitFiles
 
                 int targetIdFile = createData(targetPath);
                 int sourceIdFile = getInfoByFilePath(sourcePath).id;
-                ClassCardPropsValue classCardPropsValue = new ClassCardPropsValue();
-                classCardPropsValue.CopyByIdFile(sourceIdFile, targetIdFile);
+                //ClassCardPropValue classCardPropsValue = new ClassCardPropValue();
+                //classCardPropsValue.CopyByIdFile(sourceIdFile, targetIdFile);
                 filesOk.Add("/" + targetPath);
             }
             classFTP.sessionClose();
@@ -95,6 +97,11 @@ namespace VitFiles
             return id;
         }
 
+        /// <summary>
+        /// Обновляет информациюо пути у файлу в базе
+        /// </summary>
+        /// <param name="id">Номер файла</param>
+        /// <param name="path">Новый путь</param>
         private void UpdateById(int id, string path)
         {
             classMysql.UpdateOrDelete("" +
@@ -105,6 +112,10 @@ namespace VitFiles
                 "   id = '" + id + "' ");
         }
 
+        /// <summary>
+        /// Удаляет информацию о файле из базы по пути на сервере
+        /// </summary>
+        /// <param name="path"></param>
         private void DeleteDataByPath(string path)
         {
             classMysql.UpdateOrDelete("" +
@@ -114,79 +125,6 @@ namespace VitFiles
                 "   path = '" + path + "' ");
         }
 
-        /// <summary>
-        /// Создает файл(ы) с карточкой
-        /// </summary>
-        /// <param name="arrPath">Массив локальных путей к фалам</param>
-        /// <param name="remotePath">Директория назначения "/directory/"</param>
-        /// <returns></returns>
-        public async Task<string[]> CreateFileWithCardAsync(string[] arrPath, string remotePath)
-        {
-            // делаем поиск дубликатов
-            if (await Task.Run(() => ( DuplicateSearch(arrPath, remotePath))) == false) return null;
-
-            // создаем коллекцию для карты файла
-            FormFileCard formFileCard = new FormFileCard();
-            DialogResult dialogResult = formFileCard.ShowDialog();
-            // Если карточка не подтверждена
-            if (dialogResult != DialogResult.OK) return null;
-            
-            FormFileCard.CardPropCollection[] cardPropCollections = new FormFileCard.CardPropCollection[formFileCard.panelCardProps.Controls.Count / 2];
-
-            // собирем значения полей формы в коллекуию карточки документа
-            int iterator = 0;
-            formProgressStatus = new FormProgressStatus(0, formFileCard.panelCardProps.Controls.Count);
-            foreach (Control control in formFileCard.panelCardProps.Controls)
-            {
-                if (control.Name.Split('_')[0] == "tb")
-                {
-                    cardPropCollections[iterator].idProp = formFileCard.getValueByControl(control).idProp;
-                    cardPropCollections[iterator].text = formFileCard.getValueByControl(control).text;
-                }else{
-                    formProgressStatus.Iterator(
-                        iterator, 
-                        control.Text, 
-                        "базу данных", 
-                        iterator + "/" + formFileCard.panelCardProps.Controls.Count.ToString(),
-                        "Сбор данных карточек");
-                    continue;
-                }
-                iterator++;
-            }
-            formProgressStatus.Close();
-
-            // производим загрузку файлов
-            ClassUsers classUsers = new ClassUsers();
-            ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
-            classFTP.SessionOpen();
-            string[] filesOk = await classFTP.Upload2Async(arrPath, "/" + remotePath + "/", true);
-            classFTP.sessionClose();
-
-            // производим згрузку данных в базу
-            formProgressStatus = new FormProgressStatus(0, filesOk.GetLength(0));
-            List<string> uploadRemoteFiles = new List<string>();
-            for (int i = 0; i < filesOk.GetLength(0); i++)
-            {
-                formProgressStatus.Iterator(
-                    i,
-                    filesOk[i], 
-                    "базу данных", 
-                    i.ToString() + "/" + filesOk.GetLength(0).ToString(), 
-                    "Загрузка файлов на сервер");
-                
-                int idFile = createData("/" + remotePath + "/" + Path.GetFileName(filesOk[i]));
-                classRelationsUsersToFile.add(classUsers.getThisUser().id, idFile, "Создан файл без карточки");
-                ClassCardPropsValue classCardPropsValue = new ClassCardPropsValue();
-                foreach (var cardPropCollection in cardPropCollections)
-                    classCardPropsValue.createValue(cardPropCollection.idProp, cardPropCollection.text, idFile);
-                
-                
-            }
-            formProgressStatus.Close();
-            formProgressStatus.Dispose();
-            return uploadRemoteFiles.ToArray();
-        }
-
 
         /// <summary>
         /// Производит поиск дубликатов файлов из выбранного списка с файлами в выбранной директории на сервере
@@ -194,12 +132,15 @@ namespace VitFiles
         /// <param name="arrPath">Список выбранных файлов на клиенте</param>
         /// <param name="remotePath">Директория назначения на сервере</param>
         /// <returns></returns>
-        private bool DuplicateSearch(string[] arrPath, string remotePath)
+        private async Task<bool> DuplicateSearchAsync(string[] arrPath, string remotePath)
         {
             formProgressStatus = new FormProgressStatus(0, arrPath.GetLength(0));
+            formProgressStatus.buttonCancel.Enabled = false;
             List<string> arrSourceFileNames = new List<string>();
             List<string> arrTargetFileNames = new List<string>();
             remotePath = remotePath.Replace("\\", "/");
+
+            // получаем список файлов из директории, в которую будем осуществлять отправку файлов
             ClassUsers classUsers = new ClassUsers();
             ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
             classFTP.SessionOpen();
@@ -207,15 +148,16 @@ namespace VitFiles
             classFTP.sessionClose();
             
             int iterator = 0;
+            // производим сравнение списка отправляемых файлов со списком из директории назначения
             foreach (string path in arrPath)
             {
-                iterator++;
                 formProgressStatus.Iterator(
-                    iterator, 
-                    path, 
-                    remotePath, 
-                    iterator.ToString() + "/" + arrPath.GetLength(0).ToString(),
-                    "Проверка на наличие дубликатов");
+                 iterator,
+                 path,
+                 remotePath,
+                 iterator.ToString() + "/" + arrPath.GetLength(0).ToString(),
+                 "Проверка на наличие дубликатов");
+
                 string targetFileName = remotePath + "/" + Path.GetFileName(path);
                 foreach (string dir in directoryList)
                 {
@@ -226,7 +168,7 @@ namespace VitFiles
                         continue;
                     }
                 }
-                
+                iterator++;
             }
             formProgressStatus.Dispose();
 
@@ -242,51 +184,87 @@ namespace VitFiles
         }
 
         /// <summary>
-        /// Загружает файл на сервер не создавая его карточку
+        /// Загружает файл на сервер не создавая его карточку. 
+        /// В результате выдает массив локальных путей успешно загруженных файлов
         /// </summary>
         /// <param name="arrPath">Массив локальных путей к фалам</param>
         /// <param name="remotePath">Директория назначения "/directory/"</param>
         /// <returns></returns>
-        public async Task<string[]> CreateFileWithoutCardAsync(string[] arrPath, string remotePath)
+        public async Task<string[]> CreateFileAsync(string[] arrPath, string remotePath)
         {
             // делаем поиск дубликатов
-            if (await Task.Run(() => ( DuplicateSearch(arrPath, remotePath) )) == false) return null;
+            if (await DuplicateSearchAsync(arrPath, remotePath) == false) return null;
+
+            // грузим файлы на сервер
             ClassUsers classUsers = new ClassUsers();
             ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
             classFTP.SessionOpen();
-            string[] uploadRemoteFiles = await classFTP.Upload2Async(arrPath, "/" + remotePath + "/" , true);
+            string[] uploadRemoteFiles = await classFTP.UploadAsync(arrPath, "/" + remotePath + "/" , true);
             classFTP.sessionClose();
-            
+
+            FormProgressStatus formProgressStatus = new FormProgressStatus(0, uploadRemoteFiles.GetLength(0));
+            formProgressStatus.buttonCancel.Enabled = false;
+            await Task.Run(() => { Thread.Sleep(1000); });
+            int iterator = 0;
+            // отправляем информацию о загруженых файлах в базу
             foreach (string localPath in uploadRemoteFiles)
             {
+                formProgressStatus.Iterator(
+                    iterator,
+                    localPath,
+                    "Запись в базу данных",
+                    iterator.ToString() + "/" + uploadRemoteFiles.GetLength(0).ToString(),
+                    "Регистрация файлов в базе");
+
                 int idFile = createData(remotePath + "/" + Path.GetFileName(localPath));
                 classRelationsUsersToFile.add(classUsers.getThisUser().id, idFile, "Создан файл без карточки");
+                iterator++;
             }
+            formProgressStatus.Close();
+            formProgressStatus.Dispose();
             return uploadRemoteFiles;
         }
 
-        public string[] DeleteFiles(string[] remotePathes)
+        /// <summary>
+        /// Запускает методы для удаления файла или папки
+        /// </summary>
+        /// <param name="remotePathes">удаленный путь к файлу</param>
+        /// <returns></returns>
+        public async Task<string[]> DeleteFiles(string[] remotePathes)
         {
+            formProgressStatus = new FormProgressStatus(0, remotePathes.GetLength(0));
             ClassUsers classUsers = new ClassUsers();
             ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
-            classFTP.SessionOpen();
-
-            formProgressStatus = new FormProgressStatus(0, remotePathes.GetLength(0));
+            // список для хранения путей файлов, которые были успешно удалены
             List<string> filesOk = new List<string>();
+
+            classFTP.SessionOpen();
             for (int i = 0; i < remotePathes.GetLength(0); i++)
             {
+                // проверяем отмену операции
+                if (formProgressStatus.IsDisposed == true) return filesOk.ToArray();
+
+                // итератор индикатора загрузки
                 formProgressStatus.Iterator(
                     i, remotePathes[i], 
                     "вечность",
                     i.ToString() + "/" + remotePathes.GetLength(0).ToString(),
                     "Удаление файлов");
-                if (!classFTP.RemoveDirecroty(remotePathes[i]))
+                // делаем запрос на удаление
+                bool resDelete = classFTP.RemoveDirecroty(remotePathes[i]);
+                // проверяем результаты
+                if (!resDelete)
                 {
                     Console.WriteLine("Не удалось удалить физическую копию " + remotePathes);
                     continue;
                 }
-                DeleteDataByPath(remotePathes[i]);
-                var fileInfo = getInfoByFilePath(remotePathes[i]);
+
+                // удаляем информацию из базы данных
+                await Task.Run(() => { DeleteDataByPath(remotePathes[i]); } );
+                // делаем контрольный запрос
+                FileCollection fileInfo = new FileCollection();
+                await Task.Run(() => { fileInfo = getInfoByFilePath(remotePathes[i]); });
+                // проверяем результаты
                 if (fileInfo.path != "")
                 {
                     Console.WriteLine("Не удалось удалить файл из базы " + fileInfo.path);
@@ -300,11 +278,10 @@ namespace VitFiles
             return filesOk.ToArray();
         }
 
-        public string[] MoveFile(string[] sourceArrPath, string targetPath)
+        public async Task<string[]> MoveFileAsync(string[] sourceArrPath, string targetPath)
         {
-            
             // делаем поиск дубликатов
-            if (DuplicateSearch(sourceArrPath, targetPath) == false) return null;
+            if (await DuplicateSearchAsync(sourceArrPath, targetPath) == false) return null;
 
             ClassUsers classUsers = new ClassUsers();
             ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
@@ -329,7 +306,7 @@ namespace VitFiles
         }
 
         /// <summary>
-        /// 
+        /// Выдает информацию о файле по его пути
         /// </summary>
         /// <param name="name">"/directory/fileName.ext"</param>
         public FileCollection getInfoByFilePath(string filePath)
@@ -349,11 +326,14 @@ namespace VitFiles
 
             fileCollection.id = Convert.ToInt32( rows[0]["id"]);
             fileCollection.path = rows[0]["path"];
-            ClassUsers classUsers = new ClassUsers();
-            ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
             return fileCollection;
         }
 
+        /// <summary>
+        /// Выдает информацию о файле по его номеру
+        /// </summary>
+        /// <param name="idFile">номер файла</param>
+        /// <returns></returns>
         public FileCollection getInfoById(int idFile)
         {
             var rows = classMysql.getArrayByQuery("" +
@@ -378,7 +358,13 @@ namespace VitFiles
 
         public struct FileCollection
         {
+            /// <summary>
+            /// Дата создания файла
+            /// </summary>
             public DateTime createDateTime;
+            /// <summary>
+            /// номер файла
+            /// </summary>
             public int id;
             /// <summary>
             /// disk://directory/fileName.ext

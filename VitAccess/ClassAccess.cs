@@ -1,7 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Security.AccessControl;
-using VitFTP;
+﻿using VitFTP;
 
 namespace VitAccess
 {

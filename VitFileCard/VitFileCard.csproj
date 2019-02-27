@@ -67,6 +67,10 @@
       <Project>{0d2381af-887d-4de5-98fa-1e77ad098931}</Project>
       <Name>VitControls</Name>
     </ProjectReference>
+    <ProjectReference Include="..\VitFiles\VitFiles.csproj">
+      <Project>{66017A02-C3D9-4809-B788-6B91DF08BE99}</Project>
+      <Name>VitFiles</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VitNotifyMessage\VitNotifyMessage.csproj">
       <Project>{a8d9c15a-3f3c-423a-be05-293de5941bb7}</Project>
       <Name>VitNotifyMessage</Name>

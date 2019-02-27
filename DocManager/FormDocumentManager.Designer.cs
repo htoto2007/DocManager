@@ -35,6 +35,7 @@
             this.contextMenuStripTreeView = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ToolStripMenuItemAddFolder = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemRequestOriginal = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItemDocumentCard = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemAddDocument = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemAddDocumentWithCard = new System.Windows.Forms.ToolStripMenuItem();
             this.безКарточкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -96,7 +97,6 @@
             this.ToolStripMenuItemHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.textBoxUserPosition = new System.Windows.Forms.TextBox();
             this.windowHeader1 = new VitControls.WindowHeader();
-            this.карточкаДокументаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStripTreeView.SuspendLayout();
             this.panelUserMenu.SuspendLayout();
             this.flowLayoutPanelUserMenu.SuspendLayout();
@@ -114,7 +114,7 @@
             this.contextMenuStripTreeView.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ToolStripMenuItemAddFolder,
             this.ToolStripMenuItemRequestOriginal,
-            this.карточкаДокументаToolStripMenuItem,
+            this.ToolStripMenuItemDocumentCard,
             this.ToolStripMenuItemAddDocument,
             this.ToolStripMenuItemSend,
             this.ToolStripMenuItemDelete,
@@ -124,7 +124,7 @@
             this.toolStripMenuItemScanToThisFolder,
             this.ToolStripMenuItemSelectAll});
             this.contextMenuStripTreeView.Name = "contextMenuStrip1";
-            this.contextMenuStripTreeView.Size = new System.Drawing.Size(270, 356);
+            this.contextMenuStripTreeView.Size = new System.Drawing.Size(270, 334);
             this.contextMenuStripTreeView.Opened += new System.EventHandler(this.contextMenuStripTreeView_Opened);
             // 
             // ToolStripMenuItemAddFolder
@@ -144,6 +144,13 @@
             this.ToolStripMenuItemRequestOriginal.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.Q)));
             this.ToolStripMenuItemRequestOriginal.Size = new System.Drawing.Size(269, 30);
             this.ToolStripMenuItemRequestOriginal.Text = "Запросить оригинал";
+            // 
+            // ToolStripMenuItemDocumentCard
+            // 
+            this.ToolStripMenuItemDocumentCard.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripMenuItemDocumentCard.Image")));
+            this.ToolStripMenuItemDocumentCard.Name = "ToolStripMenuItemDocumentCard";
+            this.ToolStripMenuItemDocumentCard.Size = new System.Drawing.Size(269, 30);
+            this.ToolStripMenuItemDocumentCard.Text = "Карточка документа";
             // 
             // ToolStripMenuItemAddDocument
             // 
@@ -303,7 +310,7 @@
             // 
             this.ToolStripMenuItemConnectToData.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripMenuItemConnectToData.Image")));
             this.ToolStripMenuItemConnectToData.Name = "ToolStripMenuItemConnectToData";
-            this.ToolStripMenuItemConnectToData.Size = new System.Drawing.Size(218, 30);
+            this.ToolStripMenuItemConnectToData.Size = new System.Drawing.Size(210, 24);
             this.ToolStripMenuItemConnectToData.Text = "Подключение к базе";
             this.ToolStripMenuItemConnectToData.Click += new System.EventHandler(this.ToolStripMenuItemConnectToData_Click);
             // 
@@ -311,7 +318,7 @@
             // 
             this.ToolStripMenuItemUsers.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripMenuItemUsers.Image")));
             this.ToolStripMenuItemUsers.Name = "ToolStripMenuItemUsers";
-            this.ToolStripMenuItemUsers.Size = new System.Drawing.Size(218, 30);
+            this.ToolStripMenuItemUsers.Size = new System.Drawing.Size(210, 24);
             this.ToolStripMenuItemUsers.Text = "Пользователи";
             this.ToolStripMenuItemUsers.Click += new System.EventHandler(this.buttonUsers_Click);
             // 
@@ -319,7 +326,7 @@
             // 
             this.ToolStripMenuItemSettings.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripMenuItemSettings.Image")));
             this.ToolStripMenuItemSettings.Name = "ToolStripMenuItemSettings";
-            this.ToolStripMenuItemSettings.Size = new System.Drawing.Size(218, 30);
+            this.ToolStripMenuItemSettings.Size = new System.Drawing.Size(210, 24);
             this.ToolStripMenuItemSettings.Text = "Настройки";
             this.ToolStripMenuItemSettings.Click += new System.EventHandler(this.buttonSettings_Click);
             // 
@@ -327,7 +334,7 @@
             // 
             this.ToolStripMenuItemSettingsCard.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripMenuItemSettingsCard.Image")));
             this.ToolStripMenuItemSettingsCard.Name = "ToolStripMenuItemSettingsCard";
-            this.ToolStripMenuItemSettingsCard.Size = new System.Drawing.Size(218, 30);
+            this.ToolStripMenuItemSettingsCard.Size = new System.Drawing.Size(210, 24);
             this.ToolStripMenuItemSettingsCard.Text = "Настройки карточек";
             this.ToolStripMenuItemSettingsCard.Click += new System.EventHandler(this.buttonSettingsDocumentCard_Click);
             // 
@@ -705,6 +712,7 @@
             this.treeView1.HideSelection = false;
             this.treeView1.ImageIndex = 0;
             this.treeView1.ImageList = this.imageList1;
+            this.treeView1.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(180)))), ((int)(((byte)(209)))));
             this.treeView1.Location = new System.Drawing.Point(5, 4);
             this.treeView1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 4);
             this.treeView1.Name = "treeView1";
@@ -795,7 +803,7 @@
             this.ToolStripMenuItemShowUserMenu.MergeAction = System.Windows.Forms.MergeAction.Remove;
             this.ToolStripMenuItemShowUserMenu.Name = "ToolStripMenuItemShowUserMenu";
             this.ToolStripMenuItemShowUserMenu.ShowShortcutKeys = false;
-            this.ToolStripMenuItemShowUserMenu.Size = new System.Drawing.Size(180, 24);
+            this.ToolStripMenuItemShowUserMenu.Size = new System.Drawing.Size(150, 24);
             this.ToolStripMenuItemShowUserMenu.Text = "Вывод меню";
             this.ToolStripMenuItemShowUserMenu.CheckedChanged += new System.EventHandler(this.ToolStripMenuItemUserMenu_CheckedChanged);
             // 
@@ -855,14 +863,6 @@
             this.windowHeader1.Size = new System.Drawing.Size(798, 34);
             this.windowHeader1.TabIndex = 10;
             // 
-            // карточкаДокументаToolStripMenuItem
-            // 
-            this.карточкаДокументаToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("карточкаДокументаToolStripMenuItem.Image")));
-            this.карточкаДокументаToolStripMenuItem.Name = "карточкаДокументаToolStripMenuItem";
-            this.карточкаДокументаToolStripMenuItem.Size = new System.Drawing.Size(269, 30);
-            this.карточкаДокументаToolStripMenuItem.Text = "Карточка документа";
-            this.карточкаДокументаToolStripMenuItem.Click += new System.EventHandler(this.карточкаДокументаToolStripMenuItem_Click);
-            // 
             // FormDocumentManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -894,7 +894,7 @@
             this.Text = "z";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormDocumentManager_FormClosing);
-            this.Load += new System.EventHandler(this.FormDocumentManager_Load);
+            this.Shown += new System.EventHandler(this.FormDocumentManager_Shown);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormDocumentManager_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.FormDocumentManager_KeyUp);
             this.contextMenuStripTreeView.ResumeLayout(false);
@@ -980,7 +980,7 @@
         private VitControls.VitButton vitButton4;
         private VitControls.VitButton vitButtonTreeSort;
         private System.Windows.Forms.TreeView treeView1;
-        private System.Windows.Forms.ToolStripMenuItem карточкаДокументаToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemDocumentCard;
     }
 }
 

@@ -72,10 +72,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\VitCardPropsValue\VitCardPropsValue.csproj">
-      <Project>{36350F39-7577-4119-A3FE-7CB69DA65E5D}</Project>
-      <Name>VitCardPropsValue</Name>
-    </ProjectReference>
     <ProjectReference Include="..\VitColors\VitColors.csproj">
       <Project>{7485de72-c9f6-4547-aa4a-395c32de0b88}</Project>
       <Name>VitColors</Name>
@@ -111,14 +107,6 @@
     <ProjectReference Include="..\VitTextStringMask\VitTextStringMask.csproj">
       <Project>{acf4b011-efa2-41e6-8a17-24150f2e3530}</Project>
       <Name>VitTextStringMask</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\vitTypeCardProps\vitTypeCardProps.csproj">
-      <Project>{fddb1cd0-bcfe-46d9-b0bd-66f6603016c9}</Project>
-      <Name>vitTypeCardProps</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\VitTypeCard\VitTypeCard.csproj">
-      <Project>{ce939e31-b292-47bb-92d3-085d95fb3f67}</Project>
-      <Name>VitTypeCard</Name>
     </ProjectReference>
     <ProjectReference Include="..\VitUsers\VitUsers.csproj">
       <Project>{df071434-102d-4c05-a18e-f0f67d81dded}</Project>

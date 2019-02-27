@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Drawing.Printing;
 using System.IO;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using VitCardPropsValue;
+using VitFileCard;
 using VitFiles;
 using VitFTP;
 using VitIcons;
@@ -19,24 +21,25 @@ namespace VitTree
     /// </summary>
     public class ClassTree
     {
-        private readonly ClassCardPropsValue classCardPropsValue = new ClassCardPropsValue();
-
+        private readonly ClassCardPropValue classCardPropsValue = new ClassCardPropValue();
         private readonly ClassFiles classFiles = new ClassFiles();
-
         private readonly ClassImageList ClassImageList = new ClassImageList();
-
         private readonly ClassTypeCard classTypeCard = new ClassTypeCard();
-
         private readonly FormCompanents formCompanents = new FormCompanents();
         //private readonly FormProgressStatus formProgressStatus = new FormProgressStatus();
 
         public async Task AddFileNodeWithoutCardAsync(TreeView treeView)
         {
+            // получаем путь загрузки на сервер
             string targetPath = treeView.SelectedNode.Name;
+
+            // открываем окно выбора фалов на загрузку
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Multiselect = true;
             if (openFileDialog.ShowDialog() != DialogResult.OK) return;
-            string[] files = await classFiles.CreateFileWithoutCardAsync(openFileDialog.FileNames, targetPath);
+
+            // загружаем файл на сервер
+            string[] files = await classFiles.CreateFileAsync(openFileDialog.FileNames, targetPath);
             if (files == null) return;
 
             // Добавляем узлы дерева из загруженых документов
@@ -62,7 +65,7 @@ namespace VitTree
             int dirCount = classFTP.ListDirectory("/").GetLength(0);
             string dirName = "Организация " + dirCount.ToString();
             classFTP.CreateDirectory("/" + dirName);
-            classFTP.Upload2Async(directories[0], "/" + dirName + "/", false );
+            classFTP.UploadAsync(directories[0], "/" + dirName + "/", false );
             
             Init(treeView, classUsers.getThisUser().login, classUsers.getThisUser().password);
             classFTP.sessionClose();
@@ -113,27 +116,65 @@ namespace VitTree
             }
         }
 
-        public async Task AddFileNodeWithCardAsync(TreeView treeView)
+        /// <summary>
+        /// Обеспечивает загрузку файла на сервер и создание карточки файла
+        /// </summary>
+        /// <param name="treeView">Дерево в котором производим выбор папки для загрузки файла</param>
+        public async void AddFileNodeWithCardAsync(TreeView treeView)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
+            FormFileCard formFileCard = new FormFileCard();
+            ClassFiles classFiles = new ClassFiles();
+            
+            // выводим окно карточки файла
+            if (formFileCard.ShowDialog() != DialogResult.OK) return;
+            var propsCollection = formFileCard.GetProps();
+            // выводим окно выбора файлов
             openFileDialog.Multiselect = true;
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            if (openFileDialog.ShowDialog() != DialogResult.OK) return;
+            // создаем пути к папке на сервере
+            string targetPath = treeView.SelectedNode.Name;
+            // загружаем файлы
+            string[] files = null;
+            files = await classFiles.CreateFileAsync(openFileDialog.FileNames, targetPath);
+            // проверяем есть ли загруженные файлы
+            if (files == null) return;
+
+            
+            FormProgressStatus formProgressStatus = new FormProgressStatus(0, files.GetLength(0));
+            formProgressStatus.buttonCancel.Enabled = false;
+            await Task.Run(() => { Thread.Sleep(2000); });
+            int iterator = 0;
+            foreach (var file in files)
             {
-                VitFiles.ClassFiles classFiles = new VitFiles.ClassFiles();
-                string[] files = await classFiles.CreateFileWithCardAsync(openFileDialog.FileNames, treeView.SelectedNode.FullPath.Replace('\\', '/'));
-                
-                if (files == null) return;
-                foreach (var file in files)
+                formProgressStatus.Iterator(
+                    iterator,
+                    file,
+                    "Запись в базу данных",
+                    iterator.ToString() + "/" + files.GetLength(0).ToString(),
+                    "Создание карточки");
+
+                string path = targetPath + "/" + Path.GetFileName(file);
+                int idFile = classFiles.getInfoByFilePath(path).id;
+                if (idFile < 1)
                 {
-                    TreeNode treeNodeFile = new TreeNode();
-                    treeNodeFile.Name = file;
-                    treeNodeFile.Text = Path.GetFileName(file);
-                    treeNodeFile.ImageKey = Path.GetExtension(file).Trim('.');
-                    treeView.SelectedNode.Nodes.Add(treeNodeFile);
-                    treeView.SelectedNode = treeNodeFile;
+                    Console.WriteLine("Файл в базе не найден! " + path);
+                    continue;
                 }
-                //treeView.Sort();
+                foreach (var prop in propsCollection)
+                    await Task.Run(() => { classCardPropsValue.createValue(prop.idProp, prop.text, idFile); }) ;
+
+                TreeNode treeNodeFile = new TreeNode();
+                treeNodeFile.Name = path;
+                treeNodeFile.Text = Path.GetFileName(file);
+                treeNodeFile.ImageKey = Path.GetExtension(file).Trim('.');
+                treeNodeFile.SelectedImageKey = Path.GetExtension(file).Trim('.');
+                treeView.SelectedNode.Nodes.Add(treeNodeFile);
+                if(files.GetLength(0) == 1) treeView.SelectedNode = treeNodeFile;
+                iterator++;
             }
+            formProgressStatus.Close();
+            formProgressStatus.Dispose();
         }
 
         public void addNodeFolder(TreeView treeView)
@@ -205,36 +246,47 @@ namespace VitTree
             }
         }
 
-        public void DeleteNode(TreeView treeView)
+        /// <summary>
+        /// Производит вызов функций для удаления файла или папки по узлу дерева
+        /// </summary>
+        /// <param name="treeView">Дерево над которым проводим операцию</param>
+        public async void DeleteNode(TreeView treeView)
         {
             ClassNotifyMessage classNotifyMessage = new ClassNotifyMessage();
-
+            // запрашиваем подтверждение выполнения операции
             DialogResult dialogResult = classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.QUESTION, "Вы точно хотите удалить " + Path.GetFileName(treeView.SelectedNode.FullPath) + "?");
             if (dialogResult == DialogResult.No) return;
 
-            string[] filesok = classFiles.DeleteFiles(new string[] { treeView.SelectedNode.Name.Replace("\\", "/") });
+            // делаем запрос на удаление
+            string[] filesok = null;
+            filesok = await classFiles.DeleteFiles(new string[] { treeView.SelectedNode.Name });
 
+            // проверяем актуальность списка удалкееых файлов
             if (filesok.GetLength(0) < 1)
             {
                 classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, "Есть не удаленные файлы!");
                 return;
             }
 
+            // сверяемся с результатами удаления
             if (treeView.SelectedNode.Name == filesok[0]) treeView.SelectedNode.Remove();
             else classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, "Есть не удаленные файлы! '" + filesok[0] + "'");
         }
 
+        /// <summary>
+        /// Производит получение файлов из указанной директории на сервере и выводит их список в дерево
+        /// </summary>
+        /// <param name="treeNode"></param>
+        /// <param name="classFTP"></param>
         public void getNextNodes(TreeNode treeNode, ClassFTP classFTP)
         {
-            //if (treeNode.Nodes.Count > 0) return;
-
-            //ClassUsers classUsers = new ClassUsers();
-            //ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
+            // получаем список файлов директории
             var files = classFTP.ListDirectoryDetail(treeNode.Name);
             if (files.GetLength(0) < 1) return;
 
             foreach (var file in files)
             {
+                // отсеиваем путь возврата
                 if (file.path.Contains("..")) continue;
                 // проверяем на наличие повторяющихся узлов
                 TreeNode[] treeNodes = treeNode.Nodes.Find(file.path, true);
@@ -244,6 +296,7 @@ namespace VitTree
                     Name = file.path,
                     Text = Path.GetFileName(file.path)
                 };
+                // присваиваем иконку узлу
                 addIconAsync(tn, file.isDirectory);
                 treeNode.Nodes.Add(tn);
             }
@@ -279,25 +332,15 @@ namespace VitTree
                 if ((direcory.isDirectory) && (!direcory.path.Contains("..")))
                     getSubdirectoryes(classFTP, treeNode, Path.GetFileName(treeNode.Name));
             }
-
-            if (treeView.Nodes.Count > 0) treeView.SelectedNode = treeView.Nodes[0];
-            
-            /*
-            foreach (TreeNode treeNode in treeView.Nodes)
-            {
-                if (Path.GetExtension(treeNode.Name) == "")
-                    if (await Task.Run(() => classFTP.getFileType(treeNode.Name) == 2)) 
-                        getSubdirectoryes(classFTP, treeNode, Path.GetFileName(treeNode.Name));
-            }
-            */
             classFTP.sessionClose();
+            if (treeView.Nodes.Count > 0) treeView.SelectedNode = treeView.Nodes[0];
         }
 
         /// <summary>
         /// Обращается к функции перемещения файлов на сервере и отправляет ей данные.
         /// </summary>
         /// <param name="treeView">Дерево в котором находится нужный файл для перемещения</param>
-        public void Move(TreeView treeView, string login, string password)
+        public async Task MoveAsync(TreeView treeView, string login, string password)
         {
             string sourcePath = treeView.SelectedNode.Name;
             // выводим форму для выбора директории назначения
@@ -308,7 +351,7 @@ namespace VitTree
             string targetPath = formTree.treeView1.SelectedNode.Name.Replace("/", "\\");
 
             // производим перемещение
-            string[] completeFiles = classFiles.MoveFile(new string[] { sourcePath }, targetPath);
+            string[] completeFiles = await classFiles.MoveFileAsync(new string[] { sourcePath }, targetPath);
             if (completeFiles == null) return;
             if (completeFiles.GetLength(0) < 1) return;
 
@@ -392,9 +435,13 @@ namespace VitTree
             }
         }
 
+        /// <summary>
+        /// Запускает операцию переименования узла
+        /// </summary>
+        /// <param name="treeView">Делево над которым производим операцию</param>
         public void rename(TreeView treeView)
         {
-            
+            // выводим форму ввода для нового названия
             FormTreeInput formTreeInput = new FormTreeInput();
             formTreeInput.Text = "Переименовать";
             formTreeInput.textBox1.Text = Path.GetFileName(treeView.SelectedNode.Name);
@@ -402,23 +449,23 @@ namespace VitTree
             DialogResult dialogResult = formTreeInput.ShowDialog();
             if (dialogResult != DialogResult.OK) return;
 
+            // обращаемся к FTP для переименования
             ClassUsers classUsers = new ClassUsers();
             ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
             classFTP.SessionOpen();
             string res = classFTP.Rename(treeView.SelectedNode.FullPath, formTreeInput.textBox1.Text);
             classFTP.sessionClose();
+
+            // проверяем результат операции
             if (res.Contains("250") == true)
             {
                 treeView.SelectedNode.Text = formTreeInput.textBox1.Text;
                 treeView.SelectedNode.Name = "/" + treeView.SelectedNode.FullPath.Replace("\\", "/");
-                
+                return;
             }
-            else
-            {
-                ClassNotifyMessage classNotifyMessage = new ClassNotifyMessage();
-                classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, "Не удалось переименовать!");
-            }
-            //treeView.Sort();
+            
+            ClassNotifyMessage classNotifyMessage = new ClassNotifyMessage();
+            classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, "Не удалось переименовать!");
         }
 
         public struct TypeNodeCollection

@@ -3,8 +3,8 @@ using System.Collections;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using VitAccess;
 using VitAccessGroup;
@@ -12,7 +12,6 @@ using VitDBConnect;
 using VitFTP;
 using VitListView;
 using VitNotifyMessage;
-using vitProgressStatus;
 using VitSearcher;
 using VitSendToProgram;
 using VitSettings;
@@ -245,56 +244,61 @@ namespace DocManager
             MaximumSize = Screen.PrimaryScreen.WorkingArea.Size;
         }
 
+        
         private void listView1_DoubleClick(object sender, EventArgs e)
         {
             ClassNotifyMessage classNotifyMessage = new ClassNotifyMessage();
             // проверяем по какому колличеству элементов кликают
-            if (listView1.SelectedItems.Count == 1)
+            if (listView1.SelectedItems.Count != 1) return;
+
+            // если у элемента нет пути то выходим из функции
+            if (listView1.SelectedItems[0].SubItems["path"] == null)
             {
-                // если у элемента нет пути то выходим из функции
-                if (listView1.SelectedItems[0].SubItems["path"] == null)
-                {
-                    Console.WriteLine("У элемента нет пути!");
-                    return;
-                }
-                // формируем путь для скачивания файла на открытие
-                string openFilePath = VitSettings.Properties.FTPSettings.Default.openFilePath + "\\" + Path.GetFileName(listView1.SelectedItems[0].SubItems["path"].Text);
-                // формируем путь к удаленному файлу на скачивание
-                string remoteFilePath = listView1.SelectedItems[0].SubItems["path"].Text;
-
-                
-                ClassUsers classUsers = new ClassUsers();
-                ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
-                classFTP.SessionOpen();
-                // проверяем наличие файла на удаленном сервере
-                if (!classFTP.FileExist(remoteFilePath))
-                {
-                    Console.WriteLine("Файл '" + remoteFilePath + "' не найден на сервере.");
-                    return;
-                }
-                if (classFTP.getFileType(remoteFilePath) != 1)
-                {
-                    Console.WriteLine("открываемый элемент не является файлом.");
-                    return;
-                }
-                var res = classFTP.DownloadFile2(remoteFilePath, openFilePath);
-
-                if(!res)
-                {
-                    classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, "Не удалось получить файл с сервера! \n " + remoteFilePath);
-                    return;
-                }
-
-                classFTP.sessionClose();
-                // проверяем скачался ли файл
-                if (!File.Exists(openFilePath))
-                {
-                    classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, "Не удалось получить файл с сервера!");
-                    return;
-                }
-                // запускаем файл
-                Process.Start(VitSettings.Properties.FTPSettings.Default.openFilePath + "\\" + Path.GetFileName(remoteFilePath));
+                Console.WriteLine("У элемента нет пути!");
+                return;
             }
+            // формируем путь для скачивания файла на открытие
+            string openFilePath = VitSettings.Properties.FTPSettings.Default.openFilePath + "\\" + Path.GetFileName(listView1.SelectedItems[0].SubItems["path"].Text);
+            // формируем путь к удаленному файлу на скачивание
+            string remoteFilePath = listView1.SelectedItems[0].SubItems["path"].Text;
+
+
+            ClassUsers classUsers = new ClassUsers();
+            ClassFTP classFTP = new ClassFTP(classUsers.getThisUser().login, classUsers.getThisUser().password);
+            classFTP.SessionOpen();
+            // проверяем наличие файла на удаленном сервере
+            if (!classFTP.FileExist(remoteFilePath))
+            {
+                Console.WriteLine("Файл '" + remoteFilePath + "' не найден на сервере.");
+                return;
+            }
+
+            if (classFTP.getFileType(remoteFilePath) == 2)
+            {
+                TreeNode[] treeNodes = treeView1.Nodes.Find(remoteFilePath, true);
+                if (treeNodes.GetLength(0) < 1) return;
+                treeView1.SelectedNode = treeNodes[0];
+                return;
+            }
+
+            var res = classFTP.DownloadFile2(remoteFilePath, openFilePath);
+
+            if (!res)
+            {
+                classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, "Не удалось получить файл с сервера! \n " + remoteFilePath);
+                return;
+            }
+
+            classFTP.sessionClose();
+            // проверяем скачался ли файл
+            if (!File.Exists(openFilePath))
+            {
+                classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, "Не удалось получить файл с сервера!");
+                return;
+            }
+            // запускаем файл
+            Process.Start(VitSettings.Properties.FTPSettings.Default.openFilePath + "\\" + Path.GetFileName(remoteFilePath));
+
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -507,7 +511,7 @@ namespace DocManager
 
         private async void ToolStripMenuItemAddDocumentWithCard_Click(object sender, EventArgs e)
         {
-            await classTree.AddFileNodeWithCardAsync(treeView1);
+            classTree.AddFileNodeWithCardAsync(treeView1);
         }
 
         private void ToolStripMenuItemAddFolder_Click(object sender, EventArgs e)
@@ -562,7 +566,7 @@ namespace DocManager
         private void ToolStripMenuItemMove_Click(object sender, EventArgs e)
         {
             ClassUsers classUsers = new ClassUsers();
-            classTree.Move(treeView1, classUsers.getThisUser().login, classUsers.getThisUser().password);
+            classTree.MoveAsync(treeView1, classUsers.getThisUser().login, classUsers.getThisUser().password);
         }
 
         private void ToolStripMenuItemRename_Click(object sender, EventArgs e)
@@ -648,10 +652,10 @@ namespace DocManager
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void ToolStripMenuItemWithoutCard_ClickAsync(object sender, EventArgs e)
+        private void ToolStripMenuItemWithoutCard_ClickAsync(object sender, EventArgs e)
         {
             Enabled = false;
-            await classTree.AddFileNodeWithoutCardAsync(treeView1);
+            classTree.AddFileNodeWithoutCardAsync(treeView1);
             Enabled = true;
         }
 
@@ -732,15 +736,6 @@ namespace DocManager
         {
             FormDBConnect formDBConnect = new FormDBConnect();
             formDBConnect.ShowDialog();
-        }
-
-        private void FormDocumentManager_Load(object sender, EventArgs e)
-        {
-            ClassUsers classUsers = new ClassUsers();
-            //treeView1.BeginUpdate();
-            classTree.Init(treeView1, classUsers.getThisUser().login, classUsers.getThisUser().password);
-            //treeView1.EndUpdate();
-            //treeView1.Update();
         }
 
         private async void textBoxSearch_KeyUpAsync(object sender, KeyEventArgs e)
@@ -826,9 +821,11 @@ namespace DocManager
             classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.INFORMATION, "В демо версии эта функция недоступна.");
         }
 
-        private void карточкаДокументаToolStripMenuItem_Click(object sender, EventArgs e)
+        private void FormDocumentManager_Shown(object sender, EventArgs e)
         {
-
+            ClassUsers classUsers = new ClassUsers();
+            classTree.Init(treeView1, classUsers.getThisUser().login, classUsers.getThisUser().password);
+            
         }
     }
 }

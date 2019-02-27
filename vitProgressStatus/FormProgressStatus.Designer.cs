@@ -32,6 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormProgressStatus));
             this.windowHeader1 = new VitControls.WindowHeader();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.labelProcessName = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.labelCount = new System.Windows.Forms.Label();
             this.labelTo = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -44,8 +46,6 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.label3 = new System.Windows.Forms.Label();
-            this.labelProcessName = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -85,6 +85,27 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(558, 167);
             this.panel1.TabIndex = 1;
+            // 
+            // labelProcessName
+            // 
+            this.labelProcessName.AutoEllipsis = true;
+            this.labelProcessName.AutoSize = true;
+            this.labelProcessName.Location = new System.Drawing.Point(98, 19);
+            this.labelProcessName.Name = "labelProcessName";
+            this.labelProcessName.Size = new System.Drawing.Size(47, 13);
+            this.labelProcessName.TabIndex = 12;
+            this.labelProcessName.Text = "Ждем...";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label3.Location = new System.Drawing.Point(3, 19);
+            this.label3.Margin = new System.Windows.Forms.Padding(3);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(58, 13);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "Процесс";
             // 
             // labelCount
             // 
@@ -141,11 +162,12 @@
             // 
             // buttonCancel
             // 
-            this.buttonCancel.ImageKey = "icons8-unavailable-480.png";
+            this.buttonCancel.AutoSize = true;
+            this.buttonCancel.ImageKey = "eliminatetheaction_eliminar_6322-24.png";
             this.buttonCancel.ImageList = this.imageList1;
-            this.buttonCancel.Location = new System.Drawing.Point(480, 141);
+            this.buttonCancel.Location = new System.Drawing.Point(461, 132);
             this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(75, 23);
+            this.buttonCancel.Size = new System.Drawing.Size(94, 30);
             this.buttonCancel.TabIndex = 3;
             this.buttonCancel.Text = "Отмена";
             this.buttonCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -156,7 +178,7 @@
             // 
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "icons8-unavailable-480.png");
+            this.imageList1.Images.SetKeyName(0, "eliminatetheaction_eliminar_6322-24.png");
             // 
             // labelPercent
             // 
@@ -192,27 +214,6 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(3, 19);
-            this.label3.Margin = new System.Windows.Forms.Padding(3);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(58, 13);
-            this.label3.TabIndex = 11;
-            this.label3.Text = "Процесс";
-            // 
-            // labelProcessName
-            // 
-            this.labelProcessName.AutoEllipsis = true;
-            this.labelProcessName.AutoSize = true;
-            this.labelProcessName.Location = new System.Drawing.Point(98, 19);
-            this.labelProcessName.Name = "labelProcessName";
-            this.labelProcessName.Size = new System.Drawing.Size(47, 13);
-            this.labelProcessName.TabIndex = 12;
-            this.labelProcessName.Text = "Ждем...";
-            // 
             // FormProgressStatus
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -244,7 +245,6 @@
         public System.Windows.Forms.ProgressBar progressBar1;
         public System.Windows.Forms.Label labelPercent;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.ImageList imageList1;
         public System.Windows.Forms.Label labelCount;
         public System.Windows.Forms.Label labelTo;
@@ -253,5 +253,6 @@
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.Label labelProcessName;
         private System.Windows.Forms.Label label3;
+        public System.Windows.Forms.Button buttonCancel;
     }
 }

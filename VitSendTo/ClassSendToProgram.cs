@@ -14,7 +14,7 @@ namespace VitSendToProgram
     public class ClassSendToProgram
     {
         private readonly ClassSettings classSettings = new ClassSettings();
-        private ClassCardPropsValue classCardPropsValue = new ClassCardPropsValue();
+        private ClassCardPropValue classCardPropsValue = new ClassCardPropValue();
         private readonly ClassFiles classFile = new ClassFiles();
         private readonly ClassTree classTree = new ClassTree();
         private readonly ClassTypeCard classTypeCard = new ClassTypeCard();

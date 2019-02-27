@@ -9,9 +9,9 @@ namespace VitIcons
     {
         public ImageList imageList = new ImageList();
 
-
-
-
+        /// <summary>
+        /// Подгружает картинки в программу
+        /// </summary>
         public ClassImageList()
         {
             imageList.ColorDepth = ColorDepth.Depth32Bit;
@@ -28,16 +28,17 @@ namespace VitIcons
                 imageList.Images.Add(Path.GetFileNameWithoutExtension(path).TrimStart('.'), image);
                 
             }
-
-            
         }
 
+        /// <summary>
+        /// Вытягивает значки из файлов и сохраняет их в директорию как png
+        /// </summary>
+        /// <param name="pathToFile">Путь к файлу, с которого нужно получить значек</param>
+        /// <returns></returns>
         public string addIconFile(string pathToFile)
         {
             if (imageList.Images.ContainsKey(Path.GetExtension(pathToFile).Trim('.')))
-            {
                 return Path.GetExtension(pathToFile).Trim('.');
-            }
 
             Icon icon = null;
             try

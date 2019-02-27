@@ -2,9 +2,6 @@
 using System.Windows.Forms;
 using VitAccessGroup;
 using VitNotifyMessage;
-using VitSubdivision;
-using VitUserPositions;
-using static VitUsers.ClassUsers;
 
 namespace VitUsers
 {

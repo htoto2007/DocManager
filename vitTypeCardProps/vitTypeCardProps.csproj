@@ -7,8 +7,8 @@
     <ProjectGuid>{FDDB1CD0-BCFE-46D9-B0BD-66F6603016C9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>vitTypeCardProps</RootNamespace>
-    <AssemblyName>vitTypeCardProps</AssemblyName>
+    <RootNamespace>vitCardProps</RootNamespace>
+    <AssemblyName>vitCardProps</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

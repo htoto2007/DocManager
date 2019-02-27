@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using vitTypeCardProps;
+using vitCardProps;
+using VitCardPropsValue;
 
 namespace VitTypeCard
 {
@@ -9,14 +10,15 @@ namespace VitTypeCard
     {
         //private int elementNumber = 0;
         private ClassTypeCard classTypeCard = new ClassTypeCard();
+        private ClassCardPropValue classCardPropValue = new ClassCardPropValue();
 
-        private ClassTypeCardProps classTypeCardProps = new ClassTypeCardProps();
+        private ClassCardProps classTypeCardProps = new ClassCardProps();
 
         public FormCreatTypeCard()
         {
             InitializeComponent();
             comboBoxType_0.Items.Clear();
-            foreach (var prop in classTypeCard.typeProp) {
+            foreach (var prop in classCardPropValue.typeValueName) {
                 comboBoxType_0.Items.Add(prop);
             }
         }

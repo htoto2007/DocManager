@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Net;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml;
 using WinSCP;
 using VitNotifyMessage;
 using vitProgressStatus;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace VitFTP
 {
@@ -451,7 +450,7 @@ namespace VitFTP
         /// <param name="remotePath">Genm yfpyfxtybz "/directory/"</param>
         /// <param name="overwrite">Параметр перезаписи true/false</param>
         /// <returns>"/localDirectory/fileName.ext"</returns>
-        public async Task<string[]> Upload2Async(string[] arrLocalPath, string remotePath, bool overwrite)
+        public async Task<string[]> UploadAsync(string[] arrLocalPath, string remotePath, bool overwrite)
         {
             formProgressStatus = new FormProgressStatus(0, arrLocalPath.GetLength(0));
             List<string> filesOk = new List<string>();
@@ -459,17 +458,16 @@ namespace VitFTP
             int i = 0;
             foreach (string localPath in arrLocalPath)
             {
-                if (formProgressStatus.IsDisposed == true)
-                {
-                    return filesOk.ToArray();
-                }
+                // проверяем отмену операции
+                if (formProgressStatus.IsDisposed == true) return filesOk.ToArray();
+                // итератор для progressBar
                 formProgressStatus.Iterator(
                     i,
                     localPath,
                     remotePath,
                     i.ToString() + "/" + arrLocalPath.GetLength(0).ToString(),
                     "Загрузка файлов на сервер");
-
+                
                 // пытаемся получить значек файла
                 if (Path.GetExtension(localPath) != "") getIconFile(localPath);
 
@@ -480,7 +478,8 @@ namespace VitFTP
                 else transferOptions.OverwriteMode = OverwriteMode.Overwrite;
 
                 // загружаем файлы на сервер
-                bool res = await Task.Run<bool>(() => session.PutFiles(localPath, remotePath, false, transferOptions).IsSuccess);
+                bool res = false;
+                await Task.Run(() => { res = session.PutFiles(localPath, remotePath, false, transferOptions).IsSuccess; });
                 if (res == true) filesOk.Add(localPath);
                 i++;
             }
@@ -490,7 +489,7 @@ namespace VitFTP
             return filesOk.ToArray();
         }
 
-        public bool Upload2Async(string localPath, string remotePath, bool overwrite)
+        public async Task<bool> UploadAsync(string localPath, string remotePath, bool overwrite)
         {
             if (Path.GetExtension(localPath) != "") getIconFile(localPath);
 
@@ -509,7 +508,7 @@ namespace VitFTP
             if (overwrite == false) transferOptions.OverwriteMode = OverwriteMode.Resume;
             else transferOptions.OverwriteMode = OverwriteMode.Overwrite;
 
-            res = session.PutFiles(localPath, remotePath, false, transferOptions).IsSuccess;
+            await Task.Run(() => { res = session.PutFiles(localPath, remotePath, false, transferOptions).IsSuccess; });
 
             return res;
         }

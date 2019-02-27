@@ -5,9 +5,23 @@ using VitNotifyMessage;
 
 namespace VitCardPropsValue
 {
-    public class ClassCardPropsValue
+    public class ClassCardPropValue
     {
         private ClassMysql classMysql = new ClassMysql();
+        ClassNotifyMessage classNotifyMessage = new ClassNotifyMessage();
+
+        /// <summary>
+        /// Содержит имена типов знасений свойств карты
+        /// </summary>
+        public string[] typeValueName = new string[]
+        {
+            "Строковый",
+            "Числовой",
+            "Дата",
+            "Дата и всремя",
+            "Логический",
+            "Текстовой"
+        };
 
         /// <summary>
         /// Создает знасения карточки файла
@@ -25,6 +39,27 @@ namespace VitCardPropsValue
                 "value = '" + MySqlHelper.EscapeString(value) + "', " +
                 "id_file = '" + idFile + "'");
             return lastId;
+        }
+
+        /// <summary>
+        /// Выдает имя свойства по номеру
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public string getNameTypeValueByIdTypeValue(int id)
+        {
+            if (id < 0)
+            {
+                classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, "Номер типа значения свойства меньше нуля!");
+                return "";
+            }
+            if (id > typeValueName.GetLength(0) - 1)
+            {
+                classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, "Номер типа значения свойства выходит за границу списка!");
+                return "";
+            }
+
+            return typeValueName[id];
         }
 
         /// <summary>
@@ -59,7 +94,7 @@ namespace VitCardPropsValue
             int iterator = 0;
             foreach (var row in rows)
             {
-                cardPropsValueCollections[iterator].idFile = Convert.ToInt64(row["id_file"]);
+                cardPropsValueCollections[iterator].idFile = Convert.ToInt32(row["id_file"]);
                 cardPropsValueCollections[iterator].value = row["value"];
                 cardPropsValueCollections[iterator].idCardProp = Convert.ToInt32(row["id_card_prop"]);
                 cardPropsValueCollections[iterator].id = Convert.ToInt32(row["id"]);
@@ -92,7 +127,7 @@ namespace VitCardPropsValue
         {
             public int idCardProp;
             public string value;
-            public Int64 idFile;
+            public int idFile;
             public int id;
         }
 

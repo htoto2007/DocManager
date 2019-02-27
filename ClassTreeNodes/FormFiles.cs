@@ -4,7 +4,7 @@ using System.Windows.Forms;
 using VitDBConnect;
 using VitFiles;
 using VitTypeCard;
-using vitTypeCardProps;
+using vitCardProps;
 
 namespace VitTree
 {
@@ -15,7 +15,7 @@ namespace VitTree
         private ClassFiles classFiles = new ClassFiles();
 
         private ClassTypeCard classTypeCard = new ClassTypeCard();
-        private ClassTypeCardProps classTypeCardProps = new ClassTypeCardProps();
+        private ClassCardProps classTypeCardProps = new ClassCardProps();
 
         /// <summary>
         /// Форма добавления и изменения свойств документа
@@ -26,7 +26,7 @@ namespace VitTree
             comboBox1.Text = "Пустая";
         }
 
-        private void addFieldsProps(ClassTypeCardProps.TypeCardProps[] typeCardProps)
+        private void addFieldsProps(ClassCardProps.CardPropsCollection[] typeCardProps)
         {
             int x = 10;
             int y = 10;
@@ -36,7 +36,7 @@ namespace VitTree
                 Text = typeCardProps.GetLength(0).ToString(),
                 Location = new Point(20, 20)
             };
-            foreach (ClassTypeCardProps.TypeCardProps typeCardProp in typeCardProps)
+            foreach (ClassCardProps.CardPropsCollection typeCardProp in typeCardProps)
             {
                 Label label = new Label
                 {
@@ -156,7 +156,7 @@ namespace VitTree
         private void comboBox1_SelectionChangeCommitted(object sender, EventArgs e)
         {
             int id = classTypeCard.getIdByName(comboBox1.SelectedItem.ToString());
-            ClassTypeCardProps.TypeCardProps[] typeCardProps = classTypeCardProps.getInfoByIdType(id);
+            ClassCardProps.CardPropsCollection[] typeCardProps = classTypeCardProps.getInfoByIdTypeCard(id);
             addFieldsProps(typeCardProps);
         }
     }

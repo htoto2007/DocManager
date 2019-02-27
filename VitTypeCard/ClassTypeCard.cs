@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
 using VitDBConnect;
 using VitMysql;
 using VitNotifyMessage;
 
 namespace VitTypeCard
 {
+    /// <summary>
+    /// Обеспечивает работу с типами карточек файлов
+    /// </summary>
     public class ClassTypeCard
     {
         /// <summary>
@@ -18,31 +20,9 @@ namespace VitTypeCard
         private ClassMysql classMysql = new ClassMysql();
         private ClassNotifyMessage classNotifyMessage = new ClassNotifyMessage();
 
-        public string[] typeProp = new string[]
-        {
-            "Строковый",
-            "Числовой",
-            "Дата",
-            "Дата и всремя",
-            "Логический",
-            "Текстовой"
-        };
+        
 
-        public string getNamePropById(int id)
-        {
-            if(id < 0)
-            {
-                classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, "Номер типа значения свойства меньше нуля!");
-                return "";
-            }
-            if (id > typeProp.GetLength(0) - 1)
-            {
-                classNotifyMessage.showDialog(ClassNotifyMessage.TypeMessage.SYSTEM_ERROR, "Номер типа значения свойства выходит за границу списка!");
-                return "";
-            }
-
-            return typeProp[id];
-        }
+        
 
         public int add(string name)
         {

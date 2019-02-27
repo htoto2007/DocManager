@@ -1,0 +1,3829 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="GENERATOR" content="VSdocman - documentation generator; http://www.helixoft.com" />
+	<title>HighlightTextRenderer Class</title>
+
+	<link rel="stylesheet" type="text/css" href="msdn2017/msdn2017.css"></link>
+	<script src="msdn2017/msdn2017.js" type="text/javascript"></script>
+	<script src="SyntaxHighlighter/scripts/shCore_helixoft.js" type="text/javascript"></script>
+	<script src="SyntaxHighlighter/scripts/shBrushVb.js" type="text/javascript"></script>
+	<script src="SyntaxHighlighter/scripts/shBrushCSharp.js" type="text/javascript"></script>
+	<script src="SyntaxHighlighter/scripts/shBrushFSharp.js" type="text/javascript"></script>
+	<script src="SyntaxHighlighter/scripts/shBrushCpp.js" type="text/javascript"></script>
+	<script src="SyntaxHighlighter/scripts/shBrushJScript.js" type="text/javascript"></script>
+	<link href="SyntaxHighlighter/styles/shCore.css" rel="stylesheet" type="text/css" />
+	<link href="SyntaxHighlighter/styles/shThemeMsdnLW.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript">
+		SyntaxHighlighter.all();
+	</script>				
+
+	<script type="text/javascript">
+<!--
+if (self.name != "vbdocright") {
+	if (location.search != "?toc=no") {
+		var filename = location.pathname.replace(/\\/g, "/");
+		filename = filename.substring(filename.lastIndexOf('/')+1);
+		location.replace("index.html#" + filename);
+	} 
+}
+
+function replaceTitleAndUrl(win, title, url) {
+	if(history.replaceState) {
+		win.history.replaceState(null, title, url);
+	} else {
+		win.document.title = document.title;
+		win.location.replace(url);
+	}
+}
+//-->
+	</script>	
+</head>
+
+<body style="direction: ltr;">
+	<script type="text/javascript">
+		try {
+			if (location.search != "?toc=no") {
+				parent.document.title = document.title;
+				var filename = location.pathname.replace(/\\/g, "/");
+				filename = filename.substring(filename.lastIndexOf('/')+1);
+				if (window.parent.location.search == null || window.parent.location.search != "?" + filename) {
+					if (window.parent.location.hash == null || window.parent.location.hash != "#" + filename) {
+						replaceTitleAndUrl(window.parent, document.title, "index.html#" + filename);
+					}
+				}
+			}
+		} catch (ex) {}
+	</script>
+	<div id="topic">
+<!--HEADER START-->
+  <div id="header">
+  	<div id="runningHeaderText">SOLUTION-WIDE PROPERTIES Reference</div>
+  	<h1 class="title">HighlightTextRenderer Class</h1>
+  	<div id="headerLinks">
+
+	<a href="#seeAlsoSection">See Also</a>
+
+		</div>
+		<hr />
+	</div>
+<!--HEADER END-->
+    
+		<div id="mainSection">
+      <div id="mainBody">
+        <p />
+       
+        This renderer highlights substrings that match a given text filter.
+
+
+        <p /><strong>Namespace:</strong>
+<a href="topic_00000000000001E7.html">BrightIdeasSoftware</a>
+
+
+
+
+        <br /><strong>Assembly:</strong> ObjectListView (in ObjectListView.dll)
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="section_container">
+	<div class="section_heading">
+		<span><a href="javascript:void(0)" title="Collapse" onclick="toggleSection(this);">Syntax</a></span>
+		<div><hr /></div>
+	</div>
+
+	<div id="syntaxSection" class="section">	
+	
+	
+	<div id="syntaxCodeBlocks">
+		<div class="codeSnippetContainer">		
+			<div class="codeSnippetTabs">
+				<div class="codeSnippetTabLeftCornerActive">
+				</div>
+				<div class="codeSnippetTab csFirstTab csActiveTab codeVB">
+					<a>VB</a>
+				</div>
+				<div class="codeSnippetTab csNaTab codeCsharp">
+					<a href="javascript: CodeSnippet_SetLanguage('Csharp');">C#</a>
+				</div>
+				<div class="codeSnippetTab csNaTab codeFsharp">
+					<a href="javascript: CodeSnippet_SetLanguage('Fsharp');">F#</a>
+				</div>
+				<div class="codeSnippetTab csNaTab codeCpp">
+					<a href="javascript: CodeSnippet_SetLanguage('Cpp');">C++</a>
+				</div>
+				<div class="codeSnippetTab csLastTab csNaTab codeJScript">
+					<a href="javascript: CodeSnippet_SetLanguage('JScript');">JScript</a>
+				</div>
+				<div class="codeSnippetTabRightCorner">
+				</div>
+				<div style="clear:both;">
+				</div>
+			</div>
+	
+			<div class="codeSnippetCodeCollection">
+				<div class="codeSnippetToolbar">
+					<a title="Copy to clipboard." href="javascript:void(0)" onclick="CopyCode(this);">Copy</a>
+				</div>
+				
+				<div class="codeSnippetCode codeVB">
+					<pre xml:space="preserve" class="brush: vb">Public Class HighlightTextRenderer&nbsp;<br />    Inherits <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>&nbsp;<br />    Implements <a target="_top" href="topic_00000000000008EB.html" onclick="this.target='';return true;">IFilterAwareRenderer</a></pre>			
+				</div>
+				<div class="codeSnippetCode codeNA">
+					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
+				</div>
+			</div>
+		</div>
+		
+		<div class="codeSnippetContainer">
+			<div class="codeSnippetTabs">
+				<div class="codeSnippetTabLeftCorner">
+				</div>
+				<div class="codeSnippetTab csFirstTab csNaTab codeVB">
+					<a>VB</a>
+				</div>
+				<div class="codeSnippetTab csActiveTab codeCsharp">
+					<a href="javascript: CodeSnippet_SetLanguage('Csharp');">C#</a>
+				</div>
+				<div class="codeSnippetTab csNaTab codeFsharp">
+					<a href="javascript: CodeSnippet_SetLanguage('Fsharp');">F#</a>
+				</div>
+				<div class="codeSnippetTab csNaTab codeCpp">
+					<a href="javascript: CodeSnippet_SetLanguage('Cpp');">C++</a>
+				</div>
+				<div class="codeSnippetTab csLastTab csNaTab codeJScript">
+					<a href="javascript: CodeSnippet_SetLanguage('JScript');">JScript</a>
+				</div>
+				<div class="codeSnippetTabRightCorner">
+				</div>
+				<div style="clear:both;">
+				</div>
+			</div>
+	
+			<div class="codeSnippetCodeCollection">
+				<div class="codeSnippetToolbar">
+					<a title="Copy to clipboard." href="javascript:void(0)" onclick="CopyCode(this);">Copy</a>
+				</div>
+				
+				<div class="codeSnippetCode codeCsharp">
+					<pre xml:space="preserve" class="brush: csharp">public class HighlightTextRenderer : <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>,&nbsp;<br />   <a target="_top" href="topic_00000000000008EB.html" onclick="this.target='';return true;">IFilterAwareRenderer</a></pre>			
+				</div>
+				<div class="codeSnippetCode codeNA">
+					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
+				</div>
+			</div>
+		</div>
+
+
+		<div class="codeSnippetContainer">
+			<div class="codeSnippetTabs">
+				<div class="codeSnippetTabLeftCorner">
+				</div>
+				<div class="codeSnippetTab csFirstTab csNaTab codeVB">
+					<a>VB</a>
+				</div>
+				<div class="codeSnippetTab csNaTab codeCsharp">
+					<a href="javascript: CodeSnippet_SetLanguage('Csharp');">C#</a>
+				</div>
+				<div class="codeSnippetTab csNaTab codeFsharp">
+					<a href="javascript: CodeSnippet_SetLanguage('Fsharp');">F#</a>
+				</div>
+				<div class="codeSnippetTab csActiveTab codeCpp">
+					<a href="javascript: CodeSnippet_SetLanguage('Cpp');">C++</a>
+				</div>
+				<div class="codeSnippetTab csLastTab csNaTab codeJScript">
+					<a href="javascript: CodeSnippet_SetLanguage('JScript');">JScript</a>
+				</div>
+				<div class="codeSnippetTabRightCorner">
+				</div>
+				<div style="clear:both;">
+				</div>
+			</div>
+	
+			<div class="codeSnippetCodeCollection">
+				<div class="codeSnippetToolbar">
+					<a title="Copy to clipboard." href="javascript:void(0)" onclick="CopyCode(this);">Copy</a>
+				</div>
+				
+				<div class="codeSnippetCode codeCpp">
+					<pre xml:space="preserve" class="brush: cpp">public ref class HighlightTextRenderer : public <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>^,&nbsp;<br />   public <a target="_top" href="topic_00000000000008EB.html" onclick="this.target='';return true;">IFilterAwareRenderer</a>^</pre>			
+				</div>
+				<div class="codeSnippetCode codeNA">
+					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
+				</div>
+			</div>
+		</div>
+		
+		<div class="codeSnippetContainer">
+			<div class="codeSnippetTabs">
+				<div class="codeSnippetTabLeftCorner">
+				</div>
+				<div class="codeSnippetTab csFirstTab csNaTab codeVB">
+					<a>VB</a>
+				</div>
+				<div class="codeSnippetTab csNaTab codeCsharp">
+					<a href="javascript: CodeSnippet_SetLanguage('Csharp');">C#</a>
+				</div>
+				<div class="codeSnippetTab csNaTab codeFsharp">
+					<a href="javascript: CodeSnippet_SetLanguage('Fsharp');">F#</a>
+				</div>
+				<div class="codeSnippetTab csNaTab codeCpp">
+					<a href="javascript: CodeSnippet_SetLanguage('Cpp');">C++</a>
+				</div>
+				<div class="codeSnippetTab csActiveTab csLastTab codeJScript">
+					<a href="javascript: CodeSnippet_SetLanguage('JScript');">JScript</a>
+				</div>
+				<div class="codeSnippetTabRightCornerActive">
+				</div>
+				<div style="clear:both;">
+				</div>
+			</div>
+	
+			<div class="codeSnippetCodeCollection">
+				<div class="codeSnippetToolbar">
+					<a title="Copy to clipboard." href="javascript:void(0)" onclick="CopyCode(this);">Copy</a>
+				</div>
+				
+				<div class="codeSnippetCode codeJScript">
+					<pre xml:space="preserve" class="brush: js">public class HighlightTextRenderer&nbsp;<br />   extends <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>&nbsp;<br />   implements <a target="_top" href="topic_00000000000008EB.html" onclick="this.target='';return true;">IFilterAwareRenderer</a></pre>			
+				</div>
+				<div class="codeSnippetCode codeNA">
+					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
+				</div>
+			</div>
+		</div>
+		
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</div>
+</div>
+
+
+
+<div class="section_container">
+	<div class="section_heading">
+		<span><a href="javascript:void(0)" title="Collapse" onclick="toggleSection(this);">Constructors</a></span>
+		<div><hr /></div>
+	</div>
+
+	<div id="ConstructorsSection" class="section">	
+  <table class="memberListTable">
+    <tr>
+      <th></th>
+      <th>
+        Name
+      </th>
+      <th>
+        Description
+      </th>
+    </tr>
+
+
+							<tr class="
+	
+	
+	">
+	  <td>
+    <img alt="Public constructor" title="Public constructor" src="msdn2017/pubmethod.png"></img>
+
+	
+	    
+	  </td>
+	  <td>
+	    <a href="topic_0000000000000946.html">HighlightTextRenderer(string)</a>
+
+	  </td>
+	  <td>
+		 <strong><span style="color:red;">Obsolete.</span></strong>
+	
+	Create a HighlightTextRenderer
+	
+		</td>
+	</tr>
+						<tr class="
+	
+	
+	">
+	  <td>
+    <img alt="Public constructor" title="Public constructor" src="msdn2017/pubmethod.png"></img>
+
+	
+	    
+	  </td>
+	  <td>
+	    <a href="topic_0000000000000944.html">HighlightTextRenderer()</a>
+
+	  </td>
+	  <td>
+	
+	Create a HighlightTextRenderer
+	
+		</td>
+	</tr>
+						<tr class="
+	
+	
+	">
+	  <td>
+    <img alt="Public constructor" title="Public constructor" src="msdn2017/pubmethod.png"></img>
+
+	
+	    
+	  </td>
+	  <td>
+	    <a href="topic_0000000000000945.html">HighlightTextRenderer(TextMatchFilter)</a>
+
+	  </td>
+	  <td>
+	
+	Create a HighlightTextRenderer
+	
+		</td>
+	</tr>
+		
+	
+
+
+  </table>
+
+  <a href="#mainBody">
+    Top
+  </a>
+
+	</div>					
+</div>
+
+<div class="section_container">
+	<div class="section_heading">
+		<span><a href="javascript:void(0)" title="Collapse" onclick="toggleSection(this);">Properties</a></span>
+		<div><hr /></div>
+	</div>
+
+	<div id="PropertiesSection" class="section">	
+  <table class="memberListTable">
+    <tr>
+      <th></th>
+      <th>
+        Name
+      </th>
+      <th>
+        Description
+      </th>
+    </tr>
+
+
+	
+		<tr class="
+inheritedMember 
+
+
+">
+	<td>
+<img alt="Public property" title="Public property" src="msdn2017/pubproperty.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_00000000000008FC.html">Aspect</a>
+
+	</td>
+	<td>
+
+Get or set the aspect of the model object that this renderer should draw
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+inheritedMember 
+
+
+">
+	<td>
+<img alt="Public property" title="Public property" src="msdn2017/pubproperty.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_00000000000008FD.html">Bounds</a>
+
+	</td>
+	<td>
+
+What are the bounds of the cell that is being drawn?
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+inheritedMember 
+
+
+">
+	<td>
+<img alt="Public property" title="Public property" src="msdn2017/pubproperty.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_00000000000008F3.html">CanWrap</a>
+
+	</td>
+	<td>
+
+Can the renderer wrap lines that do not fit completely within the cell?
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+inheritedMember 
+
+
+">
+	<td>
+<img alt="Public property" title="Public property" src="msdn2017/pubproperty.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_00000000000008F5.html">CellHorizontalAlignment</a>
+
+	</td>
+	<td>
+
+Gets the horiztonal alignment of the column
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+inheritedMember 
+
+
+">
+	<td>
+<img alt="Public property" title="Public property" src="msdn2017/pubproperty.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_00000000000008F4.html">CellPadding</a>
+
+	</td>
+	<td>
+
+Gets or sets how many pixels will be left blank around this cell
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+inheritedMember 
+
+
+">
+	<td>
+<img alt="Public property" title="Public property" src="msdn2017/pubproperty.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_00000000000008F6.html">CellVerticalAlignment</a>
+
+	</td>
+	<td>
+
+Gets or sets how cells drawn by this renderer will be vertically aligned.
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+inheritedMember 
+
+
+">
+	<td>
+  <img alt="Protected property" title="Protected property" src="msdn2017/protproperty.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000940.html">CellVerticalAlignmentAsTextFormatFlag</a>
+
+	</td>
+	<td>
+
+Gets the cell's vertical alignment as a TextFormatFlag
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+inheritedMember 
+
+
+">
+	<td>
+<img alt="Public property" title="Public property" src="msdn2017/pubproperty.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_00000000000008FE.html">Column</a>
+
+	</td>
+	<td>
+
+Get or set the OLVColumn that this renderer will draw
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+inheritedMember 
+
+
+">
+	<td>
+<img alt="Public property" title="Public property" src="msdn2017/pubproperty.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.componentmodel.component.container.aspx">Container</a>
+
+	</td>
+	<td>
+
+
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.componentmodel.component.aspx">Component</a>).
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+
+
+">
+	<td>
+<img alt="Public property" title="Public property" src="msdn2017/pubproperty.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000947.html">CornerRoundness</a>
+
+	</td>
+	<td>
+
+Gets or set how rounded will be the corners of the text match frame
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+inheritedMember 
+
+
+">
+	<td>
+<img alt="Public property" title="Public property" src="msdn2017/pubproperty.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_00000000000008FF.html">DrawItemEvent</a>
+
+	</td>
+	<td>
+
+Get/set the event that caused this renderer to be called
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+inheritedMember 
+
+
+">
+	<td>
+  <img alt="Protected property" title="Protected property" src="msdn2017/protproperty.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_00000000000008F7.html">EffectiveCellPadding</a>
+
+	</td>
+	<td>
+
+Gets the optional padding that this renderer should apply before drawing.
+This property considers all possible sources of padding
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+inheritedMember 
+
+
+">
+	<td>
+  <img alt="Protected property" title="Protected property" src="msdn2017/protproperty.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_00000000000008F8.html">EffectiveCellVerticalAlignment</a>
+
+	</td>
+	<td>
+
+Gets the vertical cell alignment that should govern the rendering.
+This property considers all possible sources.
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+inheritedMember 
+
+
+">
+	<td>
+<img alt="Public property" title="Public property" src="msdn2017/pubproperty.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000900.html">Event</a>
+
+	</td>
+	<td>
+
+Get/set the event that caused this renderer to be called
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+
+
+">
+	<td>
+<img alt="Public property" title="Public property" src="msdn2017/pubproperty.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000948.html">FillBrush</a>
+
+	</td>
+	<td>
+
+Gets or set the brush will be used to paint behind the matched substrings.
+Set this to null to not fill the frame.
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+
+
+">
+	<td>
+<img alt="Public property" title="Public property" src="msdn2017/pubproperty.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000949.html">Filter</a>
+
+	</td>
+	<td>
+
+Gets or sets the filter that is filtering the ObjectListView and for
+which this renderer should highlight text
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+inheritedMember 
+
+
+">
+	<td>
+<img alt="Public property" title="Public property" src="msdn2017/pubproperty.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000901.html">Font</a>
+
+	</td>
+	<td>
+
+Gets or  sets the font to be used for text in this cell
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+
+
+">
+	<td>
+<img alt="Public property" title="Public property" src="msdn2017/pubproperty.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_000000000000094A.html">FramePen</a>
+
+	</td>
+	<td>
+
+Gets or set the pen will be used to frame the matched substrings.
+Set this to null to not draw a frame.
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+inheritedMember 
+
+
+">
+	<td>
+<img alt="Public property" title="Public property" src="msdn2017/pubproperty.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_00000000000008F9.html">ImageList</a>
+
+	</td>
+	<td>
+
+Gets or sets the image list from which keyed images will be fetched
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+inheritedMember 
+
+
+">
+	<td>
+<img alt="Public property" title="Public property" src="msdn2017/pubproperty.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000902.html">ImageListOrDefault</a>
+
+	</td>
+	<td>
+
+Gets the image list from which keyed images will be fetched
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+inheritedMember 
+
+
+">
+	<td>
+  <img alt="Protected property" title="Protected property" src="msdn2017/protproperty.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000939.html">IsCellHot</a>
+
+	</td>
+	<td>
+
+Is the current item hot (i.e. under the mouse)?
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+inheritedMember 
+
+
+">
+	<td>
+  <img alt="Protected property" title="Protected property" src="msdn2017/protproperty.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000938.html">IsCheckBoxDisabled</a>
+
+	</td>
+	<td>
+
+Should this checkbox be drawn as disabled?
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+inheritedMember 
+
+
+">
+	<td>
+  <img alt="Protected property" title="Protected property" src="msdn2017/protproperty.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_000000000000093A.html">IsCheckboxHot</a>
+
+	</td>
+	<td>
+
+Is the mouse over a checkbox in this cell?
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+inheritedMember 
+
+
+">
+	<td>
+<img alt="Public property" title="Public property" src="msdn2017/pubproperty.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000903.html">IsDrawBackground</a>
+
+	</td>
+	<td>
+
+Should this renderer fill in the background before drawing?
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+inheritedMember 
+
+
+">
+	<td>
+<img alt="Public property" title="Public property" src="msdn2017/pubproperty.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000904.html">IsItemSelected</a>
+
+	</td>
+	<td>
+
+Cache whether or not our item is selected
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+inheritedMember 
+
+
+">
+	<td>
+<img alt="Public property" title="Public property" src="msdn2017/pubproperty.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000905.html">IsPrinting</a>
+
+	</td>
+	<td>
+
+Is this renderer being used on a printer context?
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+inheritedMember 
+
+
+">
+	<td>
+<img alt="Public property" title="Public property" src="msdn2017/pubproperty.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000906.html">ListItem</a>
+
+	</td>
+	<td>
+
+Get or set the listitem that this renderer will be drawing
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+inheritedMember 
+
+
+">
+	<td>
+<img alt="Public property" title="Public property" src="msdn2017/pubproperty.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000907.html">ListView</a>
+
+	</td>
+	<td>
+
+Get/set the listview for which the drawing is to be done
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+inheritedMember 
+
+
+">
+	<td>
+<img alt="Public property" title="Public property" src="msdn2017/pubproperty.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000908.html">OLVSubItem</a>
+
+	</td>
+	<td>
+
+Get the specialized OLVSubItem that this renderer is drawing
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+inheritedMember 
+
+
+">
+	<td>
+<img alt="Public property" title="Public property" src="msdn2017/pubproperty.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000909.html">RowObject</a>
+
+	</td>
+	<td>
+
+Get or set the model object that this renderer should draw
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+
+
+">
+	<td>
+  <img alt="Protected property" title="Protected property" src="msdn2017/protproperty.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000954.html">ShouldDrawHighlighting</a>
+
+	</td>
+	<td>
+
+Gets whether the renderer should actually draw highlighting
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+inheritedMember 
+
+
+">
+	<td>
+<img alt="Public property" title="Public property" src="msdn2017/pubproperty.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.componentmodel.component.site.aspx">Site</a>
+
+	</td>
+	<td>
+
+
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.componentmodel.component.aspx">Component</a>).
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+inheritedMember 
+
+
+">
+	<td>
+<img alt="Public property" title="Public property" src="msdn2017/pubproperty.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_00000000000008FA.html">Spacing</a>
+
+	</td>
+	<td>
+
+When rendering multiple images, how many pixels should be between each image?
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+
+
+">
+	<td>
+<img alt="Public property" title="Public property" src="msdn2017/pubproperty.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_000000000000094D.html">StringComparison</a>
+
+	</td>
+	<td>
+	<strong><span style="color:red;">Obsolete.</span></strong>
+
+Gets or sets the manner in which substring will be compared.
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+inheritedMember 
+
+
+">
+	<td>
+  <img alt="Protected property" title="Protected property" src="msdn2017/protproperty.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000941.html">StringFormatForGdiPlus</a>
+
+	</td>
+	<td>
+
+Gets the StringFormat needed when drawing text using GDI+
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+inheritedMember 
+
+
+">
+	<td>
+<img alt="Public property" title="Public property" src="msdn2017/pubproperty.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_000000000000090A.html">SubItem</a>
+
+	</td>
+	<td>
+
+Get or set the list subitem that this renderer will be drawing
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+inheritedMember 
+
+
+">
+	<td>
+<img alt="Public property" title="Public property" src="msdn2017/pubproperty.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_000000000000090B.html">TextBrush</a>
+
+	</td>
+	<td>
+
+The brush that will be used to paint the text
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+
+
+">
+	<td>
+<img alt="Public property" title="Public property" src="msdn2017/pubproperty.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_000000000000094C.html">TextToHighlight</a>
+
+	</td>
+	<td>
+	<strong><span style="color:red;">Obsolete.</span></strong>
+
+Gets or set the text that will be highlighted
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+inheritedMember 
+
+
+">
+	<td>
+<img alt="Public property" title="Public property" src="msdn2017/pubproperty.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_000000000000090C.html">UseCustomCheckboxImages</a>
+
+	</td>
+	<td>
+
+Will this renderer use the custom images from the parent ObjectListView
+to draw the checkbox images.
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+inheritedMember 
+
+
+">
+	<td>
+<img alt="Public property" title="Public property" src="msdn2017/pubproperty.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_00000000000008FB.html">UseGdiTextRendering</a>
+
+	</td>
+	<td>
+
+Should text be rendered using GDI routines? This makes the text look more
+like a native List view control.
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+	
+
+
+	
+		<tr class="
+
+
+">
+	<td>
+<img alt="Public property" title="Public property" src="msdn2017/pubproperty.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_000000000000094B.html">UseRoundedRectangle</a>
+
+	</td>
+	<td>
+
+Gets or sets whether the frame around a text match will have rounded corners
+
+	</td>
+</tr>
+	
+
+
+  </table>
+
+  <a href="#mainBody">
+    Top
+  </a>
+
+	</div>					
+</div>
+
+
+
+
+
+
+<div class="section_container">
+	<div class="section_heading">
+		<span><a href="javascript:void(0)" title="Collapse" onclick="toggleSection(this);">Methods</a></span>
+		<div><hr /></div>
+	</div>
+
+	<div id="MethodsSection" class="section">	
+  <table class="memberListTable">
+    <tr>
+      <th></th>
+      <th>
+        Name
+      </th>
+      <th>
+        Description
+      </th>
+    </tr>
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_000000000000090E.html">AlignHorizontally(Rectangle, Rectangle)</a>
+
+	</td>
+	<td>
+
+Calculate the left edge of the rectangle that aligns the outer rectangle with the inner one
+according to this renderer's horizontal alignment
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_000000000000090D.html">AlignRectangle(Rectangle, Rectangle)</a>
+
+	</td>
+	<td>
+
+Align the second rectangle with the first rectangle,
+according to the alignment of the column
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+			<tr class="
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_000000000000090F.html">AlignVertically(Rectangle, Rectangle)</a>
+
+	</td>
+	<td>
+
+Calculate the top of the rectangle that aligns the outer rectangle with the inner rectangle
+according to this renders vertical alignment
+
+	</td>
+</tr>
+			<tr class="
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000910.html">AlignVertically(Rectangle, int)</a>
+
+	</td>
+	<td>
+
+Calculate the top of the rectangle that aligns the outer rectangle with a rectangle of the given height
+according to this renderer's vertical alignment
+
+	</td>
+</tr>
+	
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+<img alt="Public method" title="Public method" src="msdn2017/pubmethod.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_000000000000092F.html">ApplyCellPadding(Rectangle)</a>
+
+	</td>
+	<td>
+
+Change the bounds of the given rectangle to take any cell padding into account
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000911.html">CalculateAlignedRectangle(Graphics, Rectangle)</a>
+
+	</td>
+	<td>
+
+Calculate the space that our rendering will occupy and then align that space
+with the given rectangle, according to the Column alignment
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000913.html">CalculateCheckBoxBounds(Graphics, Rectangle)</a>
+
+	</td>
+	<td>
+
+Calculate the bounds of a checkbox given the (pre-padded) cell bounds
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000914.html">CalculateCheckBoxSize(Graphics)</a>
+
+	</td>
+	<td>
+
+How much space will the check box for this cell occupy?
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000912.html">CalculateContentSize(Graphics, Rectangle)</a>
+
+	</td>
+	<td>
+
+Calculate the size of the content of this cell.
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000917.html">CalculateImageHeight(Graphics, object)</a>
+
+	</td>
+	<td>
+
+How much vertical space will the image of this cell occupy?
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000918.html">CalculateImageSize(Graphics, object)</a>
+
+	</td>
+	<td>
+
+How much space will the image of this cell occupy?
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000916.html">CalculateImageWidth(Graphics, object)</a>
+
+	</td>
+	<td>
+
+How much horizontal space will the image of this cell occupy?
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000932.html">CalculatePaddedAlignedBounds(Graphics, Rectangle, Size)</a>
+
+	</td>
+	<td>
+
+Apply any padding to the given bounds, and then align a rectangle of the given
+size within that padded area.
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000915.html">CalculatePrimaryCheckBoxSize(Graphics)</a>
+
+	</td>
+	<td>
+
+How much space will the check box for this row occupy?
+If the list doesn't have checkboxes, or this isn't the primary column,
+this returns an empty size.
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_000000000000091A.html">CalculateTextSize(Graphics, string, int)</a>
+
+	</td>
+	<td>
+
+How much space will the text of this cell occupy?
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000919.html">CalculateTextWidth(Graphics, string, int)</a>
+
+	</td>
+	<td>
+
+How much horizontal space will the text of this cell occupy?
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+<img alt="Public method" title="Public method" src="msdn2017/pubmethod.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000925.html">ConfigureItem(DrawListViewItemEventArgs, Rectangle, object)</a>
+
+	</td>
+	<td>
+
+Prepare this renderer to draw in response to the given event
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+<img alt="Public method" title="Public method" src="msdn2017/pubmethod.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000927.html">ConfigureSubItem(DrawListViewSubItemEventArgs, Rectangle, object)</a>
+
+	</td>
+	<td>
+
+Prepare this renderer to draw in response to the given event
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+<img alt="Public method" title="Public method" src="msdn2017/pubmethod.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.marshalbyrefobject.createobjref.aspx">CreateObjRef(Type)</a>
+
+	</td>
+	<td>
+
+
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.marshalbyrefobject.aspx">MarshalByRefObject</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+			<tr class="
+inheritedMember 
+
+
+">
+	<td>
+<img alt="Public method" title="Public method" src="msdn2017/pubmethod.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a target="_top" href="http://msdn2.microsoft.com/en-us/library/3cc9y48w.aspx">Dispose</a>
+
+	</td>
+	<td>
+
+
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.componentmodel.component.aspx">Component</a>).
+
+	</td>
+</tr>
+			<tr class="
+inheritedMember 
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a target="_top" href="http://msdn2.microsoft.com/en-us/library/d9yzd5cx.aspx">Dispose(Boolean)</a>
+
+	</td>
+	<td>
+
+
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.componentmodel.component.aspx">Component</a>).
+
+	</td>
+</tr>
+	
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000933.html">DrawAlignedImage(Graphics, Rectangle, Image)</a>
+
+	</td>
+	<td>
+
+Draw the given image aligned horizontally within the column.
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000934.html">DrawAlignedImageAndText(Graphics, Rectangle)</a>
+
+	</td>
+	<td>
+
+Draw our subitems image and text
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000935.html">DrawBackground(Graphics, Rectangle)</a>
+
+	</td>
+	<td>
+
+Fill in the background of this cell
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000936.html">DrawCheckBox(Graphics, Rectangle)</a>
+
+	</td>
+	<td>
+
+Draw the primary check box of this row (checkboxes in other sub items use a different method)
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000953.html">DrawGdiPlusTextHighlighting(Graphics, Rectangle, string)</a>
+
+	</td>
+	<td>
+
+Draw the highlighted text using GDI+
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000950.html">DrawGdiTextHighlighting(Graphics, Rectangle, string)</a>
+
+	</td>
+	<td>
+
+Draw the highlighted text using GDI
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_000000000000093B.html">DrawImage(Graphics, Rectangle, object)</a>
+
+	</td>
+	<td>
+
+Draw the given text and optional image in the &quot;normal&quot; fashion
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_000000000000093C.html">DrawImageAndText(Graphics, Rectangle)</a>
+
+	</td>
+	<td>
+
+Draw our subitems image and text
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_000000000000093D.html">DrawImages(Graphics, Rectangle, ICollection)</a>
+
+	</td>
+	<td>
+
+Draw the given collection of image selectors
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000951.html">DrawSubstringFrame(Graphics, float, float, float, float)</a>
+
+	</td>
+	<td>
+
+Draw an indication around the given frame that shows a text match
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+<img alt="Public method" title="Public method" src="msdn2017/pubmethod.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_000000000000093E.html">DrawText(Graphics, Rectangle, string)</a>
+
+	</td>
+	<td>
+
+Draw the given text and optional image in the &quot;normal&quot; fashion
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_000000000000094F.html">DrawTextGdi(Graphics, Rectangle, string)</a>
+
+	</td>
+	<td>
+
+Draw text using GDI
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000952.html">DrawTextGdiPlus(Graphics, Rectangle, string)</a>
+
+	</td>
+	<td>
+
+Draw the text using GDI+
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+<img alt="Public method" title="Public method" src="msdn2017/pubmethod.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a target="_top" href="http://msdn2.microsoft.com/en-us/library/bsc2ak47.aspx">Equals(Object)</a>
+
+	</td>
+	<td>
+
+
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.object.aspx">Object</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a target="_top" href="http://msdn2.microsoft.com/en-us/library/az5741fh.aspx">Finalize</a>
+
+	</td>
+	<td>
+
+
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.componentmodel.component.aspx">Component</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+<img alt="Public method" title="Public method" src="msdn2017/pubmethod.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_000000000000091B.html">GetBackgroundColor()</a>
+
+	</td>
+	<td>
+
+Return the Color that is the background color for this item's cell
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000937.html">GetCheckBoxState(CheckState)</a>
+
+	</td>
+	<td>
+
+Calculate the CheckBoxState we need to correctly draw the given state
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+<img alt="Public method" title="Public method" src="msdn2017/pubmethod.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000929.html">GetEditRectangle(Graphics, Rectangle, OLVListItem, int, Size)</a>
+
+	</td>
+	<td>
+
+Calculate the edit rectangle
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+<img alt="Public method" title="Public method" src="msdn2017/pubmethod.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_000000000000091D.html">GetForegroundColor()</a>
+
+	</td>
+	<td>
+
+Return the color to be used for text in this cell
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+<img alt="Public method" title="Public method" src="msdn2017/pubmethod.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.object.gethashcode.aspx">GetHashCode</a>
+
+	</td>
+	<td>
+
+
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.object.aspx">Object</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+			<tr class="
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_000000000000091F.html">GetImage()</a>
+
+	</td>
+	<td>
+
+Return the image that should be drawn against this subitem
+
+	</td>
+</tr>
+			<tr class="
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000920.html">GetImage(object)</a>
+
+	</td>
+	<td>
+
+Return the actual image that should be drawn when keyed by the given image selector.
+An image selector can be: <ul><li>an int, giving the index into the image list</li><li>a string, giving the image key into the image list</li><li>an Image, being the image itself</li></ul>
+
+	</td>
+</tr>
+	
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000921.html">GetImageSelector()</a>
+
+	</td>
+	<td>
+
+
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+<img alt="Public method" title="Public method" src="msdn2017/pubmethod.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.marshalbyrefobject.getlifetimeservice.aspx">GetLifetimeService</a>
+
+	</td>
+	<td>
+
+
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.marshalbyrefobject.aspx">MarshalByRefObject</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+			<tr class="
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000956.html">GetRoundedRect(RectangleF, float)</a>
+
+	</td>
+	<td>
+
+Return a GraphicPath that is a round cornered rectangle
+
+	</td>
+</tr>
+			<tr class="
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000955.html">GetRoundedRect(float, float, float, float, float)</a>
+
+	</td>
+	<td>
+
+Return a GraphicPath that is a round cornered rectangle
+
+	</td>
+</tr>
+	
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+<img alt="Public method" title="Public method" src="msdn2017/pubmethod.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_000000000000091C.html">GetSelectedBackgroundColor()</a>
+
+	</td>
+	<td>
+
+Return the color of the background color when the item is selected
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+<img alt="Public method" title="Public method" src="msdn2017/pubmethod.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_000000000000091E.html">GetSelectedForegroundColor()</a>
+
+	</td>
+	<td>
+
+Return the color of the foreground color when the item is selected
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.componentmodel.component.getservice.aspx">GetService(Type)</a>
+
+	</td>
+	<td>
+
+
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.componentmodel.component.aspx">Component</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000922.html">GetText()</a>
+
+	</td>
+	<td>
+
+Return the string that should be drawn within this
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000923.html">GetTextBackgroundColor()</a>
+
+	</td>
+	<td>
+	<strong><span style="color:red;">Obsolete.</span></strong>
+
+Return the Color that is the background color for this item's text
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+<img alt="Public method" title="Public method" src="msdn2017/pubmethod.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.object.gettype.aspx">GetType</a>
+
+	</td>
+	<td>
+
+
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.object.aspx">Object</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_000000000000094E.html">HandleGetEditRectangle(Graphics, Rectangle, OLVListItem, int, Size)</a>
+
+	</td>
+	<td>
+
+Handle a HitTest request after all state information has been initialized
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_000000000000092C.html">HandleHitTest(Graphics, OlvListViewHitTestInfo, int, int)</a>
+
+	</td>
+	<td>
+
+Do the actual work of hit testing. Subclasses should override this rather than HitTest()
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+<img alt="Public method" title="Public method" src="msdn2017/pubmethod.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000928.html">HitTest(OlvListViewHitTestInfo, int, int)</a>
+
+	</td>
+	<td>
+
+Calculate which part of this cell was hit
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+<img alt="Public method" title="Public method" src="msdn2017/pubmethod.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.marshalbyrefobject.initializelifetimeservice.aspx">InitializeLifetimeService</a>
+
+	</td>
+	<td>
+
+
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.marshalbyrefobject.aspx">MarshalByRefObject</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+			<tr class="
+inheritedMember 
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.object.memberwiseclone.aspx">MemberwiseClone</a>
+
+	</td>
+	<td>
+
+
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.object.aspx">Object</a>).
+
+	</td>
+</tr>
+			<tr class="
+inheritedMember 
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a target="_top" href="http://msdn2.microsoft.com/en-us/library/ms131262.aspx">MemberwiseClone(Boolean)</a>
+
+	</td>
+	<td>
+
+
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.marshalbyrefobject.aspx">MarshalByRefObject</a>).
+
+	</td>
+</tr>
+	
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+<img alt="Public method" title="Public method" src="msdn2017/pubmethod.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_000000000000092A.html">OptionalRender(Graphics, Rectangle)</a>
+
+	</td>
+	<td>
+
+Draw our data into the given rectangle using the given graphics context.
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+<img alt="Public method" title="Public method" src="msdn2017/pubmethod.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_000000000000092B.html">Render(Graphics, Rectangle)</a>
+
+	</td>
+	<td>
+
+Draw our data into the given rectangle using the given graphics context.
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+<img alt="Public method" title="Public method" src="msdn2017/pubmethod.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000924.html">RenderItem(DrawListViewItemEventArgs, Graphics, Rectangle, object)</a>
+
+	</td>
+	<td>
+
+Render the whole item in a non-details view.
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+<img alt="Public method" title="Public method" src="msdn2017/pubmethod.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000926.html">RenderSubItem(DrawListViewSubItemEventArgs, Graphics, Rectangle, object)</a>
+
+	</td>
+	<td>
+
+Render one cell
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000931.html">StandardGetEditRectangle(Graphics, Rectangle, Size)</a>
+
+	</td>
+	<td>
+
+This method calculates the bounds of the text within a standard layout
+(i.e. optional checkbox, optional image, text)
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_0000000000000930.html">StandardHitTest(Graphics, OlvListViewHitTestInfo, Rectangle, int, int)</a>
+
+	</td>
+	<td>
+
+Perform normal hit testing relative to the given aligned content bounds
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+  <img alt="Protected method" title="Protected method" src="msdn2017/protmethod.png"></img>
+
+    
+	  
+
+    
+	</td>
+	<td>
+	<a href="topic_000000000000092E.html">StandardRender(Graphics, Rectangle)</a>
+
+	</td>
+	<td>
+
+Draw the standard &quot;[checkbox] [image] [text]&quot; cell after the state properties have been initialized.
+(inherited from <a target="_top" href="topic_00000000000008F2.html" onclick="this.target='';return true;">BaseRenderer</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+	<tr class="
+inheritedMember 
+
+
+">
+	<td>
+<img alt="Public method" title="Public method" src="msdn2017/pubmethod.png"></img>
+	  
+
+    
+	</td>
+	<td>
+	<a target="_top" href="http://msdn2.microsoft.com/en-us/library/z819d1t5.aspx">ToString</a>
+
+	</td>
+	<td>
+
+
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.componentmodel.component.aspx">Component</a>).
+
+	</td>
+</tr>
+
+
+
+
+
+
+  </table>
+
+  <a href="#mainBody">
+    Top
+  </a>
+
+	</div>					
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="section_container">
+	<div class="section_heading">
+		<span><a href="javascript:void(0)" title="Collapse" onclick="toggleSection(this);">Events</a></span>
+		<div><hr /></div>
+	</div>
+
+	<div id="EventsSection" class="section">	
+  <table class="memberListTable">
+    <tr>
+      <th></th>
+      <th>
+        Name
+      </th>
+      <th>
+        Description
+      </th>
+    </tr>
+
+	<tr class="
+		inheritedMember 
+	
+	
+	">
+	  <td>
+    <img alt="Public event" title="Public event" src="msdn2017/pubevent.png"></img>
+
+	
+	    
+	  </td>
+	  <td>
+	    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.componentmodel.component.disposed.aspx">Disposed</a>
+
+	  </td>
+	  <td>
+	
+	
+		(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.componentmodel.component.aspx">Component</a>).
+	
+		</td>
+	</tr>
+
+  </table>
+
+  <a href="#mainBody">
+    Top
+  </a>
+
+	</div>					
+</div>
+
+  
+
+<!-- Classes -->
+
+<!-- Classes End -->
+
+<!-- Standard Modules -->
+
+<!-- Standard Modules End -->
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="section_container">
+	<div class="section_heading">
+		<span><a href="javascript:void(0)" title="Collapse" onclick="toggleSection(this);">Inheritance Hierarchy</a></span>
+		<div><hr /></div>
+	</div>
+
+<div id="inheritanceHierarchySection" class="section">
+
+<div style="padding-left:0em;"><a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.object.aspx">System.Object</a>
+</div>
+
+<div style="padding-left:1em;"><a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.marshalbyrefobject.aspx">System.MarshalByRefObject</a>
+</div>
+
+<div style="padding-left:2em;"><a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.componentmodel.component.aspx">System.ComponentModel.Component</a>
+</div>
+
+<div style="padding-left:3em;"><a href="topic_00000000000008ED.html">BrightIdeasSoftware.AbstractRenderer</a>
+</div>
+
+<div style="padding-left:4em;"><a href="topic_00000000000008F2.html">BrightIdeasSoftware.BaseRenderer</a>
+</div>
+
+
+
+<div style="padding-left:5em;">BrightIdeasSoftware.HighlightTextRenderer</div>
+
+<div style="padding-left:6em;"><a href="topic_00000000000009DF.html">BrightIdeasSoftware.TreeListView.TreeRenderer</a>
+</div>
+
+
+				
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+
+<div class="section_container">
+	<div class="section_heading">
+		<span><a href="javascript:void(0)" title="Collapse" onclick="toggleSection(this);">Applies to</a></span>
+		<div><hr /></div>
+	</div>
+
+	<div id="frameworksSection" class="section">	
+  <h4 class="subHeading">.NET Framework</h4>Supported in: 4.5, 4.5.1, 4.5.2, 4.6, 4.6.1, 4.6.2, 4.7, 4.7.1<br />
+
+
+
+
+
+
+
+
+
+
+	
+	
+	</div>					
+</div>
+
+
+<div class="section_container">
+	<div class="section_heading">
+		<span><a href="javascript:void(0)" title="Collapse" onclick="toggleSection(this);">See Also</a></span>
+		<div><hr /></div>
+	</div>
+
+	<div id="seeAlsoSection" class="section">	
+		<div>
+	<a href="topic_00000000000001E7.html">BrightIdeasSoftware Namespace</a><br />
+
+
+	
+
+		</div>
+	</div>					
+</div>
+			</div>
+			</div>
+      <div id="footer">
+      	<p><span style="color: #FF0000;">Generated with unregistered version of <a target="_top" href="http://www.helixoft.com/vsdocman/overview.html">VSdocman</a></span>&nbsp;<br />Your own footer text will only be shown in registered version.</p>
+      </div>
+    </div>
+  	<script type="text/javascript">
+<!--
+	try {
+		parent.frames["vbdocswitch"].expandLinkInToc(location.href);
+	} catch (ex) {}
+//-->
+		</script>	
+  </body>
+</html>
+

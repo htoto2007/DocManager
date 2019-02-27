@@ -65,12 +65,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClassCardPropsValue.cs" />
-    <Compile Include="FormFileCard.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormFileCard.Designer.cs">
-      <DependentUpon>FormFileCard.cs</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -86,19 +80,6 @@
       <Project>{a8d9c15a-3f3c-423a-be05-293de5941bb7}</Project>
       <Name>VitNotifyMessage</Name>
     </ProjectReference>
-    <ProjectReference Include="..\vitTypeCardProps\vitTypeCardProps.csproj">
-      <Project>{fddb1cd0-bcfe-46d9-b0bd-66f6603016c9}</Project>
-      <Name>vitTypeCardProps</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\VitTypeCard\VitTypeCard.csproj">
-      <Project>{ce939e31-b292-47bb-92d3-085d95fb3f67}</Project>
-      <Name>VitTypeCard</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="FormFileCard.resx">
-      <DependentUpon>FormFileCard.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
